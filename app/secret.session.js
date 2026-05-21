@@ -2,6 +2,7 @@
 (function () {
   const STORAGE_KEY_MODE = 'dpr_secret_access_mode_v1'; // 已不再使用，仅保留兼容
   const STORAGE_KEY_PASS = 'dpr_secret_password_v1';
+  const STORAGE_KEY_LOCAL_SECRET = 'dpr_local_secret_private_v1';
   const SECRET_FILE_URL = 'secret.private';
   const SECRET_OVERLAY_ANIMATION_MS = 280;
   const FORCE_GUEST_DOMAIN_TOKEN = 'ziwenhahaha';
@@ -11,6 +12,39 @@
     return normalized.includes(FORCE_GUEST_DOMAIN_TOKEN);
   };
   const FORCE_GUEST_MODE = isForceGuestDomain(window && window.location && window.location.hostname);
+  const isLocalDebugHost = () => {
+    const host = String((window.location && window.location.hostname) || '').toLowerCase();
+    return host === 'localhost' || host === '127.0.0.1' || host === '::1';
+  };
+
+  function loadLocalSecretPayload() {
+    if (!isLocalDebugHost()) return null;
+    try {
+      if (!window.localStorage) return null;
+      const raw = window.localStorage.getItem(STORAGE_KEY_LOCAL_SECRET);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      return parsed && parsed.payload ? parsed.payload : parsed;
+    } catch (e) {
+      console.error('[SECRET] 读取本地 secret.private 失败：', e);
+      return null;
+    }
+  }
+
+  function saveLocalSecretPayload(payload) {
+    if (!isLocalDebugHost()) return false;
+    try {
+      if (!window.localStorage) return false;
+      window.localStorage.setItem(
+        STORAGE_KEY_LOCAL_SECRET,
+        JSON.stringify({ payload, savedAt: new Date().toISOString() }),
+      );
+      return true;
+    } catch (e) {
+      console.error('[SECRET] 保存本地 secret.private 失败：', e);
+      return false;
+    }
+  }
 
   const setAccessMode = (mode, detail) => {
     window.DPR_ACCESS_MODE = mode;
@@ -1596,7 +1630,8 @@
 
       genBtn.addEventListener('click', async () => {
         const githubToken = normalizeText(githubInput.value);
-        if (!githubToken || !githubOk) {
+        const localOnly = isLocalDebugHost();
+        if (!localOnly && (!githubToken || !githubOk)) {
           setErrorText('请先填写并通过验证 GitHub Token。', '#c00');
           return;
         }
@@ -1652,64 +1687,74 @@
         };
 
         try {
-          setErrorText('正在准备写入 GitHub Secrets...', '#666');
+          setErrorText(localOnly ? '正在生成本地加密配置...' : '正在准备写入 GitHub Secrets...', '#666');
           genBtn.disabled = true;
 
-          const secretsOk = await saveSummarizeSecretsToGithub(
-            githubToken,
-            {
-              providerType: providerDraft.providerType,
-              summarizedApiKey: providerDraft.summaryApiKey,
-              summarizedBaseUrl: providerDraft.summaryBaseUrl,
-              summarizedModel: providerDraft.summaryModel,
-              filterModel: providerDraft.filterModel,
-              rewriteModel: providerDraft.rewriteModel,
-              skipRerank: providerDraft.skipRerank,
-              localRerankModel: 'Qwen/Qwen3-Reranker-0.6B',
-              rerankerProfile: providerDraft.reranker && providerDraft.reranker.profile,
-              rerankerProvider: providerDraft.reranker && providerDraft.reranker.provider,
-              rerankerModel: providerDraft.reranker && providerDraft.reranker.model,
-              rerankerApiKey: providerDraft.reranker && providerDraft.reranker.apiKey,
-              rerankerBaseUrl: providerDraft.reranker && providerDraft.reranker.baseUrl,
-            },
-            (current, total, secretName) => {
-              setErrorText(`(${current}/${total}) 正在上传 GitHub Secret：${secretName}...`, '#666');
-            },
-          );
-          if (!secretsOk) {
-            setErrorText(
-              '❌ 写入 GitHub Secrets 失败，请检查网络、Token 权限（需 Classic PAT + repo/workflow/gist）或稍后重试。',
-              '#c00',
+          if (!localOnly) {
+            const secretsOk = await saveSummarizeSecretsToGithub(
+              githubToken,
+              {
+                providerType: providerDraft.providerType,
+                summarizedApiKey: providerDraft.summaryApiKey,
+                summarizedBaseUrl: providerDraft.summaryBaseUrl,
+                summarizedModel: providerDraft.summaryModel,
+                filterModel: providerDraft.filterModel,
+                rewriteModel: providerDraft.rewriteModel,
+                skipRerank: providerDraft.skipRerank,
+                localRerankModel: 'Qwen/Qwen3-Reranker-0.6B',
+                rerankerProfile: providerDraft.reranker && providerDraft.reranker.profile,
+                rerankerProvider: providerDraft.reranker && providerDraft.reranker.provider,
+                rerankerModel: providerDraft.reranker && providerDraft.reranker.model,
+                rerankerApiKey: providerDraft.reranker && providerDraft.reranker.apiKey,
+                rerankerBaseUrl: providerDraft.reranker && providerDraft.reranker.baseUrl,
+              },
+              (current, total, secretName) => {
+                setErrorText(`(${current}/${total}) 正在上传 GitHub Secret：${secretName}...`, '#666');
+              },
             );
-            return;
+            if (!secretsOk) {
+              setErrorText(
+                '❌ 写入 GitHub Secrets 失败，请检查网络、Token 权限（需 Classic PAT + repo/workflow/gist）或稍后重试。',
+                '#c00',
+              );
+              return;
+            }
           }
 
-          setErrorText('GitHub Secrets 上传完成，正在生成加密配置 secret.private...', '#666');
+          setErrorText(localOnly ? '正在保存到浏览器本地...' : 'GitHub Secrets 上传完成，正在生成加密配置 secret.private...', '#666');
           const payload = await createEncryptedSecret(password, plainConfig);
           window.decoded_secret_private = plainConfig;
           setMode('full');
 
-          const blob = new Blob([JSON.stringify(payload, null, 2)], {
-            type: 'application/json',
-          });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'secret.private';
-          document.body.appendChild(a);
-          a.click();
-          setTimeout(() => {
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-          }, 0);
+          if (localOnly) {
+            const saved = saveLocalSecretPayload(payload);
+            if (!saved) {
+              setErrorText('❌ 保存到浏览器本地失败，请检查 localStorage 是否可用。', '#c00');
+              return;
+            }
+          } else {
+            const blob = new Blob([JSON.stringify(payload, null, 2)], {
+              type: 'application/json',
+            });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'secret.private';
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+            }, 0);
 
-          setErrorText('正在将 secret.private 推送到 GitHub 仓库根目录...', '#666');
-          const commitOk = await saveSecretPrivateToGithubRepo(githubToken, payload);
-          if (!commitOk) {
-            setErrorText(
-              '⚠️ 已生成本地 secret.private，但自动推送到 GitHub 仓库失败，请稍后手动提交或检查 Token/网络。',
-              '#c00',
-            );
+            setErrorText('正在将 secret.private 推送到 GitHub 仓库根目录...', '#666');
+            const commitOk = await saveSecretPrivateToGithubRepo(githubToken, payload);
+            if (!commitOk) {
+              setErrorText(
+                '⚠️ 已生成本地 secret.private，但自动推送到 GitHub 仓库失败，请稍后手动提交或检查 Token/网络。',
+                '#c00',
+              );
+            }
           }
 
           hide();
@@ -1888,12 +1933,16 @@
     // 检查是否已经存在 secret.private（用于区分“解锁”与“初始化”）
     (async () => {
       try {
-        const resp = await fetch(SECRET_FILE_URL, {
-          method: 'GET',
-          cache: 'no-store',
-        });
-        let hasSecret = false;
-        if (resp.ok) {
+        const localPayload = loadLocalSecretPayload();
+        let resp = null;
+        let hasSecret = Boolean(localPayload);
+        if (!hasSecret) {
+          resp = await fetch(SECRET_FILE_URL, {
+            method: 'GET',
+            cache: 'no-store',
+          });
+        }
+        if (!hasSecret && resp && resp.ok) {
           try {
             // 不再依赖 content-type，只要能成功解析为 JSON，就认为是合法的 secret.private
             await resp.clone().json();
@@ -1914,12 +1963,14 @@
               const resp2 = await fetch(SECRET_FILE_URL, {
                 cache: 'no-store',
               });
-              if (!resp2.ok) {
-                throw new Error(
-                  `获取 secret.private 失败，HTTP ${resp2.status}`,
-                );
-              }
-              const payload = await resp2.json();
+              const payload = localPayload || (await (async () => {
+                if (!resp2.ok) {
+                  throw new Error(
+                    `获取 secret.private 失败，HTTP ${resp2.status}`,
+                  );
+                }
+                return resp2.json();
+              })());
               const secret = await decryptSecret(savedPwd, payload);
               window.decoded_secret_private = secret;
               // 这里不在 setupOverlay 作用域内，直接标记全局访问模式为 full 并广播事件

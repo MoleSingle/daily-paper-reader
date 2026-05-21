@@ -2,6 +2,47 @@
 // 负责：本地存储 Token、验证权限、更新按钮与信息区状态
 
 window.SubscriptionsGithubToken = (function () {
+  const LOCAL_CONFIG_STORAGE_KEY = 'dpr_local_config_yaml_v1';
+
+  const isLocalDebugHost = () => {
+    const host = String((window.location && window.location.hostname) || '').toLowerCase();
+    return host === 'localhost' || host === '127.0.0.1' || host === '::1';
+  };
+
+  const loadLocalConfigOverride = () => {
+    if (!isLocalDebugHost()) return null;
+    try {
+      if (!window.localStorage) return null;
+      const raw = window.localStorage.getItem(LOCAL_CONFIG_STORAGE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      return parsed && typeof parsed.config === 'object' ? parsed : null;
+    } catch (e) {
+      console.error('Failed to load local config override:', e);
+      return null;
+    }
+  };
+
+  const saveLocalConfigOverride = (configObject, commitMessage) => {
+    if (!isLocalDebugHost()) return null;
+    const payload = {
+      config: configObject || {},
+      source: 'localStorage',
+      message: commitMessage || 'local dashboard config save',
+      savedAt: new Date().toISOString(),
+    };
+    try {
+      if (!window.localStorage) {
+        throw new Error('当前浏览器不支持 localStorage。');
+      }
+      window.localStorage.setItem(LOCAL_CONFIG_STORAGE_KEY, JSON.stringify(payload));
+      return payload;
+    } catch (e) {
+      console.error('Failed to save local config override:', e);
+      throw e;
+    }
+  };
+
   // 从本地存储加载 GitHub Token 数据
   const loadGithubToken = () => {
     try {
@@ -266,6 +307,17 @@ window.SubscriptionsGithubToken = (function () {
   // 注意：GitHub Pages 通常是 https://<user>.github.io/<repo>/，因此不能用绝对路径 /config.yaml（会指向域名根）。
   const loadConfig = async () => {
     try {
+      const localOverride = loadLocalConfigOverride();
+      if (localOverride) {
+        return {
+          config: localOverride.config || {},
+          sha: null,
+          source: 'localStorage',
+          localOnly: true,
+          savedAt: localOverride.savedAt || '',
+        };
+      }
+
       const candidates = [
         'config.yaml',
         'docs/config.yaml',
@@ -300,6 +352,12 @@ window.SubscriptionsGithubToken = (function () {
 
   // 更新 config.yaml：接收一个 updater(config) 回调，返回新的 config 对象
   const updateConfig = async (updater, commitMessage = 'chore: update config.yaml from dashboard') => {
+    if (isLocalDebugHost()) {
+      const { config: current } = await loadConfig();
+      const next = typeof updater === 'function' ? updater({ ...(current || {}) }) || current : current;
+      return saveLocalConfigOverride(next, commitMessage);
+    }
+
     const token = getTokenForConfig();
     if (!token) {
       throw new Error('未配置有效的 GitHub Token，请先完成首页的新配置指引。');
@@ -340,6 +398,10 @@ window.SubscriptionsGithubToken = (function () {
 
   // 使用给定的 config 对象保存到远端 config.yaml（用于“保存”按钮）
   const saveConfig = async (configObject, commitMessage = 'chore: save dashboard config from panel') => {
+    if (isLocalDebugHost()) {
+      return saveLocalConfigOverride(configObject || {}, commitMessage);
+    }
+
     const token = getTokenForConfig();
     if (!token) {
       throw new Error('未配置有效的 GitHub Token，请先完成首页的新配置指引。');
@@ -570,5 +632,6 @@ window.SubscriptionsGithubToken = (function () {
     loadConfig,
     updateConfig,
     saveConfig,
+    isLocalDebugHost,
   };
 })();
