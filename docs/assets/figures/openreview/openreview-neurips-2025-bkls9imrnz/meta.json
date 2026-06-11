@@ -1,0 +1,87 @@
+{
+  "version": 2,
+  "extractor": "papercropper",
+  "figures": [
+    {
+      "url": "assets/figures/openreview/openreview-neurips-2025-bkls9imrnz/fig-001.webp",
+      "caption": "",
+      "page": 0,
+      "index": 1,
+      "width": 1443,
+      "height": 586,
+      "label": "Figure"
+    },
+    {
+      "url": "assets/figures/openreview/openreview-neurips-2025-bkls9imrnz/fig-002.webp",
+      "caption": "",
+      "page": 0,
+      "index": 2,
+      "width": 1445,
+      "height": 245,
+      "label": "Figure"
+    },
+    {
+      "url": "assets/figures/openreview/openreview-neurips-2025-bkls9imrnz/fig-003.webp",
+      "caption": "",
+      "page": 0,
+      "index": 3,
+      "width": 1441,
+      "height": 688,
+      "label": "Figure"
+    },
+    {
+      "url": "assets/figures/openreview/openreview-neurips-2025-bkls9imrnz/fig-004.webp",
+      "caption": "",
+      "page": 0,
+      "index": 4,
+      "width": 1448,
+      "height": 356,
+      "label": "Figure"
+    },
+    {
+      "url": "assets/figures/openreview/openreview-neurips-2025-bkls9imrnz/fig-005.webp",
+      "caption": "",
+      "page": 0,
+      "index": 5,
+      "width": 551,
+      "height": 370,
+      "label": "Figure"
+    },
+    {
+      "url": "assets/figures/openreview/openreview-neurips-2025-bkls9imrnz/fig-006.webp",
+      "caption": "",
+      "page": 0,
+      "index": 6,
+      "width": 586,
+      "height": 522,
+      "label": "Figure"
+    },
+    {
+      "url": "assets/figures/openreview/openreview-neurips-2025-bkls9imrnz/fig-007.webp",
+      "caption": "",
+      "page": 0,
+      "index": 7,
+      "width": 1292,
+      "height": 306,
+      "label": "Figure"
+    },
+    {
+      "url": "assets/figures/openreview/openreview-neurips-2025-bkls9imrnz/fig-008.webp",
+      "caption": "",
+      "page": 0,
+      "index": 8,
+      "width": 1313,
+      "height": 715,
+      "label": "Figure"
+    },
+    {
+      "url": "assets/figures/openreview/openreview-neurips-2025-bkls9imrnz/fig-009.webp",
+      "caption": "",
+      "page": 0,
+      "index": 9,
+      "width": 1299,
+      "height": 1775,
+      "label": "Figure"
+    }
+  ]
+}
