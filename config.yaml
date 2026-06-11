@@ -25,3 +25,60 @@ subscriptions:
     stage: A
     diff_threshold_pct: 15
   keyword_recall_mode: or
+  intent_profiles:
+    - tag: talking-head
+      description: 数字人及talking head的基准测试和数据集论文
+      enabled: true
+      paper_sources:
+        - arxiv
+      keywords:
+        - keyword: talking head
+          keyword_cn: 说话头
+          query: generation and synthesis of talking heads
+        - keyword: digital human
+          keyword_cn: 数字人
+          query: digital human avatar creation
+        - keyword: talking head benchmark
+          keyword_cn: 说话头基准测试
+          query: benchmark for talking head synthesis
+        - keyword: talking head dataset
+          keyword_cn: 说话头数据集
+          query: dataset for talking head animation
+        - keyword: audio driven
+          keyword_cn: 音频驱动说话头
+          query: audio-driven facial animation for talking heads
+        - keyword: talking head video synthesis
+          keyword_cn: 说话头视频合成
+          query: video synthesis of talking heads
+      intent_queries:
+        - query: benchmark datasets for evaluating talking head generation models
+          query_cn: 用于评估说话头生成模型的基准数据集
+          enabled: true
+          source: manual
+          note: ''
+        - query: public datasets for digital human and talking head research
+          query_cn: 用于数字人和说话头研究的公开数据集
+          enabled: true
+          source: manual
+          note: ''
+        - query: state of the art talking head synthesis benchmarks and datasets
+          query_cn: 最先进的说话头合成基准和数据集
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-06-11T02:54:50.605Z'
+source_backends:
+  arxiv:
+    papers_table: arxiv_papers
+    use_vector_rpc: true
+    vector_rpc: match_arxiv_papers
+    vector_rpc_exact: match_arxiv_papers_exact
+    use_bm25_rpc: true
+    bm25_rpc: match_arxiv_papers_bm25
+    sync_table: arxiv_sync_status
+    sync_success_value: success
+    schema: public
+    kind: supabase
+    enabled: true
+    url: https://lyucdwgefyfbmaiopjbk.supabase.co
+    anon_key: sb_publishable_lX-oi64Uxyd7SIVv3_w2Uw_MTOojeKq
