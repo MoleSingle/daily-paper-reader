@@ -1,0 +1,365 @@
+Title: Self-Learning Expression Deformations for Data-Efficient Gaussian Avatars
+
+URL Source: https://arxiv.org/pdf/2606.05912v1
+
+Published Time: Fri, 05 Jun 2026 01:07:54 GMT
+
+Number of Pages: 15
+
+Markdown Content:
+# Self-Learning Expression Deformations for Data-Efficient Gaussian Avatars 
+
+## Jiahao Yang Xiaohang Yang Qing Wang Yilan Dong Gregory Slabaugh Shanxin Yuan Queen Mary University of London 
+
+Fig. 1: We introduce SAGE, a method for creating animatable Gaussian avatars from minimal training data. Our pipeline consists of two training phases: (1) joint optimization of an SDF and 2DGS for accurate surface reconstruction, and (2) a self-supervised strategy to ensure appearance and geometric robustness under deformation. Additionally, we employ refinement of Gaussian shapes using surface properties during animation. Finally, the avatar is animated using FLAME parameters. 
+
+Abstract — Modeling dynamic facial expressions using 3D Gaussian representations remains challenging due to their unstructured nature. Conventional Gaussian avatar pipelines require extensive multiview and sequential expression data, limiting scalability and accessibility. In this work, we introduce Self-Adaptive Gaussian Expression (SAGE), a framework for self-learning expression-induced Gaussian deformations that enables high-fidelity, animatable avatars from minimal input data. Our method jointly optimizes 2D Gaussian surfels and a Signed Distance Field (SDF) to enforce compact, surface-aligned Gaussian distributions, while a self-supervised expression learn-ing phase replaces long training sequences with geometric and appearance consistency constraints. This design allows flexible deployment across multiple reconstruction regimes: in the mul-tiview setting, only a single frame (timestep) is required instead of thousands; in the monocular setting, only head rotations are needed without expression sequences; and in the one-shot setting, no pretraining or priors are necessary. Experiments demonstrate that our approach achieves reconstruction and animation quality comparable to state-of-the-art methods, while reducing data requirements by several orders of magnitude. Our results highlight the potential of self-supervised Gaussian deformation learning as a step toward accessible, data-efficient avatar creation. 
+
+I. I NTRODUCTION 
+
+Creating photorealistic 3D avatars is a key challenge in computer vision, with applications in film, gaming, and animation. Facial modeling remains complex due to the need to capture appearance, geometry, and dynamics within a unified framework. Meanwhile, the demand for real-time rendering on lower-end devices drives the need for efficient, lightweight animation pipelines. Recently, advancements in 3D Gaussian Splatting (3DGS) [31], [7], [12], [27], [76] have outperformed implicit neu-ral representations and inherited key techniques from prior advancements. 3D Morphable Model (3DMM)-based ap-proaches remain preferable for creating Gaussian avatars [68], [52], [22], [67], [43]. However, 3DGS representations lack inherent structure, often introducing artifacts when deformed. Hence, these pipelines heavily rely on extensive sequential expression datasets [35], [79], [46], which are costly and unsuitable for wider use cases. Efforts in few-shot avatar creation [14], [10], [82], [88], [75] still require extensive pre-training, leaving no efficient pipeline for avatar creation from minimal input. To address this gap, we propose replacing long training sequences with geometric constraints to ensure consistency in Gaussian transformation, thereby enabling an efficient and accessible pipeline. We introduce SAGE, a framework for self-learning expression-induced Gaussian deformation. This allows us to achieve the following: reconstructing an avatar from a single frame 1 (timestep) of images of multiple viewpoints; reconstruction from monocular video, which only includes sufficient head rotation angles; and one-shot reconstruction using only one image. During optimization, we follow [52], rigging Gaussians to a FLAME [38] mesh for direct control via FLAME parameters. The unstructured nature of Gaussian representations causes geometric and visual distortions in dynamic scenes. Inspired by 3DGS-based surface reconstruction methods [28], [41], [8], our approach jointly refines a Signed Distance Field (SDF), which serves as surface supervision to orderly align Gaussians. Additionally, we adopt 2D Gaussian Splat-ting (2DGS)’s [28] surfel representation instead and impose constraints to maintain a compact, tangential distribution. In 
+
+> 1In this paper, we refer to a ‘single frame’ as a set of multiple images captured from different viewpoints at a single timestep.
+> arXiv:2606.05912v1 [cs.CV] 4 Jun 2026
+
+addition, we devise separate networks to parametrize Gaus-sian appearances, reducing local Gaussian shape deviations. Inspired by geometry processing from [72], we utilize both the surface gradient and Hessian matrix to infer surface stretching and curvature to make adjustments to Gaussian shapes ensuring consistency during animation time. Finally, we introduce a novel self-supervision strategy and train the avatar with expression parameter sequences, but without ground truth images. We use depth and normal con-straints to ensure Gaussians remain compact and tangential to deformed surfaces. Additionally, appearance supervision is applied by comparing corresponding query points rendered by Gaussian splatting and a canonical appearance network. Experiments indicate our pipeline achieves performance comparable to state-of-the-art methods trained on thousands of frames, significantly reducing optimization time while maintaining robustness across diverse transformations. Overall, our contributions are as follows:  
+
+> •
+
+We propose a strategy for generating surface-aligned, geometry-aware Gaussians that improve spatial consis-tency and alignment across deformations while main-taining visual accuracy.  
+
+> •
+
+To enhance transformation robustness, we introduce a novel self-supervised training approach for fine-tuning Gaussian shape.  
+
+> •
+
+The established training strategy reduces computational costs and data requirements exponentially while achiev-ing results comparable to state-of-the-art in each recon-struction modes. II. R ELATED WORK 
+
+Animatable Head reconstruction Early works on human head reconstruction relied on 3DMMs [3], [6], [38], [49], which parameterize shape and texture in low-dimensional spaces. Neural extensions [20], [74], [80] improve expression and geometry by learning residuals on top of mesh templates such as FLAME [44], [63], while others integrate neural textures [23], [32], [42], [60], [16]. More recent efforts shift to neural fields [2], [17], [19], [26], [39], [70], [33] and point-based methods such as Gaussian Splatting [11], [52], [68], [84]. Expression-conditioned NeRFs leverage 3DMM coefficients, hash tables, or motion voxel grids [17], [19], [70], while implicit deformation networks [47], [48], [50] are extended with expression, audio, or FLAME parameters [71], [61], [2], [85]. Explicit approaches instead impose geometric consistency, e.g., aligning surface points to a canonical mesh [87] or applying FLAME-based Linear Blend Skinning [83], [84]. For 3DGS, controllability can be introduced via tetrahedral cages [86], SMPL with shell maps [29], or blendshape-driven LBS [43]. Robustness is further improved with per-Gaussian parameters [15], [81], [62], mesh-bound Gaussians [52], or expression-conditioned MLPs [68], [22], [67], [59]. But these pipelines heavily rely on extensive sequential datasets to achieve generalizability for novel expression reconstruction. 
+
+Few-Shot Head Avatar Few-shot creation methods span several directions. [34], [40] can generate high fidelity Gaus-sian avatar, but does not support animation. Latent deforma-tion encodings with 2D generative models enable facial reen-actment from limited inputs [54], [66], [57]. StyleGAN2 [30] and its latent space are frequently adapted, often combined with monocular 3DMM tracking to improve 3D geometry, pose consistency, and controllable animation. Another line of work learns 3D head priors from large-scale data for personalization: Morphable Diffusion [10] applies diffusion to 3DMM meshes for single-image avatar creation. VAE-based frameworks [44], [5], [75], [73] encode appearance and adapt head priors to new identities; [82], [55], [69], [88], [25] built a generalizable Gaussian prior learned from large datasets to enable few-shot avatar creation. While such generative approaches achieve strong results, they often require extensive pre-training. By contrast, our method is purely geometric and only requires minimal data for training. 
+
+Surface Geometry of 3DGS Recent approaches have at-tempted to reconstruct accurate surfaces via 3DGS. SuGaR [24] approximates Gaussians with near planar primitives and binary opacity. NeuSG [8] integrates 3DGS with NeuS [64], encouraging Gaussians to align more compactly with an underlying SDF. 3DGSR [41] conditions Gaussian opac-ities to nearest-surface distances via radial basis kernels, adding depth/normal cues from [18]. 2DGS [28] reduces 3D ellipsoid Gaussians to planar discs for better surface alignment, [36], [9], [56] have later adapted 2DGS to avatar creation. Our work follows the above geometric approach, optimizing Gaussian primitives to align tangentially to the underlying surface. The resulting Gaussian achieves view and transformation consistent, while only trained using one frame of multi-view data, in contrast with current works which takes thousands of frames to train. III. P RELIMINARIES 
+
+3DGS [1] is a point-based representation, consists of Gaussians parametrized by position x, rotation R, scale s,opacity α, color c and spherical harmonics sh .
+
+G = {x, R, s, α, c, sh }, I = Rasterize (G, π K ,E ). (1) Here we use G to denote attributes parametrizing Gaussians which are used to render an image I using tile-based raster-ization given intrinsic and extrinsic camera parameters πK
+
+and πE , respectively. 
+
+2DGS [28] on the other hand, replaces elliptical Gaussians with 2D discs to improve alignment with thin surfaces. Consequently, R and s from Eq. (1) are reduced to two tangent vectors: t1, t2 and two scaling factors s = ( s1, s 2)
+
+controlling Gaussian shape, with the normal of the surfel given by t3 = t1 × t2. Typically, approximating 3D Gaus-sians with their centers and performing alpha blending only yields a pseudo depth map. 2DGS allows for precise depth calculation at an intersection point. To enforce geometric consistency, the depth distortion loss reduces depth variations among overlapping splats: 
+
+Ld = X
+
+> i,j
+
+ωiωj |zi − zj |1, (2) 2Fig. 2: Joint Optimization (top): SDF branch predicts Gaussian attributes and 2DGS will rasterize both depth and normal map, for supervising the SDF. SAGE’s adaptation in a dynamic scene (bottom): Gaussian shape correction is illustrated on the left, when our avatar undergo expression changes, principal curvature and stretch is approximated to adjust {R, s}. On the right is the second training phase, during which we optimize Ln and Ld, regions of low consistency and distortion are sampled to compare their appearance in canonical and deformed pose. where zi is the depth of the i-th splat intersection and ωi its blending weight. The normal consistency loss aligns splat normals with depth-estimated surface normals: 
+
+Ln = X
+
+> i
+
+αi(1 − | n⊤ 
+
+> i
+
+N|1), (3) where ni is the splat normal, N the estimated surface normal, and αi the blending weight. These techniques enable effi-cient CUDA-based rendering and stable optimization across diverse transformations. 
+
+GaussianAvatars [52] bind Gaussians to the tracked meshes and enable control via FLAME parameters. A local coordi-nate system is defined for each triangle in global space, with the mean vertex position oF as the origin. The orientation is defined by RF , constructed from an edge direction, the triangle normal, and their cross product. The mean edge length kF normalizes local coordinates. Given a Gaussian’s local position xl, local rotation Rl, and scaling sl, their global space correspondences are: 
+
+RG = RF Rl, xG = kF RF xl + oF , sG = kF sl. (4) At rendering time, the mesh is deformed using linear blend skinning (LBS) and FLAME parameters β, θ, ψ and 
+
+{oF , RF , k F } is updated to obtain global Gaussian positions at a new time instance: 
+
+{oF , R F , k F } = M(F, β, θ, ψ), (5) where M denotes the computation for performing LBS and obtaining {oF , RF , k F } from mesh F .IV. M ETHODS 
+
+Overview: Our pipeline integrates FLAME rigging with 2DGS to establish a foundation for reconstructing ageometry-accurate and controllable avatar. To extend con-sistency from static to dynamic scenarios, we introduce a two-phase training strategy and a Gaussian correction mech-anism. The first training phase focuses on reconstructing an accurate neutral head representation. We parametrize the Gaussian shape and appearance attributes on two multi-layer perceptrons (MLP) separately. During animation, we utilize geometric properties from the SDF to perform Gaus-sian shape adjustments. Finally, we propose a novel self-supervised training strategy in the second phase to ensure attributes’ robustness in dynamic scenes. 
+
+A. Neural Surface Reconstruction 
+
+An SDF fSDF and Gaussian surfels are jointly optimized during the first training phase. We constrain the distance 3between Gaussians from the surface by minimizing the L1-norm of the SDF value at each Gaussian center, encouraging Gaussian primitives to remain close to the surface while providing supervision to the neural surface, ensuring con-vergence. 
+
+Lpt = |fSDF (xG)|1. (6) To further improve surface alignment, we enforce Gaus-sian surfels to lie tangential to the surface. Since the SDF gradient at the surface corresponds to the surface normal, we define an alignment loss that minimizes the angular deviation between the Gaussian normal t3 and the SDF-derived normal. 
+
+Lalign = 1 − | tG 
+
+> 3
+> ⊤
+
+· ∇ fSDF (xG)| 1 . (7) Following MonoSDF [77]’s training strategy, we make use of the depth and normal maps rendered from 2DGS to supervise the SDF’s volumetric renderings. Additionally, we adapt a smoothing constraint to penalize noisy regions resulting from Gaussian over-cluttering, which is problematic in 2DGS’s optimization. 
+
+Parametrized Gaussian Attributes : As the Gaussian rep-resentation is inherently discrete, gradients do not spread to nearby primitives during backpropagation, and therefore individual Gaussians are uncorrelated. This leads to random-ized attributes G and results in transformation inconsistency. To ensure our avatars reconstructed from static scenes remain consistent during deformation, we parameterize G using separate MLPs. Specifically, we condition fapp on fSDF to predict Gaussian appearance attributes {c, α } given query point xG in global space: 
+
+ˆc, ˆα = fapp (xG, v, ˆn, ˆz), (8) where v is the view direction, ˆn is the SDF gradient and 
+
+ˆz is a feature vector provided by fSDF and querying {Φl}l.Together with depth and normal, the appearance network is regulated with volumetric rendering, for simplicity we use 
+
+ˆC(r), ˆD(r), ˆN (r) to represent the SDF volumetric rendering given ray r:
+
+Lrgb = X
+
+> r∈R
+
+| ˆC(r) − C(r)|2, (9) 
+
+LD = X
+
+> r∈R
+
+| ˆD(r) − ˆD2D (r)|2, (10) 
+
+LN = X
+
+> r∈R
+
+| ˆN(r) − ˆN2D (r)|1 + |1 − ˆN(r)⊤ ˆN2D (r)|1, (11) where ˆD2D (r), ˆN2D (r) represent render results from 2DGS. There-fore, the total loss for all MLPs is defined by: 
+
+Lsdf = Lrgb + λpt Lpt + λalign Lalign + λDLD + λNLN, (12) and λpt , λ align , λ D, λ N are weighting terms controlling the impact of each loss component. Furthermore, we make use of the multi-resolution features stored in the hash grid, by conditioning on the queried feature, a network 
+
+fshape is used to predict {RG, sG}:
+
+{RG, sG} = fshape 
+
+
+
+xG,
+
+n
+
+interp (xG, Φl)
+
+o
+
+> l
+
+
+
+, (13) where interp (·) represents the interpolation procedure for querying feature grid Φ at resolution level l.
+
+B. Gaussian Surfel Correction 
+
+We propose a novel approach to maintain surface integrity during deformation by adjusting Gaussian attributes based on estimated surface stretching and curvature. For each surfel (illustrated in Fig. 2), we determine its k-nearest neighbors via ball query in a small radius based on the scale of the surfel’s bound mesh triangle. We approximate geometric properties in the deformed scene using the relative transformation of neighboring surfels: Mj = T −1 
+
+> q
+
+Tj with respect to the query surfel. Given Mj , we take the linear component Lj ∈ R3×3 of Mj
+
+to analyze local deformation. The principal stretches σ1, σ 2 are derived from the eigenvalues of the stretching matrix S, computed by projecting and averaging neighbor transformations in the local tangent plane: 
+
+S = X
+
+> j∈N
+
+kj PL j PT PL Tj PT , (14) where kj is a radial basis kernel weight, P = I − ∇ fSDF ∇fSDF T is the tangent projection matrix. Similarly, principal curvatures κ1, κ 2
+
+are extracted from the eigenvalues of the projected Hessian: 
+
+Htangent = PJHJ T PT , (15) where J is approximated Jacobian using {Mj }j∈N and H =
+
+∇2fSDF . The surfel scale is adjusted to account for both stretching and curvature. Instead of using a linear scaling term, we apply an inverse curvature-dependent scaling factor to more effectively reduce elongation in regions of high curvature: 
+
+sadj  
+
+> 1
+
+= s1 · σ1
+
+11 + ws|κ1|1
+
+, sadj  
+
+> 2
+
+= s2 · σ2
+
+11 + ws|κ2|1
+
+, (16) where ws denotes a scalar controlling how much the scales are adjusted. Rotation adjustments ensure alignment with principal curvature directions while preserving the original normal. Instead of re-ranking the principal directions, we first rank the surfel basis vectors 
+
+(r1, r2) based on their corresponding scale values (s1, s 2) to obtain 
+
+(r(1) , r(2) ) and then align them with (h1, h2) which is the principal curvature direction ( Htangent ’s eigenvectors). The misalignment axis 
+
+ai and angle θi are therefore computed as: 
+
+ai = r(i) × hi
+
+|r(i) × hi|1
+
+, θi = cos −1(r(i) · hi) · wq , (17) for i ∈ { 1, 2}, leading to the small rotation quaternions: 
+
+ˆqi =
+
+
+
+cos θi
+
+2 , sin θi
+
+2 ai
+
+
+
+. (18) Since Gaussian rotation {R} is stored in quaternion form {q},the adjusted rotation is obtained via quaternion multiplication: 
+
+qadj = ˆ q1 ˆq2q. (19) Surfels without valid neighbors or bounded to the hair mesh are excluded from deformation updates. The use of inverse curvature-based scale reduction prevents excessive surfel elongation in highly curved regions, while small corrective rotations ensure align-ment with principal curvature directions. This formulation enables smooth and consistent adaptation of surfel-based representations to underlying deformations while preserving local surface properties. 
+
+4C. Self-Supervised Training Phase 
+
+To enhance the robustness of our avatar across diverse facial expressions, we introduce a novel self-supervised training strategy. Following Gaussian Avatar [52], we deform the Gausian with FLAME parameters but instead of relying on direct image compar-isons, we apply the normal consistency and distortion regularization constraints introduced in 2DGS. These ensure that under deforma-tion, the Gaussians remain tangential to the underlying surface. To ensure appearance consistency, we devise a loss function to compare pixels rendered from Gaussian rasterization and canonical volumetric rendering. Specifically, to render a sampled ray from deformed scenes, we warp the ray by performing an inverse mapping to the ray based on the transformation of the triangle where the ray intersects. To maintain efficiency, we only sample pixels from regions where the normal consistency and distortion loss are high, which often contain the most discolorations and artifacts. Meanwhile, we avoid sampling from hair regions. The appearance loss is defined by: 
+
+Lappearance = X
+
+> h,w
+
+| ˆC(γ(rh,w )) − Ih,w |2, (20) where h, w are sampled pixel coordinates and γ(·) is the warping procedure and I is the rasterized image. The overall loss function for the second training phase is defined as: 
+
+Ltotal = λnLn + λdLd + λaLappearance . (21) During the second training phase, we freeze the parameters in the fSDF as well as the hash feature grid {Φl}Ll=1 . We utilize the same expression sequence from the NeRSemble dataset [35], though alternative datasets such as FaMoS [4] and CoMA [53] can also be incorporated to add variation in training data. 
+
+D. Adaptability 
+
+Our pipeline’s core strength is its strong adaptability to generalize across common reconstruction scenarios while markedly improving data efficiency and alleviating the typical reliance on expression-rich training data. 
+
+Multiview Reconstruction. In the standard multiview setting, our method directly follows conventional Gaussian Splatting and static SDF reconstruction protocols, and no additional modifications are required. 
+
+Monocular Reconstruction. In contrast to existing monocular approaches that depend on long expression sequences to resolve expression dynamics, our method only requires moderate head rotations for full coverage of the target head, substantially reducing data demands. As premise, our pipeline requires a backward-warping mechanism for accurately reconstructing SDF through dynamic ray rendering. We integrate the pretrained deformation prior from MonoNPHM [21] to backward-warp rays into canonical space, enabling the recovery of a neutral SDF under pose variation. We follow GaussianAvatars [52] for dynamic Gaussian optimization and apply a super-resolution stage to counteract motion blur and enhance fine details, maintaining reconstruction quality despite limited observations. 
+
+One-shot Reconstruction. For one-shot generation of animatable avatars, methods such as [56], [25], [55] require training on expression-rich data, which often leads to geometric inaccuracies. In contrast, approaches like [40], [34] can produce geometrically accurate avatars but lack animatability. Our pipeline bridges this gap by transforming static avatar generations into fully animatable Gaussian representations. As a demonstration, we integrate the GenHead module from Portrait-4D [14] to synthesize pseudo multi-view images using a triplane head representation conditioned on FLAME parameters. A lightweight fine-tuning on the NeRSemble dataset mitigates the domain gap and improves geometric consistency across synthesized views. Since GenHead operates at a relatively low spatial resolution, we further incorporate a super-resolution stage to recover high-frequency appearance details without requiring additional input images. This design enables a stable and reliable reconstruction pipeline even under extreme data scarcity. With these adaptations, our method supports reliable reconstruc-tion under multiview, monocular, and one-shot scenarios, consis-tently improving data efficiency while reducing the dependence on explicit expression supervision or densely captured expression sequences. 
+
+V. E XPERIMENTS 
+
+A. Implementation details 
+
+In the experiments, we use 14 identities from the NeRSemble dataset, which include 11 expression sequences captured by 16 cameras covering frontal and side views of the subject. We use the preprocessed version of NeRSemble performed by [52], which selected 10 sets of expression sequences. The image is downsam-pled to a resolution of 550x802, and FLAME tracking is performed using VHAP [51]. For experiments, one of the sequences is chosen as the held-out sequence for testing the self-reenactment task. We select the NeRSemble dataset as our primary experimental benchmark because its wide range of viewpoints allows for a thorough assessment of multiview reconstruction quality across competing methods, highlighting the strengths of our approach. We further evaluate our method on the INSTA dataset [87], which presents more challenging capture conditions and suboptimal cali-bration settings. As we have an optimized FLAME coarse mesh, we pre-train the SDF on this coarse mesh and initialize the Gaussian optimization process with a pre-trained SDF. This guarantees successful con-vergence and allows the SDF to provide more accurate guidance to 2DGS in earlier stages of the optimization process, and can be continuously fine-tuned. We disabled 3DGS’s densification strategy but instead initialize 150,000 points, and randomly assign them to different mesh triangles based on their scale, also meshes labeled as face and closer to the camera get a higher number of initialized points. During optimization, we allow Gaussians to rebind to different triangles based on distance. This is because we found that newly added Gaussians are harder to optimize, leading to lower reconstruction quality. Since the mouth interior is unobserved by our pipeline, we add a new mesh inside the mouth and rig it to the lower jaw. We pretrain a mouth interior Gaussian prior, which is added to our avatar during rendering. Finally, we darken Gaussians at areas with high distortion to mimic wrinkle effect as high curvature often associates with these areas, indicating possible skin shading. Further details can be found in supplementary Sec. VIII We use the Adam optimizer to train all learnable parameters. When optimizing the Gaussian model, we inherit the learning rate adjustment from [52] and apply the decaying strategy from the original 3DGS [31]. For efficiency, SDF, shape, appearance MLP, as well as feature grid are all implemented using adapted tinycudann [45] from N euS 2 [65], with a learning rate set at 1 × 10 −4. We train the Gaussian model for 30,000 iterations, then we freeze the SDF branch. For the second training phase, the learning rates for the Gaussian attributes are kept unchanged. The entire process takes about 2 hours on an NVIDIA A100 GPU. 
+
+B. Results and Comparisons 
+
+The experiments are split into 5 groups based on input types. For the Multi-view reconstruction setting, we choose GaussianAvatars [52] (GA) and Gaussian-Head-Avatar [68] (GHA). This group is further divided into 2 settings: reconstruction from the entire training sequence versus only taking 1 timestep. On full training data, GA takes about 5 hours and GHA takes 14 hours to train, significantly longer than our pipeline. In the one-shot setting, GPAvatar [13] and LAM [25] are used for comparison, taking 
+
+5GA GHA GA 1 frame GHA 1 frame Ours SF GT 
+
+Fig. 3: Qualitative comparisons for self-reenactment quality under Multiview input setting.         
+
+> (a) FlashAvatar (a) RGBAvatar (a) Ours Mono (b) GPAvatar (b) LAM (b) Ours one-shot GT
+
+Fig. 4: Qualitative comparisons for self-reenactment quality under different input types. Results (a) refers to monocular reconstructure setting, results (b) refers to one-shot reconstruction setting. 
+
+only one frontal image as input. We also used MICA tracking’s FLAME expression parameter to drive animation for fair assessment (we kept the original translation and rotation parameters for pose accuracy). We use FlashAvatar [67] and RGBavatar [37] as a comparison in the monocular setting. We also further divide this into training on the full training sequence versus taking only the head rotation sequence. The evaluation metrics include: Peak Signal-to-Noise Ratio (PSNR), Structure Similarity Index (SSIM), Learned Perceptual Image Patch Similarity (LPIPS) [78]. The results are reported in Tab. I and Fig. 3, a multi-view comparison between adaptations of our methods are shown in Fig. 6. Finally, we report the cross-reenactment quality in Fig. 7. We report further qualitative results in supplementary material including geometrical quality assessment, see Sec. X and Sec. XI 
+
+1) Self-Reenactment: Self-reenactment serves as our primary evaluation task, as it directly reflects how well a reconstructed avatar can reproduce unseen expressions from the target identity. As summarized in Tab. I, our method achieves competitive or su-perior performance compared to state-of-the-art approaches across all reconstruction settings, despite not using explicit expression supervision. In multiview single-frame scenarios, baselines such as GA and GHA frequently exhibit texture distortions and geometry 
+
+6Method Input Type Novel Expression (frontal) Novel Expression (all view) PSNR ↑ SSIM ↑ LPIPS ↓ PSNR ↑ SSIM ↑ LPIPS ↓
+
+GA [52] MV-MF 25.94 0.922 0.079 25.32 0.903 0.084 GHA [68] MV-MF 26.21 0.915 0.076 24.98 0.894 0.087 GA [52] MV-SF 17.75 0.825 0.200 17.23 0.823 0.215 GHA [68] MV-SF 16.21 0.757 0.214 15.29 0.762 0.243 Ours MV-SF 25.41 0.896 0.085 24.27 0.879 0.094 
+
+GPAvatar [13] One-shot 17.89 0.816 0.180 15.47 0.755 0.286 LAM [25] One-shot 20.73 0.815 0.154 15.23 0.732 0.290 Ours One-shot 21.04 0.821 0.125 18.57 0.785 0.169 
+
+FlashAvatar [67] SV-MF 21.24 0.866 0.143 16.95 0.810 0.239 RGBAvatar [37] SV-MF 21.32 0.845 0.135 15.95 0.809 0.252 FlashAvatar [67] SV-HR 18.36 0.830 0.159 15.89 0.783 0.271 RGBAvatar [37] SV-HR 19.79 0.827 0.147 16.95 0.820 0.260 Ours SV-HR 23.90 0.90 0.089 22.76 0.881 0.102 
+
+TABLE I: Quantitative comparison with state of the art on Self-Reenactment across different reconstruction settings. MV-MF: Multiview / Multi-frame, MV-SF: Multiview / Single-frame, SV-MF: Single-view / Multi-frame, SV-HR: Single-view/ head rotation data only. 
+
+Fig. 5: We also conduct qualitative assessment of our pipeline’s self-reenactment performance on INSTA’s data which is a less calibrated setting. 
+
+Method Input Type PSNR ↑ SSIM ↑ LPIPS ↓
+
+GA SV-MF 28.11 0.944 0.065 RGBAvatar SV-MF 29.02 0.933 0.087 Ours SV-MF 29.03 0.925 0.082 LAM One-shot 22.54 0.839 0.101 Ours One-shot 24.80 0.887 0.088 
+
+TABLE II: Quantitative comparison of reconstruction quality of INSTA data. 
+
+inconsistencies when reenacting novel expressions, whereas our approach produces more stable facial geometry and fewer artifacts. Under the one-shot setting, GPAvatar and LAM struggle with geometric fidelity and exhibit noticeable degradation in facial details, often failing to maintain consistent appearance across view directions. In contrast, our one-shot variant preserves sharper iden-tity features and achieves stronger multi-view consistency, leading to more coherent reenactments Fig. 6. Similarly, in the monoc-ular single-view setting, FlashAvatar and RGBavatar demonstrate siginificant drop in view consistency and failing to reconstruct geometry faithfully, resulting in muted expressions and view-dependent artifacts. Our pipeline, however, reconstructs avatars with more reliable geometry and better cross-view coherence, enabling accurate and stable expression transfer even from limited input observations. Additional qualitative and quantitative results, including further comparisons across view directions, are provided in the supplementary material Sec. X. We further analyze GA and GHA’s robustness to limited training data, the quality of these baseline reconstructions improves steeply as additional frames are introduced, revealing a strong dependence on dense expression supervision, please refer to supplementary Sec. XIII and Fig. 15. 
+
+C. Ablation Study 
+
+SDF. The SDF serves as a core building block within our pipeline, providing geometric feature vectors to the appearance net-work as well as providing surface properties during Gaussian shape adjustment. 2DGS’s constraints alone cannot effectively constrain surfel behaviour in a dynamic scene. Since the rest of our novel features heavily depends on the SDF, we do not ablate the joint optimization feature. 
+
+7Fig. 6: Qualitative evaluation of multi-view consistency of our pipeline in different reconstruction settings. 
+
+Fig. 7: Qualitative comparisons for cross-reenactment. The images in the first column are the source avatars, and on the right are 2 adaptations of our method in 2 view angles. 
+
+Parametrizing Gaussian attributes. The removal of the MLPs negatively effect the fine-grained details of the rendered avatar, since low level geometric clue from SDF cannot be passed to individual Gaussians. In terms of geometrical quality omparing to our full model, the ablated version show less detailed geometry in facial hair regions and eye regions, and is closer to the coarse FLAME fitting. In terms of visual quality, Gaussian colors become more randomized, and without a canonical representation, we cannot impose appearance supervision in the second training phase, leading to noisier and potentially blurry reenactment results. 
+
+Self-Supervision Phase. Our pipeline heavily depends on the second training phase to enforce geometrical consistency during reenactment, a large performance drop can be observed from Tab. III and noisy geometries and significant artifact is shown in Fig. 8. Interestingly, this training phase has a negative impact on NVS quality, but an increase in the reenactment task, indicating an obvious trade-off between generalizability to deformation or reconstruction quality in static scenes. 
+
+Shape correction. Disabling shape correction yield a slight degra-dation in both visual and geometry quality. In Fig. 8 we see a less defined brow bone and some artifact can be spotted in mouth region. Meanwhile, without the shape correction feature, the facial geometry could be over-smoothed when enforcing distortion and normal consistency loss during self-supervision phase. Further detail can be found in supplementary Sec. X                                
+
+> Novel-View Self-Reenactment
+> PSNR ↑SSIM ↑LPIPS ↓PSNR ↑SSIM ↑LPIPS ↓
+> SAGE 33.79 0.963 0.071 26.64 0.907 0.093 w/o M LP s 33.95 0.961 0.071 24.72 0.857 0.142 w/o 2nd phase 34.14 0.962 0.067 22.18 0.800 0.132 w/o Correction Same as full 25.42 0.905 0.101
+
+TABLE III: Ablation study conducted on Novel-View and Self-Reenactment qualities, ablating Gaussian attributes Parametrization (w/o MLPs); self-supervision phase; and Gaussian Surfel Correction. This is a harder target for accurate geometric reconstruction due to rich facial hair. 
+
+Fig. 8: Qualitative comparison of geometry and rendered appearance ablated settings. 
+
+D. Limitations and Future Work 
+
+Our method’s accuracy depends on the expressiveness and cor-rectness of the FLAME parameters, as expressions that cannot be modeled by FLAME tracking produce inaccuracies induced into our rendered results, causing deviations from the ground truth. Additionally, unobserved regions relies on pre-fitting such as teeth and tongue. However, our pipeline design is very flexible and can easily be incorporated into any other Gaussian based non-rigid object animations such as human body, as long as a per Gaussian trans-formation can be inferred. The adaptations we demonstrated are not optimal; for example, we could instead use a normal map conditioned diffusion [58], [33] to generate pseudo multiview with higher accuracy. As a future direction, we could substitute FLAME parametrized 3DMM for NPHM, which is more expressive. Further-more, a synthetic prior with identity encoding could be introduced for even better few-shot reconstruction performance. 
+
+VI. D ISCUSSION AND CONCLUSION 
+
+Ethical Considerations. The creation of animatable photoreal-istic avatars raises concerns about privacy, consent, and misuse. Ensuring explicit user consent, securing biometric data, and pre-venting unauthorized use are essential. Risks like identity theft, deepfakes, and bias must be mitigated through security measures, watermarking, and diverse datasets. Ethical AI practices and trans-parency should guide responsible deployment. 
+
+Conclusion. We present SAGE, a pipeline for reconstructing animat-able Gaussian avatars from minimal expression data by enforcing geometric constraints for transformation consistency. To address Gaussian distribution, we optimize SDF for surface supervision, introduce shape corrections, and parametrize Gaussian attributes. A self-supervision strategy is proposed to replace long training sequences, drastically reducing data requirements. SAGE achieves SOTA performance with minimal data, which could be applied to real-life applications more efficiently. 
+
+8REFERENCES [1] R. Abdal, W. Yifan, Z. Shi, Y. Xu, R. Po, Z. Kuang, Q. Chen, D.-Y. Yeung, and G. Wetzstein. Gaussian Shell Maps for Efficient 3D Human Generation, Nov. 2023. arXiv:2311.17857 [cs]. [2] S. Athar, Z. Xu, K. Sunkavalli, E. Shechtman, and Z. Shu. RigNeRF: Fully Controllable Neural 3D Portraits, June 2022. arXiv:2206.06481 [cs]. [3] V. Blanz and T. Vetter. A morphable model for the synthesis of 3D faces. In Proceedings of the 26th annual conference on Computer graphics and interactive techniques , SIGGRAPH ’99, pages 187–194, USA, July 1999. ACM Press/Addison-Wesley Publishing Co. [4] T. Bolkart, T. Li, and M. J. Black. Instant Multi-View Head Capture through Learnable Registration, June 2023. arXiv:2306.07437 [cs]. [5] M. C. B¨ uhler, K. Sarkar, T. Shah, G. Li, D. Wang, L. Helminger, S. Orts-Escolano, D. Lagun, O. Hilliges, T. Beeler, and A. Meka. Preface: A Data-driven Volumetric Prior for Few-shot Ultra High-resolution Face Synthesis, Sept. 2023. arXiv:2309.16859 [cs]. [6] C. Cao, Y. Weng, S. Zhou, Y. Tong, and K. Zhou. FaceWarehouse: A 3D Facial Expression Database for Visual Computing. IEEE Transactions on Visualization and Computer Graphics , 20(3):413–425, Mar. 2014. Conference Name: IEEE Transactions on Visualization and Computer Graphics. [7] D. Charatan, S. Li, A. Tagliasacchi, and V. Sitzmann. pixelSplat: 3D Gaussian Splats from Image Pairs for Scalable Generalizable 3D Reconstruction, Apr. 2024. arXiv:2312.12337 [cs]. [8] H. Chen, C. Li, and G. H. Lee. NeuSG: Neural Implicit Surface Reconstruction with 3D Gaussian Splatting Guidance, Dec. 2023. arXiv:2312.00846 [cs]. [9] P. Chen, X. Wei, Q. Wuwu, X. Wang, X. Xiao, and M. Lu. Mixedgaus-sianavatar: Realistically and geometrically accurate head avatar via mixed 2d-3d gaussians, 2025. [10] X. Chen, M. Mihajlovic, S. Wang, S. Prokudin, and S. Tang. Mor-phable Diffusion: 3D-Consistent Diffusion for Single-image Avatar Creation, Apr. 2024. arXiv:2401.04728 [cs]. [11] Y. Chen, L. Wang, Q. Li, H. Xiao, S. Zhang, H. Yao, and Y. Liu. MonoGaussianAvatar: Monocular Gaussian Point-based Head Avatar, Dec. 2023. arXiv:2312.04558 [cs]. [12] Y. Chen, H. Xu, C. Zheng, B. Zhuang, M. Pollefeys, A. Geiger, T.-J. Cham, and J. Cai. MVSplat: Efficient 3D Gaussian Splatting from Sparse Multi-View Images. In Computer Vision – ECCV 2024 ,volume 15079, pages 370–386. Springer Nature Switzerland, 2025. arXiv:2403.14627 [cs]. [13] X. Chu, Y. Li, A. Zeng, T. Yang, L. Lin, Y. Liu, and T. Harada. GPAvatar: Generalizable and Precise Head Avatar from Image(s), Jan. 2024. arXiv:2401.10215 [cs]. [14] Y. Deng, D. Wang, X. Ren, X. Chen, and B. Wang. Portrait4D: Learning One-Shot 4D Head Avatar Synthesis using Synthetic Data, June 2024. arXiv:2311.18729 [cs]. [15] H. Dhamo, Y. Nie, A. Moreau, J. Song, R. Shaw, Y. Zhou, and E. P´ erez-Pellitero. HeadGaS: Real-Time Animatable Head Avatars via 3D Gaussian Splatting, Dec. 2023. arXiv:2312.02902 [cs]. [16] Y. Feng, H. Feng, M. J. Black, and T. Bolkart. Learning an animatable detailed 3D face model from in-the-wild images. ACM Trans. Graph. ,40(4):88:1–88:13, July 2021. [17] G. Gafni, J. Thies, M. Zollh¨ ofer, and M. Nießner. Dynamic Neural Radiance Fields for Monocular 4D Facial Avatar Reconstruction, Dec. 2020. arXiv:2012.03065 [cs]. [18] J. Gao, C. Gu, Y. Lin, H. Zhu, X. Cao, L. Zhang, and Y. Yao. Relightable 3D Gaussian: Real-time Point Cloud Relighting with BRDF Decomposition and Ray Tracing, Nov. 2023. arXiv:2311.16043 [cs]. [19] X. Gao, C. Zhong, J. Xiang, Y. Hong, Y. Guo, and J. Zhang. Reconstructing Personalized Semantic Facial NeRF Models From Monocular Video. ACM Transactions on Graphics , 41(6):1–12, Dec. 2022. arXiv:2210.06108 [cs]. [20] S. Giebenhain, T. Kirschstein, M. Georgopoulos, M. R¨ unz, L. Agapito, and M. Nießner. Learning Neural Parametric Head Models, Apr. 2023. arXiv:2212.02761 [cs]. [21] S. Giebenhain, T. Kirschstein, M. Georgopoulos, M. R¨ unz, L. Agapito, and M. Nießner. MonoNPHM: Dynamic Head Reconstruction from Monocular Videos, May 2024. arXiv:2312.06740 [cs]. [22] S. Giebenhain, T. Kirschstein, M. R¨ unz, L. Agapito, and M. Nießner. NPGA: Neural Parametric Gaussian Avatars, Sept. 2024. arXiv:2405.19331. [23] P.-W. Grassal, M. Prinzler, T. Leistner, C. Rother, M. Nießner, and J. Thies. Neural Head Avatars from Monocular RGB Videos, Mar. 2022. arXiv:2112.01554 [cs]. [24] A. Gu´ edon and V. Lepetit. SuGaR: Surface-Aligned Gaussian Splat-ting for Efficient 3D Mesh Reconstruction and High-Quality Mesh Rendering, Dec. 2023. arXiv:2311.12775 [cs]. [25] Y. He, X. Gu, X. Ye, C. Xu, Z. Zhao, Y. Dong, W. Yuan, Z. Dong, and L. Bo. LAM: Large Avatar Model for One-shot Animatable Gaussian Head, Apr. 2025. arXiv:2502.17796 [cs]. [26] Y. Hong, B. Peng, H. Xiao, L. Liu, and J. Zhang. Head-NeRF: A Real-time NeRF-based Parametric Head Model, Apr. 2022. arXiv:2112.05637 [cs]. [27] S. Hu and Z. Liu. GauHuman: Articulated Gaussian Splatting from Monocular Human Videos, Dec. 2023. arXiv:2312.02973 [cs] version: 1. [28] B. Huang, Z. Yu, A. Chen, A. Geiger, and S. Gao. 2D Gaussian Splat-ting for Geometrically Accurate Radiance Fields. In Special Interest Group on Computer Graphics and Interactive Techniques Conference Conference Papers ’24 , pages 1–11, July 2024. arXiv:2403.17888 [cs]. [29] R. Jena, G. S. Iyer, S. Choudhary, B. Smith, P. Chaudhari, and J. Gee. SplatArmor: Articulated Gaussian splatting for animatable humans from monocular RGB videos, Nov. 2023. arXiv:2311.10812 [cs]. [30] T. Karras, S. Laine, M. Aittala, J. Hellsten, J. Lehtinen, and T. Aila. Analyzing and Improving the Image Quality of StyleGAN, Mar. 2020. arXiv:1912.04958 [cs]. [31] B. Kerbl, G. Kopanas, T. Leimk¨ uhler, and G. Drettakis. 3D Gaus-sian Splatting for Real-Time Radiance Field Rendering, Aug. 2023. arXiv:2308.04079 [cs]. [32] H. Kim, P. Garrido, A. Tewari, W. Xu, J. Thies, M. Nießner, P. P´ erez, C. Richardt, M. Zollh¨ ofer, and C. Theobalt. Deep Video Portraits, May 2018. arXiv:1805.11714 [cs]. [33] T. Kirschstein, S. Giebenhain, and M. Nießner. DiffusionAvatars: Deferred Diffusion for High-fidelity 3D Head Avatars, Apr. 2024. arXiv:2311.18635 [cs]. [34] T. Kirschstein, S. Giebenhain, J. Tang, M. Georgopoulos, and M. Nießner. GGHead: Fast and Generalizable 3D Gaussian Heads. In SIGGRAPH Asia 2024 Conference Papers , pages 1–11, Dec. 2024. arXiv:2406.09377 [cs]. [35] T. Kirschstein, S. Qian, S. Giebenhain, T. Walter, and M. Nießner. NeRSemble: Multi-view Radiance Field Reconstruction of Human Heads. ACM Transactions on Graphics , 42(4):1–14, Aug. 2023. arXiv:2305.03027 [cs]. [36] J. Lee, T. Kang, M. C. B¨ uhler, M.-J. Kim, S. Hwang, J. Hyung, H. Jang, and J. Choo. SurFhead: Affine Rig Blending for Geo-metrically Accurate 2D Gaussian Surfel Head Avatars, Apr. 2025. arXiv:2410.11682 [cs]. [37] L. Li, Y. Li, Y. Weng, Y. Zheng, and K. Zhou. RGBAvatar: Reduced Gaussian Blendshapes for Online Modeling of Head Avatars, Mar. 2025. arXiv:2503.12886 [cs] version: 1. [38] T. Li, T. Bolkart, M. J. Black, H. Li, and J. Romero. Learning a model of facial shape and expression from 4D scans. ACM Transactions on Graphics , 36(6):1–17, Dec. 2017. [39] S. Lombardi, T. Simon, G. Schwartz, M. Zollhoefer, Y. Sheikh, and J. Saragih. Mixture of Volumetric Primitives for Efficient Neural Rendering, May 2021. arXiv:2103.01954 [cs]. [40] W. Lyu, Y. Zhou, M.-H. Yang, and Z. Shu. FaceLift: Learning Generalizable Single Image 3D Face Reconstruction from Synthetic Heads, Aug. 2025. arXiv:2412.17812 [cs]. [41] X. Lyu, Y.-T. Sun, Y.-H. Huang, X. Wu, Z. Yang, Y. Chen, J. Pang, and X. Qi. 3DGSR: Implicit Surface Reconstruction with 3D Gaussian Splatting, Mar. 2024. arXiv:2404.00409 [cs]. [42] S. Ma, T. Simon, J. Saragih, D. Wang, Y. Li, F. D. L. Torre, and Y. Sheikh. Pixel Codec Avatars, Apr. 2021. arXiv:2104.04638 [cs]. [43] S. Ma, Y. Weng, T. Shao, and K. Zhou. 3D Gaussian Blendshapes for Head Avatar Animation. In Special Interest Group on Computer Graphics and Interactive Techniques Conference Conference Papers ’24 , pages 1–10, July 2024. arXiv:2404.19398 [cs]. [44] G. Moon, W. Xu, R. Joshi, C. Wu, and T. Shiratori. Authentic Hand Avatar from a Phone Scan via Universal Hand Model, May 2024. arXiv:2405.07933 [cs] version: 1. [45] T. M¨ uller. tiny-cuda-nn, Apr. 2021. original-date: 2021-04-16T17:53:10Z. [46] D. Pan, L. Zhuo, J. Piao, H. Luo, W. Cheng, Y. Wang, S. Fan, S. Liu, L. Yang, B. Dai, Z. Liu, C. C. Loy, C. Qian, W. Wu, D. Lin, and K.-Y. Lin. RenderMe-360: A Large Digital Asset Library and Benchmarks Towards High-fidelity Head Avatars, May 2023. arXiv:2305.13353 [cs]. [47] K. Park, U. Sinha, J. T. Barron, S. Bouaziz, D. B. Goldman, S. M. Seitz, and R. Martin-Brualla. Nerfies: Deformable Neural Radiance Fields, Sept. 2021. arXiv:2011.12948 [cs]. 
+
+9[48] K. Park, U. Sinha, P. Hedman, J. T. Barron, S. Bouaziz, D. B. Goldman, R. Martin-Brualla, and S. M. Seitz. HyperNeRF: AHigher-Dimensional Representation for Topologically Varying Neural Radiance Fields, Sept. 2021. arXiv:2106.13228 [cs]. [49] G. Pavlakos, V. Choutas, N. Ghorbani, T. Bolkart, A. A. A. Osman, D. Tzionas, and M. J. Black. Expressive Body Capture: 3D Hands, Face, and Body from a Single Image, Apr. 2019. arXiv:1904.05866 [cs]. [50] A. Pumarola, E. Corona, G. Pons-Moll, and F. Moreno-Noguer. D-NeRF: Neural Radiance Fields for Dynamic Scenes, Nov. 2020. arXiv:2011.13961 [cs]. [51] S. Qian. Vhap: Versatile head alignment with adaptive appearance priors, sep 2024. [52] S. Qian, T. Kirschstein, L. Schoneveld, D. Davoli, S. Giebenhain, and M. Nießner. GaussianAvatars: Photorealistic Head Avatars with Rigged 3D Gaussians, Mar. 2024. arXiv:2312.02069 [cs]. [53] A. Ranjan, T. Bolkart, S. Sanyal, and M. J. Black. Generat-ing 3D faces using Convolutional Mesh Autoencoders, July 2018. arXiv:1807.10267 [cs]. [54] Y. Ren, G. Li, Y. Chen, T. H. Li, and S. Liu. PIRenderer: Controllable Portrait Image Generation via Semantic Neural Rendering, Sept. 2021. arXiv:2109.08379 [cs]. [55] J. Saunders, C. Hewitt, Y. Jian, M. Kowalski, T. Baltrusaitis, Y. Chen, D. Cosker, V. Estellers, N. Gyde, V. P. Namboodiri, and B. E. Lundell. GASP: Gaussian Avatars with Synthetic Priors, Dec. 2024. arXiv:2412.07739 [cs]. [56] L. Schoneveld, Z. Chen, D. Davoli, J. Tang, S. Terazawa, K. Nishino, and M. Nießner. Sheap: Self-supervised head geometry predictor learned via 2d gaussians, 2025. [57] A. Siarohin, S. Lathuili` ere, S. Tulyakov, E. Ricci, and N. Sebe. First Order Motion Model for Image Animation, Oct. 2020. arXiv:2003.00196 [cs]. [58] J. Tang, D. Davoli, T. Kirschstein, L. Schoneveld, and M. Niessner. GAF: Gaussian Avatar Reconstruction from Monocular Videos via Multi-view Diffusion, Apr. 2025. arXiv:2412.10209 [cs]. [59] K. Teotia, H. Kim, P. Garrido, M. Habermann, M. Elgharib, and C. Theobalt. GaussianHeads: End-to-End Learning of Drivable Gaus-sian Head Avatars from Coarse-to-fine Representations, Sept. 2024. arXiv:2409.11951 [cs]. [60] A. Tewari, M. Zollh¨ ofer, H. Kim, P. Garrido, F. Bernard, P. P´ erez, and C. Theobalt. MoFA: Model-based Deep Convolutional Face Autoencoder for Unsupervised Monocular Reconstruction, Dec. 2017. arXiv:1703.10580 [cs]. [61] D. Wang, P. Chandran, G. Zoss, D. Bradley, and P. Gotardo. MoRF: Morphable Radiance Fields for Multiview Neural Head Modeling. In 
+
+ACM SIGGRAPH 2022 Conference Proceedings , SIGGRAPH ’22, pages 1–9, New York, NY, USA, July 2022. Association for Com-puting Machinery. [62] J. Wang, J.-C. Xie, X. Li, F. Xu, C.-M. Pun, and H. Gao. Gaussian-Head: High-fidelity Head Avatars with Learnable Gaussian Derivation, May 2024. arXiv:2312.01632 [cs]. [63] L. Wang, Z. Chen, T. Yu, C. Ma, L. Li, and Y. Liu. FaceVerse: a Fine-grained and Detail-controllable 3D Face Morphable Model from a Hybrid Dataset, May 2022. arXiv:2203.14057 [cs]. [64] P. Wang, L. Liu, Y. Liu, C. Theobalt, T. Komura, and W. Wang. NeuS: Learning Neural Implicit Surfaces by Volume Rendering for Multi-view Reconstruction, Feb. 2023. arXiv:2106.10689 [cs]. [65] Y. Wang, Q. Han, M. Habermann, K. Daniilidis, C. Theobalt, and L. Liu. NeuS2: Fast Learning of Neural Implicit Surfaces for Multi-view Reconstruction, Nov. 2023. arXiv:2212.05231 [cs]. [66] O. Wiles, A. S. Koepke, and A. Zisserman. X2Face: A network for controlling face generation by using images, audio, and pose codes, July 2018. arXiv:1807.10550 [cs]. [67] J. Xiang, X. Gao, Y. Guo, and J. Zhang. FlashAvatar: High-fidelity Head Avatar with Efficient Gaussian Embedding, Mar. 2024. arXiv:2312.02214 [cs]. [68] Y. Xu, B. Chen, Z. Li, H. Zhang, L. Wang, Z. Zheng, and Y. Liu. Gaussian Head Avatar: Ultra High-fidelity Head Avatar via Dynamic Gaussians, Mar. 2024. arXiv:2312.03029 [cs]. [69] Y. Xu, Z. Su, Q. Wu, and Y. Liu. GPHM: Gaussian Parametric Head Model for Monocular Head Avatar Reconstruction, Oct. 2024. arXiv:2407.15070 [cs]. [70] Y. Xu, L. Wang, X. Zhao, H. Zhang, and Y. Liu. AvatarMAV: Fast 3D Head Avatar Reconstruction Using Motion-Aware Neural Voxels. In Special Interest Group on Computer Graphics and Interactive Techniques Conference Conference Proceedings , pages 1–10, July 2023. arXiv:2211.13206 [cs]. [71] Y. Yan, Z. Zhou, Z. Wang, J. Gao, and X. Yang. DialogueNeRF: To-wards Realistic Avatar Face-to-Face Conversation Video Generation, Aug. 2023. arXiv:2203.07931 [cs]. [72] G. Yang, S. Belongie, B. Hariharan, and V. Koltun. Geometry Process-ing with Neural Fields. In Advances in Neural Information Processing Systems , volume 34, pages 22483–22497. Curran Associates, Inc., 2021. [73] H. Yang, M. Zheng, C. Ma, Y.-K. Lai, P. Wan, and H. Huang. VRMM: A Volumetric Relightable Morphable Head Model. In Special Interest Group on Computer Graphics and Interactive Techniques Conference Conference Papers ’24 , pages 1–11, July 2024. arXiv:2402.04101 [cs]. [74] T. Yenamandra, A. Tewari, F. Bernard, H.-P. Seidel, M. Elgharib, D. Cremers, and C. Theobalt. i3DMM: Deep Implicit 3D Morphable Model of Human Heads, Nov. 2020. arXiv:2011.14143 [cs]. [75] Z. Yu, Z. Bai, A. Meka, F. Tan, Q. Xu, R. Pandey, S. Fanello, H. S. Park, and Y. Zhang. One2Avatar: Generative Implicit Head Avatar For Few-shot User Adaptation, Feb. 2024. arXiv:2402.11909 [cs]. [76] Z. Yu, A. Chen, B. Huang, T. Sattler, and A. Geiger. Mip-Splatting: Alias-free 3D Gaussian Splatting, Nov. 2023. arXiv:2311.16493 [cs]. [77] Z. Yu, S. Peng, M. Niemeyer, T. Sattler, and A. Geiger. MonoSDF: Exploring Monocular Geometric Cues for Neural Implicit Surface Reconstruction, Oct. 2022. arXiv:2206.00665 [cs]. [78] R. Zhang, P. Isola, A. A. Efros, E. Shechtman, and O. Wang. The Unreasonable Effectiveness of Deep Features as a Perceptual Metric, Apr. 2018. arXiv:1801.03924 [cs]. [79] J. Zheng, Y. Jang, A. Papaioannou, C. Kampouris, R. A. Potamias, F. P. Papantoniou, E. Galanakis, A. Leonardis, and S. Zafeiriou. ILSH: The Imperial Light-Stage Head Dataset for Human Head View Synthesis, Oct. 2023. arXiv:2310.03952 [cs]. [80] M. Zheng, H. Yang, D. Huang, and L. Chen. ImFace: A Nonlinear 3D Morphable Face Model with Implicit Neural Representations, Apr. 2022. arXiv:2203.14510 [cs]. [81] S. Zheng, B. Zhou, R. Shao, B. Liu, S. Zhang, L. Nie, and Y. Liu. GPS-Gaussian: Generalizable Pixel-wise 3D Gaussian Splatting for Real-time Human Novel View Synthesis, Apr. 2024. arXiv:2312.02155 [cs]. [82] X. Zheng, C. Wen, Z. Li, W. Zhang, Z. Su, X. Chang, Y. Zhao, Z. Lv, X. Zhang, Y. Zhang, G. Wang, and L. Xu. HeadGAP: Few-Shot 3D Head Avatar via Generalizable Gaussian Priors, Jan. 2025. arXiv:2408.06019 [cs]. [83] Y. Zheng, V. F. Abrevaya, M. C. B¨ uhler, X. Chen, M. J. Black, and O. Hilliges. I M Avatar: Implicit Morphable Head Avatars from Videos, Nov. 2022. arXiv:2112.07471 [cs]. [84] Y. Zheng, W. Yifan, G. Wetzstein, M. J. Black, and O. Hilliges. PointAvatar: Deformable Point-based Head Avatars from Videos, Feb. 2023. arXiv:2212.08377 [cs]. [85] Y. Zhuang, H. Zhu, X. Sun, and X. Cao. MoFaNeRF: Morphable Facial Neural Radiance Field, July 2022. arXiv:2112.02308 [cs]. [86] W. Zielonka, T. Bagautdinov, S. Saito, M. Zollh¨ ofer, J. Thies, and J. Romero. Drivable 3D Gaussian Avatars, Nov. 2023. arXiv:2311.08581 [cs]. [87] W. Zielonka, T. Bolkart, and J. Thies. Instant Volumetric Head Avatars, Mar. 2023. arXiv:2211.12499 [cs]. [88] W. Zielonka, S. J. Garbin, A. Lattas, G. Kopanas, P. Gotardo, T. Beeler, J. Thies, and T. Bolkart. Synthetic Prior for Few-Shot Drivable Head Avatar Inversion, Mar. 2025. arXiv:2501.06903 [cs]. 
+
+10 Self-Learning Expression Deformations for Data-Efficient Gaussian Avatars 
+
+# Supplementary Material 
+
+VII. S HAPE NETWORK 
+
+We design the shape network to predict the lower-triangular part of a matrix and a scaler value, the lower triangle is then assembled into a symmetric Hessian. Eigen-decomposition of this matrix yields three eigenvalue–eigenvector pairs. The eigenvector corresponding to the smallest eigenvalue is interpreted as the surfel normal; we explicitly enforce this eigenvalue to be close to zero and use the associated vector in Equation 7. The remaining two eigenvectors span the tangent plane and serve as the basis for the rotational components. Intuitively, the network is learning to predict the local tangent plane of the SDF at a query point. We rescale the two non-zero eigenvalues by dividing them by the larger of the pair, and then scale them using an additional scalar predicted by the network. The resulting two values are swapped then used as the surfel scales in global scale. This formulation naturally aligns with Section IV-B, where stretching and curvature changes are computed within the tangent space. 
+
+VIII. D YNAMIC WRINKLES 
+
+We observed a strong correlation between normal-estimation error and the appearance of wrinkles, as well as between distortion errors and local surface-orientation changes. As shown in the reference image Fig. 9, regions showing large normal variation tend to coincide with fine-scale facial creases and expression-dependent wrinkles. Similarly, regions showing high distortion also feature dynamic changes in surface orientation, which can naturally lead to subtle view-dependent shading. Additionally, reconstruction loss are higher in those regions. Building off of these observations, we darken Gaussians with high normal error, which increases wrinkle visibility and realism, while dimming them slightly in high-distortion areas to obtain a representation of dynamic shadowing and orientation-based shading. Furthermore, during the second training phase, we focus sampling in these regions to compare with canonical reconstruction. This strategy allows for fine-grained facial effects to be created within the reconstructed avatars in an efficient, lightweight environment. 
+
+IX. M ONOCULAR RECONSTRUCTION 
+
+Since no existing human head dataset provides a clean separation between head rotation and expression sequences, we curate a syn-thetic sequence of FLAME parameters where only head rotations vary while all expression parameters remain fixed. This sequence is reenacted with a pre-trained GaussianAvatar [75] model to generate synthetic head rotation data. In total, we synthesize approximately 40 frames of head rotations and complement them with around 20 real head rotation frames from the original dataset, forming the SV-HR subset used in Tab. I. We demonstrate this dataset using a selection of frames in Fig. 10. We then employ MonoNPHM’s tracker to process this data, leveraging its deformation module to accurately warp rays from dynamic scenes to the canonical space during the first training phase. Specifically, we adopt the globalMLP variant of their pre-trained models, since we do not utilize their local SDF ensemble to represent head geometry. For simplicity, we also omit their hyper-dimensional extensions. 
+
+X. N OVEL VIEW SYNTHESIS RESULTS 
+
+We do not report numerical NVS metrics because our experi-ments are organized into five input-type groups, each containing distinct sets of novel expressions and viewpoints, making direct 
+
+Fig. 9: We visualize three pixel-level error maps used in our 2DGS optimization pipeline—normal error, distortion error, and the absolute difference between our reconstruction and ground truth. The results reveal a strong correlation between geometric inaccuracies, regions of higher recon-struction difficulty, and the presence of expression-dependent facial creases. 
+
+quantitative comparison infeasible. Instead, we present a qualitative assessment of multi-view consistency under sparse-view conditions, comparing our method with RGBAvatar and LAM. As shown in 
+
+1Fig. 10: Visualization of the curated monocular dataset. We generate synthetic head rotation sequences by adjusting only rotation parameter. Shown are representative frames illustrating continuous head rotations. 
+
+Figure X, our pipeline delivers noticeably stronger cross-view con-sistency under identical reconstruction settings, producing coherent appearance and geometry across viewpoints where baseline methods exhibit view-dependent artifacts. 
+
+XI. G EOMETRIC RECONSTRUCTION RESULTS 
+
+We demonstrate our first stage of joint optimization reconstruct accurate geometry as shown in Fig. 12, capturing identity-specific facial structure with clean surface topology and stable normals. When generalized to dynamic sequences, canonical SDF’s well-defined geometry acts as a strong prior that constrains and stabilizes dynamic surface deformation, preventing drift and artifacts. We also present the retrieved dynamic meshes during self-reenactment, the geometric accuracy can be faithfully transferred to the dynamic settings across subjects and expressions, proving the effectiveness of our pipeline. 
+
+XII. G AUSSIAN CORRECTION 
+
+We demonstrate the effectiveness of our Gaussian correction strategy in Fig. 11, which illustrates the optimization of the distortion loss during the self-supervised training phase. With correction enabled, the distortion loss starts at a lower value and converges to a lower minimum, indicating improved stability. This shows that the corrected Gaussians align more closely with the deformed geometry, while also reducing overlap and collisions between individual Gaussians under deformation. 
+
+XIII. E XPRESSION DATA DEPENDENCY 
+
+In this section, we evaluate the robustness of our pipeline from two perspectives: (1) increasing the number of training expressions to assess the method’s dependency on expression supervision, and (2) varying the expression chosen for canonical reconstruction in the first stage to examine its impact on expression generalization. We evaluate the first aspect under multiview setting reconstruct-ing participant 074. Our pipeline demonstrates strong robustness across varying amounts of training data, as shown in Fig. 15. Under expression sparse scenario, our pipeline achieves consistently high reconstruction quality, outperforming baseline methods in PSNR, LPIPS, and SSIM. As the number of training frames increases, our 
+
+Fig. 11: Training log of distortion loss on the second training phase. It is clear that with correction, distortion starts from a much lower value and less volatile initially. 
+
+method maintains stable performance with only marginal fluctua-tions, indicating that it does not rely heavily on dense temporal supervision to achieve high fidelity. For the second perspective, we reconstruct the canonical SDF for participant 306 using six distinct expressions (Fig. 17), ranging from eyes-closed (exp-1) to mouth-open (exp-6), while keeping the second training phase fixed. We perform this evaluation in both monocular and multiview settings and report the averaged self-reenactment metrics in Tab. IV. The results vary only slightly across canonical choices, indicating that our pipeline is largely insensitive to which expression is selected as the canonical reference. Although a neutral expression with opened mouth tend to produce marginally higher fidelity, the overall differences remain small. A noticeable performance drop is observed for more extreme expressions such as exp-1, where the lack of visible eyeballs and the concentration of fine facial creases introduce additional reconstruction challenges, resulting in reduced generalization quality.                        
+
+> Expression PSNR ↑SSIM ↑LPIPS ↓
+> 125.62 0.873 0.118 226.94 0.885 0.109 326.53 0.868 0.123 427.31 0.892 0.102 527.12 0.906 0.110 627.32 0.890 0.099
+
+TABLE IV: Quantitative evaluation of expression general-ization when varying the canonical expression used for SDF reconstruction. 2Fig. 12: Static canonical SDF meshes and reconstructed dynamic meshes across identities and expressions. The canonical SDF captures clean, identity-preserving geometry, while the dynamic reconstructions accurately model a wide range of expression-dependent deformations. 3Fig. 13: Comparison of reconstructed normals across a range of facial expressions. Middle row is the monocular adaptation of our pipeline, the bottom is GA but adapted with 2DGS 
+
+Fig. 14: Comparison of reconstructed normals across a range of identities. Middle row is the multiview adaptation of our pipeline, the bottom is GA but adapted with 2DGS. 
+
+Fig. 15: Experiment on baseline models’ self-reenactment quality as the number of frames used for training increases. 4Fig. 16: Qualitative comparison of novel-view synthesis under sparse-view input conditions. We compare RGBAvatar, LAM, our monocular setting (Ours(Mono)), and our one-shot setting (Ours(one-shot)) against ground truth. Baseline methods often exhibit view-dependent artifacts, blurring, or geometry–appearance inconsistencies, 
+
+Fig. 17: Visualization of the six expressions used in the expression-dependency study. From left to right, the selected expressions range from eyes closed (exp-1) to mouth open (exp-6), covering a diverse set of facial configurations. 5

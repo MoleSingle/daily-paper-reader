@@ -1,0 +1,267 @@
+Title: TokTalk: Expressive Real-time Facial Animation from Audio-LLM Tokens
+
+URL Source: https://arxiv.org/pdf/2605.31294v1
+
+Published Time: Mon, 01 Jun 2026 01:15:42 GMT
+
+Number of Pages: 12
+
+Markdown Content:
+# TokTalk: Expressive Real-time Facial Animation from Audio-LLM Tokens 
+
+# Qingcheng Zhao Yifang Pan Karan Singh University of Toronto Toronto, Canada 
+
+qc.zhao@mail.utoronto.ca evan.pan@mail.utoronto.ca karan@dgp.toronto.edu 
+
+Figure 1. TokTalk is an audio-token based facial animation system for expressive, low-latency audiovisual applications. Our system (A) produces expressive facial motion in parallel with audio, directly from audio-tokens of state-of-the-art audio LLMs through adaptation (B). TokTalk enables a range of real-time audiovisual 3D face applications: expressive chatbots (C), voice-driven virtual avatars by processing real-time voice input through audio tokenizers (D), and a voice driven animation Director’s interface that showcases our ability to generate and control a diverse range audio-visual facial performances (E). 
+
+# Abstract 
+
+Recent advances in Audio-LLM’s like GPT-4o have ushered in an era of conversational interaction with language mod-els. Conversational avatars however, still seem robotic in facial expression and conversational flow, in part due to se-quential stages of speech recognition, text generation, turn-based text response, speech synthesis, and audio driven fa-cial animation. Based on our insight that audio-tokens pro-duced by current Audio-LLMs carry sufficient information to reconstruct a plausible facial performance, we present 
+
+TokTalk , a system that directly outputs expressive facial an-imation in real-time from streaming audio-tokens. We con-struct a novel audio-token to 3D facial motion dataset, on which TokTalk is trained using a Chunk-based Conditional Flow Matching model. A lightweight adaptation strategy allows our trained model to seamlessly connect to any token-based Audio-LLM at minimal computational over-head. Our chunk-based processing further enables para-metric trade-off between latency and facial quality, shown through ablation studies. We further show that the real-time performance of TokTalk is comparable in latency to prior art solutions, and significantly favorable (via a perceptual study) in terms of quality, expressivity and control of the 3D facial performance. We showcase TokTalk ’s flexibility using a chatbot avatar, a voice-driven user avatar, and an animation director’s interface, as diverse audio-visual face applications. 
+
+# 1. Introduction 
+
+Natural face-to-face conversations between humans and digital bots, once the domain of science fiction like in the film Her [3], are now tantalizingly close to reality. The advent of audio-LLM’s like GPT-4o have shown the pro-found potential of conversational interaction with large lan-guage models. Conversational avatars however, still seem robotic in facial expression and conversational flow, in part due to the cascaded pipeline by which they are constructed: A user speaks; the speech in turn is turned to text; to which a textual LLM response is generated; the response text is synthesized into speech audio; and this audio in turn re-encoded to audio-features used to map to a 3D animated face. The sequential stages introduce unnecessary latency, and expressive audio-visual information can get lost across stages of encoding and decoding depending on their design objectives. TokTalk addresses this problem. We observe that pre-trained speech encoders like 
+
+> arXiv:2605.31294v1 [cs.CV] 29 May 2026
+
+Wav2Vec 2.0 [5], and HuBERT [19], which are used by prior work to generate 3D facial performance, were pri-marily optimized for automatic speech recognition (ASR), aligning audio signals with their textual content. Such optimization largely discards a wealth of non-textual in-formation crucial for expressive facial animation such as: hesitant pauses, sighs, stutters, laughter, breaths, or fear-ful/angry tremors in a voice. This makes both emotion and paralingual motion [13] difficult to reconstruct on the 3D face. We show that in contrast, the internal tokens em-bedding of modern generative Audio-LLMs, designed for high-fidelity speech audio reconstruction and semantic un-derstanding, carry rich audio information pertaining to non-verbal and emotional nuance, that ASR-based features ig-nore (Table 2). TokTalk exploits this insight by using these audio tokens, to directly generate plausible and expressive 3D facial motion in real-time (Fig. 2). User Input Audio -LL M  
+
+> Tokenizer LLM Core
+> Audio Tokens
+> Audio Decoder
+> TokTalk
+> Generated Speech
+> Facial Animation
+> Adaptation Layer Flow -Matching Model
+
+Figure 2. TokTalk pipeline: existing audio-LLM (gray); our face module (blue). 
+
+Prior art in real-time speech-driven facial animation roughly fall into three categories. Procedural approaches like JALI [12] that combine audio features and an aligned speech transcript, produce high-quality animator editable output, but are constrained by the latency of synthesized audio features and sufficient phonetic context, that impedes their use in expressive real-time applications. Deterministic data-driven methods like the CNN-based [17] afford low la-tency but have limited control over expression due to limited model capacity and deterministic mapping. While recent 2D diffusion models like Ditto [23] and MuseTalk [43] demonstrate the feasibility of high-quality real-time synthe-sis, 3D diffusion-based methods like [30, 35, 45] suffer from unacceptably slow inference for real-time use. Our flow-based model bridges this gap, delivering diffusion-based expressiveness and real-time performance. 
+
+Overview :Our method takes audio-tokens from an Audio-LLM as in-put, and generates vivid, synchronized facial animations in parallel with audio generation, reducing the cascading la-tency significantly (Fig. 2). We first construct a novel token-to-facial-animation dataset using an audio-LLM tokenizer . Our system is designed as a lightweight ”plug-in” mod-ule of an Audio-LLM system. We train a simple yet effec-tive Conditional Flow Matching Model that maps the audio tokens directly to FLAME parameters [24]. This ”LLM-aligned” approach enables the facial animation to be gen-erated in parallel with the audio generation stream, elim-inating the additional latency incurred by the traditional first-audio-then-animation framework. Another advantage of our plug-in architecture is its adaptability: our model can easily adapt to work with any other audio-LLM via a lightweight adaptation layer. Our chunk-based processing further enables parametric trade-off between latency and fa-cial quality, shown through our ablation studies. 
+
+Evaluation: 
+
+TokTalk embodies the design goals of a modular approach to expressive 3D facial animation in real-time, that animates both vocal and paralingual aspects of the face [13], paral-lelizes and decouples control over the audio-visual creation and editing of an entire facial performance, while keeping them perfectly synchronized. While prior approaches share some of the features of our work, none of them address all our design goals (Table 1). We show that the real-time per-formance of TokTalk is comparable in latency to prior art so-lutions, and significantly favorable (via a perceptual study) in terms of quality, expressivity and control of the 3D facial performance. We showcase TokTalk ’s flexibility using three diverse proof-of-concept applications: a chatbot avatar for use with Audio-LLMs, a voice-driven user avatar that could be used in immersive games and other VR applications, and an animation Director’s interface, to conversationally direct an autonomous digital actor. 
+
+Contributions: 
+
+Our primary contribution is exploiting the insight that Audio-LLM tokens can be used to directly drive the motion of a 3D face, as shown by TokTalk (the first such system to our knowledge). TokTalk further contributes: • Validation that audio-LLM tokens carry richer spoken, emotional, and paralingual information than ASR dis-criminative audio features. • A parallel approach to producing facial animation concur-rently with audio (as the latency bottleneck). • A modular adaptation framework enabling compatibil-ity across diverse Audio-LLM architectures without re-training our flow-matching model. 
+
+# 2. Related Work 
+
+This section surveys the landscape of audio-driven lipsync animation, audio representations, and audio-LLMs. 
+
+2.1. Audio-driven 3D Facial Animation 
+
+Early research in facial animation primarily focused on lip synchronization and can be broadly categorized into two groups: procedural and data-driven. 
+
+Procedural methods like [7, 12, 27, 31], are based on the insight that a face can be plausibly animated to produce speech by mapping phonemes (sounds) to corresponding vi-sual visemes (mouth shapes). Such approaches can lack fine detail and facial nuance but are well suited to animator con-trol. 
+
+Data-driven methods learn the correlation between audio Table 1. Comparison of audio driven facial animation approaches based on their ability to provide: paralingual motion (eg. conversational brow and head motion); synchronized control over editing facial expression or vocal delivery; real-time performance. 
+
+Method Paralingual Face control Voice control Real-time 
+
+Peng et al. [32] ✓ ✓ × ×
+
+Stan et al. [34] ✓ × × ×
+
+Sun et al. [35] ✓ ✓ × ×
+
+Han et al. [17] × × × ✓
+
+Lee et al. [22] ✓ ✓ × ✓
+
+Edwards et al. [12] ✓ ✓ × ×
+
+TokTalk (Ours) ✓ ✓ ✓ ✓
+
+representations and 3D motion using an audio encoder and an audio-conditioned motion decoder [15, 20, 21, 26, 33, 38]. These data-driven approaches shows high quality re-sults with fine detail but produce facial motion that is hard to edit and control. Contemporary models extend beyond the mouth to par-alingual motion of the entire face. Since the correlation between audio and paralingual expression is weaker, these methods often necessitate the use of additional conditioning signals to ensure the performance fits the spoken context. Works such as Emotalk [32] and EMOTE [8] use categor-ical emotional labels to control the affect of the delivery. More recently, diffusion models have enabled sophisticated forms of conditioning: Media2face [45] utilizes text embed-dings as a primary control signal, while Diffposetalk [35] and [30] leverage reference motion style to generate ani-mations with fine-grained control. Despite their expressive power, the iterative nature of diffusion models introduces significant inference latency, precluding their use in real-time applications. To meet the demands of conversational chatbots and dig-ital humans—such as Grok’s Ani [1] and Soul Machines [2], recent research has shifted toward minimizing gener-ation latency. Lee et al. [22] addresses this by utilizing a causal audio encoder to reduce encoding delay and em-ploying Distribution Matching Distillation to derive a high-speed diffusion model capable of generating motion in 4 diffusion steps, achieving a per-frame runtime of 10ms. Han et al. [17] pushes this strategy further by jointly distill-ing both the audio encoder and the motion decoder, reach-ing runtimes as low as 2ms per frame. However, because these models require fully processed audio as input, their latency gain comes from distilling the model, which limits the model’s expressiveness [17] and introduces jitter arti-facts Lee et al. [22]. Our design in contrast, alleviates se-quential latency by moving ”upstream” in a text-to-speech (TTS) pipeline; by directly tapping into the same intermedi-ate audio representations used to synthesize audio, our sys-tem enables the simultaneous generation of both audio and facial motion, enabling us to spend more compute time on expressiveness and controllability of the face without incur-ring additional latency. 
+
+2.2. Audio Speech Representations and Audio LLMs 
+
+Effective speech representations are central to both audio-driven facial animation and TTS synthesis. Early research predominantly employed handcrafted features such as Mel-Frequency Cepstral Coefficients (MFCCs) [21]. The emer-gence of self-supervised learning (SSL) introduced more ro-bust alternatives, including HuBERT [19], wav2vec 2.0 [5], and WavLM [6]. These SSL-based models provide supe-rior phoneme-to-viseme mappings compared to traditional methods, yielding higher accuracy in facial animations [15]. In TTS, the paradigm has shifted from continuous fea-ture regression toward discrete neural tokenization, driven by advances in Audio Large Language Models (Audio-LLM). Architectures such as [11, 40] employ Vector Quan-tization (VQ) or Residual Vector Quantization (RVQ) to learn compact, discrete latent representations of speech. GLM-4-Voice [41] introduces multi-objective training that jointly optimizes for ASR and audio reconstruction, pro-ducing tokens that are both acoustically faithful and se-mantically meaningful for LLM reasoning. CosyVoice [10] adopts a hybrid approach, augmenting discrete tokens with continuous audio features to enable finer-grained control over paralinguistic behaviors. These discrete speech representations enable seamless integration of speech capabilities into pretrained text-based LLMs through two key steps: (1) expanding the vocabulary to include speech tokens, and (2) finetuning the model on audio token data. Architecturally, this pipeline consists of a speech tokenizer that converts continuous audio wavforms into discrete semantic tokens, the LLM itself for token pre-diction, and an audio decoder that reconstructs continu-ous speech from predicted tokens (Figure 2). This frame-work has enabled audio chatbots such as Qwen3-Omni [39], MiniOmni-2B [37], GLM-4-Voice [41], and SpeechGPT [42]. Our work extends this pipeline by introducing a token-to-animation model (Figure 2) that consumes token embed-dings, enabling audio-visual conversational chatbots. 
+
+# 3. Method 
+
+We propose a token-based facial animation framework com-patible with existing Audio-LLMs. Our approach takes to-ken embeddings and a short style reference clip as input, and generates stylized facial animations that synchronize with the audio while adhering to the visual style of the reference clip. To enable generalization across different audio LLM architectures, we introduce a novel and effi-cient adaptation framework that bridges varying token rep-resentations. We now describe how our system integrates with Audio-LLM pipelines (§3.1), the design of our style-conditioned motion decoder and adaptation layer (§3.2), and our training strategy (§3.3). 
+
+> Figure 3. System Overview
+
+3.1. Pipeline Architecture 
+
+Our token-based animation model runs parallel to the au-dio decoder of an end-to-end Audio-LLM, acting as a de-coder for motion Figure 2. We take the token embedding as input, then use a conditional flow matching model [25] to map the audio information to the embedding space of the FLAME model [24], which is then decoded into 3D vertex animation. Since different voice-LLM leverage different to-ken spaces, we propose using a lightweight adaptation layer to map between the token spaces, ensuring our approach is generalizable to different Audio-LLM systems. The parallel architecture described above is enabled by our direct use of tokens embeddings, contrasting with ex-isting speech-to-face approaches that rely on waveform-derived representations such as HuBERT [19] or wav2vec 2.0 [5] features. This positions our system earlier in the syn-thesis pipeline: while traditional methods require sequen-tial processing (tokens → waveform → feature extraction 
+
+→ animation), our model consumes the same tokens as the audio decoder, enabling parallel audio-motion generation (Figure 3). The latency implications of this design are de-tailed in §4.4. Beyond Audio-LLM integration, our token-based approach also supports conventional audio-driven fa-cial animation. By incorporating a speech tokenizer to con-vert recorded audio into discrete tokens, our system can pro-cess both synthesized and recorded speech through the same token-based pipeline. 
+
+3.2. Style Conditioned Motion Decoder 
+
+Flow Matching Model We adopt a causal chunk-wise flow matching model with block-causal attention as our style-conditioned motion decoder. Given a sequence of au-dio embeddings e = {ei}Ti=1 , where ei ∈ Rdaudio from the token embedder, and a style embedding s obtained from a reference motion clip, the decoder generates FLAME-based facial mesh animations. Inspired by the audio de-coder in CosyVoice [10], our decoder operates causally over streaming chunks, allowing motion generation to proceed in parallel with audio synthesis. Formally, the conditional flow matching model G learns a time-dependent vector field 
+
+vθ (Xt, t, e, s ) that transports samples from a standard nor-mal base distribution p0 to the target FLAME motion distri-bution p1 through an ordinary differential equation (ODE), conditioned jointly on the audio features e and style embed-ding s [25]. Specifically, given a FLAME parameter sequence X1
+
+where X1 ∈ RT ×dFLAME represents T frames of FLAME pa-rameters (expression, jaw, and neck pose coefficients), and noise X0 ∼ N (0 , I ), we define a time-dependent interpola-tion path with t ∈ [0 , 1] :
+
+Xt = (1 −t)X0+tX 1 where ut(X|X1) = dX t
+
+dt = X1−X0
+
+(1) The model is trained to match this target vector field by min-imizing the conditional flow matching objective: 
+
+LCFM (θ) = Et,p (X1),p (X0)∥vθ (Xt, t, e, s ) − (X1 − X0)∥2
+
+(2) During inference, we generate FLAME parameter se-quences by solving the ODE using an Euler solver: 
+
+dX t
+
+dt = vθ (Xt, t, e, s ), X0 ∼ N (0 , I ) (3) Using a jointly-trained style encoder E following MSMD [30], the style embedding s = E (Xref ) is ex-tracted from the same clip Xref as the target animation, and the model generates FLAME parameters ˆX1: T =
+
+G  {ei}Ti=1 , s .
+
+Audio representation We extract token embeddings from the input layer of the audio decoder (Figure 3). These repre-sentations encode both acoustic and semantic features, cap-turing not only phonetic content but also emotional infor-mation from speech prosody. Adaptation Layer To accommodate the diverse audio to-kenization schemes employed by different Audio-LLMs, we propose a lightweight adaptation layer that aligns ar-bitrary token embedding spaces to the input space of our flow matching model. The adaptation layer is a shallow transformer that maps token embeddings from any audio decoder to match the expected input of the pre-trained flow-matching model, effectively bridging different token rep-resentations without retraining the entire system. Training occurs in two stages: we first train the flow matching model to convergence, then freeze it and train only the adaptation layer on the new Audio-LLMs. This enables efficient gen-eralization across different Audio-LLM architectures with minimal computational overhead. Further details are pro-vided in §3.3. 
+
+3.3. Training Strategy 
+
+The training consists of two stages: (1) initial training of the base flow-matching model, and (2) adaptation training. Conditioning signals are randomly dropped during training for classifier-free guidance. The initial training starts by us-ing the audio tokenizer and decoder to generate token em-bedding for the training corpus. During the initial training, the adaptation layer is skipped, and the base model G is trained through minimizing LCFM . This first stage enables our framework to work end-to-end with one specific Audio-LLM. We further extend our model to alternative Audio-LLMs in the second stage. This is achieved by training the adap-tation layer D while keeping the base flow-matching model 
+
+G frozen. For each target Audio-LLM, we construct a train-ing corpus by extracting token embeddings {˜ei} ˜Ti=1 from its respective tokenizer or decoder, temporarily interpolating them to match the sampling rate of the base tokenizer. To robustly project these sequence embeddings into the base embedding space, we optimize the adaptation layer using a dual objective. This comprises a feature-level alignment loss and the original flow-matching loss LCFM with loss weight λ = 0 .5
+
+Ladapt = LCFM +λLalign , Lalign = D
+
+
+
+{˜ei} ˜Ti=1 
+
+
+
+− { ei}Ti=1 
+
+> 2
+
+(4) 
+
+3.4. Inference 
+
+During inference, the system processes streaming input , either generated by an Audio-LLM or extracted from au-dio using a speech tokenizer. Tokens arrive in sequential chunks, each spanning C seconds of audio. The adaptation layer maps incoming token embeddings to the input space of the flow-matching model; this step is skipped when the embeddings already match the base token space. The flow-matching model generates FLAME parameters causally, chunk by chunk, using overlap-conditioned tem-poral inpainting during ODE solving. For each chunk, the unknown region is initialized from noise and updated by the predicted velocity field, while the overlap region from the previous chunk is treated as known and overwritten at each step. A binary inpainting mask preserves the known frames and updates only the new region, maintaining tem-poral coherence across chunk boundaries. We further apply classifier-free guidance [18] by modi-fying the predicted velocity field, with guidance weight w.
+
+vcfg  
+
+> θ
+
+(Xt, t, e, s ) = (1+ w)vθ (Xt, t, e, s )−w v θ (Xt, t, ∅, ∅)
+
+(5) The decoder supports different chunk sizes and ODE solver steps, enabling a trade-off between latency and gen-eration quality, as analyzed in section 4. 
+
+# 4. Experiments 
+
+We evaluate TokTalk along three axes. First, we study whether Audio-LLM token embeddings provide a stronger conditioning signal for expressive facial animation than conventional ASR-oriented audio representations. This analysis motivates our token-based design and is conducted on RAVDESS, where emotional variation is pronounced. Second, we evaluate animation quality on the HDTF-TFHP benchmark, comparing TokTalk against prior audio-driven facial animation methods and analyzing the effects of style conditioning and cross-token adaptation. Third, we eval-uate runtime and latency to verify that TokTalk is suit-able for real-time Audio-LLM applications, and analyze the quality–speed trade-off induced by chunk size and flow-matching steps. We evaluate all models using Mean Square Error (MSE) and Lip Vertex Error (LVE) to assess lip-sync accuracy, and Facial Dynamic Difference (FDD) and Mouth Opening Dis-tance (MOD) [35] to measure adherence to reference style. Unless otherwise specified, our method is evaluated in the real-time setting with chunk size C = 0 .4s and n = 20 
+
+flow-matching steps. This configuration is justified by the runtime-quality analysis in subsection 4.5. 
+
+4.1. Implementation 
+
+We train and evaluate our system on the same corpus as DiffPoseTalk, combining HDTF [44] and TFHP. The dataset contains 1,052 videos from 588 subjects, totaling approximately 26 .5 hours of footage at 25 fps. Following DiffPoseTalk, we split the data by speaker into 460 train-ing, 64 validation, and 64 testing subjects. Our flow-matching decoder adopts a 1D U-Net-style Transformer architecture adapted from the conditional de-coder in CosyVoice [10]. It contains two downsampling blocks, two upsampling blocks, and 12 middle blocks. Each stage has 4 Transformer blocks with 8 attention heads. The adaptation layer projects source embeddings with a 1D con-volution, adds positional embeddings and processes the se-quence with a 4-layer Transformer encoder. The base flow-matching model G and the adaptation layer D are both trained on a single NVIDIA L40S using Adam with learning rate 1×10 −4. The base model is trained for 144 hours with the conditional flow-matching objective in Equation 2; with guidance weight w = 0 .3 used at infer-ence time. For adaptation, we freeze G and train only D for 
+
+24 hours using the objective in §3.3. We use Mimi [9] as the base tokenizer and adapt the model to CosyVoice2 [10] and GLM-4-Voice [41] token embeddings. CosyVoice2 is used by Mini-Omni 2 [37] and LLaMA-Omni [16], while Mimi underlies Qwen3-Omni [39] and Moshi [9]. This lightweight adaptation en-ables different Audio-LLM backends to be swapped with-out retraining the full motion decoder. 
+
+4.2. Audio Representation Analysis 
+
+We first evaluate whether Audio-LLM token embeddings provide a stronger conditioning signal for expressive facial animation than conventional ASR-oriented audio features. To isolate the effect of the audio representation, we train and evaluate all variants on RAVDESS, where speech contains clear emotional variation. We compare Audio-LLM token embeddings from GLM-4-Voice, CosyVoice2, and Moshi against ASR-based representations from wav2vec 2.0, Hu-BERT, and Whisper. We also include EmoTalk [32] as an emotion-aware baseline that relies on explicit tag condition-ing. As shown in Table 2, Audio-LLM token embeddings achieve competitive performance relative to conventional ASR-oriented representations. They are not uniformly best across all metrics: for example, wav2vec 2.0 ob-tains the lowest FDD, indicating that ASR-style features can still capture certain temporal motion dynamics effec-tively. However, Audio-LLM token embeddings perform strongly on reconstruction and mouth-related metrics, with CosyVoice2 achieving the lowest MSE, LVE, and MOD among all compared representations. This suggests that speech-generation tokens preserve information useful for expressive facial animation, including linguistic, acoustic, and prosodic cues. Compared with EmoTalk, all variants of TokTalk achieve lower errors despite not relying on explicit emotion or intensity tags. This indicates that the proposed token-conditioned decoder can infer expressive motion cues directly from speech representations, providing a flexible alternative to manually specified emotion conditioning. 
+
+4.3. Evaluating Generation Quality 
+
+Quantitative Comparison We compare against three representative prior methods: DiffPoseTalk [35], MSMD [30], and FaceFormer[15]. For MSMD and  
+
+> Table 2. RAVDESS evaluation of audio representations for ex-pressive facial animation.
+
+Model MSE LVE FDD MOD (mm) ↓ (mm) ↓ (×10 −5m) ↓ (mm) ↓
+
+ASR based 
+
+Wav2vec2 0.26 2.15 2.63 1.51 HuBERT 0.27 2.26 3.03 1.65 Whisper 0.25 2.07 2.79 1.41 
+
+Audio LLM based 
+
+GLM-4-Voice 0.23 1.87 3.11 1.42 CosyVoice2 0.22 1.84 2.99 1.35 Moshi 0.24 2.03 2.90 1.40 
+
+Other baselines 
+
+EmoTalk 0.35 3.11 4.33 1.65 FaceFormer, we retrain the models on HDTF+TFHP training split using the same data protocol as TokTalk. For DiffPoseTalk, we use the official implementation and model weights. Table 3 also includes ablations of TokTalk without style conditioning and adapted variants using CosyVoice2 and GLM-4-Voice token embeddings. Style conditioning con-sistently improves our base model, These improvements confirm that the reference clip provides useful motion-style information beyond the audio content alone. The adapted variants further remain close to the base model. This demonstrates that the adaptation layer can transfer the mo-tion decoder to different Audio-LLM token spaces with only minor degradation, without retraining the full model. Importantly, all results for TokTalk are reported under the real-time streaming setting, whereas the strongest diffu-sion baseline, DiffPoseTalk, is evaluated as an offline non-real-time model. Under this stricter deployment setting, TokTalk remains competitive with DiffPoseTalk, with com-parable MSE, LVE, and MOD, while achieving slightly bet-ter FDD. This suggests that token-conditioned flow match-ing can preserve much of the motion fidelity of offline diffusion-based animation while enabling low-latency gen-eration. This comparison highlights a key advantage of our formulation. Existing real-time facial animation sys-tems often obtain low latency by compressing or distilling a stronger offline model, which can reduce animation qual-ity and typically removes explicit style control. In contrast, TokTalk is designed for streaming from the outset: it gen-erates motion in parallel with the Audio-LLM decoder and conditions on a reference style clip, enabling real-time per-formance without sacrificing controllability. 
+
+Perceptual Study While quantitative metrics provide valuable insights, they do not fully capture perceptual qual-Table 3. Quantitative comparison of TokTalk variants, adaptations, and prior methods. Model MSE LVE FDD MOD (mm) ↓ (mm) ↓ (×10 −5m) ↓ (mm) ↓                             
+
+> TokTalk w/o style 2.11 20.73 4.45 3.15 TokTalk w/ style 1.39 14.53 4.29 2.82
+> Adaptation Layers
+> CosyVoice2 1.37 14.26 4.34 2.94 GLM-4-Voice 1.35 14.02 4.44 2.96
+> Prior methods
+> DiffPoseTalk 1.33 13.64 4.33 2.68 MSMD 1.54 16.07 11.19 2.65 FaceFormer 2.50 24.02 5.19 3.77
+> Figure 4. Perceptual ranking distributions for lip synchronization (left) and style similarity (right). Rankings are from 20 partici-pants across 15 videos.
+
+ity. To complement our numerical evaluation, we conducted a user study with 15 expressive videos selected from our test set and iconic performances from YouTube. We generated animations using TokTalk (with style conditioning), Tok-Talk w/o style, and DiffPoseTalk [35]. For each video, 20 participants viewed the ground truth alongside three gener-ated animations in randomized order, ranking them by: (1) lip synchronization, and (2) style similarity to ground truth (300 total comparisons per metric). The results demonstrate a strong perceptual preference for our method Figure 4. For lip synchronization, TokTalk achieved the best mean rank, significantly outperforming the w/o style and DiffPoseTalk. A Friedman test confirmed significant differences across methods ( χ2 = 158 .72 , p < 10 −34 ). For style similarity, TokTalk again ranked best (1.72), significantly outperform-ing both the unconditioned variant (1.90, p < 0.01 ) and DiffPoseTalk (2.38, p < 10 −12 , Friedman: χ2 = 69 .84 ,
+
+p < 10 −15 ). 
+
+Qualitative Comparison We refer readers to the supple-mentary video for dynamic results. Figure 6 shows repre-sentative frames generated by TokTalk and baseline meth-ods. Our model achieves comparable lip-sync quality to diffusion-based methods like DiffPoseTalk [35] while run-ning significantly faster, and produces more dynamic and expressive animations with controllable style compared to distilled models like Han et al. [17]. 
+
+4.4. Runtime Evaluation 
+
+For real-time Audio LLM applications, first-frame latency (i.e. the time until the first animation frame is generated) is crucial for perceived interactivity. In a traditional cascaded pipeline using audio-driven facial animation models, the to-tal latency to the first frame combines three components: Time to First Token Batch (TTFTB, the time for the LLM to generate enough tokens for the audio decoder to begin), audio decoding time ( Taudio , inherent to the audio decoder), and animation generation time ( Tanimation ): Latency = TTFTB + Taudio + Tanimation (6) However, in systems where audio decoding and anima-tion generation occur in parallel, like TokTalk, first-frame latency becomes: Latency = TTFTB + max( Taudio , T animation ) (7) This means that if Tanimation ≤ Taudio , animation can be generated with no additional latency cost beyond audio syn-thesis. In Table 4, we compare the overall latency of Tok-Talk against state-of-the-art real-time models: Han et al. [17] and Lee et al. [22], as well as DiffPoseTalk [35] as a non-real-time reference. Inference times for Han et al. [17] and Lee et al. [22] are taken from their original pa-pers, while runtime measurements for DiffPoseTalk and TokTalk are computed on an Nvidia L40S GPU, averaged over 100 examples. We set TTFTB = 200 ms based on typical LLM latencies from Emani et al. [14] and the mini-mum chunk size required by state-of-the-art audio decoders, and Taudio = 200 ms based on reported inference times for CosyVoice [10] and GLM-4-Voice [41].        
+
+> Table 4. Latency comparison with state-of-the-art baselines.
+> TokTalk supports variable flow matching steps ( n= 1 to 20 ), yielding Tanimation ranging from 26–187ms. However, as shown in Eq. 7, overall latency remains constant since all values fall below
+> Taudio = 200 ms.
+
+Methods TTFTB Taudio Tanimation Latency (ms) (ms) (ms) (ms) Han et al. [17] 200 200 1.4 401.4 Lee et al. [22] 200 200 10 410 DiffPoseTalk [35] 200 200 3326 3726 
+
+TokTalk 200 200 26–187 400 
+
+The results show that despite having longer Tanimation 
+
+than the fastest models, TokTalk achieves the lowest latency among all methods through its efficient parallel generation scheme. Importantly, while Han et al. [17] and Lee et al. [22] also achieve low latency, they do so at the cost of an-imation quality. Han et al. [17] reports that its real-time variant preserves only about 70–80% of the quality of the teacher model due to distillation, and it does not provide ex-plicit reference-based style control, while Lee et al. [22]’s few-steps diffusion distillation approach is prone to intro-duce frequent jittering artifacts. In contrast, our model can fully leverage the available compute budget to ensure high-quality motion without incurring additional latency. We showcase a demo where we integrate our model with a voice LLM in the supplementary video. 
+
+4.5. Runtime-Quality Trade-off 
+
+TokTalk’s chunk-wise flow matching architecture provides flexible control over inference speed and animation qual-ity through two key parameters: chunk size C (the num-ber of video frames generated at a time) and the number of flow matching steps n. Both parameters influence over-all latency: chunk size affects the number of tokens re-quired to start generation (impacting TTFTB), while n af-fects Tanimation . To characterize this trade-off, we evaluate TokTalk across different combinations of C and n, mea-suring MSE and jitter (average per-frame acceleration near chunk boundaries), as shown in Table 5.                                                  
+
+> Table 5. Ablation study on chunk size ( C) and flow matching steps ( n). Increasing both parameters improves MSE and jitter, with stronger effects on jitter.
+> Steps Tanimation
+> C= 0 .4sC= 0 .8sC= 1 .2s
+> (n)(ms) MSE ↓Jitter ↓MSE ↓Jitter ↓MSE ↓Jitter ↓
+> 126 1.61 0.232 1.58 0.246 1.57 0.239 560 1.57 0.223 1.55 0.204 1.54 0.171 10 101 1.56 0.201 1.54 0.184 1.53 0.151 20 187 1.57 0.178 1.53 0.161 1.52 0.140
+
+The results reveal several key insights. First, increas-ing both flow matching steps n and chunk size C consis-tently improves motion quality across both metrics. This in-formed our choice of parameters for real-time deployment: 
+
+C = 0 .4s and n = 20 ensures Tanimation ≤ Taudio while mini-mizing TTFTB. For offline processing, larger values of both parameters would be optimal. Second, while improvements in reconstruction error are modest, gains in motion smooth-ness are more substantial. This echoes Lee et al. [22], which demonstrated that few-step diffusion is prone to jitter. Our results confirm that maintaining boundary consistency re-mains a challenge for chunked diffusion-based generative models. We note that adaptation adds negligible overhead (20ms), not preventing real-time streaming. 
+
+# 5. Discussion 
+
+5.1. Applications 
+
+Real-time Conversational Avatar Leveraging TokTalk’s low first-frame latency and fast inference time Tanimation 
+
+(subsection 4.4), our system enables two distinct on-line/interactive applications relevant for gaming, social me-dia, digital assistants, and other interactive applications: an audio-LLM driven chatbot avatar, and a voice-driven user avatar (Figure 3). The audio for the voice-driven user avatar is tokenized as it streams, allowing users to embody an avatar using only their voice. Running with C = 0 .4 and n = 5 , the sys-tem buffers 400 ms of audio before generating animation with 60 ms inference time, resulting in a 460 ms initial de-lay. Once started, animation streams continuously in real-time with the user’s voice. For audio-LLM driven chatbot avatars, we operate in parallel with the audio decoder, di-rectly consuming audio tokens generated by the language model. Note that the overall latency is bottle-necked by the token and audio generation of the LLM, TokTalk does not contribute to latency. 
+
+Animation Director’s Interface Integrating TokTalk with a voice LLM creates a director-actor paradigm for full-duplex performance generation. Given only a text script, the system generates complete audio-visual performances that can be refined through two complementary control mecha-nisms: 1) prompts (text or audio instructions) that modulate the LLM’s emotional tone and speech cadence, which our model interprets through the audio’s paralinguistic content, and 2) style reference clips that guide animation character-istics. This enables a directorial workflow where anima-tors shape performances by instructing the voice-LLM sys-tem much as a director would to guide an actor (Figure 5). We demonstrate this interaction in the supplementary video, where generated FLAME parameters drive a production-ready character rig. 
+
+5.2. Limitations 
+
+While our parallel structure eliminates additional latency in audio-LLM applications, speech-driven generation in-curs higher latency due to our minimum chunk size of 400ms compared to autoregressive models like [17] (265ms lookahead). Audio tokenizer constraints further impact la-tency—for example, CosyVoice [10] requires a minimum of 5 tokens (200ms). Our quality-latency analysis (subsec-tion 4.5) reveals an inherent limitation: like [22], fewer flow matching steps introduce jitter. While using 20 steps sig-nificantly reduces artifacts, future improvements in audio decoder speed may force our model to use fewer steps to maintain Tanimation ≤ Taudio , potentially trading quality for latency. Figure 5. Multi-modal directorial interface for iterative control of audio and facial animation through text prompts and visual style references. 
+
+5.3. Future Work 
+
+While our model provides facial animation for audio-LLMs with no latency cost, interactive systems must also address turn-taking detection [36], which significantly impacts re-sponse times. Additionally, natural interaction requires lis-tening behaviors [28] and semantic non-verbal cues such as head nods and shakes [4] and eye gaze [29], which remain important directions for future interactive systems. 
+
+5.4. Conclusion 
+
+We introduced TokTalk, a real-time, flow-matching based expressive facial animation system designed to seamlessly integrate with modern audio-LLMs. Shifting from cas-caded, waveform-based processing to a parallel, token-based architecture, we achieve expressive and controllable generation without sacrificing inference speed. Our ap-proach jointly leverages semantic and paralingual informa-tion embedded within audio tokens and style references, enabling diverse control over vivid, emotionally coher-ent facial expressions that are perfectly synchronized with speech. We see our work as an exciting step to transforming various text-based LLM applications to engaging human-like conversations. 
+
+# References 
+
+[1] Ani. 3 [2] Soul Machines — We Humanize AI. 3 [3] Her, 2013. Distributed by Warner Bros. Pictures. 1 [4] Tenglong Ao, Zeyi Zhang, and Libin Liu. Gesturediffu-clip: Gesture diffusion model with clip latents. ACM Trans. Graph. , 2023. 9 [5] Alexei Baevski, Henry Zhou, Abdelrahman Mohamed, and Michael Auli. wav2vec 2.0: a framework for self-supervised learning of speech representations. In Proceedings of the 34th International Conference on Neural Information Pro-cessing Systems , Red Hook, NY, USA, 2020. Curran Asso-ciates Inc. 2, 3, 4 [6] Sanyuan Chen, Chengyi Wang, Zhengyang Chen, Yu Wu, Shujie Liu, Zhuo Chen, Jinyu Li, Naoyuki Kanda, Takuya Yoshioka, Xiong Xiao, Jian Wu, Long Zhou, Shuo Ren, Yan-min Qian, Yao Qian, Jian Wu, Michael Zeng, Xiangzhan Yu, and Furu Wei. WavLM: Large-Scale Self-Supervised Pre-Training for Full Stack Speech Processing. 16(6):1505– 1518. 3 [7] Michael M. Cohen and Dominic W. Massaro. Modeling Coarticulation in Synthetic Visual Speech. In Models and Techniques in Computer Animation , pages 139–156, Tokyo, 1993. Springer Japan. 2 [8] Radek Danˇ eˇ cek, Kiran Chhatre, Shashank Tripathi, Yan-dong Wen, Michael Black, and Timo Bolkart. Emotional speech-driven animation with content-emotion disentangle-ment. In SIGGRAPH Asia 2023 Conference Papers , pages 1–13, 2023. 3 [9] Alexandre D´ efossez, Laurent Mazar´ e, Manu Orsini, Am´ elie Royer, Patrick P´ erez, Herv´ e J´ egou, Edouard Grave, and Neil Zeghidour. Moshi: a speech-text foundation model for real-time dialogue. arXiv preprint arXiv:2410.00037 , 2024. 6 [10] Zhihao Du, Qian Chen, Shiliang Zhang, Kai Hu, Heng Lu, Yexin Yang, Hangrui Hu, Siqi Zheng, Yue Gu, Ziyang Ma, Zhifu Gao, and Zhijie Yan. CosyVoice: A Scalable Multilin-gual Zero-shot Text-to-speech Synthesizer based on Super-vised Semantic Tokens. 3, 4, 5, 6, 7, 8 [11] Alexandre D´ efossez, Jade Copet, Gabriel Synnaeve, and Yossi Adi. High Fidelity Neural Audio Compression. 3 [12] Pif Edwards, Chris Landreth, Eugene Fiume, and Karan Singh. JALI: an animator-centric viseme model for expres-sive lip synchronization. ACM Transactions on Graphics , 35 (4):1–11, 2016. 2, 3 [13] Pif Edwards, Chris Landreth, Mateusz Popławski, Robert Malinowski, Sarah Watling, Eugene Fiume, and Karan Singh. Jali-driven expressive facial animation and multilin-gual speech in cyberpunk 2077. In ACM SIGGRAPH 2020 Talks , New York, NY, USA, 2020. Association for Comput-ing Machinery. 2 [14] Murali Emani, Sam Foreman, Varuni Sastry, Zhen Xie, Sid-dhisanket Raskar, William Arnold, Rajeev Thakur, Venka-tram Vishwanath, Michael E. Papka, Sanjif Shanmugavelu, Darshan Gandhi, Hengyu Zhao, Dun Ma, Kiran Ranganath, Rick Weisner, Jiunn-yeu Chen, Yuting Yang, Natalia Vas-silieva, Bin C. Zhang, Sylvia Howland, and Alexander Tsyplikhin. Toward a Holistic Performance Evaluation of Large Language Models Across Diverse AI Accelerators. In 
+
+2024 IEEE International Parallel and Distributed Process-ing Symposium Workshops (IPDPSW) , pages 1–10. IEEE. 7 [15] Yingruo Fan, Zhaojiang Lin, Jun Saito, Wenping Wang, and Taku Komura. Faceformer: Speech-driven 3d facial anima-tion with transformers. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , 2022. 3, 6 [16] Qingkai Fang, Shoutao Guo, Yan Zhou, Zhengrui Ma, Shaolei Zhang, and Yang Feng. Llama-omni: Seam-less speech interaction with large language models. arXiv preprint arXiv:2409.06666 , 2024. 6 [17] Zhen Han, Mattias Teye, Derek Yadgaroff, and Judith B¨ utepage. Tiny is not small enough: High quality, low-resource facial animation through hybrid knowledge distil-lation. ACM Trans. Graph. , 44(4), 2025. 2, 3, 7, 8, 12 [18] Jonathan Ho and Tim Salimans. Classifier-free diffusion guidance, 2022. 5 [19] Wei-Ning Hsu, Benjamin Bolte, Yao-Hung Hubert Tsai, Kushal Lakhotia, Ruslan Salakhutdinov, and Abdelrahman Mohamed. HuBERT: Self-Supervised Speech Representa-tion Learning by Masked Prediction of Hidden Units. 2, 3, 4[20] Sunjin Jung, Yeongho Seol, Kwanggyoon Seo, Hyeonho Na, Seonghyeon Kim, Vanessa Tan, and Junyong Noh. Speed-aware audio-driven speech animation using adaptive win-dows. ACM Transactions on Graphics , 44(1):1–14, 2024. 3[21] Tero Karras, Timo Aila, Samuli Laine, Antti Herva, and Jaakko Lehtinen. Audio-driven facial animation by joint end-to-end learning of pose and emotion. ACM Trans. Graph. , 36 (4):94:1–94:12, 2017. 3 [22] Jiye Lee, Chenghui Li, Linh Tran, Shih-En Wei, Jason Saragih, Alexander Richard, Hanbyul Joo, and Shaojie Bai. Audio Driven Real-Time Facial Animation for Social Telep-resence. In Proceedings of the SIGGRAPH Asia 2025 Con-ference Papers , pages 1–12. 3, 7, 8 [23] Tianqi Li, Ruobing Zheng, Minghui Yang, Jingdong Chen, and Ming Yang. Ditto: Motion-Space Diffusion for Control-lable Realtime Talking Head Synthesis. 2 [24] Tianye Li, Timo Bolkart, Michael. J. Black, Hao Li, and Javier Romero. Learning a model of facial shape and ex-pression from 4D scans. pages 194:1–194:17, 2017. 2, 4 [25] Yaron Lipman, Ricky T. Q. Chen, Heli Ben-Hamu, Maxi-milian Nickel, and Matt Le. Flow Matching for Generative Modeling. 4 [26] Chang Liu, Ye Pan, Chenyang Ding, Susanto Rahardja, and Xiaokang Yang. Medtalk: Multimodal controlled 3d facial animation with dynamic emotions by disentangled embed-ding. In Proceedings of the 33rd ACM International Confer-ence on Multimedia , pages 7538–7547, 2025. 3 [27] D. W. Massaro, M. M. Cohen, M. Tabain, J. Beskow, and R. Clark. Animated speech: research progress and appli-cations. In Audiovisual Speech Processing , pages 309–345. Cambridge University Press, 2012. 2 [28] Evonne Ng, Hanbyul Joo, Liwen Hu, Hao Li, Trevor Darrell, Angjoo Kanazawa, and Shiry Ginosar. Learning to Listen: Modeling Non-Deterministic Dyadic Facial Motion. 9 [29] Yifang Pan, Rishabh Agrawal, and Karan Singh. S3: Speech, Script and Scene driven Head and Eye Animation. 43(4): 47:1–47:12, . 9 [30] Yifang Pan, Karan Singh, and Luiz Gustavo Hafemann. Model See Model Do: Speech-Driven Facial Animation with Style Control. In Proceedings of the Special Interest Group on Computer Graphics and Interactive Techniques Confer-ence Conference Papers , pages 1–10. Association for Com-puting Machinery, . 2, 3, 4, 6 [31] Yifang Pan, Chris Landreth, Eugene Fiume, and Karan Singh. VOCAL: Vowel and Consonant Layering for Expres-sive Animator-Centric Singing Animation. In SIGGRAPH Asia 2022 Conference Papers , pages 1–9, New York, NY, USA, 2022. Association for Computing Machinery. 2 [32] Ziqiao Peng, Haoyu Wu, Zhenbo Song, Hao Xu, Xiangyu Zhu, Jun He, Hongyan Liu, and Zhaoxin Fan. Emotalk: Speech-driven emotional disentanglement for 3d face anima-tion. In Proceedings of the IEEE/CVF International Confer-ence on Computer Vision , pages 20687–20697, 2023. 3, 6 [33] Alexander Richard, Michael Zollhoefer, Yandong Wen, Fer-nando de la Torre, and Yaser Sheikh. MeshTalk: 3D Face Animation from Speech using Cross-Modality Disentangle-ment. 2022. arXiv:2104.08223 [cs]. 3 [34] Stefan Stan, Kazi Injamamul Haque, and Zerrin Yumak. Facediffuser: Speech-driven 3d facial animation synthesis using diffusion. In ACM SIGGRAPH Conference on Motion, Interaction and Games (MIG ’23), November 15–17, 2023, Rennes, France , New York, NY, USA, 2023. ACM. 3 [35] Zhiyao Sun, Tian Lv, Sheng Ye, Matthieu Lin, Jenny Sheng, Yu-Hui Wen, Minjing Yu, and Yong-jin Liu. Diffposetalk: Speech-driven stylistic 3d facial animation and head pose generation via diffusion models. ACM Transactions on Graphics (TOG) , 43(4):1–9, 2024. 2, 3, 5, 6, 7, 12 [36] Jinhan Wang, Long Chen, Aparna Khare, Anirudh Raju, Pranav Dheram, Di He, Minhua Wu, Andreas Stolcke, and Venkatesh Ravichandran. Turn-taking and Backchannel Pre-diction with Acoustic and Large Language Model Fusion. 9 [37] Zhifei Xie and Changqiao Wu. Mini-Omni2: Towards Open-source GPT-4o with Vision, Speech and Duplex Capabilities. 3, 6 [38] Jinbo Xing, Menghan Xia, Yuechen Zhang, Xiaodong Cun, Jue Wang, and Tien-Tsin Wong. CodeTalker: Speech-Driven 3D Facial Animation with Discrete Motion Prior. In 
+
+2023 IEEE/CVF Conference on Computer Vision and Pat-tern Recognition (CVPR) , pages 12780–12790, Vancouver, BC, Canada, 2023. IEEE. 3 [39] Jin Xu, Zhifang Guo, Hangrui Hu, Yunfei Chu, Xiong Wang, Jinzheng He, Yuxuan Wang, Xian Shi, Ting He, Xinfa Zhu, Yuanjun Lv, Yongqi Wang, Dake Guo, He Wang, Linhan Ma, Pei Zhang, Xinyu Zhang, Hongkun Hao, Zishan Guo, Baosong Yang, Bin Zhang, Ziyang Ma, Xipin Wei, Shuai Bai, Keqin Chen, Xuejing Liu, Peng Wang, Mingkun Yang, Dayiheng Liu, Xingzhang Ren, Bo Zheng, Rui Men, Fan Zhou, Bowen Yu, Jianxin Yang, Le Yu, Jingren Zhou, and Junyang Lin. Qwen3-Omni Technical Report. 3, 6 [40] Neil Zeghidour, Alejandro Luebs, Ahmed Omran, Jan Skoglund, and Marco Tagliasacchi. SoundStream: An End-to-End Neural Audio Codec. 3 [41] Aohan Zeng, Zhengxiao Du, Mingdao Liu, Kedong Wang, Shengmin Jiang, Lei Zhao, Yuxiao Dong, and Jie Tang. GLM-4-Voice: Towards Intelligent and Human-Like End-to-End Spoken Chatbot. 3, 6, 7 [42] Dong Zhang, Shimin Li, Xin Zhang, Jun Zhan, Pengyu Wang, Yaqian Zhou, and Xipeng Qiu. SpeechGPT: Empow-ering Large Language Models with Intrinsic Cross-Modal Conversational Abilities, . 4 [43] Yue Zhang, Zhizhou Zhong, Minhao Liu, Zhaokang Chen, Bin Wu, Yubin Zeng, Chao Zhan, Yingjie He, Junxin Huang, and Wenjiang Zhou. MuseTalk: Real-Time High-Fidelity Video Dubbing via Spatio-Temporal Sampling, . 2 [44] Zhimeng Zhang, Lincheng Li, Yu Ding, and Changjie Fan. Flow-guided one-shot talking face generation with a high-resolution audio-visual dataset. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , 2021. 5 [45] Qingcheng Zhao, Pengyu Long, Qixuan Zhang, Dafei Qin, Han Liang, Longwen Zhang, Yingliang Zhang, Jingyi Yu, and Lan Xu. Media2Face: Co-speech Facial Ani-mation Generation With Multi-Modality Guidance, 2024. arXiv:2401.15687 [cs]. 2, 3 Figure 6. Qualitative comparison between TokTalk, Han et al. [17] and Sun et al. [35]

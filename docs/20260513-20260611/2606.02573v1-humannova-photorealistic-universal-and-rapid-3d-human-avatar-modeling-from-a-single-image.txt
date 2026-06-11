@@ -1,0 +1,396 @@
+Title: HumanNOVA: Photorealistic, Universal and Rapid 3D Human Avatar Modeling from a Single Image
+
+URL Source: https://arxiv.org/pdf/2606.02573v1
+
+Published Time: Tue, 02 Jun 2026 03:11:30 GMT
+
+Number of Pages: 15
+
+Markdown Content:
+# HumanNOVA: Photorealistic, Universal and Rapid 3D Human Avatar Modeling from a Single Image 
+
+## Hezhen Hu 1 Wangbo Zhao 2 Lanqing Guo 1 Hanwen Jiang 1 Jonathan C. Liu 1
+
+## Zhiwen Fan 3 Kai Wang 2 Zhangyang Wang 1 Georgios Pavlakos 11 University of Texas at Austin 2 National University of Singapore 3 Texas A&M University Inference time (seconds) ↓ 
+
+Ours  SiTH 
+
+> Ours
+
+Input  Ours  SiTH Input 
+
+> 5K (5%)
+
+# 100K 
+
+## (95%) 
+
+# Data 
+
+> LPIPS  ↓
+> Real3D
+> SF3D
+> Trellis
+> SiFU
+> SiTH
+> Hunyuan2
+
+# Model  
+
+> Ours Previous
+
+Figure 1. Photorealistic, universal and rapid 3D human avatar modeling from a single image by the proposed approach, HumanNOVA. 
+
+It benefits from both our generated large-scale data and feed-forward model design. Our data generation pipeline expands training data by 20 times (top-left for visualization). With this data, HumanNOVA achieves superior performance while maintaining rapid inference among existing methods (top-right). Once trained, it is universal without the need for test-time fine-tuning or adaptation. Qualitative results show that HumanNOVA produces more precise photorealistic reconstructions compared to the state-of-the-art SiTH method [20] (bottom). 
+
+## Abstract 
+
+In this paper, we present HumanNOVA, a photorealistic, uni-versal, and rapid model for generating 3D human avatars from a single RGB image. Achieving both photorealism and generalization is challenging due to the scarcity of diverse, high-quality 3D human data. To address this, we build a scalable data generation pipeline that follows two strate-gies. The first one is to leverage existing rigged assets and animate them with extensive poses from daily life. The sec-ond strategy is to utilize existing multi-camera captures of humans and employ fitting to generate more diverse views for training. These two strategies enable us to scale up to 100k assets, significantly enhancing both the quantity and the diversity of data for robust model training. In terms of the architecture, HumanNOVA adopts a feed-forward, token-conditioned avatar modeling framework that allows fast inference in less than one second and requires no test-time optimization. Given an input image and an estimated sim-plified human mesh (SMPL) without detailed geometry or appearance, the model first encodes both inputs into compact token representations. These tokens then act as conditioning signals and are fused through cross-attention to construct a triplane-based 3D avatar representation. Extensive experi-ments on multiple benchmarks demonstrate the superiority of our approach, both quantitatively and qualitatively, as well as its robustness under diverse input image conditions. Project page at https://HumanNOVA.github.io .
+
+## 1. Introduction 
+
+Photorealistic 3D human avatar modeling has gained signifi-cant attention due to its wide applications, including virtual 
+
+> arXiv:2606.02573v1 [cs.CV] 1 Jun 2026
+
+reality [ 41 , 71 ], telepresence [ 55 ], and human-computer in-teraction [ 10 ]. All these applications require fast and photo-realistic 3D human modeling, ideally from a single image .However, reconstructing a static 3D avatar from a single view is naturally an ill-posed problem [ 50 ], due to the ambi-guity of the unseen viewpoints. To deal with this problem, existing single-view photorealistic 3D human avatar mod-eling methods [ 20 , 78 ] have explored incorporating human-related inductive bias. These methods first inject strong struc-tural priors via parametric body models ( e.g., SMPL [ 37 ]or SMPL-X [ 45 ]), and overlay advanced 3D representations (e.g., NeRF [ 42 ] or 3D Gaussian Splatting [ 29 ]) to achieve photorealistic rendering. Simultaneously, diffusion-based priors are employed to hallucinate the unseen side and back views, further alleviating view ambiguity and refining the final geometry and appearance [ 20 , 78 ]. Nevertheless, this class of methods requires slow optimization on a per-instance basis, limiting the scalability and broader applications. In this paper, we propose HumanNOVA , a si Ngle-view 3D human avatar modeling model that is ph Otorealistic, uni Versal, and r Apid. HumanNOVA enables high-quality reconstruction in less than one second, as shown in Figure 1. The key of HumanNOVA is the adoption of recently de-veloped large-scale single-view reconstruction models, i.e., 
+
+LRMs [ 21 ]. However, building an LRM for 3D human re-construction is non-trivial for two reasons. First, we have a limited amount of 3D human assets for training such mod-els. Unlike general-category datasets, e.g., Objaverse [ 12 ], which contains 800K shape instances, the current human datasets [ 17 , 47 , 74 ] usually only include a few thousand human instances. This scarcity of training data makes it very challenging to train an LRM for human reconstruc-tion. Second, the current LRM architectures are designed for reconstruction of general-category objects, without in-corporating category-specific priors. However, in specific settings of high importance, like human reconstruction, we anticipate that a human-related prior will be beneficial. To train an effective large avatar reconstruction model, we first scale up the training data. More specifically, we design a streamlined data generation pipeline, which intro-duces large-scale and high-quality human data. This data generation pipeline incorporates both synthetic and real data. The synthetic data benefits LRM training with its large scale, while the real data is more photorealistic and is well aligned with the data distribution in real applications. We generate 100K human instances in total, which is about 20 times larger than the combination of all existing datasets. This largely improves the reconstruction quality of humans with LRMs. To build on this foundation, we adjust the LRM architec-ture for 3D human reconstruction by incorporating human-related priors in the model. Concretely, HumanNOVA lever-ages a parametric SMPL human mesh, as estimated by [ 16 ], which provides a robust and reasonably accurate, yet coarse geometric prior to guide 3D human reconstruction. Overall, our contributions are summarized as follows: • We introduce HumanNOVA, a universal large human avatar reconstruction model that can reconstruct a static 3D human from a single image in less than one second. We demonstrate that both data and model are crucial for extending the success of LRMs from general object recon-struction to the human domain. • We design an effective data generation pipeline, which scales to 100k assets for our training dataset. Our pipeline considers both synthetic and real-world data, which signif-icantly enhances both data quantity and diversity. • Through extensive experiments on multiple benchmarks, we demonstrate the quantitative and qualitative superior-ity of HumanNOVA, achieving over 40% relative LPIPS improvement compared with state-of-the-art methods. 
+
+## 2. Related Work 
+
+2.1. Single-view 3D Human Avatar Modeling 
+
+Single-view 3D human avatar modeling is a challenging task due to its inherent ill-posed nature. Early methods usually leveraged the mesh produced by parametric body models as the base body shape and depicted detailed clothing via mesh offsets [ 2 – 4] or adjustable garment templates [ 5, 15 , 25 ]. However, the constraint of the mesh topology limits the ca-pability of these methods to model complex clothing ( e.g ., dresses). Recent methods tend to utilize neural represen-tations, e.g ., NeRF, SDF, and 3DGS, given their flexibil-ity with topology modeling [ 1, 7, 9, 11 , 13 , 18 , 23 , 31 ,33 , 39 , 49 , 56 , 57 , 65 , 66 , 72 , 80 , 81 ]. For improved tex-ture quality, researchers refine human meshes generated through iterative optimization as a guiding signal, while simultaneously leveraging image priors from diffusion mod-els [ 20 , 32 , 44 , 70 , 75 , 77 , 78 ]. For example, GTA [ 77 ] com-bines encoding with a visual transformer and a decoder using cross-attention on triplane features. DIFu [ 51 ] introduces a depth -guided implicit function that uses front and halluci-nated back depth maps projected into a 3D volume to provide voxel-level priors for better surface details. [ 44 ] proposes a framework built on 3DGS, which integrates a multi-view diffusion model and a latent reconstruction transformer, to recreate generalizable human views. SiTH [ 20 ] decomposes this task into hallucination of images from unseen views with diffusion models and reconstruction by leveraging skinned body meshes. [ 61 ] designs a multi-stage framework to lever-age the prior from large reconstruction and diffusion models. SIFU [ 78 ] employs a side-view transformer coupled with the fitted SMPL-X mesh to map 2D features to 3D space, followed by the incorporation of priors via a diffusion model. The limitation of these approaches is the excessive reliance on diffusion priors. This results in significantly increased inference time and might lead to restricted generalization ca-pabilities when the training data is limited. In this work, we adopt a different perspective by developing a fast inference framework while significantly scaling up our training data. 
+
+2.2. Single-view General Object Modeling 
+
+Early work for 3D object modeling from a single view fo-cused on category-specific approaches [ 28 , 54 , 68 ]. Recently, researchers have explored building models that enable 3D reconstruction of general category objects from a single view. One group of approaches finetunes generative models to gen-erate novel views and reduces the problem to multi-view reconstruction. A pioneering work in this space is Zero-1-to-3 [ 34 ], which utilizes a viewpoint-conditioned diffusion model trained on synthetic assets. Follow-up works focus on tackling the potential inconsistencies in the generated multi-view images [ 35 , 36 , 48 ]. Even without inconsistencies, the final 3D representation needs to be derived by optimization given the generated views, which can be computationally expensive. Another line of work is building large-scale feed-forward models to directly learn 3D reconstruction from data [ 6, 21 , 26 , 52 , 60 , 82 ]. LRM [ 21 ] is one of the pio-neering works that uses a scalable transformer-based net-work and trains on large-scale 3D data to directly map the 2D image information to the 3D representation. Follow-up works improve the reconstruction quality by hallucinating multiple novel views [ 53 , 59 , 67 , 69 ], designing better ar-chitectures [ 6] or curating data of larger scale [ 27 ]. To im-prove the generalization capabilities, Real3D [ 27 ] designs a self-training procedure to augment the training data with large-scale single-view images. SF3D [ 6 ] further improves the network architecture, reducing memory consumption while enhancing the network’s representational capacity for high-quality reconstruction. In this work, we design our framework based on LRMs and explore strategies to achieve high-quality 3D reconstruction specifically for humans. 
+
+## 3. HumanNOVA 
+
+In this section, we first introduce the model architecture of HumanNOVA, and then present our data generation method for synthesizing large-scale human training data. 
+
+3.1. Framework 
+
+As shown in Figure 2, following the LRM strategy [ 6 , 21 , 27 ], our framework achieves 3D human avatar modeling in a single feed-forward pass. Specifically, the model consists of three main components, i.e ., the multi-modal encoding, the 2D-to-3D mapping, and rendering. Concretely, given an image I ∈ RH×W ×3, we use a DI-NOv2 [ 43 ] encoder to tokenize it into feature tokens, denoted as fi ∈ RNi×d. Here Ni is the number of visual tokens, and d
+
+is the latent dimension. Specifically, we have Ni = HW/p 2,where p is the patch size of DINOv2. Meanwhile, given the input image, we estimate the human surface [ 16 ] in the form of the SMPL parametric model [ 37 ], and we use PTv3 [ 62 ]to tokenize the corresponding estimated human mesh. This additional input offers an initial estimate of the body pose and body surface for the person in the image. The output feature is denoted as fm ∈ RNm×d, while Nm is the number of mesh tokens. These encoded features are then fed into the mapping network to transform the image tokens fi and mesh tokens fm
+
+to the 3D triplane representation T ∈ R3hw ×d, where h and 
+
+w denote the spatial resolution of the triplane. This triplane representation T is a set of learnable tokens, serving as shared initialization for all inputs. Inspired by SF3D [ 6 ], we implement our mapping network based on PointInfinity [ 24 ]. This mapping network consists of multiple blocks, where each block updates the triplane tokens by fusing multi-modal condition information and performing triplane refinement, which is formulated as follows: 
+
+Ll = CrossAttn (Q = fi|| fm, KV = Tl), (1) 
+
+Ll = CrossAttn (Q = Ll, KV = fi|| fm), (2) 
+
+Tl+1 = CrossAttn (Q = Tl, KV = Ll), (3) where the initial token and the final output are denoted as 
+
+T0 and T, respectively. Then, we render images from the triplane following the standard ray marching method [ 21 , 27 ]. We denote the process as ˆIΦ = π(T∗, Φ) , where π denotes the rendering function, Φ is a target camera viewpoint, and 
+
+ˆIΦ is the image rendered under this target camera pose. 
+
+Training objectives. The whole framework is jointly trained under multiple objective functions, including RGB loss Lr ,mask loss Lm and LPIPS loss Lp as follows: 
+
+L = 1
+
+N
+
+> N
+
+X
+
+> n=1
+
+ Lnr + λmLnm + λpLnp
+
+ , (4) where λm and λp are loss weighting terms, and N is the number of rendered views. The RGB Lr loss and LPIPS Lm
+
+loss focus on the quality of the rendered image from different perspectives. The mask loss Lm calculates the consistency between the accumulated density and the estimated mask. To reduce the GPU memory consumption, all loss terms are calculated on the patch level, which is extracted by a weighted sampling strategy based on the foreground ratio of each patch to encourage the model to focus on capturing fine details and essential features. We refer the reader to the Supplementary Material regarding the details of the patches selection implementation. 
+
+3.2. Training Data Generation 
+
+Next, we introduce our approach for generating large-scale synthetic data and curating high-quality real-world data. Visual Encoder 
+
+> Mesh Encoder
+> Triplane Representation
+> Cross-attention-based
+> Building Block
+> Triplane
+> Tokens
+
+Multi-modal Encoding  2D-to-3D Mapping  Rendering  
+
+> Rendering
+> Module
+> Training
+> …
+> Patch-level supervision
+> Inference
+> …
+> HMR
+> Viewpoints Figure 2. HumanNOVA network architecture . Given a real-world input image, we first estimate its corresponding simplified human mesh. Image and mesh are fed into the multi-modal encoder to extract features which are utilized as the condition for the following mapping network. After that, a Transformer-based mapping network directly maps the features to the 3D triplane representation. From this triplane representation, our framework can render the 2D image given a camera viewpoint.
+
+3.2.1. Synthetic Data Generation 
+
+Our synthetic data generation is based on rigged human assets, where we articulate human shapes by applying real-world human poses sampled from the AMASS dataset [ 40 ]. Here, we first introduce the preliminaries of the SMPL-X model. Then we formulate our strategy for data generation. 
+
+Parametric body model. Parametric models like SMPL [ 37 ] and SMPL-X [ 45 ] provide a mapping from pose and shape parameters to the mesh surface. For example, SMPL-X is defined as a mapping function M (θθθ, β ββ, ψ ψψ) : 
+
+R|θθθ| × R|βββ| × R|ψψψ| → R3N , where θθθ, β ββ, ψ ψψ are the parame-ters for pose, shape, and facial expression, respectively. The function of SMPL-X is formulated as follows: 
+
+M(βββ, θ θθ, ψ ψψ) = W (T(βββ, θ θθ, ψ ψψ), J (βββ), θ θθ, W), (5) 
+
+T(βββ, θ θθ, ψ ψψ) = ¯Tm + BS (βββ) + BE (ψψψ) + BP (θθθ), (6) where BP (·), BS (·) and BE (·) denote pose, shape, and expression blend functions, respectively, while W is the associated set of blend weights. The corrective blend shapes, 
+
+i.e . BP (θθθ), BE (ψψψ) and BS (βββ), supply per-vertex offsets that deform the template human mesh ¯Tm. Subsequently, linear blend skinning W (·) rotates these deformed vertices around the joints J(βββ) and smooths the transformations via blend weights W, returning the final human mesh. 
+
+Synthetic data generation procedure. During synthetic data generation, we first randomly sample a set of SMPL-X parameters from the AMASS [ 40 ] dataset {Rsrc , Tsrc } ∼ DAMASS . After that, we utilize the above parameters to ani-mate ( A(·)) the rigged human asset M, re-center RC (·) the animation results, and assign a set of camera viewpoints C
+
+for rendering multiple views to serve as training data: 
+
+{Ii}Ni=1 = Render (RC (A(M, {Rsrc , Tsrc })) , {Ci}Ni=1 ).
+
+(7) 
+
+3.2.2. Real-world Data Generation 
+
+We build our fitting pipeline for data generation to enable arbitrary novel views rendering from multi-camera captured data, which serve as supervision to train our framework. This pipeline is built upon the 3D Gaussian Splatting (3DGS) rep-resentation [ 29 ], which is particularly suitable for fitting because of its fast optimization and real-time rendering ca-pability. Specifically, 3DGS represents a scene as a set of 3D Gaussians, each defined by a center position p and a covariance matrix Σ, capturing spatial location and shape: 
+
+G(x) = exp 
+
+
+
+− 12 (x − p)T Σ−1(x − p)
+
+
+
+, (8) where x is a point in 3D space. These Gaussians are pro-jected onto the image plane and composited using a tile-based rasterizer with alpha blending, supporting differen-tiable and real-time rendering. Given a set of images I = {Ii | i ∈ [1 , M ]} captured from multiple-view datasets ( e.g . DNA-Rendering [ 8 ] and MVHumanNet [ 64 ]) and the corresponding SMPL-X mesh of the human subject, we initialize the 3D Gaussians by as-signing one Gaussian to each mesh vertex. The center of each Gaussian is set to the vertex position, and its covariance is initialized accordingly. We then optimize the parameters of these Gaussians by minimizing the photometric recon-struction loss: 
+
+L = Ii − f  V (θ), π i
+
+ 2 , (9) where V (θ), πi, and f (·) denote the set of Gaussian parame-ters, the camera parameters and the differentiable rendering function, respectively. During training, we sample one view per iteration and apply adaptive density control [ 29 ] to im-prove convergence and coverage. After fitting, we obtain a refined 3D Gaussian representa-tion of the posed human, which we denote with Gp. Finally, Table 1. Ablation on the generated data type on the CustomHuman dataset.             
+
+> Method PSNR ↑SSIM ↑LPIPS ↓
+> w/o gen-data (assets) 21.84 0.9333 46.51 w/o gen-data (multi-cam) 21.76 0.9326 47.83 HumanNOVA 22.07 0.9344 45.18
+
+Table 2. Ablation on the generated data scale on the CustomHuman dataset.             
+
+> Ratio PSNR ↑SSIM ↑LPIPS ↓
+> 25% 21.98 0.9313 50.14 50% 22.02 0.9338 47.03 HumanNOVA 22.07 0.9344 45.18
+
+Table 3. Ablation on the impact of model settings on the CustomHuman dataset.             
+
+> Method PSNR ↑SSIM ↑LPIPS ↓
+> w/o mesh prior 21.89 0.9334 46.26 small triplane size (32) 21.78 0.9323 48.33 HumanNOVA 22.07 0.9344 45.18
+
+we render multiple images from the re-centered Gp under a predefined set of canonical viewpoints, which could serve as a data source for training. 
+
+## 4. Experiments 
+
+In this section, we present our experimental evaluation. We begin by describing our experimental setup, which includes the datasets, implementation details, and evaluation met-rics. Then, we compare our method with state-of-the-art approaches both quantitatively and qualitatively. Finally, we conduct ablation studies for the most important components of our approach. 
+
+4.1. Experimental Setup 
+
+Implementation details. Our framework is implemented on PyTorch. The experiments are conducted on NVIDIA H100, and we utilize 64 H100s for training. The hyperparameters 
+
+λm and λp are both set to 0.5. During training, we set N = 4 
+
+as the number of rendered views. We utilize AdamW as the optimizer. The learning rate is set as 6e-4 with the batch size as 64. The triplane spatial size in this work is 96. The cropped patch size during training is 180. 
+
+Datasets. During training, we utilize two kinds of data sources, i.e., commonly utilized human scans (THu-man2 [ 74 ], CustomHuman [ 47 ], and 2K2K [ 17 ]) and our generated data. The former size contains around 5k assets with 180k images, while the latter one has 100k assets with 2.6M images. Evaluation is performed on three benchmarks, including THuman2, CustomHuman, and 2K2K datasets. 
+
+Evaluation metrics. Following previous works [ 1, 19 , 44 ], we evaluate the reconstructed avatar on rendering qual-ity. During evaluation of rendering quality, we select three widely-used metrics, i.e., Peak Signal-to-Noise Ratio (PSNR), Structural Similarity Index Measure (SSIM) [ 58 ], and Learned Perceptual Similarity (LPIPS) [ 76 ]. For a fair comparison, the resolution of rendered images is set to 512 × 512 . Our rendered views are uniformly distributed around the human subject using 20-degree intervals. Besides the most common evaluation via view synthesis metrics, we additionally report Chamfer Distance (CD), Normal Consis-tency (NC), and F-Score as secondary metrics. These metrics offer complementary insights into the geometric quality of the reconstructed 3D results. 
+
+Table 4. Effectiveness of our generated data. It is validated via fine-tuning another method (Real3D [ 27 ]) with our generated data.                                                
+
+> Method CustomHuman THuman2 2K2K PSNR ↑SSIM ↑LPIPS ↓PSNR ↑SSIM ↑LPIPS ↓PSNR ↑SSIM ↑LPIPS ↓
+> Input: Frontal view
+> Real3D 17.13 0.8990 95.12 19.14 0.9094 87.68 18.06 0.9020 81.78 Real3D (+ our data) 20.97 0.9268 58.54 23.10 0.9325 55.30 20.91 0.9202 58.22
+> Input: Side view
+> Real3D 17.13 0.8990 95.12 19.14 0.9094 87.68 18.06 0.9020 81.78 Real3D (+ our data) 19.46 0.9113 66.09 22.28 0.9287 57.20 20.47 0.9142 58.14
+
+4.2. Ablation Studies 
+
+We perform ablation studies to highlight the most important components in our proposed method, including data gener-ation and model settings. Unless stated otherwise, training runs for 70% of the total iterations adopted in the main com-parison. The evaluation is conducted on the CustomHuman dataset with the frontal view as the input. 
+
+Effectiveness of our generated data. Our generated data includes two complementary components: gen-data (as-sets) , i.e., data generated from rigged assets, and gen-data (multi-cam) , which is generated from fitting real-world multi-camera data. As shown in Table 1, both components con-tribute effectively to the training process, enhancing the robustness and diversity of the model. Notably, synthetic assets can provide extensive diversity on the pose, given the animation strategy. Besides, the real-world data, though smaller in quantity, provides important signals for achieving high-quality reconstruction, especially in terms of photo-realism. We believe this is due to the natural appearance statistics and complex visual cues present in real-world im-ages, which are difficult to fully simulate through synthetic data alone. To further analyze the impact of data scale, we vary the portion of generated data used during training. As shown in Table 2, model performance improves consistently with more generated data. We further provide evidence that could validate the effec-tiveness of our generated data via fine-tuning Real3D [ 27 ] (a general 3D object reconstruction method) on our proposed dataset. As shown in Table 4, it can be observed that Real3D could benefit from our proposed new data with a notable performance gain on multiple benchmarks. 
+
+Impact of model settings. We begin by investigating the impact of incorporating a mesh prior into our pipeline (Ta-ble 3). When integrated, the mesh prior yields a 2.3% rela-tive improvement in LPIPS, demonstrating that, even with a large-scale training dataset, mesh provides a valuable cue Table 5. Comparison with previous state-of-the-art methods on rendering quality. These include Real3D, SF3D, Trellis, Hunyuan2, PaMIR, SiFU and SiTH, on the CustomHuman, THuman2 and 2K2K datasets. We outperform all previous methods across all evaluated metrics with a notable gain. ↑ and ↓ represent the higher the better, and the lower the better, respectively.                                                                                                                                                            
+
+> Method CustomHuman THuman2 2K2K PSNR ↑SSIM ↑LPIPS ↓PSNR ↑SSIM ↑LPIPS ↓PSNR ↑SSIM ↑LPIPS ↓
+> Input: Frontal view
+> Real3D [27] 17.13 0.8990 95.12 19.14 0.9094 87.68 18.06 0.9020 81.78 SF3D [6] 19.46 0.9113 66.09 22.28 0.9287 57.20 20.47 0.9142 58.14 Trellis [63] 18.59 0.9123 74.98 20.77 0.9218 65.67 19.21 0.9140 68.25 Hunyuan2 [79] 19.42 0.9094 74.34 21.44 0.9257 66.19 19.87 0.9145 65.62 PaMIR [80] 18.15 0.9070 88.12 21.03 0.9229 70.91 18.89 0.9113 73.90 SiFU [78] 17.94 0.9091 85.75 19.44 0.9157 79.62 16.82 0.9039 87.51 SiTH [20] 19.13 0.9173 72.94 20.92 0.9231 66.90 18.49 0.9095 73.55 HumanNOVA 22.29 0.9360 42.42 23.96 0.9382 42.13 22.65 0.9336 41.72
+> Input: Side view
+> Real3D [27] 17.42 0.9005 94.94 19.40 0.9109 87.90 18.67 0.9047 78.54 SF3D [6] 19.05 0.9085 69.75 21.25 0.9227 65.02 20.50 0.9139 57.85 Trellis [63] 17.21 0.9071 88.08 19.50 0.9172 74.79 18.12 0.9088 74.57 Hunyuan2 [79] 19.22 0.9076 77.28 21.01 0.9234 70.02 19.81 0.9139 66.48 PaMIR [80] 17.24 0.9006 97.10 20.59 0.9190 76.41 18.27 0.9077 78.95 SiFU [78] 17.25 0.9040 93.26 19.32 0.9145 82.28 17.24 0.9052 85.49 SiTH [20] 18.25 0.9114 81.95 20.43 0.9201 71.92 18.72 0.9102 73.25 HumanNOVA 22.52 0.9348 43.58 24.35 0.9382 42.55 23.07 0.9347 40.95
+
+for capturing detailed human structural features. In addition, we adopt the triplane representation as the final 3D depic-tion, which compresses 3D geometry by decomposing the volume into three orthogonal projection planes. As shown in Table 3, reducing the triplane spatial size to 32, a common setting in LRMs, results in a significant performance drop. This finding highlights the necessity for a model capacity that aligns with the demanding requirements of human re-construction, where capturing fine-grained details is more critical compared to general object reconstruction. 
+
+4.3. Comparison with State-of-the-art Methods 
+
+Baselines. The baselines we use in our evaluation include methods for both general object reconstruction and human-specific reconstruction from a single image. Specifically, Real3D [ 27 ] and SF3D [ 6] are LRM-based state-of-the-art methods in general object modeling, which can achieve fast reconstruction with a single feed-forward inference. PaMIR [ 80 ], SiFU [ 78 ] and SiTH [ 20 ] require instance-level post-processing to return the 3D human, usually involving techniques like diffusion, mesh fitting, etc. However, these stages lead to a significant increase in the inference time. Trellis [ 63 ] and Hunyuan2 [ 79 ] are two very recent large-scale industrial foundation models that perform flow-based generative modeling in 3D space, trained on around 1 million diverse 3D assets to achieve high-quality generation. 
+
+Evaluation Protocol. Fair comparison is considered via following established practice in this field : each method is trained using the settings from its original paper, and all methods are then evaluated on the same benchmark dataset for comparison. This is consistent with prior works ( e.g ., SiTH, SiFU, Trellis, Hunyuan2) and allows a fair comparison of generalization ability and reconstruction quality. The experiments are conducted on multiple benchmarks 
+
+i.e., CustomHuman [ 47 ], THuman2 [ 74 ] and 2K2K [ 17 ]. Existing benchmarks are built based on normalized human scans, such that the canonical view is defined as the subject’s frontal perspective. However, in real-world scenarios, it is not guaranteed that the input images will always show a frontal view. To address this discrepancy, we additionally incorporate side-view data into our experimental evaluations, which helps assess the robustness and generalizability of our approach. Specifically, we render images from a view-point that has a horizontal offset of 60 degrees relative to the canonical view and use them as input. Considering that some methods (SiTH, SiFU, Trellis, and Hunyuan2) output mesh as the final representations, we adopt a fair comparison pro-tocol by first aligning the scale of the reconstructed meshes to that of the ground truth. Subsequently, we apply an It-erative Closest Point (ICP) alignment to further refine the correspondence between the reconstructions and the ground truth. Finally, we utilize the re-aligned mesh for rendering and geometry evaluation. 
+
+Results. As shown in Table 5, we observe that our method outperforms all previous approaches under different input conditions. Compared with the best competitor SiTH, our method achieves 41.8%, 37.0% and 43.3% relative LPIPS gain on the CustomHuman, THuman2 and 2K2K datasets, respectively. It is evident that previous general object re-construction methods like Real3D, SF3D and Hunyuan2 are moderately robust to variations in viewpoint. However, they suffer from suboptimal performance due to the lack of specialized training on human-specific data. Additionally, previous state-of-the-art human reconstruction approaches Trellis SF3D SiTH Ours GT Input Trellis SF3D SiTH Ours GT  Input SiTH SF3D Trellis  Ours  SiTH SF3D Trellis  Ours Input  Input Figure 3. Qualitative comparison with state-of-the-art methods , including input from benchmarks (top) and in-the-wild images (bottom). The reconstructed human by our HumanNOVA method shows superior structure and appearance. (Best viewed in color.) 
+
+often yield lower quality results when given a side-view in-put, as they do not generalize well to such less common viewpoints. In contrast, our approach yields superior perfor-mance in both appearance and structure. The qualitative comparison in Figure 3 also validates the effectiveness of our method. Beyond the results presented in Figure 1, we also showcase results on a diverse set of in-the-wild images in Figure 4. These images include a wide range of poses and clothing styles, demonstrating that our method effectively captures fine details and accurately represents the 3D structure even in challenging conditions. Notably, our method could even reconstruct a person interacting with an object. However, we also observe certain failure cases; for example, the network sometimes struggles to accurately infer plausible textures on the back of the subjects. Address-ing these shortcomings may require the adoption of more powerful models in future work. As shown in Table 6, HumanNOVA consistently achieves Table 6. Additional evaluation on geometry quality. When reporting CD, we consider both the prediction to ground truth and the ground truth to prediction distance. We outperform all previous methods across all evaluated metrics with a notable gain. ↑ and ↓ represent that higher is better, and that lower is better, respectively.                                                                                                                                                                
+
+> Method CustomHuman THuman2 2K2K CD ↓NC ↑F-Score ↑CD ↓NC ↑F-Score ↑CD ↓NC ↑F-Score ↑
+> Input: Frontal view
+> SF3D [6] 1.738/2.040 0.847 39.585 1.441/1.745 0.833 43.820 1.204/1.412 0.829 50.900 Trellis [63] 2.125/2.175 0.801 32.846 1.799/1.832 0.796 37.939 1.446/1.359 0.805 48.826 Hunyuan2 [79] 1.799/1.762 0.837 38.365 1.562/1.541 0.808 43.868 1.237/1.217 0.829 53.946 ICON [65] 2.468/2.915 0.779 27.731 2.568/3.168 0.752 26.453 2.211/3.331 0.728 28.805 ECON [66] 2.160/2.813 0.804 33.429 2.240/3.931 0.763 31.294 2.066/6.232 0.732 32.927 SiFU [78] 2.440/3.203 0.789 27.553 2.509/3.778 0.760 27.487 2.136/5.331 0.732 29.823 SiTH [20] 1.792/2.215 0.826 36.822 1.741/2.082 0.805 39.666 1.518/1.896 0.798 42.859 HumanNOVA 1.062/1.102 0.867 61.379 1.027/1.098 0.840 61.939 1.045/1.110 0.836 60.673
+> Input: Side view
+> SF3D [6] 1.657/2.177 0.834 39.931 1.695/2.284 0.810 39.102 1.234/1.452 0.823 49.584 Trellis [63] 2.361/4.802 0.757 29.603 2.089/2.933 0.761 34.754 1.606/1.644 0.772 44.555 Hunyuan2 [79] 1.848/1.898 0.827 37.698 1.642/1.677 0.811 42.618 1.259/1.235 0.821 54.622 ICON [65] 2.536/3.635 0.769 28.138 2.286/3.012 0.760 30.981 1.892/2.873 0.745 35.828 ECON [66] 2.592/5.233 0.756 27.284 2.270/4.747 0.750 31.298 1.811/5.778 0.739 36.933 SiFU [78] 2.615/6.112 0.756 24.788 2.301/4.631 0.748 30.057 1.820/5.550 0.736 35.653 SiTH [20] 2.063/3.219 0.793 32.189 1.849/2.557 0.789 36.070 1.633/1.879 0.791 40.807 HumanNOVA 1.052/1.079 0.858 62.553 1.044/1.123 0.829 62.344 1.058/1.133 0.829 60.126 Input Novel views Input Novel views Input Novel views
+
+Figure 4. Qualitative evaluation of our approach with in-the-wild images as input. We also show some typical failure cases (bottom), e.g., inferring the plausible back texture of challenging clothes like dresses and overalls. (Best viewed in color.) 
+
+the best performance across all metrics. Notably, on the side-view inputs, where occlusion affects performance, Hu-manNOVA outperforms the human-specific method SiTH by 94.3% relative F-Score gain on CustomHuman. Due to space limitations, we provide additional discus-sions and results in the Supplementary Material . These include: (1) further analysis of the quality of our generated data, (2) comparisons with animation-based approaches, (3) more ablations and (4) more details of our experimental setup, such as data generation, HumanNOVA training, and patch selection. We also include extended qualitative re-sults. More visual results and videos can be found in the accompanying supplementary video. 
+
+## 5. Conclusion 
+
+In this work, we present HumanNOVA, a large human avatar reconstruction model that enables universal and photoreal-istic 3D single-view human reconstruction in less than a second. Our contributions are two-fold, focusing on data generation and model design. To mitigate the scarcity of 3D human data, we design an effective and scalable data genera-tion pipeline that integrates multiple sources (e.g., 3D assets and multi-camera captures), expanding the training dataset to 100k assets and significantly improving its diversity and scale. Built on this large-scale data, HumanNOVA leverages the estimated simplified human mesh as an extra prior and directly lifts the input single image to a triplane represen-tation that effectively captures the details of the 3D human. Extensive experiments on three benchmark datasets show that our approach consistently outperforms existing meth-ods, with over 40% improvement in LPIPS and more than 90% relative gain in F-Score. Future work could focus on addressing the challenges of complex real-world scenarios, 
+
+e.g ., dealing with occlusion in the input image, extending reconstruction to human interactions, etc .
+
+Acknowledgments. This research has been supported by the Sony Research Award Program and computing support on the Vista GPU Cluster through the Center for Generative AI (CGAI) and the Texas Advanced Computing Center (TACC) at UT Austin. GP was supported by NSF IIS-2504906, IIS-2544200 and Gifts from Google and Adobe. References 
+
+[1] Badour AlBahar, Shunsuke Saito, Hung-Yu Tseng, Changil Kim, Johannes Kopf, and Jia-Bin Huang. Single-image 3d hu-man digitization with shape-guided diffusion. In SIGGRAPH Asia , pages 1–11, 2023. 2, 5 [2] Thiemo Alldieck, Marcus Magnor, Weipeng Xu, Christian Theobalt, and Gerard Pons-Moll. Video based reconstruction of 3d people models. In CVPR , pages 8387–8397, 2018. 2 [3] Thiemo Alldieck, Marcus Magnor, Bharat Lal Bhatnagar, Christian Theobalt, and Gerard Pons-Moll. Learning to recon-struct people in clothing from a single rgb camera. In CVPR ,pages 1175–1186, 2019. [4] Thiemo Alldieck, Gerard Pons-Moll, Christian Theobalt, and Marcus Magnor. Tex2shape: Detailed full human body geom-etry from a single image. In ICCV , pages 2293–2303, 2019. 2[5] Bharat Lal Bhatnagar, Garvita Tiwari, Christian Theobalt, and Gerard Pons-Moll. Multi-garment net: Learning to dress 3d people from images. In ICCV , pages 5420–5430, 2019. 2 [6] Mark Boss, Zixuan Huang, Aaryaman Vasishta, and Varun Jampani. Sf3d: Stable fast 3d mesh reconstruction with uv-unwrapping and illumination disentanglement. In CVPR ,pages 1–12, 2025. 3, 6, 8 [7] Jinnan Chen, Chen Li, Jianfeng Zhang, Lingting Zhu, Buzhen Huang, Hanlin Chen, and Gim Hee Lee. Generalizable human gaussians from single-view image. In ICLR , pages 1–16, 2025. 2[8] Wei Cheng, Ruixiang Chen, Siming Fan, Wanqi Yin, Keyu Chen, Zhongang Cai, Jingbo Wang, Yang Gao, Zhengming Yu, Zhengyu Lin, et al. Dna-rendering: A diverse neural actor repository for high-fidelity human-centric rendering. In ICCV ,pages 19982–19993, 2023. 4 [9] Xuangeng Chu, Yu Li, Ailing Zeng, Tianyu Yang, Lijian Lin, Yunfei Liu, and Tatsuya Harada. Gpavatar: Generalizable and precise head avatar from image (s). In ICLR , pages 1–20, 2024. 2 [10] Alicia G Cork, Anca Salagean, Laura GE Smith, David A El-lis, Adam Joinson, and Danaë Stanton Fraser. “i just embodied you”: Psychological ownership of personalized photorealistic avatars. In CHI , pages 1–7, 2024. 2 [11] Enric Corona, Mihai Zanfir, Thiemo Alldieck, Eduard Gabriel Bazavan, Andrei Zanfir, and Cristian Sminchisescu. Struc-tured 3d features for reconstructing controllable avatars. In 
+
+CVPR , pages 16954–16964, 2023. 2 [12] Matt Deitke, Dustin Schwenk, Jordi Salvador, Luca Weihs, Oscar Michel, Eli VanderBilt, Ludwig Schmidt, Kiana Ehsani, Aniruddha Kembhavi, and Ali Farhadi. Objaverse: A universe of annotated 3d objects. In CVPR , pages 13142–13153, 2023. 2[13] Zijian Dong, Longteng Duan, Jie Song, Michael J Black, and Andreas Geiger. Moga: 3d generative avatar prior for monocular gaussian avatar reconstruction. In ICCV , pages 13304–13314, 2025. 2 [14] Stefan Elfwing, Eiji Uchibe, and Kenji Doya. Sigmoid-weighted linear units for neural network function approx-imation in reinforcement learning. Neural networks , 107: 3–11, 2018. 13 [15] Yao Feng, Weiyang Liu, Timo Bolkart, Jinlong Yang, Marc Pollefeys, and Michael J Black. Learning disentangled avatars with hybrid 3d representations. arXiv , pages 1–16, 2023. 2 [16] Shubham Goel, Georgios Pavlakos, Jathushan Rajasegaran, Angjoo Kanazawa, and Jitendra Malik. Humans in 4d: Recon-structing and tracking humans with transformers. In ICCV ,pages 14783–14794, 2023. 2, 3 [17] Sang-Hun Han, Min-Gyu Park, Ju Hong Yoon, Ju-Mi Kang, Young-Jae Park, and Hae-Gon Jeon. High-fidelity 3d human digitization from single 2k resolution images. In CVPR , pages 12869–12879, 2023. 2, 5, 6 [18] Tong He, Yuanlu Xu, Shunsuke Saito, Stefano Soatto, and Tony Tung. Arch++: Animation-ready clothed human re-construction revisited. In ICCV , pages 11046–11056, 2021. 2[19] Xu He, Zhiyong Wu, Xiaoyu Li, Di Kang, Chaopeng Zhang, Jiangnan Ye, Liyang Chen, Xiangjun Gao, Han Zhang, and Haolin Zhuang. Magicman: Generative novel view synthesis of humans with 3d-aware diffusion and iterative refinement. In AAAI , pages 3437–3445, 2025. 5 [20] I Ho, Jie Song, and Otmar Hilliges. Sith: Single-view textured human reconstruction with image-conditioned diffusion. In 
+
+CVPR , pages 538–549, 2024. 1, 2, 6, 8 [21] Yicong Hong, Kai Zhang, Jiuxiang Gu, Sai Bi, Yang Zhou, Difan Liu, Feng Liu, Kalyan Sunkavalli, Trung Bui, and Hao Tan. Lrm: Large reconstruction model for single image to 3d. In ICLR , pages 1–25, 2024. 2, 3 [22] Shoukang Hu, Fangzhou Hong, Liang Pan, Haiyi Mei, Lei Yang, and Ziwei Liu. Sherf: Generalizable human nerf from a single image. In ICCV , pages 9352–9364, 2023. 12 [23] Yangyi Huang, Hongwei Yi, Yuliang Xiu, Tingting Liao, Jiaxiang Tang, Deng Cai, and Justus Thies. Tech: Text-guided reconstruction of lifelike clothed humans. In 3DV ,pages 1531–1542, 2024. 2 [24] Zixuan Huang, Justin Johnson, Shoubhik Debnath, James M Rehg, and Chao-Yuan Wu. Pointinfinity: Resolution-invariant point diffusion models. In CVPR , pages 10050–10060, 2024. 3[25] Boyi Jiang, Juyong Zhang, Yang Hong, Jinhao Luo, Ligang Liu, and Hujun Bao. Bcnet: Learning body and cloth shape from a single image. In ECCV , pages 18–35, 2020. 2 [26] Hanwen Jiang, Zhenyu Jiang, Yue Zhao, and Qixing Huang. Leap: Liberate sparse-view 3d modeling from camera poses. In ICLR , pages 1–19, 2023. 3 [27] Hanwen Jiang, Qixing Huang, and Georgios Pavlakos. Real3d: Scaling up large reconstruction models with real-world images. In ICCV , pages 1–19, 2025. 3, 5, 6 [28] Angjoo Kanazawa, Shubham Tulsiani, Alexei A Efros, and Jitendra Malik. Learning category-specific mesh reconstruc-tion from image collections. In ECCV , pages 371–386, 2018. 3[29] Bernhard Kerbl, Georgios Kopanas, Thomas Leimkühler, and George Drettakis. 3d gaussian splatting for real-time radiance field rendering. ACM TOG , 42(4):1–14, 2023. 2, 4, 13 [30] Rawal Khirodkar, Timur Bagautdinov, Julieta Martinez, Su Zhaoen, Austin James, Peter Selednik, Stuart Anderson, and Shunsuke Saito. Sapiens: Foundation for human vision mod-els. In ECCV , pages 206–228, 2024. 13 [31] Youngjoong Kwon, Dahun Kim, Duygu Ceylan, and Henry Fuchs. Neural human performer: Learning generalizable radiance fields for human performance rendering. In NeurIPS ,pages 24741–24752, 2021. 2 [32] Peng Li, Wangguandong Zheng, Yuan Liu, Tao Yu, Yang-guang Li, Xingqun Qi, Mengfei Li, Xiaowei Chi, Siyu Xia, Wei Xue, et al. Pshuman: Photorealistic single-view human reconstruction using cross-scale diffusion. In CVPR , pages 1–19, 2025. 2 [33] Tingting Liao, Xiaomei Zhang, Yuliang Xiu, Hongwei Yi, Xudong Liu, Guo-Jun Qi, Yong Zhang, Xuan Wang, Xiangyu Zhu, and Zhen Lei. High-fidelity clothed avatar reconstruction from a single image. In CVPR , pages 8662–8672, 2023. 2 [34] Ruoshi Liu, Rundi Wu, Basile Van Hoorick, Pavel Tokmakov, Sergey Zakharov, and Carl Vondrick. Zero-1-to-3: Zero-shot one image to 3d object. In ICCV , pages 9298–9309, 2023. 3 [35] Yuan Liu, Cheng Lin, Zijiao Zeng, Xiaoxiao Long, Lingjie Liu, Taku Komura, and Wenping Wang. Syncdreamer: Gener-ating multiview-consistent images from a single-view image. In ICLR , pages 1–22, 2024. 3 [36] Xiaoxiao Long, Yuan-Chen Guo, Cheng Lin, Yuan Liu, Zhiyang Dou, Lingjie Liu, Yuexin Ma, Song-Hai Zhang, Marc Habermann, Christian Theobalt, et al. Wonder3d: Single im-age to 3d using cross-domain diffusion. In CVPR , pages 9970–9980, 2024. 3 [37] Matthew Loper, Naureen Mahmood, Javier Romero, Gerard Pons-Moll, and Michael J. Black. Smpl: a skinned multi-person linear model. ACM TOG , 34(6):851–866, 2015. 2, 3, 4[38] William E Lorensen and Harvey E Cline. Marching cubes: A high resolution 3d surface construction algorithm. In Seminal graphics: pioneering efforts that shaped the field , pages 347– 353, 1998. 15 [39] Yixing Lu, Junting Dong, Youngjoong Kwon, Qin Zhao, Bo Dai, and Fernando De la Torre. Gas: Generative avatar syn-thesis from a single image. In ICCV , pages 1–17, 2025. 2 [40] Naureen Mahmood, Nima Ghorbani, Nikolaus F Troje, Ger-ard Pons-Moll, and Michael J Black. Amass: Archive of motion capture as surface shapes. In ICCV , pages 5442–5451, 2019. 4 [41] Veronika Mikhailova, Christoph Gerhardt, Christian Kunert, Tobias Schwandt, Florian Weidner, Wolfgang Broll, and Nicola Döring. Age and realism of avatars in simulated augmented reality: Experimental evaluation of anticipated user experience. In VR , pages 83–93, 2024. 2 [42] Ben Mildenhall, Pratul P Srinivasan, Matthew Tancik, Jonathan T Barron, Ravi Ramamoorthi, and Ren Ng. Nerf: Representing scenes as neural radiance fields for view synthe-sis. ECCV , pages 1–25, 2020. 2, 13 [43] Maxime Oquab, Timothée Darcet, Théo Moutakanni, Huy Vo, Marc Szafraniec, Vasil Khalidov, Pierre Fernandez, Daniel Haziza, Francisco Massa, Alaaeldin El-Nouby, et al. Dinov2: Learning robust visual features without supervision. TMLR ,pages 1–32, 2024. 3 [44] Panwang Pan, Zhuo Su, Chenguo Lin, Zhen Fan, Yongjie Zhang, Zeming Li, Tingting Shen, Yadong Mu, and Yebin Liu. Humansplat: Generalizable single-image human gaussian splatting with structure priors. In NeurIPS , pages 1–22, 2024. 2, 5 [45] Georgios Pavlakos, Vasileios Choutas, Nima Ghorbani, Timo Bolkart, Ahmed AA Osman, Dimitrios Tzionas, and Michael J Black. Expressive body capture: 3d hands, face, and body from a single image. In CVPR , pages 10975–10985, 2019. 2, 4 [46] Lingteng Qiu, Xiaodong Gu, Peihao Li, Qi Zuo, Weichao Shen, Junfei Zhang, Kejie Qiu, Weihao Yuan, Guanying Chen, Zilong Dong, et al. Lhm: Large animatable human recon-struction model from a single image in seconds. In ICCV ,pages 1–15, 2025. 12 [47] Kaiyue Shen, Chen Guo, Manuel Kaufmann, Juan Jose Zarate, Julien Valentin, Jie Song, and Otmar Hilliges. X-avatar: Ex-pressive human avatars. In CVPR , 2023. 2, 5, 6 [48] Yichun Shi, Peng Wang, Jianglong Ye, Mai Long, Kejie Li, and Xiao Yang. Mvdream: Multi-view diffusion for 3d gener-ation. In ICLR , pages 1–22, 2024. 3 [49] Jisu Shin, Junmyeong Lee, Seongmin Lee, Min-Gyu Park, Ju-Mi Kang, Ju Hong Yoon, and Hae-Gon Jeon. Canonicalfusion: Generating drivable 3d human avatars from multiple images. In ECCV , pages 38–56, 2024. 2 [50] Pawan Sinha and Edward Adelson. Recovering reflectance and illumination in a world of painted polyhedra. In ICCV ,pages 156–163, 1993. 2 [51] Dae-Young Song, HeeKyung Lee, Jeongil Seo, and Donghyeon Cho. Difu: Depth-guided implicit function for clothed human reconstruction. In CVPR , pages 8738–8747, 2023. 2 [52] Stanislaw Szymanowicz, Chrisitian Rupprecht, and Andrea Vedaldi. Splatter image: Ultra-fast single-view 3d reconstruc-tion. In CVPR , pages 10208–10217, 2024. 3 [53] Jiaxiang Tang, Zhaoxi Chen, Xiaokang Chen, Tengfei Wang, Gang Zeng, and Ziwei Liu. Lgm: Large multi-view gaussian model for high-resolution 3d content creation. In ECCV ,pages 1–18, 2024. 3 [54] Maxim Tatarchenko, Stephan R Richter, René Ranftl, Zhuwen Li, Vladlen Koltun, and Thomas Brox. What do single-view 3d reconstruction networks learn? In CVPR , pages 3405– 3414, 2019. 3 [55] Hanzhang Tu, Ruizhi Shao, Xue Dong, Shunyuan Zheng, Hao Zhang, Lili Chen, Meili Wang, Wenyu Li, Siyan Ma, Shengping Zhang, et al. Tele-aloha: a low-budget and high-authenticity telepresence system using sparse rgb cameras. In 
+
+SIGGRAPH , pages 1–12, 2024. 2 [56] Boyuan Wang, Runqi Ouyang, Xiaofeng Wang, Zheng Zhu, Guosheng Zhao, Chaojun Ni, Guan Huang, Lihong Liu, and Xingang Wang. Humandreamer-x: Photorealistic single-image human avatars reconstruction via gaussian restoration. 
+
+arXiv , 2025. 2 [57] Wentao Wang, Hang Ye, Fangzhou Hong, Xue Yang, Jianfu Zhang, Yizhou Wang, Ziwei Liu, and Liang Pan. Geneman: Generalizable single-image 3d human reconstruction from multi-source human data. In NeurIPS , pages 1–33, 2025. 2 [58] Zhou Wang, Alan C Bovik, Hamid R Sheikh, and Eero P Simoncelli. Image quality assessment: from error visibility to structural similarity. IEEE TIP , 13:600–612, 2004. 5 [59] Zhengyi Wang, Yikai Wang, Yifei Chen, Chendong Xiang, Shuo Chen, Dajiang Yu, Chongxuan Li, Hang Su, and Jun Zhu. Crm: Single image to 3d textured mesh with convolu-tional reconstruction model. In ECCV , pages 57–74, 2024. 3[60] Xinyue Wei, Kai Zhang, Sai Bi, Hao Tan, Fujun Luan, Valentin Deschaintre, Kalyan Sunkavalli, Hao Su, and Zex-iang Xu. Meshlrm: Large reconstruction model for high-quality meshes. arXiv , pages 1–21, 2024. 3 [61] Zhenzhen Weng, Jingyuan Liu, Hao Tan, Zhan Xu, Yang Zhou, Serena Yeung-Levy, and Jimei Yang. Template-free single-view 3d human digitalization with diffusion-guided lrm. arXiv , pages 1–21, 2024. 2 [62] Xiaoyang Wu, Li Jiang, Peng-Shuai Wang, Zhijian Liu, Xihui Liu, Yu Qiao, Wanli Ouyang, Tong He, and Hengshuang Zhao. Point transformer v3: Simpler faster stronger. In CVPR , pages 4840–4851, 2024. 3 [63] Jianfeng Xiang, Zelong Lv, Sicheng Xu, Yu Deng, Ruicheng Wang, Bowen Zhang, Dong Chen, Xin Tong, and Jiaolong Yang. Structured 3d latents for scalable and versatile 3d generation. In CVPR , pages 1–26, 2025. 6, 8 [64] Zhangyang Xiong, Chenghong Li, Kenkun Liu, Hongjie Liao, Jianqiao Hu, Junyi Zhu, Shuliang Ning, Lingteng Qiu, Chongjie Wang, Shijie Wang, et al. Mvhumannet: A large-scale dataset of multi-view daily dressing human captures. In 
+
+CVPR , pages 19801–19811, 2024. 4 [65] Yuliang Xiu, Jinlong Yang, Dimitrios Tzionas, and Michael J Black. ICON: Implicit clothed humans obtained from normals. In CVPR , pages 13286–13296, 2022. 2, 8 [66] Yuliang Xiu, Jinlong Yang, Xu Cao, Dimitrios Tzionas, and Michael J Black. Econ: Explicit clothed humans optimized via normal integration. In CVPR , pages 512–523, 2023. 2, 8 [67] Jiale Xu, Weihao Cheng, Yiming Gao, Xintao Wang, Shenghua Gao, and Ying Shan. Instantmesh: Efficient 3d mesh generation from a single image with sparse-view large reconstruction models. arXiv , pages 1–11, 2024. 3 [68] Qiangeng Xu, Weiyue Wang, Duygu Ceylan, Radomir Mech, and Ulrich Neumann. Disn: Deep implicit surface network for high-quality single-view 3d reconstruction. In NeurIPS ,pages 1–11, 2019. 3 [69] Yinghao Xu, Zifan Shi, Wang Yifan, Hansheng Chen, Ceyuan Yang, Sida Peng, Yujun Shen, and Gordon Wetzstein. Grm: Large gaussian reconstruction model for efficient 3d recon-struction and generation. In ECCV , pages 1–20, 2024. 3 [70] Yuxuan Xue, Xianghui Xie, Riccardo Marin, and Gerard Pons-Moll. Human 3diffusion: Realistic avatar creation via explicit 3d consistent diffusion models. In NeurIPS , pages 1–45, 2024. 2 [71] Yuxuan Xue, Xianghui Xie, Margaret Kostyrko, and Gerard Pons-Moll. Infinihuman: Realistic 3d human creation with precise control. In SIGGRAPH Asia , pages 1–12, 2025. 2 [72] Yuhang Yang, Fengqi Liu, Yixing Lu, Qin Zhao, Pingyu Wu, Wei Zhai, Ran Yi, Yang Cao, Lizhuang Ma, Zheng-Jun Zha, et al. Sigman: Scaling 3d human gaussian generation with millions of assets. In ICCV , pages 1–16, 2025. 2 [73] Zhitao Yang, Zhongang Cai, Haiyi Mei, Shuai Liu, Zhaoxi Chen, Weiye Xiao, Yukun Wei, Zhongfei Qing, Chen Wei, Bo Dai, et al. Synbody: Synthetic dataset with layered human models for 3d human perception and modeling. In ICCV ,pages 20282–20292, 2023. 12, 13 [74] Tao Yu, Zerong Zheng, Kaiwen Guo, Pengpeng Liu, Qionghai Dai, and Yebin Liu. Function4d: Real-time human volumetric capture from very sparse consumer rgbd sensors. In CVPR ,pages 5746–5756, 2021. 2, 5, 6 [75] Xiaoyu Zhan, Jianxin Yang, Yuanqi Li, Jie Guo, Yanwen Guo, and Wenping Wang. Semantic human mesh reconstruction with textures. In CVPR , pages 142–152, 2024. 2 [76] Richard Zhang, Phillip Isola, Alexei A Efros, Eli Shechtman, and Oliver Wang. The unreasonable effectiveness of deep features as a perceptual metric. In CVPR , pages 586–595, 2018. 5 [77] Zechuan Zhang, Li Sun, Zongxin Yang, Ling Chen, and Yi Yang. Global-correlated 3d-decoupling transformer for clothed avatar reconstruction. NeurIPS , 36, 2023. 2 [78] Zechuan Zhang, Zongxin Yang, and Yi Yang. Sifu: Side-view conditioned implicit function for real-world usable clothed human reconstruction. In CVPR , pages 9936–9947, 2024. 2, 6, 8 [79] Zibo Zhao, Zeqiang Lai, Qingxiang Lin, Yunfei Zhao, Haolin Liu, Shuhui Yang, Yifei Feng, Mingxin Yang, Sheng Zhang, Xianghui Yang, et al. Hunyuan3d 2.0: Scaling diffusion mod-els for high resolution textured 3d assets generation. arXiv ,pages 1–28, 2025. 6, 8 [80] Zerong Zheng, Tao Yu, Yebin Liu, and Qionghai Dai. Pamir: Parametric model-conditioned implicit representation for image-based human reconstruction. TPAMI , 44:3170–3184, 2021. 2, 6 [81] Yiyu Zhuang, Jiaxi Lv, Hao Wen, Qing Shuai, Ailing Zeng, Hao Zhu, Shifeng Chen, Yujiu Yang, Xun Cao, and Wei Liu. Idol: Instant photorealistic 3d human creation from a single image. In CVPR , pages 1–21, 2025. 2 [82] Zi-Xin Zou, Zhipeng Yu, Yuan-Chen Guo, Yangguang Li, Ding Liang, Yan-Pei Cao, and Song-Hai Zhang. Triplane meets gaussian splatting: Fast and generalizable single-view 3d reconstruction with transformers. In CVPR , pages 10324– 10335, 2024. 3 Supplementary Material 
+
+In this Supplementary Material, we provide additional details that were not included in the main manuscript due to space constraints. Specifically, we include more discussions (Section 5), more details on the experiment setup (Section 5), and more visual results (Section 5). 
+
+## A. More Discussions 
+
+Quality of our generated data. Our generated dataset con-tains two components, i.e., the synthetic subset and the real-world subset. For the synthetic subset, we render synthetic multi-view images in Blender from rigged SynBody [ 73 ]assets. Because SynBody meshes and textures are of high quality and Blender’s renderer preserves their visual fidelity, the resulting images maintain the same level of detail and realism as the source assets. For the real-world subset, this subset is generated by fitting multi-view capture data to 3DGS. We then re-render the fitted 3DGS back to the cap-ture viewpoints and compare them with the corresponding ground-truth images, achieving an average of 36.23 / 0.9881 / 16.57 (PSNR / SSIM / LPIPS). 
+
+Design of real-world data generation. We argue that good initialization is critical in the real-world data generation stage. COLMAP initialization is the common practice in 3DGS, but it performs poorly on multi-view human cap-ture data. To illustrate this, we performed a test on 10 ran-domly selected samples. Our improved initialization based on SMPL-X vertices enables significantly fewer training it-erations, reducing optimization time from 40 minutes to 4 minutes. The performance on the initialization method is shown in Table 7. 
+
+Table 7. Impact of initialization in real-world data generation. 
+
+↑ and ↓ represent the higher the better, and the lower the better, respectively.          
+
+> Method PSNR ↑SSIM ↑LPIPS ↓
+> COLMAP 16.49 0.9025 68.79 Ours 36.38 0.9886 16.36
+
+Comparison with animation-based methods. Methods like SHERF [22] and LHM [46] fall under a related but dis-tinct task setting: they aim to build generalizable, animatable human avatars from a single image. Since these methods focus primarily on pose-driven animation, they typically rely on ground-truth, high-quality SMPL/SMPL-X poses during both training and testing to ensure precise alignment. In contrast, our task operates under a more challenging input condition: only a single image is available. That is to say, SMPL(-X) parameters must be estimated using off-the-shelf tools. For SHERF and LHM, the SMPL(-X) pose is derived from 4D Humans (same as our method) and its 
+
+Table 8. Comparison with animation-based methods. ↑ and ↓
+
+represent the higher the better, and the lower the better, respectively.               
+
+> Method PSNR ↑SSIM ↑LPIPS ↓
+> SHERF [22] 16.83 0.9037 87.99 LHM [46] 17.75 0.9083 76.85 Ours 22.29 0.9360 42.42 Input Input HumanNOVA w/o mesh prior HumanNOVA w/o mesh prior
+
+Figure 5. Visual results on the effectiveness of the SMPL prior. Input Input  SMPL estimation  HumanNOVA  HumanNOVA SMPL estimation 
+
+Figure 6. Visual results on the robustness of HumanNOVA under inaccurate SMPL estimates. 
+
+provided demo, respectively. We follow SHERF’s instruc-tions from their Github repo and train it on the corresponding dataset. For LHM, since it does not release training and test-ing code, we directly utilize its pre-trained weights and its demo code to perform inference. As shown in Table 8, our method achieves superior performance with notable gains across multiple datasets and input viewpoints. For LHM and SHERF, they need to animate the avatar from the canonical space to the target pose space, during which any pose mis-alignment will directly exist in the rendering results, leading to performance degradation. 
+
+Generalization. For evaluation, we use a single model and report its performance across all benchmarks. To further assess the generalization capability of HumanNOVA, we conduct a leave-one-out evaluation on the CustomHuman dataset. As shown in Table 9, the performance under the leave-one-out setting remains comparable to that of the full model, indicating that HumanNOVA generalizes well to unseen settings. 
+
+More analysis on SMPL mesh prior. We provide more visualization about the effect of the mesh prior in Figure 5. It can be observed that the base LRM architecture (w/o mesh prior) fails to predict feasible human structures, while HumanNOVA performs robustly when the input is an in-the-wild image. In Figure 6, we demonstrate two representative in-the-wild examples (backgrounds are removed) where the estimated SMPL is visibly inaccurate. It can be observed that Table 9. Generalization capability of HumanNOVA. We conduct a leave-one-out evaluation with the CustomHuman dataset. ↑ and ↓                             
+
+> represent the higher the better, and the lower the better, respectively.
+> Method PSNR ↑SSIM ↑LPIPS ↓
+> Leave-CustomHuman-Out 21.99 0.9344 44.22 Ours 22.29 0.9360 42.42
+> Table 10. More ablations on HumanNOVA framework on the CustomHuman dataset. ↑and ↓represent the higher the better, and the lower the better, respectively.
+> Method PSNR ↑SSIM ↑LPIPS ↓
+> Ours 22.29 0.9360 42.42
+> Visual encoder (DINOv2 -> Sapiens) 21.98 0.9327 46.52 Fusion layer (4 -> 2) 21.42 0.9301 50.65 Supervision views (4 -> 2) 22.07 0.9344 45.18
+
+HumanNOVA remains resilient to this noise and adaptively prioritizes the appearance cues. However, our approach can still fail in the extreme case where the SMPL estimation completely breaks. 
+
+More ablations on HumanNOVA. We conduct additional ablation studies on the CustomHuman dataset to analyze the impact of different design choices in HumanNOVA. As shown in Table 10, utilizing Sapiens [ 30 ] as the visual en-coder still achieves comparable performance with DINOv2. Reducing the number of fusion layers from 4 to 2 causes the most significant performance drop, especially in LPIPS, suggesting that sufficient cross-modal fusion depth is critical for human avatar modeling. In addition, decreasing the num-ber of supervision views from 4 to 2 also results in inferior performance, which demonstrates the importance of richer multi-view supervision for improving reconstruction quality. 
+
+Broader Impact. We are dedicated to fast and photorealis-tic 3D human avatar modeling from a single image. How-ever, these technological advancements also raise concerns regarding potential misuse, including deceptive practices, harassment, and privacy violations. The lowered barrier to generating realistic human reconstructions could facilitate the creation of harmful or unauthorized content, thereby in-tensifying privacy risks. This highlights the need for careful consideration of both technical and regulatory measures. 
+
+## B. More Experiment Setup Details 
+
+Our data generation. For synthetic data generation, we utilize all 1,000 unique characters officially released by Syn-Body [ 73 ] for public download. These assets exhibit high diversity in terms of ethnicity, body shape, and clothing. Specifically, the characters span a wide range of skin tones, and wear diverse outfits based on approximately 68 clothing templates, including dresses, T-shirts, coats, pants, and more. For real-world data generation, the Gaussian optimization only lasts 4,000 iterations with the densification performed between iterations 400 and 1,500. For other parameters, we follow the original settings [ 29 ]. Note that both data genera-tion strategies are scalable. The data size of the generated real-world data is 22k assets, while the generated synthetic data contains 78k assets. We generate an average of 26 views per asset, with camera positions randomly distributed on a sphere. The azimuth angles range from 0◦ to 360 ◦, and the elevation angles range from −45 ◦ to 60 ◦. These views are randomly sampled without enforcing any preference for frontal views during the training of HumanNOVA. 
+
+HumanNOVA traning. The input image resolution of Hu-manNOVA is 512 ×512 and we crop a 180 ×180 patch as supervision. The NeRF [ 42 ] MLP contains 10 layers with the width set as 60 and SiLU [ 14 ] is utilized as the activation function. The number of samples per ray is set as 128. For datasets with 3D scans such as THuman, CustomHuman, and 2K2K, we follow a unified preprocessing pipeline. We place each 3D mesh under a canonical camera setup and render 36 multi-view images at 10-degree intervals along a horizontal 360° circle. These rendered RGB images are then used as the supervision signals during training. Impor-tantly, we do not use the original 3D meshes themselves for supervision, but only the rendered images. 
+
+Patch selection. We utilize patches from the image to pro-vide the supervision signals. Its selection process is for-mulated as follows. Given an image I ∈ RH×W ×C and a corresponding binary mask M ∈ { 0, 1}H×W , we aim to sample a square patch of size r × r (e.g., r = 180 ) such that the region contains a sufficient proportion of foreground pixels. Let R(i,j ) ⊆ M denote a square region of size r × r
+
+with its top-left corner at position (i, j ). The foreground ratio of region R(i,j ) is computed as: 
+
+α(i,j ) = 1
+
+r2
+
+> r−1
+
+X
+
+> u=0
+> r−1
+
+X
+
+> v=0
+
+Mi+u,j +v .
+
+We define the candidate set of regions as: S = {(i, j ) |
+
+α(i,j ) ≥ τ, i, j ∈ [0 , H − r] stride s}. Here, τ is the mask threshold (e.g., τ = 0 .05 ), and s is the stride used to slide the sampling window (e.g., s = 10 ). For each valid region 
+
+(i, j ) ∈ S , we assign a sampling weight proportional to the number of foreground pixels: 
+
+w(i,j ) =
+
+> r−1
+
+X
+
+> u=0
+> r−1
+
+X
+
+> v=0
+
+Mi+u,j +v .
+
+The weights are normalized into a valid probability distribu-tion: 
+
+p(i,j ) = w(i,j )
+
+P 
+
+> (i′,j ′)∈S
+
+w(i′,j ′)
+
+.
+
+Finally, a region (i∗, j ∗) ∼ p is sampled, and the corre-sponding image patch is extracted as P = I[i∗ : i∗ + r, j ∗ :Figure 7. Visualization of our training data. (Best viewed in color.) The first three rows correspond to real-world generated data, while the remaining rows are generated synthetic data. GT  HumanNOVA       
+
+> wo gen-data (multi-cam)
+> wo gen-data (assets) GT HumanNOVA wo mesh small triplane siz Figure 8. Visualization of ablation studies on generated data type. (Best viewed in color.) Removing the generated data (multi-cam or assets) negatively affects the model performance.
+
+GT  HumanNOVA  wo mesh  small triplane size  
+
+> Figure 9. Visualization of ablation studies on model design.
+> (Best viewed in color.) Excluding the mesh prior or reducing the triplane resolution reduces the quality of the output.
+
+j∗ + r, :] . This strategy encourages sampling of patches rich in foreground content while preserving diversity. 
+
+Evaluation. We utilize 50 assets from each dataset (Cus-tomHuman, Thuman2, and 2K2K) for evaluation. Both Cus-tomHuman and THuman2 feature diverse clothing styles, including loose garments and layered outfits, as well as a wide range of body poses, making them particularly challeng-ing for accurate 3D reconstruction. In contrast, the 2K2K dataset primarily consists of humans in upright, standing poses. For additional 3D geometry evaluation, we extract the isosurface based on Marching Cubes [ 38 ] to convert Hu-manNOVA’s implicit representations into meshes. During evaluation, CD is measured in centimeters (cm), providing a precise indication of surface accuracy. F-Score is computed with a threshold of 0.01 meters. 
+
+## C. More Visual Results 
+
+In Figure 7, we visualize a sample from our training data. The first three rows correspond to real-world generated data, while the remaining rows are generated synthetic data. To-gether, they provide the foundational training data that em-powers HumanNOVA to learn robust and generalizable 3D human representations. We provide visualization of our ablation studies in Fig-ure 8 and Figure 9. Figure 8 illustrates the impact of different training data configurations. Removing gen-data (multi-cam) leads to less photorealistic results or less accurate structure. In contrast, removing gen-data (assets) weakens the model’s capability to perceive and reconstruct human poses (see the right shoulder). Figure 9 shows the effects of varying model settings. Excluding the mesh prior degrades the structural quality of the output, while reducing the triplane resolution compromises the model’s capacity to represent fine-grained details (see the red box). To better showcase the results, we include additional in-the-wild reconstruction examples and comparisons with previous methods in the supplementary video. In the video, the reconstruction results are presented with 360-degree rota-tion. From the video, it could be observed that our method is generally not affected by the Janus problem. This is because we model the 3D human directly as a whole in 3D space, instead of decomposing the task into separate front/back gen-eration followed by heuristic merging, which is a common cause of inconsistent geometry or appearance across views (e.g., SiTH).

@@ -1,0 +1,738 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-11T03:09:16.717552+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 18,
+    "deep_cap": 6,
+    "deep_selected": 18,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2606.10753v1",
+      "source": "arxiv",
+      "title": "Deploying Speech-Driven 3D Facial Animation in Unreal Engine for Production-Ready Digital Humans",
+      "abstract": "Speech-driven 3D facial animation research has shown promising results, but most methods rely on representations that are not compatible with production pipelines. In this work, we present a deployable system that bridges this gap by enabling speech-driven 3D facial animation directly in Unreal Engine (UE) using ARKit-compatible representations. We construct 3DMEAD-ARKit dataset by converting the MEAD corpus into blendshape sequences using MediaPipe, and retrain FaceDiffuser and ProbTalk3D-X to generate stochastic and emotion controllable animations. We further develop a modular UE plugin with a Python backend that supports model selection, and parameter control. We compare the results to two existing commercial tools: Epic Games' MetaHuman speech-driven animator and Nvidia Audio2Face with a perceptual user study. The results highlight the importance of comparisons among academic and commercial pipelines. We recommend watching the supplementary video. We also plan to do live demonstrations of our work at Siggraph 2026 conference.",
+      "authors": [
+        "Alessandro Busacchi",
+        "Kazi Injamamul Haque",
+        "Zerrin Yumak"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.HC",
+        "cs.MM"
+      ],
+      "published": "2026-06-09T12:03:42+00:00",
+      "link": "https://arxiv.org/pdf/2606.10753v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "speech-driven 3D facial animation for digital humans, constructing 3DMEAD-ARKit dataset",
+      "llm_evidence_cn": "语音驱动3D面部动画用于数字人，构建3DMEAD-ARKit数据集",
+      "llm_evidence": "语音驱动3D面部动画用于数字人，构建3DMEAD-ARKit数据集",
+      "canonical_evidence": "语音驱动3D面部动画用于数字人，构建3DMEAD-ARKit数据集",
+      "llm_tldr_en": "This paper bridges research and production by deploying speech-driven 3D facial animation in Unreal Engine for digital humans, constructing the 3DMEAD-ARKit dataset and retraining models for emotion-controllable animation.",
+      "llm_tldr_cn": "现有语音驱动3D面部动画研究方法多依赖与生产管线不兼容的表示，本文提出在Unreal Engine中直接使用ARKit兼容表示进行语音驱动3D面部动画的可部署系统。通过将MEAD语料转换为3DMEAD-ARKit融合变形序列数据集，重新训练FaceDiffuser和ProbTalk3D-X模型以生成随机和情感可控的动画。开发了模块化UE插件，支持模型选择和参数控制，并与两款商业工具进行了对比。",
+      "llm_tldr": "现有语音驱动3D面部动画研究方法多依赖与生产管线不兼容的表示，本文提出在Unreal Engine中直接使用ARKit兼容表示进行语音驱动3D面部动画的可部署系统。通过将MEAD语料转换为3DMEAD-ARKit融合变形序列数据集，重新训练FaceDiffuser和ProbTalk3D-X模型以生成随机和情感可控的动画。开发了模块化UE插件，支持模型选择和参数控制，并与两款商业工具进行了对比。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.14731v1",
+      "source": "arxiv",
+      "title": "UMo: Unified Sparse Motion Modeling for Real-Time Co-Speech Avatars",
+      "abstract": "Speech-driven gestures and facial animations are fundamental to expressive digital avatars in games, virtual production, and interactive media. However, existing methods are either limited to a single modality for audio motion alignment, failing to fully utilize the potential of massive human motion data, or are constrained by the representation ability and throughput of multimodal models, which makes it difficult to achieve high-quality motion generation or real-time performance. We present UMo, a unified sparse motion modeling architecture for real-time co-speech avatars, which processes text, audio, and motion tokens within a unified formulation. Leveraging a spatially sparse Mixture-of-Experts framework and a temporally sparse, keyframe-centric design, UMo efficiently performs real-time dense reconstruction, enabling temporally coherent and high-fidelity animation generation for both facial expressions and gestures. Furthermore, we implement a multi-stage training strategy with targeted audio augmentation to enhance acoustic diversity and semantic consistency. Consequently, UMo preserves fine-grained speech-motion alignment even under strict latency constraints. Extensive quantitative and qualitative evaluations show that UMo achieves better output quality under low latency and real-time performance constraints, offering a practical solution for high-fidelity real-time co-speech avatars.",
+      "authors": [
+        "Xiaoyu Zhan",
+        "Xinyu Fu",
+        "Chenghao Yang",
+        "Xiaohong Zhang",
+        "Dongjie Fu",
+        "Pengcheng Fang",
+        "Tengjiao Sun",
+        "Xiaohao Cai",
+        "Hansung Kim",
+        "Yuanqi Li",
+        "Jie Guo",
+        "Yanwen Guo"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.CV",
+        "cs.SD"
+      ],
+      "published": "2026-05-14T11:56:03+00:00",
+      "link": "https://arxiv.org/pdf/2605.14731v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Speech-driven gestures and facial animations for real-time co-speech avatars",
+      "llm_evidence_cn": "语音驱动的实时协同语音虚拟人姿态与面部动画",
+      "llm_evidence": "语音驱动的实时协同语音虚拟人姿态与面部动画",
+      "canonical_evidence": "语音驱动的实时协同语音虚拟人姿态与面部动画",
+      "llm_tldr_en": "UMo proposes a unified sparse motion model for real-time co-speech avatars, processing text, audio, and motion tokens with a keyframe-centric design and mixture-of-experts.",
+      "llm_tldr_cn": "现有语音驱动虚拟人方法存在单模态对齐或不支持实时生成局限。UMo提出统一稀疏运动建模架构，融合文本、音频与动作Token，通过空间稀疏的混合专家与时间稀疏的关键帧设计，实现了高质量、实时的协同语音虚拟人生成。实验表明该方法在动作生成质量与实时性上均优于当前方法，为互动媒体中的虚拟人提供了实用解决方案。",
+      "llm_tldr": "现有语音驱动虚拟人方法存在单模态对齐或不支持实时生成局限。UMo提出统一稀疏运动建模架构，融合文本、音频与动作Token，通过空间稀疏的混合专家与时间稀疏的关键帧设计，实现了高质量、实时的协同语音虚拟人生成。实验表明该方法在动作生成质量与实时性上均优于当前方法，为互动媒体中的虚拟人提供了实用解决方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.23555v1",
+      "source": "arxiv",
+      "title": "Generator-Refiner-Examiner: A Tri-Module Data Augmentation Framework for 3D Human Avatar Learning from Monocular Videos",
+      "abstract": "This paper addresses the challenge of reconstructing photorealistic and animatable 3D human avatars from monocular videos. While existing methods rely on combining per-subject optimization with generic human priors, they often fail to capture fine-grained details when training frames are limited. To mitigate this data scarcity, we propose TrioMan, a systematic tri-module framework for augmented 3D avatar learning. Our approach comprises three synergistic components. The Generator creates diverse unseen samples by imposing Gaussian perturbations on pose and camera. The Refiner improves the quality of generated data through one-step diffusion guided by texture and geometry cues. The Examiner selects subject-consistent samples using a dual-branch attention-based similarity evaluation. Experiments on the X-Humans and NeuMan benchmarks show that TrioMan outperforms state-of-the-art methods.",
+      "authors": [
+        "Gangjian Zhang",
+        "Jian Shu",
+        "Sicheng Yu",
+        "Wenhao Shen",
+        "Yu Feng",
+        "Hao Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-05-22T12:20:46+00:00",
+      "link": "https://arxiv.org/pdf/2605.23555v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "reconstructing photorealistic and animatable 3D human avatars from monocular videos",
+      "llm_evidence_cn": "从单目视频重建逼真可动画的3D人类化身",
+      "llm_evidence": "从单目视频重建逼真可动画的3D人类化身",
+      "canonical_evidence": "从单目视频重建逼真可动画的3D人类化身",
+      "llm_tldr_en": "Proposes TrioMan, a tri-module data augmentation framework to improve 3D human avatar learning from limited monocular video frames.",
+      "llm_tldr_cn": "为解决单目视频重建3D化身时训练帧不足导致细节缺失的问题，提出三模块数据增强框架TrioMan，由生成器、精炼器和审查器组成，生成器通过扰动产生新样本，精炼器用扩散模型提升质量，审查器筛选最优数据用于训练。实验表明该框架显著提高了化身的逼真度和动画质量，为数据稀缺条件下的数字人创建提供了有力工具。该项工作为单目视频中的化身学习问题提供了新的思路和解决方案。",
+      "llm_tldr": "为解决单目视频重建3D化身时训练帧不足导致细节缺失的问题，提出三模块数据增强框架TrioMan，由生成器、精炼器和审查器组成，生成器通过扰动产生新样本，精炼器用扩散模型提升质量，审查器筛选最优数据用于训练。实验表明该框架显著提高了化身的逼真度和动画质量，为数据稀缺条件下的数字人创建提供了有力工具。该项工作为单目视频中的化身学习问题提供了新的思路和解决方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.24652v1",
+      "source": "arxiv",
+      "title": "AVBench: Human-Aligned and Automated Evaluation Benchmark for Audio-Video Generative Models",
+      "abstract": "Rapid advances in audio-video (AV) generation have enabled high-fidelity synthesis with synchronized sound, particularly for human-related scenarios involving speech and interactions. Yet evaluation for AV generation remains at an early stage, with only a few coarse-grained benchmarks for human-related scenarios and relying on limited preset evaluations with generic multimodal LLMs, leading to inaccurate assessments of model capabilities. To address these issues, we introduce AVBench, a fully automated benchmark tailored for human-centric AV generation. AVBench is built on two key designs for comprehensive and accurate evaluation: (i) Human-centric and fine-grained metrics. AVBench integrates ten evaluation dimensions designed for human-centered real-world scenarios, covering visual quality, audio quality, and multi-level consistency across modalities. These practical metrics capture human-related details that existing benchmarks often overlook. (ii) Specialized evaluators via preference learning. To address the lack of specialized training data, we construct large-scale supervision by transforming real-world videos into diverse training pairs with controlled perturbations. After fine-tuning on this high-quality dataset, the evaluators learn to reliably detect subtle cross-modal inconsistencies. Crucially, instead of producing discrete textual judgment, AVBench derives continuous evaluation scores from the model's prediction confidence on binary decisions. This probabilistic scoring mechanism enables a more reliable assessment than traditional VQA-style evaluation and aligns closely with human judgment. Taken together, AVBench offers automated evaluation for AV generation, demonstrates strong potential for data filtering, and serves as a differentiable reward signal for Reinforcement Learning from Human Feedback (RLHF).",
+      "authors": [
+        "Jialiang Yang",
+        "Bin Xia",
+        "Ruihang Chu",
+        "Dingdong Wang",
+        "Wanke Xia",
+        "Zhun Mou",
+        "Tianyang Zhong",
+        "Yiting Zhao",
+        "Wenming Yang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CV",
+        "cs.MM",
+        "cs.SD"
+      ],
+      "published": "2026-05-23T16:42:39+00:00",
+      "link": "https://arxiv.org/pdf/2605.24652v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Benchmark for audio-video generation with human-centric evaluation dimensions",
+      "llm_evidence_cn": "面向音视频生成的基准，包含以人为中心的评估维度",
+      "llm_evidence": "面向音视频生成的基准，包含以人为中心的评估维度",
+      "canonical_evidence": "面向音视频生成的基准，包含以人为中心的评估维度",
+      "llm_tldr_en": "AVBench is an automated benchmark for evaluating human-centric audio-video generation, with fine-grained metrics across ten dimensions to assess model capabilities, enabling accurate and comprehensive evaluation of talking head synthesis.",
+      "llm_tldr_cn": "AVBench是一个面向以人为中心的音视频生成的自动化基准。针对现有评估粗糙且依赖通用多模态LLM的不足，设计了十个细粒度评估维度，全面衡量模型在语音、交互等场景下的生成质量。实验证明其与人类判断高度一致，为说话头部生成等任务提供了精准的自动评测工具，推动领域标准化。",
+      "llm_tldr": "AVBench是一个面向以人为中心的音视频生成的自动化基准。针对现有评估粗糙且依赖通用多模态LLM的不足，设计了十个细粒度评估维度，全面衡量模型在语音、交互等场景下的生成质量。实验证明其与人类判断高度一致，为说话头部生成等任务提供了精准的自动评测工具，推动领域标准化。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "benchmark for talking head synthesis",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.25220v1",
+      "source": "arxiv",
+      "title": "Multi-view Consistent 3D Gaussian Head Avatars 'without' Multi-view Generation",
+      "abstract": "High-fidelity 3D Gaussian head avatar generation is critical for applications such as AR/VR, telepresence, and digital humans. Existing methods depend on multi-view datasets, 3D captures, or intermediate 2D view synthesis. In contrast, we learn both conditional and unconditional 3D head models from randomly sampled 2D images alone, without using multi-view data, 3D supervision, or intermediate view generation. We introduce MVCHead, a single-shot state space model that enforces multi-view consistency (MVC) directly in the 3D representation while regressing 3D Gaussians under these constraints. At its core, we propose a Hierarchical State Space (HiSS) block that progressively refines Gaussians from coarse to fine, while capturing long-range dependencies. Within each HiSS block, we modify Mamba's standard unidirectional scan with the proposed Hierarchical Bi-directional State Scan (HiBiSS) that aligns recurrence with the axes along which multi-view inconsistencies are strongest. Finally, we design an SE(3) Multi-view Critic that judges whether a set of self-renders arises from a single underlying 3D configuration, rewarding cross-view pixel alignment without observing real multi-view pairs. MVCHead achieves state-of-the-art perceptual quality, surpasses prior methods in both texture and geometric consistency, and maintains comparable shape consistency. To demonstrate scalability, we release FaceGS-10K, the first large-scale dataset of ready-to-use 3D Gaussian head assets for training and evaluation of 3D head models. Project Page and code: https://humansensinglab.github.io/MVCHead/",
+      "authors": [
+        "Aviral Chharia",
+        "Fernando De la Torre"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.RO"
+      ],
+      "published": "2026-05-24T19:09:15+00:00",
+      "link": "https://arxiv.org/pdf/2605.25220v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Creates 3D head avatars from 2D images for digital humans, a form of talking head avatar generation.",
+      "llm_evidence_cn": "从2D图像生成3D头部化身，用于数字人，属于说话头化身生成。",
+      "llm_evidence": "从2D图像生成3D头部化身，用于数字人，属于说话头化身生成。",
+      "canonical_evidence": "从2D图像生成3D头部化身，用于数字人，属于说话头化身生成。",
+      "llm_tldr_en": "This work learns 3D Gaussian head avatars from 2D images without multi-view data, using a state space model that enforces multi-view consistency directly in 3D, enabling high-fidelity head synthesis for digital humans.",
+      "llm_tldr_cn": "现有3D头部化身生成依赖多视图数据或3D监督，MVCHead另辟蹊径，仅从随机2D图像学习条件与无条件3D头部模型，无需多视图或3D监督。其核心是层次化状态空间块，在3D表示中直接施加多视图一致性约束，逐步从粗到细优化高斯点云。实验表明该方法生成的数字人头部化身具有高保真度，可广泛应用于AR/VR和远程呈现，降低了3D头部建模的数据门槛。",
+      "llm_tldr": "现有3D头部化身生成依赖多视图数据或3D监督，MVCHead另辟蹊径，仅从随机2D图像学习条件与无条件3D头部模型，无需多视图或3D监督。其核心是层次化状态空间块，在3D表示中直接施加多视图一致性约束，逐步从粗到细优化高斯点云。实验表明该方法生成的数字人头部化身具有高保真度，可广泛应用于AR/VR和远程呈现，降低了3D头部建模的数据门槛。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.25488v1",
+      "source": "arxiv",
+      "title": "Test-Time Self-Adaptive Conditioning for Stable Audio-Driven Talking-Head Generation",
+      "abstract": "Audio-driven talking-head generation has achieved remarkable progress with recent models such as AniTalker, FLOAT, and Sonic. Despite their success, most existing approaches rely on a single static reference image to condition the entire video generation process at inference stage. This static conditioning paradigm often creates a mismatch between fixed identity features and dynamically evolving facial motion, leading to identity drift, temporal inconsistency, and degraded perceptual quality. We introduce Test-Time Self-Adaptive Conditioning (TT-SAC), a parameter-free inference framework that enables pretrained talking-head generators to adapt their conditioning representations during inference without retraining, gradient updates, or additional supervision. Instead of treating the reference portrait as immutable, TT-SAC composes the generator with its encoder in a feedback loop: the generator's own outputs are re-encoded to construct a refined conditioning representation that better aligns with the temporal dynamics of the synthesized sequence. A single adaptation step approximates a self-consistent equilibrium of the generative process, stabilizing identity and motion across time. We further provide theoretical analysis showing that test-time conditioning adaptation reduces feature variance and improves generative stability under mild Lipschitz assumptions, while exhibiting a principled bias-variance tradeoff that governs the optimal strength of adaptation. Extensive experiments on state-of-the-art talking-head generators and benchmark datasets demonstrate consistent improvements in lip-sync accuracy, temporal coherence, identity preservation, and perceptual fidelity. TT-SAC offers a model-agnostic and training-free strategy for enhancing generative video models, establishing test-time conditioning adaptation as an effective mechanism for stabilizing audio-driven portrait animation.",
+      "authors": [
+        "Zhicheng Zhang",
+        "Lei Wang",
+        "Yu Zhang",
+        "Yongsheng Gao"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.MM"
+      ],
+      "published": "2026-05-25T06:45:29+00:00",
+      "link": "https://arxiv.org/pdf/2605.25488v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "proposes TT-SAC to stabilize audio-driven talking-head generation without retraining",
+      "llm_evidence_cn": "提出TT-SAC在测试时稳定音频驱动说话头生成",
+      "llm_evidence": "提出TT-SAC在测试时稳定音频驱动说话头生成",
+      "canonical_evidence": "提出TT-SAC在测试时稳定音频驱动说话头生成",
+      "llm_tldr_en": "Introduces TT-SAC, a parameter-free test-time adaptation framework for audio-driven talking-head generators that adjusts conditioning representations to prevent identity drift and improve temporal consistency.",
+      "llm_tldr_cn": "提出测试时自适应条件化框架TT-SAC，无需重新训练即可在推理时调整条件化表示，解决了静态参考图像导致的身份漂移与不一致问题，实验表明可提升生成视频的稳定性和感知质量。",
+      "llm_tldr": "提出测试时自适应条件化框架TT-SAC，无需重新训练即可在推理时调整条件化表示，解决了静态参考图像导致的身份漂移与不一致问题，实验表明可提升生成视频的稳定性和感知质量。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.25810v1",
+      "source": "arxiv",
+      "title": "Data-driven Head Motion Generation through Natural Gaze-Head Coordination",
+      "abstract": "We present the first data-driven approach to model temporal gaze-head coordination from large-scale in-the-wild facial videos. To obtain training data for generalizable learning, we propose an automatic pipeline that extracts natural yet diverse gaze and head motions with off-the-shelf appearance-based gaze estimators. To capture the probabilistic correlation and temporal dynamics of gaze-head coordination, we build our model on a generative conditional Variational Autoencoder for plausible yet diverse gaze-conditioned head motion generations. We further apply our framework to gaze-controlled facial video generation, where we enable video generation with natural and realistic head motion correlated to the input gaze - an aspect that has not been emphasized before. Human evaluation and quantitative comparisons demonstrate our method's effectiveness and validate our design choices, with evaluators showing statistically significant preference for our approach over baseline methods.",
+      "authors": [
+        "Xiaohan Liu",
+        "Yilin Wen",
+        "Yusuke Sugano"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-05-25T13:02:51+00:00",
+      "link": "https://arxiv.org/pdf/2605.25810v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Generates natural head motion from gaze for realistic talking-head-like facial video synthesis.",
+      "llm_evidence_cn": "从注视信号生成自然头部运动，用于真实感说话头面部视频合成。",
+      "llm_evidence": "从注视信号生成自然头部运动，用于真实感说话头面部视频合成。",
+      "canonical_evidence": "从注视信号生成自然头部运动，用于真实感说话头面部视频合成。",
+      "llm_tldr_en": "This paper models gaze-head coordination from wild facial videos, uses a conditional VAE to generate diverse head motions from gaze, and applies it to gaze-controlled facial video generation, improving naturalness of talking head videos.",
+      "llm_tldr_cn": "该论文首次从大规模野生面部视频中学习注视-头部协调的数据驱动模型。通过自动流水线提取自然多样的注视与头部运动对，利用条件变分自编码器捕捉概率相关性和时序动态，生成与输入注视协调的头部运动。将该框架用于面部视频生成，可实现由注视控制的真实感头部运动，显著提升说话头视频的自然度，为数字人和视频编辑提供新工具。",
+      "llm_tldr": "该论文首次从大规模野生面部视频中学习注视-头部协调的数据驱动模型。通过自动流水线提取自然多样的注视与头部运动对，利用条件变分自编码器捕捉概率相关性和时序动态，生成与输入注视协调的头部运动。将该框架用于面部视频生成，可实现由注视控制的真实感头部运动，显著提升说话头视频的自然度，为数字人和视频编辑提供新工具。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "video synthesis of talking heads",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.28272v1",
+      "source": "arxiv",
+      "title": "EchoAvatar: Real-time Generative Avatar Animation from Audio Streams",
+      "abstract": "Real-time synthesis of high-fidelity 3D character motion from audio is a pivotal component for next-generation interactive avatars and virtual assistants. However, most existing approaches are limited to offline processing of complete audio sequences or are constrained to specific domains, rarely handling both speech and music effectively. In this paper, we introduce a novel framework designed to generate continuous, coherent full-body motion from streaming speech and music with low latency. Central to our approach is a unified streaming architecture capable of synthesizing continuous motion from incremental audio inputs. We employ a robust training strategy that enforces strong audio dependency, allowing the model to seamlessly generalize across conversational speech and rhythmic music without requiring explicit domain labels or mode switching. Additionally, we explored Reinforcement Learning to refine the quality of online generation. Furthermore, we bridge reactive animation with intent-driven behavior via a tool-call interface that allows upstream Large Language Models to inject explicit semantic control. By combining this controllability with stream audio-driven synthesis, our framework serves as a plug-and-play solution for transforming voice agents into interactive humanoid avatars. Extensive experiments demonstrate that our method outperforms state-of-the-art realtime baselines in motion quality and synchronization while maintaining the flexibility required for live deployment. Our code, pre-trained models, and videos are available at https://robinwitch.github.io/EchoAvatar-Page.",
+      "authors": [
+        "Bohong Chen",
+        "Yumeng Li",
+        "Yinglin Xu",
+        "Youyi Zheng",
+        "Yanlin Weng",
+        "Kun Zhou"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-05-27T10:18:16+00:00",
+      "link": "https://arxiv.org/pdf/2605.28272v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "real-time synthesis of 3D character motion from audio streams for interactive avatars",
+      "llm_evidence_cn": "从音频流实时生成3D角色动作的化身动画",
+      "llm_evidence": "从音频流实时生成3D角色动作的化身动画",
+      "canonical_evidence": "从音频流实时生成3D角色动作的化身动画",
+      "llm_tldr_en": "Proposes EchoAvatar, a unified streaming architecture for real-time full-body motion synthesis from incremental speech and music audio.",
+      "llm_tldr_cn": "针对现有音频驱动化身动画多限于离线处理或单一模态的问题，该工作提出EchoAvatar，一种统一流式架构，可从增量语音和音乐流中实时合成连续、一致的全身体运动。通过强音频依赖训练策略，模型能无缝泛化至多种语音和音乐场景。实验表明该方法实现了低延迟、高质量的全身动画生成，为下一代交互式虚拟人提供了关键支撑。",
+      "llm_tldr": "针对现有音频驱动化身动画多限于离线处理或单一模态的问题，该工作提出EchoAvatar，一种统一流式架构，可从增量语音和音乐流中实时合成连续、一致的全身体运动。通过强音频依赖训练策略，模型能无缝泛化至多种语音和音乐场景。实验表明该方法实现了低延迟、高质量的全身动画生成，为下一代交互式虚拟人提供了关键支撑。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.29316v1",
+      "source": "arxiv",
+      "title": "CapTalk: Text-Guided Stylization and Speech-Driven 3D Head Animation",
+      "abstract": "Audio-driven 3D facial animation aims to generate synchronized lip movements and vivid facial expressions from arbitrary audio clips. While existing methods can produce synchronized lip motions, they often rely on predefined identity or style latent features, which limits users' ability to freely control speaking styles. Moreover, applying a fixed style or identity to an entire audio segment typically results in facial animation styles that do not adapt to the emotional content of the audio. To address these challenges, we revisit the entanglement between style and emotion, construct a large-scale dataset with textual descriptions of both style and emotion, and propose a novel talking head generation framework that enables separate control over style and emotion. Our model takes as input both textual descriptions of speaking style and character emotion, as well as the driving audio stream, enabling real-time generation of highly synchronized lip movements and facial expressions that match the provided descriptions. Furthermore, our model supports dynamic emotion control during inference, allowing it to handle scenarios where the target emotion changes throughout the speech.",
+      "authors": [
+        "Xuangeng Chu",
+        "Yuan Gan",
+        "Ziteng Cui",
+        "Shuhong Liu",
+        "Jian Wang",
+        "Bing Zhou",
+        "Tatsuya Harada"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-05-28T03:46:11+00:00",
+      "link": "https://arxiv.org/pdf/2605.29316v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "constructs a large-scale dataset with style/emotion descriptions for talking head generation",
+      "llm_evidence_cn": "构建包含风格与情感描述的大规模说话头数据集",
+      "llm_evidence": "构建包含风格与情感描述的大规模说话头数据集",
+      "canonical_evidence": "构建包含风格与情感描述的大规模说话头数据集",
+      "llm_tldr_en": "Proposes CapTalk, a talking head framework that decouples style and emotion control using a large-scale dataset with textual descriptions, enabling expressive and controllable 3D head animation.",
+      "llm_tldr_cn": "CapTalk通过构建包含风格与情感文本描述的大规模数据集，提出可分离控制风格与情感的说话头生成框架，解决了现有方法无法根据音频情感内容自适应调整风格的问题，实验表明该框架能生成风格与情感可单独控制的3D头部动画，提升了说话头生成的可控性。",
+      "llm_tldr": "CapTalk通过构建包含风格与情感文本描述的大规模数据集，提出可分离控制风格与情感的说话头生成框架，解决了现有方法无法根据音频情感内容自适应调整风格的问题，实验表明该框架能生成风格与情感可单独控制的3D头部动画，提升了说话头生成的可控性。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "dataset for talking head animation",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.30230v1",
+      "source": "arxiv",
+      "title": "IP-Adapter Is All You Need: Towards Fine-Tuning-Free Diffusion-Based Talking Face Generation",
+      "abstract": "With the rapid advancement of diffusion models, talking face generation has made remarkable progress. However, existing diffusion-based methods still require task-specific fine-tuning and large-scale audiovisual datasets, resulting in high computational costs that hinder scalability and accessibility of diffusion-based approaches across the research community. To address this, we propose a finetuning-free paradigm that directly performs talking face generation using the pretrained weights of Stable Diffusion and IP-Adapter. This backbone leverages the visual embedding capability of IP-Adapter to mine lip-related semantics from the pretrained Stable Diffusion. To address the challenges of identity drift, synchronization errors, and temporal instability, we also design three trainable-parameterfree components: (1) the Structurist, which explicitly disentangles and reassembles lip and appearance features to mitigate identity drift and appearance distortion; (2) the Structure Controller, which adaptively refines embeddings based on quasi-monotonic motion trends for precise lip synchronization; and (3) the Noise Sensor, which introduces Gaussian prior to detect and suppress flicker and jitter artifacts and enhance temporal consistency. Experimental results show that our method outperforms existing SOTA approaches in both lip-sync accuracy (at least 0.16 gain in PCLD) and visual fidelity (at least 0.7 improvement in FID), establishing a novel fine-tuning-free diffusion framework for talking face generation.",
+      "authors": [
+        "Hao Wu",
+        "Xiangyang Luo",
+        "Hao Wang",
+        "Jiawei Zhang",
+        "Yi Zhang",
+        "Jinwei Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-05-28T17:00:37+00:00",
+      "link": "https://arxiv.org/pdf/2605.30230v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Talking face generation without fine-tuning using Stable Diffusion and IP-Adapter",
+      "llm_evidence_cn": "利用Stable Diffusion与IP-Adapter实现免微调的说话人面部生成",
+      "llm_evidence": "利用Stable Diffusion与IP-Adapter实现免微调的说话人面部生成",
+      "canonical_evidence": "利用Stable Diffusion与IP-Adapter实现免微调的说话人面部生成",
+      "llm_tldr_en": "Proposes a fine-tuning-free talking face generation method using pretrained Stable Diffusion and IP-Adapter, addressing identity drift and synchronization errors without large datasets.",
+      "llm_tldr_cn": "现有扩散式说话人面部生成方法需特定微调与大规模视听数据集，计算成本高。本文提出免微调范式，直接基于预训练的Stable Diffusion和IP-Adapter实现说话人面部生成，利用IP-Adapter视觉嵌入挖掘唇部语义，解决身份漂移、同步错误和唇形一致性挑战。实验证明该方法在降低计算开销的同时保持生成质量，提升了扩散模型的易用性与可及性。",
+      "llm_tldr": "现有扩散式说话人面部生成方法需特定微调与大规模视听数据集，计算成本高。本文提出免微调范式，直接基于预训练的Stable Diffusion和IP-Adapter实现说话人面部生成，利用IP-Adapter视觉嵌入挖掘唇部语义，解决身份漂移、同步错误和唇形一致性挑战。实验证明该方法在降低计算开销的同时保持生成质量，提升了扩散模型的易用性与可及性。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "video synthesis of talking heads",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.30311v1",
+      "source": "arxiv",
+      "title": "Archon: A Unified Multimodal Model for Holistic Digital Human Generation",
+      "abstract": "Digital humans are fundamental to immersive interaction, yet creating a unified model for holistic modalities, including text, audio, motion, and visual content, remains an open challenge. In this paper, we present Archon, a fully pretrained, human-centric unified multimodal model for holistic avatar generation. Archon unifies seven modalities with modality-specific tokenizers, and a native autoregressive unified multimodal model pretrained on synchronized modalities and 72 diverse tasks to model holistic joint distributions. To address the token explosion challenge in high-fidelity talking videos, we introduce a memory-efficient semantic video reparameterization, achieving 4x token reduction while preserving fine-grained dynamics, coupled with a semantic-driven video diffusion decoder. We further propose a \"Thinking in Modality\" that decomposes ambiguous cross-modal tasks into stepwise thinking in an alternative chain of modality, progressively enhancing fidelity and controllability. Extensive experiments demonstrate that Archon achieves superior or comparable performance across diverse digital human generation tasks, validating the effectiveness of our unified framework. Project page: https://zju3dv.github.io/archon/.",
+      "authors": [
+        "Chong Bao",
+        "Shichen Liu",
+        "Lijun Yu",
+        "David Futschik",
+        "Stylianos Moschoglou",
+        "Shefali Srivastava",
+        "Ziqian Bai",
+        "Feitong Tan",
+        "Guofeng Zhang",
+        "Zhaopeng Cui",
+        "Sean Fanello",
+        "Yinda Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-05-28T17:53:27+00:00",
+      "link": "https://arxiv.org/pdf/2605.30311v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Unified model for holistic digital human generation including talking videos",
+      "llm_evidence_cn": "面向整体数字人生成的统一模型，包括说话视频",
+      "llm_evidence": "面向整体数字人生成的统一模型，包括说话视频",
+      "canonical_evidence": "面向整体数字人生成的统一模型，包括说话视频",
+      "llm_tldr_en": "Archon is a unified multimodal model that generates digital human avatars across text, audio, motion, and video, using efficient video tokenization to handle high-fidelity talking head synthesis.",
+      "llm_tldr_cn": "Archon是一个统一的预训练多模态模型，专为生成包含文本、音频、动作和视频的整体数字人化身而设计。针对高保真说话视频的令牌爆炸问题，提出了语义视频重参数化方法，在保留细粒度动态的同时实现4倍令牌压缩。实验表明其在多样任务中能生成同步的拟真化身，推动了沉浸式交互的数字人发展。",
+      "llm_tldr": "Archon是一个统一的预训练多模态模型，专为生成包含文本、音频、动作和视频的整体数字人化身而设计。针对高保真说话视频的令牌爆炸问题，提出了语义视频重参数化方法，在保留细粒度动态的同时实现4倍令牌压缩。实验表明其在多样任务中能生成同步的拟真化身，推动了沉浸式交互的数字人发展。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.31294v1",
+      "source": "arxiv",
+      "title": "TokTalk: Expressive Real-time Facial Animation from Audio-LLM Tokens",
+      "abstract": "Recent advances in Audio-LLMs like GPT-4o have ushered in an era of conversational interaction with language models. Conversational avatars however, still seem robotic in facial expression and conversational flow, in part due to sequential stages of speech recognition, text generation, turn-based text response, speech synthesis, and audio driven facial animation. Based on our insight that audio-tokens produced by current Audio-LLMs carry sufficient information to reconstruct a plausible facial performance, we present TokTalk, a system that directly outputs expressive facial animation in real-time from streaming audio-tokens. We construct a novel audio-token to 3D facial motion dataset, on which TokTalk is trained using a Chunk-based Conditional Flow Matching model. A lightweight adaptation strategy allows our trained model to seamlessly connect to any token-based Audio-LLM at minimal computational overhead. Our chunk-based processing further enables parametric trade-off between latency and facial quality, shown through ablation studies. We further show that the real-time performance of TokTalk is comparable in latency to prior art solutions, and significantly favorable (via a perceptual study) in terms of quality, expressivity and control of the 3D facial performance. We showcase TokTalk's flexibility using a chatbot Avatar, a voice-driven user Avatar, and an animation Director's interface, as diverse audio-visual face applications.",
+      "authors": [
+        "Qingcheng Zhao",
+        "Yifang Pan",
+        "Karan Singh"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-05-29T13:31:11+00:00",
+      "link": "https://arxiv.org/pdf/2605.31294v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Audio-token to 3D facial motion dataset for conversational avatar animation",
+      "llm_evidence_cn": "用于对话虚拟人动画的音频Token到3D面部运动数据集",
+      "llm_evidence": "用于对话虚拟人动画的音频Token到3D面部运动数据集",
+      "canonical_evidence": "用于对话虚拟人动画的音频Token到3D面部运动数据集",
+      "llm_tldr_en": "TokTalk directly generates expressive facial animation from streaming Audio-LLM tokens, using a novel audio-token to 3D facial motion dataset and Chunk-based Conditional Flow Matching.",
+      "llm_tldr_cn": "现有对话虚拟人因级联流水线导致面部表情机械。TokTalk提出从流式音频Token直接生成富有表现力的面部动画，构建了一个新的音频Token到3D面部运动数据集，并采用分块条件流匹配训练。实验表明，该方法能实时产生自然生动的面部动画，显著提升了对话虚拟人的真实感与交互体验。",
+      "llm_tldr": "现有对话虚拟人因级联流水线导致面部表情机械。TokTalk提出从流式音频Token直接生成富有表现力的面部动画，构建了一个新的音频Token到3D面部运动数据集，并采用分块条件流匹配训练。实验表明，该方法能实时产生自然生动的面部动画，显著提升了对话虚拟人的真实感与交互体验。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "dataset for talking head animation",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.01031v1",
+      "source": "arxiv",
+      "title": "Temporally-Aligned Evaluation for Audio-Driven Talking Head Generation",
+      "abstract": "Audio-driven talking-head generation has advanced rapidly, yet existing evaluation protocols mainly rely on frame-wise metrics that assume strict temporal correspondence between generated and reference videos. This assumption does not match speech-driven facial motion, which naturally includes slight timing shifts, different speaking speeds, and stylistic variations. As a result, conventional metrics may treat harmless timing differences as quality errors, making it harder to fairly compare methods and understand their trade-offs. In this work, we argue that evaluation of dynamic generative models should be formulated as a sequence-alignment problem rather than independent frame comparison. We introduce a unified sequence-level reformulation that integrates Soft Dynamic Time Warping into established evaluation pipelines. By aligning feature trajectories while preserving temporal order, the proposed framework provides robustness to bounded temporal misalignments without altering the underlying perceptual, identity, or synchronization encoders. We show that frame-wise evaluation can be viewed as a special case under rigid alignment, while sequence-level alignment provides improved stability, lower sensitivity to timing differences, and clearer separation between modeling paradigms. Building on this principled formulation, we conduct a large-scale benchmark of 20 methods across seven datasets spanning canonical, in-the-wild, and style-diverse scenarios under standardized protocols. Extensive experiments show that temporally aligned metrics are more robust to timing differences, provide more consistent results across datasets, and better reveal systematic trade-offs between modeling paradigms, such as synchronization versus realism and expressiveness versus stability.",
+      "authors": [
+        "Zhicheng Zhang",
+        "Lei Wang",
+        "Yu Zhang",
+        "Yongsheng Gao"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG",
+        "cs.MM"
+      ],
+      "published": "2026-05-31T05:44:42+00:00",
+      "link": "https://arxiv.org/pdf/2606.01031v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "proposes sequence-alignment based evaluation protocol for audio-driven talking head generation",
+      "llm_evidence_cn": "提出音频驱动说话头生成的序列对齐评估协议",
+      "llm_evidence": "提出音频驱动说话头生成的序列对齐评估协议",
+      "canonical_evidence": "提出音频驱动说话头生成的序列对齐评估协议",
+      "llm_tldr_en": "Proposes a sequence-alignment based evaluation protocol for audio-driven talking head generation, addressing the mismatch with frame-wise metrics and enabling fairer comparison.",
+      "llm_tldr_cn": "针对现有音频驱动说话头生成评估中帧级指标假设严格时间对应导致的不公平问题，提出将评估形式化为序列对齐问题，引入统一序列级评估框架，实验表明该框架能更好地区分层理性时间偏移与真实质量误差，为生成模型提供了更合理的评估基准。",
+      "llm_tldr": "针对现有音频驱动说话头生成评估中帧级指标假设严格时间对应导致的不公平问题，提出将评估形式化为序列对齐问题，引入统一序列级评估框架，实验表明该框架能更好地区分层理性时间偏移与真实质量误差，为生成模型提供了更合理的评估基准。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "benchmark for talking head synthesis",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.01620v1",
+      "source": "arxiv",
+      "title": "Real-Time Generation of Streamable Talking Portrait Video with Reference-Guided Deep Compression VAEs",
+      "abstract": "Video diffusion models have significantly advanced portrait video generation, yet their high computational demands limit their use in interactive applications. This work presents a framework for streamable talking portrait video generation conditioned on speech audio and reference images. Designed meticulously for streaming scenarios, it features a causal video VAE for deep latent compression and an autoregressive latent denoising model. Our causal VAE integrates a variable number of reference images as guidance, allowing the network to focus on dynamic information rather than static appearance, thereby enhancing compression efficacy and reconstruction quality. Additionally, we extend the residual auto-encoding paradigm to improve spatial-temporal causality handling in our VAE. The generator is based on a Rectified Flow Transformer architecture and produces video latents in a blockwise auto-regressive manner. Our method enables the real-time generation of high-quality talking portrait videos, achieving speeds significantly faster than baseline models. Furthermore, comprehensive experiments demonstrate that it is on par with or even outperforms these large models in realism, vividness, and video quality.",
+      "authors": [
+        "Sicheng Xu",
+        "Yu Deng",
+        "Shoukang Hu",
+        "Yichuan Wang",
+        "Yizhong Zhang",
+        "Zhan Chen",
+        "Jiaolong Yang",
+        "Baining Guo"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-01T03:12:23+00:00",
+      "link": "https://arxiv.org/pdf/2606.01620v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "real-time generation of streamable talking portrait video conditioned on speech audio and reference images",
+      "llm_evidence_cn": "基于语音音频和参考图像的实时流式说话人视频生成",
+      "llm_evidence": "基于语音音频和参考图像的实时流式说话人视频生成",
+      "canonical_evidence": "基于语音音频和参考图像的实时流式说话人视频生成",
+      "llm_tldr_en": "Proposes a real-time talking portrait video framework with causal VAE for deep compression and autoregressive denoising, enabling streamable synthesis from speech audio.",
+      "llm_tldr_cn": "针对视频扩散模型在交互应用中计算需求过高的问题，该工作提出一种实时流式说话人视频生成框架，引入因果视频变分自编码器进行深度压缩，并利用自回归潜变量去噪模型实现从语音和参考图像生成连续视频流。实验表明该方法能高效生成流式说话人视频，在保持高重建质量的同时大幅降低延迟，为交互式数字人应用提供了有效解决方案。",
+      "llm_tldr": "针对视频扩散模型在交互应用中计算需求过高的问题，该工作提出一种实时流式说话人视频生成框架，引入因果视频变分自编码器进行深度压缩，并利用自回归潜变量去噪模型实现从语音和参考图像生成连续视频流。实验表明该方法能高效生成流式说话人视频，在保持高重建质量的同时大幅降低延迟，为交互式数字人应用提供了有效解决方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.02573v1",
+      "source": "arxiv",
+      "title": "HumanNOVA: Photorealistic, Universal and Rapid 3D Human Avatar Modeling from a Single Image",
+      "abstract": "In this paper, we present HumanNOVA, a photorealistic, universal, and rapid model for generating 3D human avatars from a single RGB image. Achieving both photorealism and generalization is challenging due to the scarcity of diverse, high-quality 3D human data. To address this, we build a scalable data generation pipeline that follows two strategies. The first one is to leverage existing rigged assets and animate them with extensive poses from daily life. The second strategy is to utilize existing multi-camera captures of humans and employ fitting to generate more diverse views for training. These two strategies enable us to scale up to 100k assets, significantly enhancing both the quantity and the diversity of data for robust model training. In terms of the architecture, HumanNOVA adopts a feed-forward, token-conditioned avatar modeling framework that allows fast inference in less than one second and requires no test-time optimization. Given an input image and an estimated simplified human mesh (SMPL) without detailed geometry or appearance, the model first encodes both inputs into compact token representations. These tokens then act as conditioning signals and are fused through cross-attention to construct a triplane-based 3D avatar representation. Extensive experiments on multiple benchmarks demonstrate the superiority of our approach, both quantitatively and qualitatively, as well as its robustness under diverse input image conditions. Project page at https://HumanNOVA.github.io .",
+      "authors": [
+        "Hezhen Hu",
+        "Wangbo Zhao",
+        "Lanqing Guo",
+        "Hanwen Jiang",
+        "Jonathan C. Liu",
+        "Zhiwen Fan",
+        "Kai Wang",
+        "Zhangyang Wang",
+        "Georgios Pavlakos"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-01T17:58:11+00:00",
+      "link": "https://arxiv.org/pdf/2606.02573v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Photorealistic 3D human avatar generation from a single image",
+      "llm_evidence_cn": "从单张图像生成逼真3D人物化身",
+      "llm_evidence": "从单张图像生成逼真3D人物化身",
+      "canonical_evidence": "从单张图像生成逼真3D人物化身",
+      "llm_tldr_en": "HumanNOVA generates photorealistic and generalizable 3D human avatars from a single RGB image, using a scalable data pipeline with 100k diverse assets for robust training.",
+      "llm_tldr_cn": "HumanNOVA提出一种从单张RGB图像快速生成逼真通用3D人像模型的方法。针对高质量3D人体数据稀缺的问题，构建可扩展的数据生成流程，利用已有绑定资产和多相机捕获，扩增到十万级多样化数据。模型因此实现了照片级真实感和强泛化能力，大幅推动了单图化身重建的实用性。",
+      "llm_tldr": "HumanNOVA提出一种从单张RGB图像快速生成逼真通用3D人像模型的方法。针对高质量3D人体数据稀缺的问题，构建可扩展的数据生成流程，利用已有绑定资产和多相机捕获，扩增到十万级多样化数据。模型因此实现了照片级真实感和强泛化能力，大幅推动了单图化身重建的实用性。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.03402v2",
+      "source": "arxiv",
+      "title": "Mamba-Enhanced Implicit Motion Learning for Audio-Driven Portrait Animation",
+      "abstract": "Audio-driven human motion video generation aims to synthesize realistic and temporally coherent human animations from a single static image, with applications in talking-head synthesis, co-speech gesture generation, and dynamic presentations. Moving beyond conventional keypoint-based methods that often struggle to capture subtle motion dynamics, We propose a novel implicit-motion framework for generating realistic and temporally coherent human motion videos from a single static image and audio. Our approach uses a two-stage pipeline that decouples motion prediction from rendering. The first stage integrates appearance priors and hierarchical depth cues into a region-aware attention mechanism to model latent motion features. The second stage employs a Mamba-enhanced diffusion model to directly predict these features from audio and the source image, enabling unsupervised learning of fine-grained motion patterns. This decoupled architecture enhances flexibility and efficiency. Trained on a new 380-hour high-quality dataset, our method outperforms prior work across multiple public benchmarks and our collected data in accuracy, naturalness, and temporal coherence, setting a new state-of-the-art.",
+      "authors": [
+        "Xuan Wei",
+        "Jiahui Chen",
+        "Kaiheng Li",
+        "Mingyu Shao",
+        "Qingqi Hong"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-02T09:43:55+00:00",
+      "link": "https://arxiv.org/pdf/2606.03402v2",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "proposes implicit-motion framework for audio-driven portrait animation including talking-head synthesis",
+      "llm_evidence_cn": "提出隐式运动框架用于音频驱动肖像动画及说话头合成",
+      "llm_evidence": "提出隐式运动框架用于音频驱动肖像动画及说话头合成",
+      "canonical_evidence": "提出隐式运动框架用于音频驱动肖像动画及说话头合成",
+      "llm_tldr_en": "Proposes an implicit-motion framework with Mamba enhancement for audio-driven portrait animation, achieving realistic and temporally coherent talking-head synthesis.",
+      "llm_tldr_cn": "针对音频驱动人类视频生成中关键点方法难以捕捉细微运动的问题，提出一种新颖的隐式运动框架，通过两阶段管道解耦运动预测与渲染，利用区域感知注意力机制和Mamba增强，从单张图像和音频生成逼真且时间连贯的肖像动画，在说话头合成等应用中展现出优越性能。",
+      "llm_tldr": "针对音频驱动人类视频生成中关键点方法难以捕捉细微运动的问题，提出一种新颖的隐式运动框架，通过两阶段管道解耦运动预测与渲染，利用区域感知注意力机制和Mamba增强，从单张图像和音频生成逼真且时间连贯的肖像动画，在说话头合成等应用中展现出优越性能。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.05896v1",
+      "source": "arxiv",
+      "title": "Resonant Minds: Closed-Loop Social Avatars with Theory of Mind",
+      "abstract": "Creating lifelike digital humans with genuine social intelligence requires unifying cognitive reasoning and multimodal generation within a coherent framework. Current approaches treat these as separate tasks: Large Language Models excel at dialogue but lack embodied expression, while diffusion-based talking head models achieve visual fidelity but ignore social cognition. To bridge this gap, we propose a closed-loop dual-agent framework integrating perception, social reasoning, and expression into a continuous interaction cycle. The perception module analyzes partners' multimodal behaviors from video, while the social reasoning module infers hidden mental states through Theory of Mind and selects responses via an ensemble mechanism. The expression module then generates emotion-controllable dual-agent videos synthesizing both speaker speech and expression alongside listener reactive behaviors, capturing bidirectional dynamics absent in prior work. We construct a hierarchical Persona-Scenario dataset with psychologically grounded personas and private social goals to support evaluation under information asymmetry. Experiments on this dataset demonstrate competitive or superior performance on both dialogue quality and video generation metrics. Notably, our method surpasses even the full-information Script mode on key dialogue quality dimensions, suggesting that explicit mental state inference under uncertainty can elicit more thoughtful dialogue than unrestricted information access.",
+      "authors": [
+        "Jianxu Shangguan",
+        "Jing Xu",
+        "Hang Ye",
+        "Xiaoxuan Ma",
+        "Yizhou Wang",
+        "Wentao Zhu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-04T09:03:43+00:00",
+      "link": "https://arxiv.org/pdf/2606.05896v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "creates lifelike digital humans with social intelligence via closed-loop avatars and talking head generation",
+      "llm_evidence_cn": "通过闭环化身和说话头生成创建具社会智能的逼真数字人",
+      "llm_evidence": "通过闭环化身和说话头生成创建具社会智能的逼真数字人",
+      "canonical_evidence": "通过闭环化身和说话头生成创建具社会智能的逼真数字人",
+      "llm_tldr_en": "Presents a closed-loop social avatar framework with Theory of Mind, uniting cognitive reasoning and talking head generation to create lifelike digital humans with genuine social intelligence.",
+      "llm_tldr_cn": "提出闭环社交化身框架，集成感知、社会推理与表达模块，利用心智理论推断对话伙伴心理状态，解决了数字人缺少社会智能的问题，实现了认知推理与视觉生成的统一，提升了数字人的社会交互能力。",
+      "llm_tldr": "提出闭环社交化身框架，集成感知、社会推理与表达模块，利用心智理论推断对话伙伴心理状态，解决了数字人缺少社会智能的问题，实现了认知推理与视觉生成的统一，提升了数字人的社会交互能力。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.05912v1",
+      "source": "arxiv",
+      "title": "Self-Learning Expression Deformations for Data-Efficient Gaussian Avatars",
+      "abstract": "Modeling dynamic facial expressions using 3D Gaussian representations remains challenging due to their unstructured nature. Conventional Gaussian avatar pipelines require extensive multiview and sequential expression data, limiting scalability and accessibility. In this work, we introduce Self-Adaptive Gaussian Expression (SAGE), a framework for self-learning expression-induced Gaussian deformations that enables high-fidelity, animatable avatars from minimal input data. Our method jointly optimizes 2D Gaussian surfels and a Signed Distance Field (SDF) to enforce compact, surface-aligned Gaussian distributions, while a self-supervised expression learning phase replaces long training sequences with geometric and appearance consistency constraints. This design allows flexible deployment across multiple reconstruction regimes: in the multiview setting, only a single frame (timestep) is required instead of thousands; in the monocular setting, only head rotations are needed without expression sequences; and in the one-shot setting, no pretraining or priors are necessary. Experiments demonstrate that our approach achieves reconstruction and animation quality comparable to state-of-the-art methods, while reducing data requirements by several orders of magnitude. Our results highlight the potential of self-supervised Gaussian deformation learning as a step toward accessible, data-efficient avatar creation.",
+      "authors": [
+        "Jiahao Yang",
+        "Xiaohang Yang",
+        "Qing Wang",
+        "Yilan Dong",
+        "Gregory Slabaugh",
+        "Shanxin Yuan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-04T09:18:33+00:00",
+      "link": "https://arxiv.org/pdf/2606.05912v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Self-supervised expression learning for data-efficient, animatable 3D Gaussian avatars",
+      "llm_evidence_cn": "自监督表情学习实现数据高效、可驱动的3D高斯虚拟人",
+      "llm_evidence": "自监督表情学习实现数据高效、可驱动的3D高斯虚拟人",
+      "canonical_evidence": "自监督表情学习实现数据高效、可驱动的3D高斯虚拟人",
+      "llm_tldr_en": "SAGE proposes a framework for self-learning expression deformations in 3D Gaussian avatars, requiring minimal input data by enforcing surface alignment and self-supervised constraints.",
+      "llm_tldr_cn": "传统高斯虚拟人流水线需要大量多视角和序列表情数据，限制了可扩展性。SAGE提出自监督表情变形学习框架，通过联合优化2D高斯面元和符号距离函数实现紧凑表达，利用自监督约束替代长时训练，实现从最少输入数据生成高保真可驱动虚拟人。该方法大幅降低了数据需求，拓宽了高斯虚拟人技术的应用场景。",
+      "llm_tldr": "传统高斯虚拟人流水线需要大量多视角和序列表情数据，限制了可扩展性。SAGE提出自监督表情变形学习框架，通过联合优化2D高斯面元和符号距离函数实现紧凑表达，利用自监督约束替代长时训练，实现从最少输入数据生成高保真可驱动虚拟人。该方法大幅降低了数据需求，拓宽了高斯虚拟人技术的应用场景。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": []
+}
