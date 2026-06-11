@@ -1,0 +1,64 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-11T21:17:18.091316+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2606.07935v1",
+      "source": "arxiv",
+      "title": "REACT 2026: The Fourth Multiple Appropriate Facial Reaction Generation Challenge: Personalised MAFRG and Appropriate EEG Reaction Prediction",
+      "abstract": "In dyadic interactions, various human facial reactions could be appropriate for responding to each human speaker behaviour. Following the successful organisation of the REACT 2023, 2024 and 2025 challenge series, a body of generative deep learning (DL) models have been developed for the problem of multiple appropriate facial reaction generation (MAFRG). This year, we propose the REACT 2026 challenge encouraging the development and benchmarking of Machine Learning (ML) models that can generate multiple personalised, appropriate, diverse, realistic and synchronised human-style facial reactions expressed by a specific human listener for responding to each given speaker behaviour. As a key of the challenge, we continuously provide challenge participants with MARS dataset introduced by REACT 2025 but additionally provide individual-level Big-Five personality labels and EEG recordings. This introduces a new one-to-many personalised facial reaction generation setting combining human expressive behavioural, affective and neurophysiological signals, which remains largely unexplored in current dyadic interaction modelling. This paper also presents the challenge guidelines and new baselines on the four proposed sub-challenges: Offline generic and personalised MAFRG as well as Online generic and personalised MAFRG, respectively, which are publicly available at https://github.com/reactmultimodalchallenge/baseline_react2026.",
+      "authors": [
+        "Siyang Song",
+        "Micol Spitale",
+        "Zijian Wu",
+        "Xiangyu Kong",
+        "Cheng Luo",
+        "Cristina Palmero",
+        "German Barquero",
+        "Sergio Escalera",
+        "Michel Valstar",
+        "Mohamed Daoudi",
+        "Fabien Ringeval",
+        "Andrew Howes",
+        "Elisabeth Andre",
+        "Hatice Gunes"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-06T01:52:38+00:00",
+      "link": "https://arxiv.org/pdf/2606.07935v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Facial reaction generation challenge; provides benchmark and dataset for appropriate facial reactions",
+      "llm_evidence_cn": "面部反应生成挑战；提供了合适面部反应的基准和数据集",
+      "llm_evidence": "面部反应生成挑战；提供了合适面部反应的基准和数据集",
+      "canonical_evidence": "面部反应生成挑战；提供了合适面部反应的基准和数据集",
+      "llm_tldr_en": "REACT 2026 challenge benchmarks multiple appropriate facial reaction generation, offering datasets and evaluation protocols for personalized listener reactions in dyadic interactions.",
+      "llm_tldr_cn": "该论文介绍了REACT 2026挑战赛，旨在推动多个合适面部反应生成（MAFRG）的发展。与以往挑战不同，它强调个性化、多样、真实且同步的面部反应。挑战提供了基准数据集和评估方法，鼓励生成模型在二元交互中生成听者的面部反应，对数字人动画和交互式虚拟角色有重要价值。",
+      "llm_tldr": "该论文介绍了REACT 2026挑战赛，旨在推动多个合适面部反应生成（MAFRG）的发展。与以往挑战不同，它强调个性化、多样、真实且同步的面部反应。挑战提供了基准数据集和评估方法，鼓励生成模型在二元交互中生成听者的面部反应，对数字人动画和交互式虚拟角色有重要价值。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "benchmark for talking head synthesis",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": []
+}

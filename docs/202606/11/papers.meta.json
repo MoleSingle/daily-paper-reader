@@ -1,0 +1,24 @@
+{
+  "label": "2026-06-11",
+  "date": "2026-06-11",
+  "generated_at": "2026-06-11T21:18:17",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202606/11/2606.07935v1-react-2026-the-fourth-multiple-appropriate-facial-reaction-generation-challenge-personalised-mafrg-and-appropriate-eeg-reaction-prediction",
+      "section": "deep",
+      "title_en": "REACT 2026: The Fourth Multiple Appropriate Facial Reaction Generation Challenge: Personalised MAFRG and Appropriate EEG Reaction Prediction",
+      "authors": "Siyang Song, Micol Spitale, Zijian Wu, Xiangyu Kong, Cheng Luo, Cristina Palmero, German Barquero, Sergio Escalera, Michel Valstar, Mohamed Daoudi, Fabien Ringeval, Andrew Howes, Elisabeth Andre, Hatice Gunes",
+      "date": "2026-06-06",
+      "pdf": "https://arxiv.org/pdf/2606.07935v1",
+      "score": "8.0",
+      "evidence": "面部反应生成挑战；提供了合适面部反应的基准和数据集",
+      "tldr": "针对二元交互中多适当面部反应生成问题，REACT 2026挑战赛在MARS数据集基础上新增个体大五人格标签和EEG记录，提出离线/在线通用及个性化MAFRG四个子任务。该挑战推动结合行为、情感和神经信号的个性化生成模型发展，并公开基线代码以促进基准测试。",
+      "tags": "query:talking-head",
+      "abstract_en": "In dyadic interactions, various human facial reactions could be appropriate for responding to each human speaker behaviour. Following the successful organisation of the REACT 2023, 2024 and 2025 challenge series, a body of generative deep learning (DL) models have been developed for the problem of multiple appropriate facial reaction generation (MAFRG). This year, we propose the REACT 2026 challenge encouraging the development and benchmarking of Machine Learning (ML) models that can generate multiple personalised, appropriate, diverse, realistic and synchronised human-style facial reactions expressed by a specific human listener for responding to each given speaker behaviour. As a key of the challenge, we continuously provide challenge participants with MARS dataset introduced by REACT 2025 but additionally provide individual-level Big-Five personality labels and EEG recordings. This introduces a new one-to-many personalised facial reaction generation setting combining human expressive behavioural, affective and neurophysiological signals, which remains largely unexplored in current dyadic interaction modelling. This paper also presents the challenge guidelines and new baselines on the four proposed sub-challenges: Offline generic and personalised MAFRG as well as Online generic and personalised MAFRG, respectively, which are publicly available at https://github.com/reactmultimodalchallenge/baseline_react2026.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
