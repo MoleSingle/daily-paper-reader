@@ -1,0 +1,69 @@
+{
+  "label": "2026-06-12",
+  "date": "2026-06-12",
+  "generated_at": "2026-06-12T21:47:10",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202606/12/2606.10550v1-prismavatar-pseudo-multiview-reconstruction-and-subpixel-prism-rendering-for-real-time-stereoscopic-communication",
+      "section": "deep",
+      "title_en": "PrismAvatar: Pseudo-Multiview Reconstruction and Subpixel Prism Rendering for Real-Time Stereoscopic Communication",
+      "authors": "Chufeng Fang, Dongdong Teng, Lilin Liu",
+      "date": "2026-06-09",
+      "pdf": "https://arxiv.org/pdf/2606.10550v1",
+      "score": "9.0",
+      "evidence": "头部头像重建与渲染用于立体通信",
+      "tldr": "实时立体视频通信通常需要专用采集设备或仅提供单视图。PrismAvatar从单目视频重建可控头部化身，利用自然头部转动作为伪多视图监督，优化头发、耳朵等侧视区域。运行时渲染32个虚拟视图，通过亚像素路由编码到4K光栅裸眼显示。实时跟踪器达10.65 FPS，蒸馏驱动提升至38.49 FPS，实现单目捕获与实时自动立体通信。",
+      "tags": "query:talking-head",
+      "abstract_en": "Real-time stereoscopic video communication has long been a goal of immersive telepresence, yet practical systems still require specialized capture rigs or reduce remote users to a single portrait view. We present PrismAvatar, a Gaussian head-avatar system that connects monocular avatar capture with subpixel-encoded glasses-free lenticular display for real-time autostereoscopic communication. From a monocular portrait video, PrismAvatar reconstructs a controllable head avatar and optimizes it for the lateral viewing zones induced by the display. The method uses natural head turns as pseudo-multiview (PMV) supervision to constrain regions that are otherwise weakly observed in monocular training, including hair, ears, jaw contours, and neck boundaries. Reliable side frames are yaw-binned, aligned to virtual cameras, and supervised within a strict head-and-hair domain; contour-aware losses and staged regularization further suppress ghosting, alpha leakage, and depth instability while preserving lateral detail. At runtime, PrismAvatar renders 32 virtual views and encodes them into a 4K lenticular raster with calibrated subpixel-routing masks. The live-tracker prototype sustains 10.65 FPS, and a subject-specific distilled driver raises the same display pipeline to 38.49 FPS.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/12/2606.06928v1-voxcpm2-technical-report",
+      "section": "quick",
+      "title_en": "VoxCPM2 Technical Report",
+      "authors": "Yixuan Zhou, Guoyang Zeng, Xin Liu, Xiang Li, Renjie Yu, Jiancheng Gui, Jiaheng Wu, Ziyang Wang, Xudong Shen, Runchuan Ye, Zhisheng Zhang, Jiuyang Zhou, Bingsong Bai, Weiyue Sun, Mengyuan Deng, Qundong Shi, Zhiyong Wu, Zhiyuan Liu",
+      "date": "2026-06-05",
+      "pdf": "https://arxiv.org/pdf/2606.06928v1",
+      "score": "7.0",
+      "evidence": "多语言语音生成模型可用于音频驱动数字人",
+      "tldr": "多语言可控语音生成面临能力、质量和规模挑战。VoxCPM2基于分层扩散自回归架构，引入非对称AudioVAE编码16kHz重建48kHz实现隐式超分，并通过统一序列组织支持30语言、9方言、语音设计、风格克隆等任务。模型参数2B，训练数据超200万小时。在零样本和指令跟随TTS上达到SOTA，内部30语言测试平均WER 1.68%。开源模型和工具促进社区研究。",
+      "tags": "query:talking-head",
+      "abstract_en": "We present VoxCPM2, a https://info.arxiv.org/help/prep#abstractsfully open-source multilingual and controllable speech generation foundation model that extends the hierarchical diffusion-autoregressive modeling paradigm of VoxCPM. VoxCPM2 advances the framework in three key dimensions: (i) capability, by unifying 30 languages, 9 Chinese dialects, natural-language voice design, style-controllable voice cloning, and high-fidelity continuation cloning within a single backbone; (ii) quality, through an asymmetric AudioVAE that encodes at 16 kHz and reconstructs at 48 kHz, enabling implicit super-resolution with high encoding efficiency; and (iii) scale, by jointly scaling the model to 2B parameters and the training data to over 2 million hours of multilingual speech. To support these diverse capabilities within one model, we introduce a unified sequence organization that expresses all generation modes through different arrangements of the same input building blocks, allowing joint training under a single set of parameters and objective. VoxCPM2 achieves state-of-the-art or competitive performance on public zero-shot and instruction-following TTS benchmarks. On our internal 30-language evaluation set, it attains an average WER of 1.68%. These results demonstrate that hierarchical continuous-latent modeling, without relying on any external discrete speech tokenizer, offers a viable and powerful foundation for large-scale multilingual and controllable speech generation. The model weights, fine-tuning code, and inference tools are publicly released under the Apache 2.0 license to foster community research and development.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/12/2606.07080v1-dotstts-technical-report",
+      "section": "quick",
+      "title_en": "dots.tts Technical Report",
+      "authors": "Shi Lian, Changtao Li, Bohan Li, Hankun Wang, Da Zheng, Junfeng Tian, Yufeng Ma, Colin Zhang, Kai Yu",
+      "date": "2026-06-05",
+      "pdf": "https://arxiv.org/pdf/2606.07080v1",
+      "score": "7.0",
+      "evidence": "用于音频驱动面部动画的语音生成模型",
+      "tldr": "现有连续自回归TTS模型在语音空间结构化和生成稳定性上存在不足。dots.tts通过多目标训练AudioVAE构建语义结构化连续语音空间，采用全历史条件流匹配头保持长程一致性，并引入无奖励自纠正后训练提升鲁棒性。在Seed-TTS-Eval上取得开源SOTA，中文WER 0.94%、英文1.30%、中文hard 6.60%，SIM得分分别为81.0/77.1/79.5。发布完整训练推理代码及预训练、后训练和蒸馏检查点，CFG-aware MeanFlow蒸馏实现输出流式85ms和双流式54ms首包延迟。",
+      "tags": "query:talking-head",
+      "abstract_en": "We present dots.tts, a 2B-parameter continuous autoregressive text-to-speech (TTS) foundation model that models speech in a continuous latent space. Compared with existing continuous autoregressive models, our key innovations are threefold. First, we train an AudioVAE with multiple objectives to build a semantically structured and prediction-friendly continuous speech space. Second, we use full-history conditioning in the flow-matching head to preserve long-range consistency and reduce drift during generation. Third, we apply reward-free self-corrective post-training to the flow-matching head to further improve robustness and acoustic quality. After being trained on a large-scale multilingual corpus, dots.tts achieves the best average performance on Seed-TTS-Eval, with WERs of 0.94%/1.30%/6.60% and SIM scores of 81.0/77.1/79.5 on the zh/en/zh-hard test sets, respectively. Across other benchmarks, dots.tts also consistently demonstrates open-source state-of-the-art performance, exhibiting strong generation stability, voice cloning ability, and emotional expressiveness. For efficient inference, we further apply CFG-aware MeanFlow distillation, enabling low-latency speech generation with first-packet latencies of 85/54 ms in output streaming and dual-streaming modes, respectively. To facilitate reproducible research and practical deployment, we release the training and inference code, together with the pretrained, post-trained, and MeanFlow-distilled checkpoints, under the Apache 2.0 license.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/12/2606.07435v2-the-lipreading-gap-do-vsr-models-perceive-visual-speech-like-human-lipreaders",
+      "section": "quick",
+      "title_en": "The Lipreading Gap: Do VSR Models Perceive Visual Speech Like Human Lipreaders?",
+      "authors": "Rishabh Jain, Naomi Harte",
+      "date": "2026-06-05",
+      "pdf": "https://arxiv.org/pdf/2606.07435v2",
+      "score": "6.0",
+      "evidence": "提供了MaFI唇读数据集和评估框架，可用于说话头像生成的视觉质量评估",
+      "tldr": "视觉语音识别（VSR）模型在基准测试中超越人类，但比较三个VSR系统与人类在MaFI数据集上的表现发现，模型虽然整体准确率更高，却在不同词上成功或失败。文本n-gram基线仅凭初始音素即可接近人类水平。VSR词级错误更依赖训练词频而非视觉信息，在人类最难的视位上提升最大，对视觉清晰度的依赖较弱。这表明VSR主要利用训练数据的语言线索，缺乏人类那种将视觉特征绑定为词语的能力。",
+      "tags": "query:talking-head",
+      "abstract_en": "Visual speech recognition (VSR) models now surpass human lipreaders on benchmarks, but do such gains establish human-like visual speech perception? To explore this, we compare three VSR systems with human baselines on the MaFI word-level lipreading dataset using word, character, phoneme, and viseme-level metrics. Although models achieve higher overall accuracy, they succeed and fail on different words than humans. A text-only n-gram baseline given only a few initial phonemes rivals human lipreading. VSR word-level errors are consistently better explained by training word frequency than by the visual informativeness of words. Viseme accuracies, confusion matrices and human-model correlations further show that models gain most on visemes humans find hardest, and show much weaker dependence on visual clarity. Our work demonstrates that VSR systems rely primarily on language cues from training data rather than visual perception, failing to bind visual features into meaningful words.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

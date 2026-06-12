@@ -1,0 +1,189 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-12T21:43:45.679272+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2606.10550v1",
+      "source": "arxiv",
+      "title": "PrismAvatar: Pseudo-Multiview Reconstruction and Subpixel Prism Rendering for Real-Time Stereoscopic Communication",
+      "abstract": "Real-time stereoscopic video communication has long been a goal of immersive telepresence, yet practical systems still require specialized capture rigs or reduce remote users to a single portrait view. We present PrismAvatar, a Gaussian head-avatar system that connects monocular avatar capture with subpixel-encoded glasses-free lenticular display for real-time autostereoscopic communication. From a monocular portrait video, PrismAvatar reconstructs a controllable head avatar and optimizes it for the lateral viewing zones induced by the display. The method uses natural head turns as pseudo-multiview (PMV) supervision to constrain regions that are otherwise weakly observed in monocular training, including hair, ears, jaw contours, and neck boundaries. Reliable side frames are yaw-binned, aligned to virtual cameras, and supervised within a strict head-and-hair domain; contour-aware losses and staged regularization further suppress ghosting, alpha leakage, and depth instability while preserving lateral detail. At runtime, PrismAvatar renders 32 virtual views and encodes them into a 4K lenticular raster with calibrated subpixel-routing masks. The live-tracker prototype sustains 10.65 FPS, and a subject-specific distilled driver raises the same display pipeline to 38.49 FPS.",
+      "authors": [
+        "Chufeng Fang",
+        "Dongdong Teng",
+        "Lilin Liu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-06-09T08:17:51+00:00",
+      "link": "https://arxiv.org/pdf/2606.10550v1",
+      "tags": [
+        "keyword:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "head avatar reconstruction and rendering for stereoscopic communication",
+      "llm_evidence_cn": "头部头像重建与渲染用于立体通信",
+      "llm_evidence": "头部头像重建与渲染用于立体通信",
+      "canonical_evidence": "头部头像重建与渲染用于立体通信",
+      "llm_tldr_en": "PrismAvatar reconstructs controllable head avatars from monocular video and renders them for real-time autostereoscopic display, using pseudo-multiview supervision and subpixel encoding.",
+      "llm_tldr_cn": "针对实时立体通信中单目头像重建与裸眼立体显示的需求，PrismAvatar提出基于高斯点云的头部头像系统。它从单目视频重建可控头像，利用自然头部转动作为伪多视图监督，并采用亚像素棱镜渲染实现无眼镜裸眼立体显示，在保持实时性的同时显著提升多视角渲染质量。",
+      "llm_tldr": "针对实时立体通信中单目头像重建与裸眼立体显示的需求，PrismAvatar提出基于高斯点云的头部头像系统。它从单目视频重建可控头像，利用自然头部转动作为伪多视图监督，并采用亚像素棱镜渲染实现无眼镜裸眼立体显示，在保持实时性的同时显著提升多视角渲染质量。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.06928v1",
+      "source": "arxiv",
+      "title": "VoxCPM2 Technical Report",
+      "abstract": "We present VoxCPM2, a https://info.arxiv.org/help/prep#abstractsfully open-source multilingual and controllable speech generation foundation model that extends the hierarchical diffusion-autoregressive modeling paradigm of VoxCPM. VoxCPM2 advances the framework in three key dimensions: (i) capability, by unifying 30 languages, 9 Chinese dialects, natural-language voice design, style-controllable voice cloning, and high-fidelity continuation cloning within a single backbone; (ii) quality, through an asymmetric AudioVAE that encodes at 16 kHz and reconstructs at 48 kHz, enabling implicit super-resolution with high encoding efficiency; and (iii) scale, by jointly scaling the model to 2B parameters and the training data to over 2 million hours of multilingual speech. To support these diverse capabilities within one model, we introduce a unified sequence organization that expresses all generation modes through different arrangements of the same input building blocks, allowing joint training under a single set of parameters and objective. VoxCPM2 achieves state-of-the-art or competitive performance on public zero-shot and instruction-following TTS benchmarks. On our internal 30-language evaluation set, it attains an average WER of 1.68%. These results demonstrate that hierarchical continuous-latent modeling, without relying on any external discrete speech tokenizer, offers a viable and powerful foundation for large-scale multilingual and controllable speech generation. The model weights, fine-tuning code, and inference tools are publicly released under the Apache 2.0 license to foster community research and development.",
+      "authors": [
+        "Yixuan Zhou",
+        "Guoyang Zeng",
+        "Xin Liu",
+        "Xiang Li",
+        "Renjie Yu",
+        "Jiancheng Gui",
+        "Jiaheng Wu",
+        "Ziyang Wang",
+        "Xudong Shen",
+        "Runchuan Ye",
+        "Zhisheng Zhang",
+        "Jiuyang Zhou",
+        "Bingsong Bai",
+        "Weiyue Sun",
+        "Mengyuan Deng",
+        "Qundong Shi",
+        "Zhiyong Wu",
+        "Zhiyuan Liu"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "eess.AS"
+      ],
+      "published": "2026-06-05T05:43:15+00:00",
+      "link": "https://arxiv.org/pdf/2606.06928v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "multilingual speech generation model for audio-driven talking heads",
+      "llm_evidence_cn": "多语言语音生成模型可用于音频驱动数字人",
+      "llm_evidence": "多语言语音生成模型可用于音频驱动数字人",
+      "canonical_evidence": "多语言语音生成模型可用于音频驱动数字人",
+      "llm_tldr_en": "VoxCPM2 is a 2B-parameter open-source multilingual speech generation model unifying TTS, voice cloning, and style control, providing a flexible audio source for talking head animation.",
+      "llm_tldr_cn": "本文提出了VoxCPM2，一个完全开源的多语言可控语音生成基础模型。该模型在单一框架内统一了30种语言和9种中文方言的语音生成、自然语言语音设计、风格可控的语音克隆和高保真延续克隆。采用非对称AudioVAE实现16kHz编码与48kHz重建的隐式超分辨率。模型参数达20亿，训练数据超过200万小时，为数字人系统提供了强大的多语言语音生成能力。",
+      "llm_tldr": "本文提出了VoxCPM2，一个完全开源的多语言可控语音生成基础模型。该模型在单一框架内统一了30种语言和9种中文方言的语音生成、自然语言语音设计、风格可控的语音克隆和高保真延续克隆。采用非对称AudioVAE实现16kHz编码与48kHz重建的隐式超分辨率。模型参数达20亿，训练数据超过200万小时，为数字人系统提供了强大的多语言语音生成能力。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.07435v2",
+      "source": "arxiv",
+      "title": "The Lipreading Gap: Do VSR Models Perceive Visual Speech Like Human Lipreaders?",
+      "abstract": "Visual speech recognition (VSR) models now surpass human lipreaders on benchmarks, but do such gains establish human-like visual speech perception? To explore this, we compare three VSR systems with human baselines on the MaFI word-level lipreading dataset using word, character, phoneme, and viseme-level metrics. Although models achieve higher overall accuracy, they succeed and fail on different words than humans. A text-only n-gram baseline given only a few initial phonemes rivals human lipreading. VSR word-level errors are consistently better explained by training word frequency than by the visual informativeness of words. Viseme accuracies, confusion matrices and human-model correlations further show that models gain most on visemes humans find hardest, and show much weaker dependence on visual clarity. Our work demonstrates that VSR systems rely primarily on language cues from training data rather than visual perception, failing to bind visual features into meaningful words.",
+      "authors": [
+        "Rishabh Jain",
+        "Naomi Harte"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.CL"
+      ],
+      "published": "2026-06-05T16:33:30+00:00",
+      "link": "https://arxiv.org/pdf/2606.07435v2",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "benchmark dataset (MaFI) for visual speech perception, relevant for evaluating talking head visual generation",
+      "llm_evidence_cn": "提供了MaFI唇读数据集和评估框架，可用于说话头像生成的视觉质量评估",
+      "llm_evidence": "提供了MaFI唇读数据集和评估框架，可用于说话头像生成的视觉质量评估",
+      "canonical_evidence": "提供了MaFI唇读数据集和评估框架，可用于说话头像生成的视觉质量评估",
+      "llm_tldr_en": "This paper compares VSR models with human lipreaders on the MaFI dataset, revealing differences in error patterns, which is crucial for evaluating the visual realism of talking heads.",
+      "llm_tldr_cn": "视觉语音识别模型虽然在基准上超越人类，但其错误模式与人类不同，且更受训练词频影响。本文通过MaFI数据集进行词、音素、视位等多层级比较，揭示了模型与人类唇读的差异。该工作为评估说话头像生成的视觉真实性提供了重要的基准和洞察，有助于设计更符合人类感知的评价指标。",
+      "llm_tldr": "视觉语音识别模型虽然在基准上超越人类，但其错误模式与人类不同，且更受训练词频影响。本文通过MaFI数据集进行词、音素、视位等多层级比较，揭示了模型与人类唇读的差异。该工作为评估说话头像生成的视觉真实性提供了重要的基准和洞察，有助于设计更符合人类感知的评价指标。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "benchmark datasets for evaluating talking head generation models",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.07080v1",
+      "source": "arxiv",
+      "title": "dots.tts Technical Report",
+      "abstract": "We present dots.tts, a 2B-parameter continuous autoregressive text-to-speech (TTS) foundation model that models speech in a continuous latent space. Compared with existing continuous autoregressive models, our key innovations are threefold. First, we train an AudioVAE with multiple objectives to build a semantically structured and prediction-friendly continuous speech space. Second, we use full-history conditioning in the flow-matching head to preserve long-range consistency and reduce drift during generation. Third, we apply reward-free self-corrective post-training to the flow-matching head to further improve robustness and acoustic quality. After being trained on a large-scale multilingual corpus, dots.tts achieves the best average performance on Seed-TTS-Eval, with WERs of 0.94%/1.30%/6.60% and SIM scores of 81.0/77.1/79.5 on the zh/en/zh-hard test sets, respectively. Across other benchmarks, dots.tts also consistently demonstrates open-source state-of-the-art performance, exhibiting strong generation stability, voice cloning ability, and emotional expressiveness. For efficient inference, we further apply CFG-aware MeanFlow distillation, enabling low-latency speech generation with first-packet latencies of 85/54 ms in output streaming and dual-streaming modes, respectively. To facilitate reproducible research and practical deployment, we release the training and inference code, together with the pretrained, post-trained, and MeanFlow-distilled checkpoints, under the Apache 2.0 license.",
+      "authors": [
+        "Shi Lian",
+        "Changtao Li",
+        "Bohan Li",
+        "Hankun Wang",
+        "Da Zheng",
+        "Junfeng Tian",
+        "Yufeng Ma",
+        "Colin Zhang",
+        "Kai Yu"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.AI",
+        "eess.AS"
+      ],
+      "published": "2026-06-05T09:19:24+00:00",
+      "link": "https://arxiv.org/pdf/2606.07080v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "speech generation model for audio-driven facial animation",
+      "llm_evidence_cn": "用于音频驱动面部动画的语音生成模型",
+      "llm_evidence": "用于音频驱动面部动画的语音生成模型",
+      "canonical_evidence": "用于音频驱动面部动画的语音生成模型",
+      "llm_tldr_en": "dots.tts is a 2B-parameter continuous autoregressive TTS foundation model that achieves state-of-the-art speech quality, providing high-fidelity audio input for audio-driven talking head systems.",
+      "llm_tldr_cn": "本文提出了dots.tts，一个具有20亿参数的连续自回归文本到语音基础模型。通过多目标训练的AudioVAE构建语义结构化的连续语音空间，并采用全历史条件流匹配头与无奖励自纠正后训练，在Seed-TTS-Eval上取得了最佳平均性能。该模型可作为语音驱动面部动画的高质量音频源，助力数字人系统实现更自然的语音生成。",
+      "llm_tldr": "本文提出了dots.tts，一个具有20亿参数的连续自回归文本到语音基础模型。通过多目标训练的AudioVAE构建语义结构化的连续语音空间，并采用全历史条件流匹配头与无奖励自纠正后训练，在Seed-TTS-Eval上取得了最佳平均性能。该模型可作为语音驱动面部动画的高质量音频源，助力数字人系统实现更自然的语音生成。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
