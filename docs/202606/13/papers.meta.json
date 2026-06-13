@@ -1,0 +1,24 @@
+{
+  "label": "2026-06-13",
+  "date": "2026-06-13",
+  "generated_at": "2026-06-13T21:16:23",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202606/13/2606.09186v1-duplexomni-real-time-listening-seeing-thinking-and-speaking-for-full-duplex-interaction",
+      "section": "quick",
+      "title_en": "DuplexOmni: Real-Time Listening, Seeing, Thinking, and Speaking for Full-Duplex Interaction",
+      "authors": "Muye Huang, Lingling Zhang, Xingyu Yu, Lei Shi, Zhanyu Ma, Jun Xu, Jiuchong Gao, Jinghua Hao, Renqing He, Jun Liu",
+      "date": "2026-06-08",
+      "pdf": "https://arxiv.org/pdf/2606.09186v1",
+      "score": "6.0",
+      "evidence": "实时多模态全双工交互，处理视频和音频以生成语音，与数字人虚拟人创建相关",
+      "tldr": "人类交互是全双工、连续、多模态的，但现有全双工模型难以同时实现实时交互与复杂推理。本文提出DuplexOmni，将模型拆分为交互层与思考层异步协作：交互层以端到端方式处理流式音视频输入并实时生成文本和语音响应；思考层作为即插即用模块提供复杂推理与工具使用能力。同时构建Writer-Director流水线生成连续交互训练数据。实验在多个基准上取得强性能，展现出自然的全双工交互能力。该方法有效融合了实时交互与复杂推理。",
+      "tags": "query:talking-head",
+      "abstract_en": "Human interaction is continuous, multimodal, and full-duplex by nature. Although recent omni models have made substantial progress in unified speech, vision, and text modeling, combining seamless real-time interaction with complex reasoning and tool use remains challenging. We present DuplexOmni, a method for real-time multimodal full-duplex interaction. DuplexOmni separates model capability into an interaction layer and a thinking layer, which collaborate asynchronously in parallel. The interaction layer is implemented by the DuplexOmni model, an end-to-end system that processes streaming audio and video inputs while generating text and speech responses in real time. The thinking layer is a pluggable module that provides complex reasoning and tool-use capabilities. To support this method, we further develop a Writer-Director pipeline for constructing continuous-interaction training data. Experiments show that DuplexOmni achieves strong performance on multiple public benchmarks and exhibits natural full-duplex interaction ability.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

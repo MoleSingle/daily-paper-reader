@@ -1,0 +1,61 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-13T21:15:33.576207+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2606.09186v1",
+      "source": "arxiv",
+      "title": "DuplexOmni: Real-Time Listening, Seeing, Thinking, and Speaking for Full-Duplex Interaction",
+      "abstract": "Human interaction is continuous, multimodal, and full-duplex by nature. Although recent omni models have made substantial progress in unified speech, vision, and text modeling, combining seamless real-time interaction with complex reasoning and tool use remains challenging. We present DuplexOmni, a method for real-time multimodal full-duplex interaction. DuplexOmni separates model capability into an interaction layer and a thinking layer, which collaborate asynchronously in parallel. The interaction layer is implemented by the DuplexOmni model, an end-to-end system that processes streaming audio and video inputs while generating text and speech responses in real time. The thinking layer is a pluggable module that provides complex reasoning and tool-use capabilities. To support this method, we further develop a Writer-Director pipeline for constructing continuous-interaction training data. Experiments show that DuplexOmni achieves strong performance on multiple public benchmarks and exhibits natural full-duplex interaction ability.",
+      "authors": [
+        "Muye Huang",
+        "Lingling Zhang",
+        "Xingyu Yu",
+        "Lei Shi",
+        "Zhanyu Ma",
+        "Jun Xu",
+        "Jiuchong Gao",
+        "Jinghua Hao",
+        "Renqing He",
+        "Jun Liu"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-06-08T08:23:02+00:00",
+      "link": "https://arxiv.org/pdf/2606.09186v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "real-time multimodal full-duplex interaction, processes video and audio for speaking, relevant to digital human avatar creation",
+      "llm_evidence_cn": "实时多模态全双工交互，处理视频和音频以生成语音，与数字人虚拟人创建相关",
+      "llm_evidence": "实时多模态全双工交互，处理视频和音频以生成语音，与数字人虚拟人创建相关",
+      "canonical_evidence": "实时多模态全双工交互，处理视频和音频以生成语音，与数字人虚拟人创建相关",
+      "llm_tldr_en": "DuplexOmni enables real-time full-duplex multimodal interaction with separate interaction and thinking layers, processing streaming video and audio to generate speech responses.",
+      "llm_tldr_cn": "该论文提出DuplexOmni，一种用于实时多模态全双工交互的方法。它将模型分为交互层和思考层，异步并行协作：交互层端到端处理流式音视频输入并实时生成文本和语音回复，思考层提供复杂推理。该系统可直接用于数字人虚拟人的实时对话交互，实现听、看、想、说一体化，是创建生动数字人的关键组件。",
+      "llm_tldr": "该论文提出DuplexOmni，一种用于实时多模态全双工交互的方法。它将模型分为交互层和思考层，异步并行协作：交互层端到端处理流式音视频输入并实时生成文本和语音回复，思考层提供复杂推理。该系统可直接用于数字人虚拟人的实时对话交互，实现听、看、想、说一体化，是创建生动数字人的关键组件。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
