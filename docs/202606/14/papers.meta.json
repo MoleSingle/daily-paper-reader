@@ -1,0 +1,54 @@
+{
+  "label": "2026-06-14",
+  "date": "2026-06-14",
+  "generated_at": "2026-06-14T20:24:25",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202606/14/2606.13304v1-refree-towards-realistic-co-speech-video-generation-via-reward-free-rl-and-multilevel-speech-guidance",
+      "section": "deep",
+      "title_en": "ReFree: Towards Realistic Co-Speech Video Generation via Reward-Free RL and Multilevel Speech Guidance",
+      "authors": "Salaheldin Mohamed, M. Hamza Mughal, Rishabh Dabral, Christian Theobalt",
+      "date": "2026-06-11",
+      "pdf": "https://arxiv.org/pdf/2606.13304v1",
+      "score": "9.0",
+      "evidence": "语音驱动的说话角色动画；音频驱动面部动画；说话头视频合成",
+      "tldr": "语音驱动的说话角色动画需要在唇音同步与表情自然度之间取得平衡。现有方法常因权衡导致动画或生硬或不同步。ReFree-S2V基于流匹配与预训练视频生成模型，引入多级语音表示（局部音素与全局韵律），通过可学习层选择器注入Transformer，实现精准口型与丰富表情。同时采用免奖励强化学习，无需人工指标或偏好标注，生成自然头部运动。实验在定量和定性评估中均达最优，为语音动画提供了新范式。",
+      "tags": "query:talking-head",
+      "abstract_en": "Speech-driven talking character animation seeks to generate life-like portrait videos that convey natural conversation behavior, aligning facial motion with spoken audio. Although recent advances in video generation have substantially improved realism in video-based animation, achieving both accurate lip articulation and expressive behavior remains challenging. Existing approaches typically trade off precise phoneme-to-lip synchronization against dynamic facial expressions and head motion, yielding animations that are either accurate yet rigid, or expressive but poorly synchronized. We address this challenge by proposing ReFree-S2V, a flow-matching speech-to-portrait animation framework that builds upon a pretrained video generation model to achieve fine-grained speech articulation and high-level expressive cues in speech-driven portrait animation. This model introduces a multi-level speech representation capturing phonetic and prosodic information at both local and global granularities. These representations are selectively injected into transformer blocks via learnable level selectors, enabling both accurate lip synchronization and natural expressive motion. To achieve natural head movements, we further introduce a novel reward-free reinforcement learning scheme into flow-matching training to discourage perceptually implausible motion without relying on handcrafted synchronization metrics or reward models, or the high cost of human preference annotation. Extensive experiments demonstrate that ReFree-S2V achieves state-of-the-art performance, significantly outperforming existing methods in both quantitative lip-sync accuracy and qualitative human evaluations of naturalness and expressivity.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/14/2606.13630v1-from-tokens-to-faces-investigating-discrete-speech-representations-for-3d-facial-animation",
+      "section": "deep",
+      "title_en": "From Tokens to Faces: Investigating Discrete Speech Representations for 3D Facial Animation",
+      "authors": "Pedro Correa, Olivier Perrotin, Samir Sadok, Paula Costa, Thomas Hueber",
+      "date": "2026-06-11",
+      "pdf": "https://arxiv.org/pdf/2606.13630v1",
+      "score": "8.0",
+      "evidence": "研究离散语音表示用于3D面部动画，比较了自监督、神经编解码和ASR风格的表示",
+      "tldr": "语音驱动的3D面部动画中，语音表示的选择至关重要。SSL特征编码分段和语义线索，神经编解码器优化声学重建，ASR目标产生标签空间。通过客观指标和感知评估比较四种表示，发现编码音素类对准确预测面部动画有益。提出AVTTS流水线，利用离散表示联合解码语音和3D面部运动。",
+      "tags": "query:talking-head",
+      "abstract_en": "The choice of speech representation is critical in speech-driven 3D facial animation. Representations differ in what they encode: SSL features emphasize segmental and semantic cues, neural codecs yield latents optimized for acoustic reconstruction, and ASR-style objectives produce label-based spaces. We evaluate four speech representation families for 3D facial synthesis, comparing their facial reconstruction quality across two facial decoders using objective metrics and a perceptual evaluation. We additionally conduct probing analyses that relate tokenized representations to phonetic units and to articulatory deformations. We found that encoding phonetic classes is beneficial for accurate facial animation prediction on both semantic and label-based representations with comparable facial animation quality. From the latter, we introduce an Audio Visual Text-to-Speech (AVTTS) pipeline that leverages, as a shared space, discrete representations to decode speech and 3D facial motion.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/14/2606.13312v1-magplus-bridging-micro-to-regular-facial-expressions-through-learnable-magnification",
+      "section": "quick",
+      "title_en": "MagPlus: Bridging Micro-to-Regular Facial Expressions through Learnable Magnification",
+      "authors": "Sliman Jammal, Andrei Sharf",
+      "date": "2026-06-11",
+      "pdf": "https://arxiv.org/pdf/2606.13312v1",
+      "score": "7.0",
+      "evidence": "微表情放大用于面部动画",
+      "tldr": "微表情数据稀缺且运动微弱，现有生成方法质量低、泛化差。本文提出MagPlus，通过学习放大微表情到常规表情范围，利用标准表情动画模型处理，再通过DeMagPlus恢复强度。在四个未训练微表情的骨干模型上，该方法生成更真实的微表情运动，无需重训练模型。",
+      "tags": "query:talking-head",
+      "abstract_en": "Facial micro-expressions are subtle and short-lived facial movements that provide important cues about genuine human emotions. However, modeling and generating them remains difficult because annotated micro-expression data is limited and the underlying facial motions are extremely weak. Existing micro-expression generation methods therefore often suffer from limited quality, weak robustness, and poor generalization. We propose MagPlus, a transferable micro-expression processing pipeline that connects micro-expression analysis with standard facial animation models. Instead of training a dedicated generator from scratch, MagPlus learns to magnify subtle facial motions into the range of regular facial expressions, transforming micro-expressions into signals that are compatible with existing facial expression processing models. The magnified sequence is then used by a standard facial expression model for tasks such as transfer and synthesis. A complementary DeMagPlus module then restores the generated motion back to realistic micro-expression intensity levels while preserving the synthesized dynamics. We evaluate the framework using four facial animation models: FOMM, FSRT, MetaPortrait, and EmoPortraits. None of these models are trained on micro-expression data. Experiments show that MagPlus-DeMagPlus enables pretrained macro-expression models to generate more realistic micro-expression motion without retraining the backbones.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
