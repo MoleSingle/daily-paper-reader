@@ -1,0 +1,114 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-15T21:51:42.178146+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2606.13872v1",
+      "source": "arxiv",
+      "title": "Avatar V: Scaling Video-Reference Avatar Video Generation",
+      "abstract": "Generating avatar videos that are not merely visually similar to a target individual but behaviorally recognizable, faithfully reproducing their talking rhythm, gestural tendencies, and expression dynamics, remains an open challenge. Existing methods predominantly condition on single static images, which provide insufficient identity information and cannot capture dynamic motion traits, while standard pixel-level objectives underserve the perceptually critical facial regions that determine avatar fidelity. We present Avatar V, a production-scale framework that addresses these limitations through video-reference-conditioned identity modeling. Rather than compressing identity into fixed-size embeddings, the model conditions directly on the full token sequence of a reference video, learning to reproduce both static identity attributes (facial geometry, skin texture) and dynamic behavioral patterns (talking rhythm, micro-expressions) through attention over the reference context. We introduce Sparse Reference Attention, an asymmetric mechanism achieving linear-complexity conditioning on arbitrarily long references; a motion representation stream enabling closed-loop talking style transfer; and an identity-aware super-resolution refiner inheriting the full reference conditioning. These are supported by a data engine curating 100M+ training clips from 50M raw videos, and a five-stage training pipeline with flow matching pre-training, personality fine-tuning, two-phase distillation (>10x acceleration), and RLHF alignment, deployed across thousands of GPUs. Avatar V generates 1080p videos of unlimited duration, achieving state-of-the-art identity preservation, lip synchronization, and generation quality on our cross-scene benchmark, consistently outperforming leading systems including Seedance 2.0, Kling O3 Pro, Veo 3.1, and OmniHuman 1.5 in both automated metrics and human evaluation.",
+      "authors": [
+        "Benjamin Liang",
+        "Ce Chen",
+        "Desmond Lin",
+        "Ivan Somov",
+        "Jiajun Zhao",
+        "Jiewei Yuan",
+        "Jingfeng Zhang",
+        "Junhao Huang",
+        "Nik Nolte",
+        "Pedram Haqiqi",
+        "Penghan Wang",
+        "Rong Yan",
+        "Rui Zhang",
+        "Sam Prokopchuk",
+        "Sivan Wang",
+        "Viktor Goriachko",
+        "Yi Ren",
+        "Yuanming Li",
+        "Yutao Chen",
+        "Zhenhui Ye",
+        "Zhibin Hong",
+        "Zilong Nie",
+        "Zujin Guo"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-11T19:55:39+00:00",
+      "link": "https://arxiv.org/pdf/2606.13872v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "video-reference avatar video generation for talking heads",
+      "llm_evidence_cn": "基于视频参考的说话人头像视频生成",
+      "llm_evidence": "基于视频参考的说话人头像视频生成",
+      "canonical_evidence": "基于视频参考的说话人头像视频生成",
+      "llm_tldr_en": "Avatar V generates behaviorally recognizable avatar videos by conditioning on full video-reference token sequences, capturing talking rhythm and expression dynamics for realistic talking heads.",
+      "llm_tldr_cn": "现有说话人视频生成多依赖单张静态图片，无法捕捉动态行为特征。Avatar V提出视频参考条件建模，直接利用参考视频的完整token序列作为条件，生成不仅视觉相似而且行为可识别的说话头像视频，重现说话节奏、手势倾向和表情动态，实现了更高保真度的数字人创建。",
+      "llm_tldr": "现有说话人视频生成多依赖单张静态图片，无法捕捉动态行为特征。Avatar V提出视频参考条件建模，直接利用参考视频的完整token序列作为条件，生成不仅视觉相似而且行为可识别的说话头像视频，重现说话节奏、手势倾向和表情动态，实现了更高保真度的数字人创建。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.13655v1",
+      "source": "arxiv",
+      "title": "Flex4DHuman: Flexible Multi-view Video Diffusion for 4D Human Reconstruction",
+      "abstract": "We present Flex4DHuman, a multi-view video diffusion model that transforms a monocular or sparse multi-view video of a dynamic subject into synchronized dense multi-view videos using only relative camera-pose conditioning. Unlike prior human-centric methods that rely on skeletons, depth maps, normals, or rendered target-view geometry, Flex4DHuman requires no explicit geometry priors and instead conditions generation through relative camera-pose positional encoding. The generated videos can be directly ingested by downstream reconstruction pipelines to create dynamic 4D Gaussian splats. Built on the Wan 2.1 1.3B text-to-video model, Flex4DHuman preserves the backbone architecture and encodes camera and view information through a five-axis positional encoding that extends spatio-temporal RoPE with view indices and continuous SE(3) relative camera geometry. A three-stage curriculum progressively trains the model for pose following, flexible reference-to-target view generation, and temporal rollout. To support temporal rollout, we train with clean historical target-view tokens. We also add multi-view captions to enable test-time text control. Combined with an off-the-shelf 4D Gaussian Splatting stage, our framework lifts monocular static-camera videos into dynamic 4D Gaussian splats. Experiments on DNA-Rendering and ActorsHQ show that Flex4DHuman surpasses prior state-of-the-art methods, while the same formulation generalizes to animal categories after mixed human-animal training. These capabilities make Flex4DHuman a practical step toward scalable 4D content creation from casual monocular videos for simulation, gaming, AR/VR, and video re-shooting.",
+      "authors": [
+        "Jen-Hao Cheng",
+        "Yipeng Wang",
+        "Hao Zhang",
+        "Gengshan Yang",
+        "Jenq-Neng Hwang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-06-11T17:54:05+00:00",
+      "link": "https://arxiv.org/pdf/2606.13655v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "4D human reconstruction for digital avatar creation",
+      "llm_evidence_cn": "4D人体重建用于数字人创建",
+      "llm_evidence": "4D人体重建用于数字人创建",
+      "canonical_evidence": "4D人体重建用于数字人创建",
+      "llm_tldr_en": "Flex4DHuman generates multi-view videos from monocular/sparse input for dynamic 4D human reconstruction, enabling avatar creation without explicit geometry priors.",
+      "llm_tldr_cn": "现有动态人体重建方法依赖骨架或深度图等几何先验，Flex4DHuman提出无需几何先验的多视角视频扩散模型，仅通过相对相机姿态条件生成同步多视角视频，可直接用于下游4D高斯溅射重建，为数字人创建提供了灵活的新途径。",
+      "llm_tldr": "现有动态人体重建方法依赖骨架或深度图等几何先验，Flex4DHuman提出无需几何先验的多视角视频扩散模型，仅通过相对相机姿态条件生成同步多视角视频，可直接用于下游4D高斯溅射重建，为数字人创建提供了灵活的新途径。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
