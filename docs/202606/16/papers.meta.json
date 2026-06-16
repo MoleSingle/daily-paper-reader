@@ -1,0 +1,54 @@
+{
+  "label": "2026-06-16",
+  "date": "2026-06-16",
+  "generated_at": "2026-06-16T22:42:56",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202606/16/2606.15659v1-spatialavatar-0-high-quality-4d-head-avatar-with-multi-stage-reconstruction",
+      "section": "deep",
+      "title_en": "SpatialAvatar-0: High-Quality 4D Head Avatar with Multi-Stage Reconstruction",
+      "authors": "Yiran Wang, Zeyu Zhang, Yuanming Li, Ziming Wang, Yang Zhao",
+      "date": "2026-06-14",
+      "pdf": "https://arxiv.org/pdf/2606.15659v1",
+      "score": "10.0",
+      "evidence": "从肖像生成高质量4D头部数字人",
+      "tldr": "高质量4D头部头像需要可泛化前馈与个性化细化。SpatialAvatar-0基于共享FLAME网格绑定高斯表示，提出参数无关的K源均值池生成器与两阶段训练，随后进行10K迭代布局保持细化，以反尖峰正则化替代自适应致密化。在跨域零样本上PSNR提升1.5dB，在单目基准上以60倍速度优势超越SOTA，桥接了两种范式。",
+      "tags": "query:talking-head",
+      "abstract_en": "High-quality 4D head avatars from one or a few source portraits are central to telepresence, AR/VR, and digital-human interaction. 3D Gaussian Splatting (3DGS) has emerged as the dominant representation, with two complementary regimes (generalizable feed-forward predictors and per-subject refiners) maturing in parallel. However, existing feed-forward predictors are trained on a single dataset family with a hard-coded source count, inheriting the corresponding domain bias. Per-subject refiners require 300K--600K iterations and rely on adaptive densification that destroys upstream Gaussian layouts, preventing the two regimes from sharing a representation end-to-end. To bridge both regimes we propose SpatialAvatar-0 on a shared FLAME-mesh-bound Gaussian representation: a feed-forward generator with a parameter-free K-source mean-pool and a monocular-temporal to multi-view-spatial two-phase schedule that anchors against identity-prior collapse onto the smaller multi-view set. We further introduce a 10K-iter layout-preserving per-subject refinement loop that freezes the FLAME-binding and Gaussian count and replaces densification with a three-component anti-spike regularization. On VFHQ/HDTF cross-domain zero-shot we surpass the in-domain leader GAGAvatar by +1.5 dB PSNR despite never training on either test domain, and on the SplattingAvatar monocular benchmark we lead every reported metric, surpassing the 300K-iter GeoAvatar by +1.3 dB PSNR at up to 60x shorter per-subject schedule than common SOTA baselines. Website: https://spatialwalk.github.io/SpatialAvatar-0.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/16/2606.15848v1-emozone-talker-regional-semantic-control-of-audio-driven-3dgs-talking-heads-via-facial-action-units",
+      "section": "deep",
+      "title_en": "EmoZone-Talker: Regional Semantic Control of Audio-Driven 3DGS Talking Heads via Facial Action Units",
+      "authors": "Tingting Chen, Shaojun Wang, Huaye Zhang, Diqiong Jiang, Chenglizhao Chen",
+      "date": "2026-06-14",
+      "pdf": "https://arxiv.org/pdf/2606.15848v1",
+      "score": "9.0",
+      "evidence": "音频驱动面部动画，显式表情控制",
+      "tldr": "现有基于3DGS的说话头合成方法依赖隐式多模态融合，导致语音驱动与表情信号的空间纠缠和时间不稳定，难以实现精细编辑。EmoZone-Talker提出区域语义控制框架，通过Synergy Zones with Prioritized Attention Bias显式解耦模态贡献，并利用Channel-Independent Temporal AU Encoder建模时间连贯的AU动态，将面部动画重构为结构化时空协调问题。实验表明，该方法在提升表情可控性和真实性的同时，尤其在上部面部精度和时间连贯性上取得显著增益，并保持高渲染质量和唇同步。代码将开源。",
+      "tags": "query:talking-head",
+      "abstract_en": "3D Gaussian Splatting (3DGS) has shown strong potential for high-fidelity talking head synthesis. However, enabling fine-grained, interpretable, and editable facial expression control remains fundamentally challenging due to intrinsic conflicts between speech-driven facial dynamics and explicit expression signals. Existing methods rely on implicit multimodal fusion, leading to spatial entanglement and temporal instability. We present EmoZone-Talker, a novel framework that reformulates audio-driven facial animation as a structured spatial-temporal coordination problem under cross-modal conflicts. Our approach introduces an explicit spatial disentanglement and temporal dynamics modeling of facial motion. Specifically, we propose Synergy Zones with Prioritized Attention Bias (SZ-PAB) to explicitly decouple modality contributions via region-wise constraints guided by anatomical priors, and a Channel-Independent Temporal AU Encoder (CIT-AE) to model temporally coherent AU dynamics. By integrating these representations into 3D Gaussian deformation, EmoZone-Talker enables precise and interpretable control over facial expressions. Extensive experiments demonstrate that our method improves expression controllability and realism, with notable gains in upper-face accuracy and temporal coherence, while preserving high rendering quality and accurate lip synchronization. Code will be publicly released to facilitate reproducibility and further research.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/16/2606.16327v1-artboost-synthetic-articulatory-data-augmentation-for-acoustic-to-articulatory-inversion",
+      "section": "quick",
+      "title_en": "ArtBoost: Synthetic Articulatory Data Augmentation for Acoustic-to-Articulatory Inversion",
+      "authors": "Hyung Kyu Kim, Byungchan Hwang, Hak Gu Kim",
+      "date": "2026-06-15",
+      "pdf": "https://arxiv.org/pdf/2606.16327v1",
+      "score": "7.0",
+      "evidence": "利用语音-网格面部动画数据集增强声学-发音逆映射",
+      "tldr": "现有声学-发音反演（AAI）模型依赖昂贵的电磁发音仪（EMA）数据，规模有限。ArtBoost从语音驱动3D面部动画数据中提取可见面部锚点的伪发音轨迹，用于预训练AAI模型，再在少量真实EMA数据上微调。该方法在PCC和RMSE上取得一致改进，伪轨迹反映有意义的可见发音动态，且可稳定提升多种AAI架构性能，提供了可扩展的发音监督源。",
+      "tags": "query:talking-head",
+      "abstract_en": "Recent acoustic-to-articulatory inversion (AAI) models rely on electromagnetic articulography (EMA) data, which are costly and limited in scale. To address this limitation, we propose \\textit{ArtBoost}, a novel data augmentation strategy that leverages large-scale speech--mesh datasets originally developed for speech-driven 3D facial animation to improve AAI under limited EMA supervision. \\textit{ArtBoost} extracts pseudo articulatory trajectories from visible facial anchors and uses them for pre-training before fine-tuning on real EMA data. Experiments show consistent improvements in PCC and RMSE. Trajectory analyses confirm that the pseudo articulatory signals reflect physically meaningful visible articulatory dynamics. Additional evaluations across different AAI architectures demonstrate stable performance gains, indicating that \\textit{ArtBoost} can be integrated into diverse AAI models. These results suggest that speech--mesh data provide an effective and scalable source of articulatory supervision for AAI. Project page: https://cau-irislab.github.io/Interspeech26-ArtBoost/",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
