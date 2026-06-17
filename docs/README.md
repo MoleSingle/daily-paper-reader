@@ -6,31 +6,31 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-16
-- 运行时间：2026-06-16 22:42:50 UTC
+- 最新运行日期：2026-06-17
+- 运行时间：2026-06-17 22:04:28 UTC
 - 运行状态：成功
 - 本次总论文数：3
 - 精读区：2
 - 速读区：1
 
 ### 今日简报（AI）
-今日精读两篇高质量头像生成论文，速读一篇语音转发音数据增强研究。
-最值得关注的方向：高精度4D头部化身重建（SpatialAvatar-0）与基于面部动作单元的音频驱动说话头（EmoZone-Talker）。
-普通读者可关注这些技术在数字人、VR社交中的应用进展，后续可留意其提升实时性与跨语言表现。
-- 详情：[/202606/16/README](/202606/16/README)
+1) 今日精读两篇高分论文：实时立体通信的伪多视图重建与动态头部编辑框架，并速读了一篇可修正的文本转语音方法。  
+2) 最值得关注的是LentiAvatar（9.0分）实现的亚像素棱镜渲染立体通信，以及Edit3DGS（8.0分）指令驱动的动态头部编辑。  
+3) 建议优先跟进实时立体通信与动态3D编辑的交叉应用，或尝试可逆CTMC推理在语音合成中的改进思路。
+- 详情：[/202606/17/README](/202606/17/README)
 
 ### 精读区论文标签
-1. [SpatialAvatar-0: High-Quality 4D Head Avatar with Multi-Stage Reconstruction](/202606/16/2606.15659v1-spatialavatar-0-high-quality-4d-head-avatar-with-multi-stage-reconstruction)  
-   标签：评分：10.0/10、query:talking-head
-   evidence：从肖像生成高质量4D头部数字人
-2. [EmoZone-Talker: Regional Semantic Control of Audio-Driven 3DGS Talking Heads via Facial Action Units](/202606/16/2606.15848v1-emozone-talker-regional-semantic-control-of-audio-driven-3dgs-talking-heads-via-facial-action-units)  
+1. [LentiAvatar: Pseudo-Multiview Reconstruction and Subpixel Prism Rendering for Real-Time Stereoscopic Communication](/202606/17/2606.10550v2-lentiavatar-pseudo-multiview-reconstruction-and-subpixel-prism-rendering-for-real-time-stereoscopic-communication)  
    标签：评分：9.0/10、query:talking-head
-   evidence：音频驱动面部动画，显式表情控制
+   evidence：从单目视频重建可控头部数字人
+2. [Edit3DGS: Unified Framework for Dynamic Head Editing via 2D Instruction-Guided Diffusion and 3D Gaussian Splatting](/202606/17/2606.17432v1-edit3dgs-unified-framework-for-dynamic-head-editing-via-2d-instruction-guided-diffusion-and-3d-gaussian-splatting)  
+   标签：评分：8.0/10、query:talking-head
+   evidence：动态3D头部编辑用于化身创建
 
 ### 速读区论文标签
-1. [ArtBoost: Synthetic Articulatory Data Augmentation for Acoustic-to-Articulatory Inversion](/202606/16/2606.16327v1-artboost-synthetic-articulatory-data-augmentation-for-acoustic-to-articulatory-inversion)  
+1. [Mask, Sample, Revise: A Revisable CTMC Inference Stack for Guided Discrete Flow Matching Text-to-Speech](/202606/17/2606.13989v1-mask-sample-revise-a-revisable-ctmc-inference-stack-for-guided-discrete-flow-matching-text-to-speech)  
    标签：评分：7.0/10、query:talking-head
-   evidence：利用语音-网格面部动画数据集增强声学-发音逆映射
+   evidence：改进的文本到语音合成方法，可为音频驱动面部动画生成高质量语音
 
 
 <div class="dpr-home-promo-card">

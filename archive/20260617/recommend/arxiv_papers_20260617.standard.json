@@ -1,0 +1,132 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-17T22:02:27.514922+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2606.10550v2",
+      "source": "arxiv",
+      "title": "LentiAvatar: Pseudo-Multiview Reconstruction and Subpixel Prism Rendering for Real-Time Stereoscopic Communication",
+      "abstract": "Real-time stereoscopic video communication has long been a goal of immersive telepresence, yet practical systems still require specialized capture rigs or reduce remote users to a single portrait view. We present LentiAvatar, a Gaussian head-avatar system that connects monocular avatar capture with subpixel-encoded glasses-free lenticular display for real-time autostereoscopic communication. From a monocular portrait video, LentiAvatar reconstructs a controllable head avatar and optimizes it for the lateral viewing zones induced by the display. The method uses natural head turns as pseudo-multiview (PMV) supervision to constrain regions that are otherwise weakly observed in monocular training, including hair, ears, jaw contours, and neck boundaries. Reliable side frames are yaw-binned, aligned to virtual cameras, and supervised within a strict head-and-hair domain; contour-aware losses and staged regularization further suppress ghosting, alpha leakage, and depth instability while preserving lateral detail. At runtime, LentiAvatar renders 32 virtual views and encodes them into a 4K lenticular raster with calibrated subpixel-routing masks. The live-tracker prototype sustains 10.65 FPS, and a subject-specific distilled driver raises the same display pipeline to 38.49 FPS.",
+      "authors": [
+        "Chufeng Fang",
+        "Dongdong Teng",
+        "Lilin Liu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-06-09T08:17:51+00:00",
+      "link": "https://arxiv.org/pdf/2606.10550v2",
+      "tags": [
+        "keyword:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "digital human avatar creation from monocular video",
+      "llm_evidence_cn": "从单目视频重建可控头部数字人",
+      "llm_evidence": "从单目视频重建可控头部数字人",
+      "canonical_evidence": "从单目视频重建可控头部数字人",
+      "llm_tldr_en": "LentiAvatar reconstructs a controllable 3D Gaussian head avatar from monocular video for real-time autostereoscopic display, leveraging pseudo-multiview from natural head turns.",
+      "llm_tldr_cn": "针对实时立体通信中数字人创建困难的问题，LentiAvatar提出一种基于3D高斯表示的头部头像系统，仅需单目视频即可重建可控制的头部模型，并利用自然头部转动作为伪多视图监督优化弱观测区域，最终支持裸眼3D显示。该方法在保持高质量渲染的同时实现了实时性能，为沉浸式通信提供了实用方案。",
+      "llm_tldr": "针对实时立体通信中数字人创建困难的问题，LentiAvatar提出一种基于3D高斯表示的头部头像系统，仅需单目视频即可重建可控制的头部模型，并利用自然头部转动作为伪多视图监督优化弱观测区域，最终支持裸眼3D显示。该方法在保持高质量渲染的同时实现了实时性能，为沉浸式通信提供了实用方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.17432v1",
+      "source": "arxiv",
+      "title": "Edit3DGS: Unified Framework for Dynamic Head Editing via 2D Instruction-Guided Diffusion and 3D Gaussian Splatting",
+      "abstract": "We present Edit3DGS, a unified framework for dynamic 3D head editing that integrates 2D instruction-guided diffusion with 3D Gaussian splatting. Unlike prior approaches that separately address frame-based edits or static 3D reconstruction, our method couples semantic controllability in the image domain with photorealistic, temporally consistent 3D representations. Given an input video, editable facial regions are masked and modified using a text-conditioned diffusion model to support fine-grained operations such as expression transformation, attribute modification, and appearance refinement. The edited frames are then aggregated through 3D Gaussian splatting to produce a coherent, high-fidelity avatar that preserves both identity and motion dynamics. To enforce consistency, Edit3DGS incorporates multi-view batch editing and lightweight inpainting strategies that recover lost expressions across timesteps. Experimental results demonstrate that our framework enables controllable, artifact-free head editing with smooth temporal transitions, offering practical applications in virtual avatars, immersive communication, film production, and interactive media.",
+      "authors": [
+        "Duy-Dat Tran",
+        "Trung-Nghia Le"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.CV"
+      ],
+      "published": "2026-06-16T02:26:20+00:00",
+      "link": "https://arxiv.org/pdf/2606.17432v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "dynamic 3D head editing for avatar creation",
+      "llm_evidence_cn": "动态3D头部编辑用于化身创建",
+      "llm_evidence": "动态3D头部编辑用于化身创建",
+      "canonical_evidence": "动态3D头部编辑用于化身创建",
+      "llm_tldr_en": "Edit3DGS integrates 2D diffusion with 3D Gaussian splatting for instruction-guided editing of dynamic head avatars, enabling expression and attribute modifications with temporal consistency.",
+      "llm_tldr_cn": "本文提出Edit3DGS，一个统一框架，结合2D指令引导扩散和3D高斯溅射进行动态头部编辑。通过文本条件扩散模型修改面部区域，再通过3D高斯溅射生成连贯高保真化身，支持表情变换、属性修改等操作，实现时间一致的动态化身编辑。",
+      "llm_tldr": "本文提出Edit3DGS，一个统一框架，结合2D指令引导扩散和3D高斯溅射进行动态头部编辑。通过文本条件扩散模型修改面部区域，再通过3D高斯溅射生成连贯高保真化身，支持表情变换、属性修改等操作，实现时间一致的动态化身编辑。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.13989v1",
+      "source": "arxiv",
+      "title": "Mask, Sample, Revise: A Revisable CTMC Inference Stack for Guided Discrete Flow Matching Text-to-Speech",
+      "abstract": "Recent alignment-free non-autoregressive (NAR) text-to-speech (TTS) models formulate synthesis as a conditional infilling task, bypassing explicit duration predictors and external aligners. When speech is represented with neural codec tokens, the infilling problem becomes discrete, making Discrete Flow Matching (DFM), a Continuous-Time Markov Chain (CTMC) framework for discrete generation, a natural fit. However, inference-time control for stable low-step conditional infilling remains underexplored. We propose Mask, Sample, Revise, an inference-time CTMC stack for alignment-free DFM-TTS. The stack combines predictor-free guidance to strengthen text conditioning, prompt-matched conditional coupling to align the probability path with the acoustic prompt, and SC-ReMask, a schedule-constrained remasking mechanism that introduces token-to-mask transitions so early de-masking decisions can be revised. These components require no post-hoc fine-tuning and operate in a single tau-leaping sampler. Controlled ablations show that this stack improves intelligibility and robustness in the low-NFE prompted setting, outperforming unguided and guidance-only samplers with substantially more steps.",
+      "authors": [
+        "Alef Iury Siqueira Ferreira",
+        "Lucas Rafael Stefanel Gris",
+        "Luiz Fernando de Araújo Vidal",
+        "Frederico Santos de Oliveira",
+        "Christopher Dane Shulby",
+        "Anderson da Silva Soares",
+        "Arlindo Rodrigues Galvão Filho"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.AI"
+      ],
+      "published": "2026-06-12T00:13:35+00:00",
+      "link": "https://arxiv.org/pdf/2606.13989v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "improved TTS method for generating speech audio to drive facial animation",
+      "llm_evidence_cn": "改进的文本到语音合成方法，可为音频驱动面部动画生成高质量语音",
+      "llm_evidence": "改进的文本到语音合成方法，可为音频驱动面部动画生成高质量语音",
+      "canonical_evidence": "改进的文本到语音合成方法，可为音频驱动面部动画生成高质量语音",
+      "llm_tldr_en": "Proposes Mask, Sample, Revise inference stack for discrete flow matching TTS; enhances audio quality for downstream talking head applications.",
+      "llm_tldr_cn": "本文针对非自回归文本到语音合成中的条件填充问题，提出了一种推理时控制方法Mask, Sample, Revise，利用离散流匹配框架提升语音生成质量。该方法无需外部对齐器，通过预测器自由引导和条件耦合机制增强了文本条件的控制力。实验表明该方法在合成自然度和稳定性上优于基线，可直接为数字人语音驱动提供高质量的音频生成模块。",
+      "llm_tldr": "本文针对非自回归文本到语音合成中的条件填充问题，提出了一种推理时控制方法Mask, Sample, Revise，利用离散流匹配框架提升语音生成质量。该方法无需外部对齐器，通过预测器自由引导和条件耦合机制增强了文本条件的控制力。实验表明该方法在合成自然度和稳定性上优于基线，可直接为数字人语音驱动提供高质量的音频生成模块。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
