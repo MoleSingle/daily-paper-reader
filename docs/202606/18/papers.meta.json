@@ -1,0 +1,24 @@
+{
+  "label": "2026-06-18",
+  "date": "2026-06-18",
+  "generated_at": "2026-06-18T22:19:21",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202606/18/2606.15966v1-vephand-view-efficient-photometric-hand-performance-capture-at-scale",
+      "section": "deep",
+      "title_en": "VEPHand: View-Efficient Photometric Hand Performance Capture at Scale",
+      "authors": "Zhengyang Shen, Kai-Hung Chang, Erroll Wood, Deying Kong, Bo Peng, Timo Bolkart, Jinlong Yang, Bowen Zhao, Danhang Tang, Sasa Petrovic, Emre Aksan, Jérémy Riviere, Vassilis Choutas, Delio Vicini, Jay Busch, Shichen Liu, Zhe Cao, Hugh Liu, JingJing Shen, Jonathan Taylor, Mingsong Dou",
+      "date": "2026-06-14",
+      "pdf": "https://arxiv.org/pdf/2606.15966v1",
+      "score": "8.0",
+      "evidence": "用于数字人创建的手部性能捕捉",
+      "tldr": "针对多视角手部捕捉中视图密度有限导致的重建歧义和配准困难，本文提出VEPHand端到端管道。通过无掩码神经方法结合场景参数化和密度正则化，从约20个未掩码视角鲁棒提取手部几何与外观；并采用物理启发框架，在个性化模型规范四面体网格内优化体积偏移和姿态，捕捉非线性皮肤变形及自接触。在超12,000序列数据集上实现了高保真重建与精确配准，为下游任务提供大规模合成数据，方法在单手、双手及手物交互场景均达SOTA。",
+      "tags": "query:talking-head",
+      "abstract_en": "Robust, high-fidelity 3D hand capture, while fundamental to digital human creation, remains challenging with practical multi-view systems that balance rich photometry with the geometric ambiguities of reconstruction arising from limited viewpoint density. This paper presents an end-to-end pipeline for dynamic hand performance capture and registration, specifically designed for view-efficient setups ($\\sim$20 views). We address key challenges with two primary innovations. First, to overcome reconstruction difficulties like limited view overlap and background clutter, our mask-free neural method robustly extracts detailed hand geometry and appearance from unmasked images using scene parameterization and scenario-specific density regularization. Second, addressing registration challenges such as accurately capturing non-linear skin deformations and ensuring plausible results during severe self-contact, we propose a physics-inspired framework. It aligns reconstructions to a personalized hand model by optimizing intrinsic volumetric offsets within its canonical tetrahedral mesh, alongside pose parameters. This approach, supported by robust losses and optimization, captures fine surface deformations, ensures plausible results under severe articulation and self-contact, and demonstrates strong tolerance to input noise. We demonstrate the scalability and robustness of our automated pipeline on an extensive dataset of over 12,000 sequences, from which we also derive a large-scale, high-quality synthetic 2D/3D hand dataset for training downstream tasks. This showcases its effectiveness for single hands, intricate two-hand interactions, and natural hand-object manipulations. Our method achieves state-of-the-art reconstruction fidelity in view-efficient, unmasked scenarios and highly accurate registration. Our project page are available at https://zyshen021.github.io/VEPHand/.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
