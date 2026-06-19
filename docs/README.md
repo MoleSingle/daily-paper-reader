@@ -6,23 +6,23 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-18
-- 运行时间：2026-06-18 22:19:14 UTC
+- 最新运行日期：2026-06-19
+- 运行时间：2026-06-19 20:36:49 UTC
 - 运行状态：成功
 - 本次总论文数：1
 - 精读区：1
 - 速读区：0
 
 ### 今日简报（AI）
-今日精读一篇评分8.0的高效视角光度手部性能捕捉论文《VEPHand》，为大规模手部重建带来新思路。  
-该方法在减少视角数量的同时保持高精度，值得关注手部捕捉与VR交互的读者深入研读其效率提升方案。  
-下一步可探索该技术在实际应用中的扩展性，或对比其他手部重建方法的优劣。
-- 详情：[/202606/18/README](/202606/18/README)
+今日精读高分论文《PhysDrift》，聚焦人形机器人语音伴随动作生成中的实体差距问题。  
+该研究提出PhysDrift方法，通过物理漂移建模有效桥接仿真与实体间的动态差异，显著提升生成动作的自然度。  
+建议关注该迁移策略的实际部署价值，对改善机器人实时交互表现有直接参考意义。
+- 详情：[/202606/19/README](/202606/19/README)
 
 ### 精读区论文标签
-1. [VEPHand: View-Efficient Photometric Hand Performance Capture at Scale](/202606/18/2606.15966v1-vephand-view-efficient-photometric-hand-performance-capture-at-scale)  
+1. [PhysDrift: Bridging the Embodiment Gap in Humanoid Co-Speech Motion Generation](/202606/19/2606.19935v1-physdrift-bridging-the-embodiment-gap-in-humanoid-co-speech-motion-generation)  
    标签：评分：8.0/10、query:talking-head
-   evidence：用于数字人创建的手部性能捕捉
+   evidence：音频驱动的共语运动生成，可直接用于说话人头像动画
 
 ### 速读区论文标签
 - 本次无速读推荐。
