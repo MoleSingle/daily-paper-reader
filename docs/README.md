@@ -6,26 +6,27 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-19
-- 运行时间：2026-06-19 20:36:49 UTC
+- 最新运行日期：2026-06-20
+- 运行时间：2026-06-20 20:47:27 UTC
 - 运行状态：成功
-- 本次总论文数：1
-- 精读区：1
-- 速读区：0
+- 本次总论文数：2
+- 精读区：0
+- 速读区：2
 
 ### 今日简报（AI）
-今日精读高分论文《PhysDrift》，聚焦人形机器人语音伴随动作生成中的实体差距问题。  
-该研究提出PhysDrift方法，通过物理漂移建模有效桥接仿真与实体间的动态差异，显著提升生成动作的自然度。  
-建议关注该迁移策略的实际部署价值，对改善机器人实时交互表现有直接参考意义。
-- 详情：[/202606/19/README](/202606/19/README)
+今日速读两篇7分论文，涵盖无需长数据训练的长语音生成与基于3D先验的人像新视角合成。值得关注的方向：MagpieTTS-LF实现无长数据训练的长语音生成，以及One-Shot方法利用3D先验提升人像新视角合成效果。建议继续关注这些技术在低资源场景下的实际应用潜力。
+- 详情：[/202606/20/README](/202606/20/README)
 
 ### 精读区论文标签
-1. [PhysDrift: Bridging the Embodiment Gap in Humanoid Co-Speech Motion Generation](/202606/19/2606.19935v1-physdrift-bridging-the-embodiment-gap-in-humanoid-co-speech-motion-generation)  
-   标签：评分：8.0/10、query:talking-head
-   evidence：音频驱动的共语运动生成，可直接用于说话人头像动画
+- 本次无精读推荐。
 
 ### 速读区论文标签
-- 本次无速读推荐。
+1. [MagpieTTS-LF: Inference-Time Long-Form Speech Generation Without Training on Long-Form data](/202606/20/2606.18485v1-magpietts-lf-inference-time-long-form-speech-generation-without-training-on-long-form-data)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：用于音频驱动说话头动画的长语音合成
+2. [One-Shot Novel View and Pose Human Image Synthesis via 3D Prior Guided Diffusion Model](/202606/20/2606.19718v1-one-shot-novel-view-and-pose-human-image-synthesis-via-3d-prior-guided-diffusion-model)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：用于数字人创建的单次人体图像合成
 
 
 <div class="dpr-home-promo-card">

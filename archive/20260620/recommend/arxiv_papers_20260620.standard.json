@@ -1,0 +1,97 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-20T20:46:06.802638+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2606.18485v1",
+      "source": "arxiv",
+      "title": "MagpieTTS-LF: Inference-Time Long-Form Speech Generation Without Training on Long-Form data",
+      "abstract": "Neural Text-to-Speech (TTS) systems achieve remarkable quality on short utterances but long-form speech generation shows prosodic drift, speaker inconsistencies and sentence boundary artifacts. Existing approaches either compress sequences, increase context length or naively concatenate independently synthesized chunks. We present an inference-time approach called MagpieTTS-LF that enables MagpieTTS to produce coherent long-form speech without model retraining. Our method introduces three key innovations: (1) soft attention priors to guide monotonic alignment while preserving past and future context; (2) a stateful inference algorithm that maintains context across sentence chunks, ensuring prosodic continuity; (3) history-aware text encoding that uses past text for discourse-level prosodic planning. Experiments on long texts show significant improvements in long-range intelligibility, prosodic coherence, speaker consistency, and boundary naturalness compared to other baselines.",
+      "authors": [
+        "Subhankar Ghosh",
+        "Jason Li",
+        "Paarth Neekhara",
+        "Shehzeen Hussain",
+        "Ryan Langman",
+        "Xuesong Yang",
+        "Roy Fejgin"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.AI",
+        "eess.AS"
+      ],
+      "published": "2026-06-16T20:58:26+00:00",
+      "link": "https://arxiv.org/pdf/2606.18485v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "long-form TTS for audio-driven talking head animation",
+      "llm_evidence_cn": "用于音频驱动说话头动画的长语音合成",
+      "llm_evidence": "用于音频驱动说话头动画的长语音合成",
+      "canonical_evidence": "用于音频驱动说话头动画的长语音合成",
+      "llm_tldr_en": "Proposes an inference-time method for coherent long-form speech generation without retraining, using soft attention priors, stateful inference, and history-aware text processing, enhancing prosodic continuity for TTS systems.",
+      "llm_tldr_cn": "针对现有TTS系统在长语音生成中出现的韵律漂移和口齿不一致问题，本文提出MagpieTTS-LF，一种无需重新训练的推理时方法。通过软注意力先验、状态推理和历史感知文本处理，实现跨句子片段的韵律连续性。实验证明该方法有效提升了长语音的连贯性和自然度，为语音驱动面部动画提供了高质量的语音输入。",
+      "llm_tldr": "针对现有TTS系统在长语音生成中出现的韵律漂移和口齿不一致问题，本文提出MagpieTTS-LF，一种无需重新训练的推理时方法。通过软注意力先验、状态推理和历史感知文本处理，实现跨句子片段的韵律连续性。实验证明该方法有效提升了长语音的连贯性和自然度，为语音驱动面部动画提供了高质量的语音输入。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.19718v1",
+      "source": "arxiv",
+      "title": "One-Shot Novel View and Pose Human Image Synthesis via 3D Prior Guided Diffusion Model",
+      "abstract": "This paper addresses the challenge of one-shot novel view and pose human image synthesis. The existing methods transfer the reference human image to a target pose using a set of 2D pose keypoints or synthesize human images based on generalizable human NeRF which uses human model priors to extract point-wise features. However, pose transfer based methods can not handle complex human pose using ambiguous 2D pose as the condition, while generalizable human NeRFs may be inaccurate to recover occluded/invisiable human parts without extracted reliable features. To solve these problems, we propose a novel approach for novel view and pose synthesis from a singe human image via conditional denoising diffusion model. Our diffusion model divides the novel view and pose synthesis problem into a sequence of conditional denoising steps. Specifically, to generate humans with complex and arbitrary poses, we introduce 3D human priors, i.e., 3D normal map and color prompt, as geometry and color conditions into the generation process. By transferring the reference human into the target human with a series of diffusion steps, our diffusion model enables high-quality synthesis including the occluded/invisible parts. Further, we propose a self-reconstruction based customized refinement to enhance fine details when tested on novel persons.Experimental results on different public datasets demonstrate that our approach significantly outperforms previous methods and also shows better generalization ability across datasets. The code will be made publicly available at https://github.com/Yankeegsj/3DPGDM.",
+      "authors": [
+        "Shenjian Gong",
+        "Kangkan Wang",
+        "Shanshan Zhang",
+        "Jian Yang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-18T02:34:24+00:00",
+      "link": "https://arxiv.org/pdf/2606.19718v1",
+      "tags": [
+        "keyword:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "one-shot human image synthesis for digital avatar creation",
+      "llm_evidence_cn": "用于数字人创建的单次人体图像合成",
+      "llm_evidence": "用于数字人创建的单次人体图像合成",
+      "canonical_evidence": "用于数字人创建的单次人体图像合成",
+      "llm_tldr_en": "Proposes a one-shot diffusion model for novel view and pose human image synthesis using 3D priors, addressing occlusions and complex poses, enabling avatar creation from a single image.",
+      "llm_tldr_cn": "针对现有方法在处理复杂人体姿态和不可见部位时的不足，本文提出了一种基于3D先验引导的条件扩散模型，用于从单张人体图像合成新视角和新姿态。方法利用3D人体模型先验提取点特征，结合扩散模型生成高质量图像。实验表明该方法能有效处理遮挡和复杂姿态，生成逼真的人体图像。该工作为数字人创建提供了高效的单次合成方案。",
+      "llm_tldr": "针对现有方法在处理复杂人体姿态和不可见部位时的不足，本文提出了一种基于3D先验引导的条件扩散模型，用于从单张人体图像合成新视角和新姿态。方法利用3D人体模型先验提取点特征，结合扩散模型生成高质量图像。实验表明该方法能有效处理遮挡和复杂姿态，生成逼真的人体图像。该工作为数字人创建提供了高效的单次合成方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "label": "2026-06-20",
+  "date": "2026-06-20",
+  "generated_at": "2026-06-20T20:47:33",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202606/20/2606.18485v1-magpietts-lf-inference-time-long-form-speech-generation-without-training-on-long-form-data",
+      "section": "quick",
+      "title_en": "MagpieTTS-LF: Inference-Time Long-Form Speech Generation Without Training on Long-Form data",
+      "authors": "Subhankar Ghosh, Jason Li, Paarth Neekhara, Shehzeen Hussain, Ryan Langman, Xuesong Yang, Roy Fejgin",
+      "date": "2026-06-16",
+      "pdf": "https://arxiv.org/pdf/2606.18485v1",
+      "score": "7.0",
+      "evidence": "用于音频驱动说话头动画的长语音合成",
+      "tldr": "针对神经TTS在长语音生成中出现的韵律漂移、说话人不一致和句边界伪影问题，本文提出MagpieTTS-LF，一种无需重新训练模型的推理时方法。通过软注意力先验引导单调对齐、状态推理维持跨句韵律连续性、历史感知文本编码利用过去文本进行语篇级韵律规划。在长文本实验中对长程可懂度、韵律连贯性、说话人一致性和边界自然度均取得显著提升。",
+      "tags": "query:talking-head",
+      "abstract_en": "Neural Text-to-Speech (TTS) systems achieve remarkable quality on short utterances but long-form speech generation shows prosodic drift, speaker inconsistencies and sentence boundary artifacts. Existing approaches either compress sequences, increase context length or naively concatenate independently synthesized chunks. We present an inference-time approach called MagpieTTS-LF that enables MagpieTTS to produce coherent long-form speech without model retraining. Our method introduces three key innovations: (1) soft attention priors to guide monotonic alignment while preserving past and future context; (2) a stateful inference algorithm that maintains context across sentence chunks, ensuring prosodic continuity; (3) history-aware text encoding that uses past text for discourse-level prosodic planning. Experiments on long texts show significant improvements in long-range intelligibility, prosodic coherence, speaker consistency, and boundary naturalness compared to other baselines.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/20/2606.19718v1-one-shot-novel-view-and-pose-human-image-synthesis-via-3d-prior-guided-diffusion-model",
+      "section": "quick",
+      "title_en": "One-Shot Novel View and Pose Human Image Synthesis via 3D Prior Guided Diffusion Model",
+      "authors": "Shenjian Gong, Kangkan Wang, Shanshan Zhang, Jian Yang",
+      "date": "2026-06-18",
+      "pdf": "https://arxiv.org/pdf/2606.19718v1",
+      "score": "7.0",
+      "evidence": "用于数字人创建的单次人体图像合成",
+      "tldr": "针对单张图像的新视角和新姿态人体合成，现有方法依赖2D关键点或可泛化NeRF，难以处理复杂姿态和遮挡。本文提出基于3D人体先验的条件扩散模型，引入3D法线图和颜色提示作为几何与颜色条件，通过序列去噪步骤生成高质量结果，并设计自重建定制细化提升细节。在多个数据集上显著优于先前方法，泛化能力更强。",
+      "tags": "query:talking-head",
+      "abstract_en": "This paper addresses the challenge of one-shot novel view and pose human image synthesis. The existing methods transfer the reference human image to a target pose using a set of 2D pose keypoints or synthesize human images based on generalizable human NeRF which uses human model priors to extract point-wise features. However, pose transfer based methods can not handle complex human pose using ambiguous 2D pose as the condition, while generalizable human NeRFs may be inaccurate to recover occluded/invisiable human parts without extracted reliable features. To solve these problems, we propose a novel approach for novel view and pose synthesis from a singe human image via conditional denoising diffusion model. Our diffusion model divides the novel view and pose synthesis problem into a sequence of conditional denoising steps. Specifically, to generate humans with complex and arbitrary poses, we introduce 3D human priors, i.e., 3D normal map and color prompt, as geometry and color conditions into the generation process. By transferring the reference human into the target human with a series of diffusion steps, our diffusion model enables high-quality synthesis including the occluded/invisible parts. Further, we propose a self-reconstruction based customized refinement to enhance fine details when tested on novel persons.Experimental results on different public datasets demonstrate that our approach significantly outperforms previous methods and also shows better generalization ability across datasets. The code will be made publicly available at https://github.com/Yankeegsj/3DPGDM.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
