@@ -1,0 +1,39 @@
+{
+  "label": "2026-06-22",
+  "date": "2026-06-22",
+  "generated_at": "2026-06-22T22:34:56",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202606/22/2606.17800v1-mainecoon-pursuing-a-real-time-audio-visual-social-world-model",
+      "section": "quick",
+      "title_en": "MaineCoon: Pursuing A Real-Time Audio-Visual Social World Model",
+      "authors": "Lichen Bai, Tianhao Zhang, Shitong Shao, Dingwei Tan, Qiyu Zhong, Zhengpeng Xie, Haopeng Li, Qinghao Huang, Dandan Shen, Tengjiao Ji, Wei Wang, Peicheng Wu, Yuxuan Zhao, Xiangyu Zhu, Welly Luo, Shurui Yang, Zeke Xie",
+      "date": "2026-06-16",
+      "pdf": "https://arxiv.org/pdf/2606.17800v1",
+      "score": "7.0",
+      "evidence": "实时音视频自回归模型，能够生成包含说话头部的社会场景视频",
+      "tldr": "社交视频内容日益增长，但现有世界模型忽视人机社交动态。为此，提出MaineCoon，首个实时音视频自回归模型(22B参数)。采用自重采样、跨模态对齐、领域偏好优化和ROPD等新技术，在单GPU上实现47.5 FPS的实时流式生成。工作设定性能新基准，并指明AI社交平台范式转变方向。",
+      "tags": "query:talking-head",
+      "abstract_en": "As an increasing majority of global video content is consumed on social platforms for interactive social purposes, video generation models built for social worlds are important but largely overlooked by previous studies. In this work, we define the position of social world models and build a prototype model as the first step towards this goal. While previous world models successfully simulate physical environments or gaming world exploration, they remain fundamentally detached from human-centric social dynamics. To bridge this gap as the first step to social world models, we present MaineCoon, the first real-time audio-visual autoregressive model that has 22B parameters and is capable of real-time streaming generation and sub-second interaction, with a record-breaking frame rate of up to 47.5 FPS, on a single GPU. To the best of our knowledge, MaineCoon is also the first real-time audio-visual generation model specifically optimized for social-interactive applications. To enable efficient and stable training, we introduce several novel techniques into MaineCoon, including self-resampling, cross-modal representation alignment, domain-aware preference optimization, and reinforced online-policy distillation (ROPD). We also design the first agentic streaming inference framework that supports thousand-second-scale or even longer generation while mitigating drift with agentic cache management and prompt planing. These innovations significantly accelerate training while optimizing real-time inference performance. We believe this work not only sets a new state-of-the-art (SOTA) performance benchmark for high-quality, low-latency, and long-horizon audio-visual autoregressive models, but also points out the paradigm shift desired for next-generation AI-native social platforms.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/22/2606.19209v1-finecombo-tts-collaborative-and-precise-controllable-speech-synthesis-using-text-descriptions-and-reference-speech",
+      "section": "quick",
+      "title_en": "FineCombo-TTS: Collaborative and Precise Controllable Speech Synthesis Using Text Descriptions and Reference Speech",
+      "authors": "Shuoyi Zhou, Yixuan Zhou, Peiji Yang, Yifan Hu, Yicheng Zhong, Zhisheng Wang, Zhiyong Wu",
+      "date": "2026-06-17",
+      "pdf": "https://arxiv.org/pdf/2606.19209v1",
+      "score": "6.0",
+      "evidence": "基于条件流匹配的可控语音合成，可为音频驱动面部动画提供精准语音控制",
+      "tldr": "现有可控语音合成方法在灵活性和精确性上存在不足，基于单一模态的控制方式难以兼顾。本文提出FineCombo-TTS，采用统一声学表示和条件流匹配语音方差预测器，将文本描述与参考语音协同控制声学属性，无需显式解耦。通过构建结构化配对数据集FineEdit支持相对属性控制。实验表明，该方法在灵活控制、精确度与表现力上均优于现有方案。",
+      "tags": "query:talking-head",
+      "abstract_en": "Controllable text-to-speech (TTS) has become a key research focus. However, methods based on either reference speech or text descriptions lack flexibility and precise control, and recent joint approaches remain loosely coupled, with speech modeling timbre and text controlling global style. We propose FineCombo-TTS, a unified framework for speech synthesis grounded in reference speech and guided by text descriptions, enabling flexible and precise control over acoustic attributes. Instead of explicit attribute disentanglement, we learn a unified acoustic representation and introduce a Conditional Flow Matching (CFM)-based Speech Variance Predictor to model fine-grained reference-to-target transformations guided by text descriptions. To support relative attribute control, we construct FineEdit, a structured paired dataset that explicitly encodes source-to-target attribute variations. Experiments demonstrate that our approach achieves flexible, precise, and expressive controllable TTS.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
