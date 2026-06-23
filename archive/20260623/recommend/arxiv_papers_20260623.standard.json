@@ -1,0 +1,173 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-23T21:23:10.468578+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2606.22905v1",
+      "source": "arxiv",
+      "title": "InteractiveAvatar: Real-Time Streaming Video Generation for Consistent and Intent-Aware Avatars",
+      "abstract": "Recent diffusion-based models have enabled realistic audio-driven avatar generation in real-time streaming. However, existing approaches struggle to maintain visual temporal consistency and fail to explicitly perceive user intent in complex interactive streaming scenarios. To address these challenges, we propose InteractiveAvatar, a real-time infinite-streaming video generation framework that supports visually consistent avatar video generation and intent-aware interactions. With autoregressive distillation, InteractiveAvatar achieves real-time str-eaming generation of human avatars over arbitrarily long durations. For visual consistency, we introduce a Long-Short Visual Memory (LSVM) mechanism that flexibly compresses historical visual information into compact tokens, preserving both short-range coherence and long-term consistency. To generate avatars with speeches and actions aligned with user intent, we propose a Reasoning-Reaction Module (RRM), which incorporates a State-Cycling strategy and a Cache-Switching mechanism. Extensive experimental results over diverse scenarios demonstrate that our method achieves state-of-the-art visual consistency in long-duration generation, while enabling complex user-avatar interaction in real time.",
+      "authors": [
+        "Quanyue Song",
+        "Yishan He",
+        "Yanfei Zhang",
+        "Shihao Cheng",
+        "Zhixiang He",
+        "Zhizhi Guo",
+        "Chi Zhang",
+        "Xuelong Li",
+        "Caigui Jiang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-22T06:41:17+00:00",
+      "link": "https://arxiv.org/pdf/2606.22905v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "real-time streaming video generation for consistent avatars with audio-driven interaction",
+      "llm_evidence_cn": "面向一致化身的实时流式视频生成，支持音频驱动交互",
+      "llm_evidence": "面向一致化身的实时流式视频生成，支持音频驱动交互",
+      "canonical_evidence": "面向一致化身的实时流式视频生成，支持音频驱动交互",
+      "llm_tldr_en": "InteractiveAvatar proposes a real-time infinite-streaming video generation framework for human avatars, using autoregressive distillation and Long-Short Visual Memory to maintain temporal consistency and perceive user intent in interactive scenarios.",
+      "llm_tldr_cn": "现有基于扩散的模型在实时流式音频驱动头像生成中面临视觉时间不一致和无法感知用户意图的问题。InteractiveAvatar提出了一种实时无限流式视频生成框架，通过自回归蒸馏实现长时间稳定流式生成，并引入长短时视觉记忆机制压缩历史信息以保证视觉一致性。实验表明该框架能生成高保真、一致且能感知用户意图的化身视频，推动数字人实时交互应用发展。",
+      "llm_tldr": "现有基于扩散的模型在实时流式音频驱动头像生成中面临视觉时间不一致和无法感知用户意图的问题。InteractiveAvatar提出了一种实时无限流式视频生成框架，通过自回归蒸馏实现长时间稳定流式生成，并引入长短时视觉记忆机制压缩历史信息以保证视觉一致性。实验表明该框架能生成高保真、一致且能感知用户意图的化身视频，推动数字人实时交互应用发展。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.21970v1",
+      "source": "arxiv",
+      "title": "Integrating Facial Generation into Full-Duplex Spoken Dialogue Systems",
+      "abstract": "Full-duplex spoken dialogue models, such as Moshi, enable natural, low-latency voice conversations. However, they remain limited to the audio modality, lacking the facial expressions that are integral to human communication. We present Moshi-Face, the first full-duplex dialogue model that jointly processes the user's audio and facial input while simultaneously generating speech and facial motion. We first construct a vector-quantized variational autoencoder (VQ-VAE) as a face codec that encodes 3D head meshes extracted from facial videos into compact discrete tokens, referred to as face tokens, and conversely reconstructs 3D meshes from these tokens. We then extend Moshi with a Face Transformer module that generates face tokens non-autoregressively, enabling Moshi-Face to produce synchronized audio and face tokens in real time. Experiments show that Moshi-Face achieves audiovisual alignment at low latency while preserving the dialogue quality of the original audio-only model.",
+      "authors": [
+        "Jingjing Jiang",
+        "Atsumoto Ohashi",
+        "Ryuichiro Higashinaka"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC",
+        "cs.CL",
+        "cs.CV",
+        "eess.AS"
+      ],
+      "published": "2026-06-20T09:59:34+00:00",
+      "link": "https://arxiv.org/pdf/2606.21970v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "audio-driven facial motion generation in full-duplex dialogue",
+      "llm_evidence_cn": "全双工对话中的音频驱动面部运动生成",
+      "llm_evidence": "全双工对话中的音频驱动面部运动生成",
+      "canonical_evidence": "全双工对话中的音频驱动面部运动生成",
+      "llm_tldr_en": "Moshi-Face extends the Moshi dialogue model with a VQ-VAE face codec and Face Transformer to generate synchronized facial motions from audio and video input, enabling full-duplex spoken dialogue with facial expressions.",
+      "llm_tldr_cn": "Moshi-Face是首个全双工对话模型，能同时处理用户音频和面部输入，并生成语音和面部运动。它使用VQ-VAE将3D头部网格编码为离散面部令牌，再通过Face Transformer非自回归生成面部令牌。实验表明该模型能产生与语音同步的逼真面部动画，填补了对话系统缺乏视觉表情的空白。",
+      "llm_tldr": "Moshi-Face是首个全双工对话模型，能同时处理用户音频和面部输入，并生成语音和面部运动。它使用VQ-VAE将3D头部网格编码为离散面部令牌，再通过Face Transformer非自回归生成面部令牌。实验表明该模型能产生与语音同步的逼真面部动画，填补了对话系统缺乏视觉表情的空白。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.22718v1",
+      "source": "arxiv",
+      "title": "Generative Relightable Avatars",
+      "abstract": "We present Generative Relightable Avatars (GRA), a person-specific method for photorealistic free-view rendering and environment-map relighting of full-body humans. We postulate that modeling fine-grained appearance details is inherently a one-to-many problem that can benefit from a generative formulation. In contrast to fully regressive relightable avatar methods, GRA follows a hybrid approach that combines controllable, physics-grounded relighting with probabilistic refinement. Starting from a tracked animated mesh, we optimize material parameters in UV-space and render a coarse relit appearance under a target HDR environment map. Next, we refine the textures with a feed-forward model to capture pose-dependent texture dynamics and illumination effects beyond simplified reflectance assumptions. Finally, a fine-tuned video-to-video diffusion model transforms the physically grounded renderings into temporally coherent, high-detail videos while preserving 3D control, with an error-recycling strategy for generating long videos. Experimental evaluations demonstrate our method's improved perceptual quality over prior relightable avatar baselines. Project Page: https://vcai.mpi-inf.mpg.de/projects/GRA/",
+      "authors": [
+        "Kunwar Maheep Singh",
+        "Christian Theobalt",
+        "Rishabh Dabral"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-21T23:36:00+00:00",
+      "link": "https://arxiv.org/pdf/2606.22718v1",
+      "tags": [
+        "keyword:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "digital human avatar creation",
+      "llm_evidence_cn": "数字人虚拟化身创建",
+      "llm_evidence": "数字人虚拟化身创建",
+      "canonical_evidence": "数字人虚拟化身创建",
+      "llm_tldr_en": "Presents a generative method for full-body human avatars with relighting, combining physics-grounded rendering with probabilistic refinement for photorealistic free-view rendering and environment-map relighting.",
+      "llm_tldr_cn": "现有可重新照明的人体化身方法通常采用全回归方式，难以处理细粒度外观细节的一对多映射。本文提出GRA，一种混合方法，结合可控物理渲染和概率精化，从跟踪动画网格出发，优化UV空间材质参数并生成粗重照明外观，再通过前馈模型捕捉姿态相关纹理动态和光照效应。实验表明，该方法在自由视角和重照明任务上达到逼真效果，为数字人创建提供了新范式。",
+      "llm_tldr": "现有可重新照明的人体化身方法通常采用全回归方式，难以处理细粒度外观细节的一对多映射。本文提出GRA，一种混合方法，结合可控物理渲染和概率精化，从跟踪动画网格出发，优化UV空间材质参数并生成粗重照明外观，再通过前馈模型捕捉姿态相关纹理动态和光照效应。实验表明，该方法在自由视角和重照明任务上达到逼真效果，为数字人创建提供了新范式。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.20731v1",
+      "source": "arxiv",
+      "title": "XmoPipe: A Pipeline for Large-Scale In-the-Wild Human Motion Dataset Construction",
+      "abstract": "Large-scale human motion datasets are essential for training robust motion models for analysis, synthesis, and understanding. While marker-based motion capture provides precise data, it is costly and limited in scale and diversity. Recent advances in monocular motion capture and video-language understanding open the way to extract plausible motion from unconstrained online videos. We present a scalable pipeline for constructing in-the-wild human motion datasets. From a few keywords, the system retrieves videos, extracts 3D body and facial motion, and generates high-level textual descriptions. The pipeline is flexible, enabling targeted collection of various motions, multi-person interactions, or expressive behaviors. We demonstrate its quality by training motion reconstruction and motion generation models, showing performance comparable to models trained on traditional motion capture datasets and strong cross-dataset generalization.",
+      "authors": [
+        "Nathan Salazar",
+        "Emmanuel Dellandréa",
+        "Mathieu Lefort",
+        "Alexandre Meyer"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-17T09:33:33+00:00",
+      "link": "https://arxiv.org/pdf/2606.20731v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "pipeline for constructing in-the-wild human motion datasets including facial motion, directly applicable to talking head animation datasets",
+      "llm_evidence_cn": "用于构建包含面部运动的自然场景人体运动数据集流水线，可直接应用于说话人头像动画数据集",
+      "llm_evidence": "用于构建包含面部运动的自然场景人体运动数据集流水线，可直接应用于说话人头像动画数据集",
+      "canonical_evidence": "用于构建包含面部运动的自然场景人体运动数据集流水线，可直接应用于说话人头像动画数据集",
+      "llm_tldr_en": "XmoPipe is a scalable pipeline for constructing large-scale human motion datasets from online videos, extracting 3D body and facial motion. It enables targeted collection of motions for digital humans and talking heads, supporting animation and synthesis research.",
+      "llm_tldr_cn": "目前人体运动数据集构建成本高且规模有限。XmoPipe提出一种可扩展流水线，从网络视频中提取3D人体和面部运动，并生成高层文本描述。该流水线灵活，支持定向收集各种运动、多人交互或表情行为。实验表明其能高效构建大规模、多样化数据集，为数字人及说话头动画研究提供数据基础。",
+      "llm_tldr": "目前人体运动数据集构建成本高且规模有限。XmoPipe提出一种可扩展流水线，从网络视频中提取3D人体和面部运动，并生成高层文本描述。该流水线灵活，支持定向收集各种运动、多人交互或表情行为。实验表明其能高效构建大规模、多样化数据集，为数字人及说话头动画研究提供数据基础。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "dataset for talking head animation",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
