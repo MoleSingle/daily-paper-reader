@@ -6,32 +6,24 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-23
-- 运行时间：2026-06-23 21:26:10 UTC
+- 最新运行日期：2026-06-24
+- 运行时间：2026-06-24 21:09:46 UTC
 - 运行状态：成功
-- 本次总论文数：4
-- 精读区：3
-- 速读区：1
+- 本次总论文数：1
+- 精读区：1
+- 速读区：0
 
 ### 今日简报（AI）
-直播式实时交互头像与全双工对话系统面部生成技术取得突破；《InteractiveAvatar》与《Integrating Facial Generation》两篇高分论文分别聚焦于一致性虚拟形象和口语对话中的面部生成；建议开发者优先关注实时流式视频生成技术，并探索大规模运动数据集在虚拟人物训练中的应用。
-- 详情：[/202606/23/README](/202606/23/README)
+今天精读了1篇高分论文，实现从单张照片即时生成可驱动的3D高斯头像。核心突破在于无需逐帧优化，一次前馈网络即可获得高质量Codec Avatar。建议关注此类技术对虚拟化身与元宇宙交互的提速潜力。
+- 详情：[/202606/24/README](/202606/24/README)
 
 ### 精读区论文标签
-1. [InteractiveAvatar: Real-Time Streaming Video Generation for Consistent and Intent-Aware Avatars](/202606/23/2606.22905v1-interactiveavatar-real-time-streaming-video-generation-for-consistent-and-intent-aware-avatars)  
-   标签：评分：10.0/10、query:talking-head
-   evidence：面向一致化身的实时流式视频生成，支持音频驱动交互
-2. [Integrating Facial Generation into Full-Duplex Spoken Dialogue Systems](/202606/23/2606.21970v1-integrating-facial-generation-into-full-duplex-spoken-dialogue-systems)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：全双工对话中的音频驱动面部运动生成
-3. [Generative Relightable Avatars](/202606/23/2606.22718v1-generative-relightable-avatars)  
+1. [FiCA: Feed-forward instant Gaussian Codec Avatars from a Single Portrait Image](/202606/24/2606.24232v1-fica-feed-forward-instant-gaussian-codec-avatars-from-a-single-portrait-image)  
    标签：评分：8.0/10、query:talking-head
-   evidence：数字人虚拟化身创建
+   evidence：从单张图像生成高斯编解码化身，用于数字人创建
 
 ### 速读区论文标签
-1. [XmoPipe: A Pipeline for Large-Scale In-the-Wild Human Motion Dataset Construction](/202606/23/2606.20731v1-xmopipe-a-pipeline-for-large-scale-in-the-wild-human-motion-dataset-construction)  
-   标签：评分：7.0/10、query:talking-head
-   evidence：用于构建包含面部运动的自然场景人体运动数据集流水线，可直接应用于说话人头像动画数据集
+- 本次无速读推荐。
 
 
 <div class="dpr-home-promo-card">
