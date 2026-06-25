@@ -1,0 +1,24 @@
+{
+  "label": "2026-06-25",
+  "date": "2026-06-25",
+  "generated_at": "2026-06-25T22:03:54",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202606/25/2606.25041v1-wan-streamer-v01-end-to-end-real-time-interactive-foundation-models",
+      "section": "deep",
+      "title_en": "Wan-Streamer v0.1: End-to-end Real-time Interactive Foundation Models",
+      "authors": "Lianghua Huang, Zhifan Wu, Wei Wang, Yupeng Shi, Mengyang Feng, Junjie He, Chenwei Xie, Yu Liu, Jingren Zhou, Ang Wang, Bang Zhang, Baole Ai, Chen Liang, Cheng Yu, Chongyang Zhong, Jinwei Qi, Kai Zhu, Pandeng Li, Peng Zhang, Wenyuan Zhang, Xinhua Cheng, Yitong Huang, Yun Zheng, Zoubin Bi",
+      "date": "2026-06-23",
+      "pdf": "https://arxiv.org/pdf/2606.25041v1",
+      "score": "10.0",
+      "evidence": "端到端音频驱动动画和视频生成，直接支持说话头部合成",
+      "tldr": "现有级联交互系统依赖独立模块，存在延迟高和误差累积问题。本文提出Wan-Streamer，一个原生流式、端到端的视听交互基础模型，将语言、音频、视频统一建模于单个Transformer，使用块因果注意力与因果编解码器实现增量流式。模型端延迟约200ms，总交互延迟约550ms，支持160ms流式单元。该工作首次验证了端到端流式模型在实时全双工视听交互中的有效性。",
+      "tags": "query:talking-head",
+      "abstract_en": "We present Wan-Streamer, a native-streaming, end-to-end interactive foundation model designed from the ground up for real-time, low-latency, full-duplex audio-visual interaction. Wan-Streamer seamlessly models language, audio, and video as both input and output within a single Transformer, where the sequence is represented as interleaved visual, audio, and text input tokens together with visual, audio, and text output tokens, coordinated by block-causal attention for incremental streaming. Unlike cascaded interactive systems that rely on separate VAD, ASR, language, TTS, audio-driven animation, or video-generation modules, Wan-Streamer does not rely on external language, speech, avatar, or video-generation modules: perception, reasoning, generation, response timing, turn management, and cross-modal synchronization are learned jointly within one unified model, reducing pipeline latency and error accumulation. To support natural audio-visual responsiveness, we redesign the entire stack around streamability, including causal encoders, causal decoders, block-causal attention, and low-latency multimodal token scheduling, enabling streaming units as short as 160 ms at 25 fps. Wan-Streamer achieves approximately 200 ms model-side response latency and approximately 550 ms total interaction latency when combined with 350 ms bidirectional network latency, supporting sub-second duplex audio-visual communication. These results position Wan-Streamer as a unified, end-to-end, multimodal interactive foundation model for low-latency streaming interaction.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
