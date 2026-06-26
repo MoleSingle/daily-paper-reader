@@ -1,0 +1,120 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-26T21:56:55.261380+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2606.25041v2",
+      "source": "arxiv",
+      "title": "Wan-Streamer v0.1: End-to-end Real-time Interactive Foundation Models",
+      "abstract": "We present Wan-Streamer, a native-streaming, end-to-end interactive foundation model designed from the ground up for real-time, low-latency, full-duplex audio-visual interaction. Wan-Streamer seamlessly models language, audio, and video as both input and output within a single Transformer, where the sequence is represented as interleaved visual, audio, and text input tokens together with visual, audio, and text output tokens, coordinated by block-causal attention for incremental streaming. Unlike cascaded interactive systems that rely on separate VAD, ASR, language, TTS, audio-driven animation, or video-generation modules, Wan-Streamer does not rely on external language, speech, avatar, or video-generation modules: perception, reasoning, generation, response timing, turn management, and cross-modal synchronization are learned jointly within one unified model, reducing pipeline latency and error accumulation. To support natural audio-visual responsiveness, we redesign the entire stack around streamability, including causal encoders, causal decoders, block-causal attention, and low-latency multimodal token scheduling, enabling streaming units as short as 160 ms at 25 fps. Wan-Streamer achieves approximately 200 ms model-side response latency and approximately 550 ms total interaction latency when combined with 350 ms bidirectional network latency, supporting sub-second duplex audio-visual communication. These results position Wan-Streamer as a unified, end-to-end, multimodal interactive foundation model for low-latency streaming interaction.",
+      "authors": [
+        "Lianghua Huang",
+        "Zhi-Fan Wu",
+        "Wei Wang",
+        "Yupeng Shi",
+        "Mengyang Feng",
+        "Junjie He",
+        "Chen-Wei Xie",
+        "Yu Liu",
+        "Jingren Zhou",
+        "Ang Wang",
+        "Bang Zhang",
+        "Baole Ai",
+        "Chen Liang",
+        "Cheng Yu",
+        "Chongyang Zhong",
+        "Jinwei Qi",
+        "Kai Zhu",
+        "Pandeng Li",
+        "Peng Zhang",
+        "Wenyuan Zhang",
+        "Xinhua Cheng",
+        "Yitong Huang",
+        "Yun Zheng",
+        "Zoubin Bi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.GR",
+        "cs.SD"
+      ],
+      "published": "2026-06-23T18:01:03+00:00",
+      "link": "https://arxiv.org/pdf/2606.25041v2",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "end-to-end interactive foundation model for real-time audio-visual interaction; directly enables talking head generation",
+      "llm_evidence_cn": "端到端实时音视频交互基础模型；直接支持说话头生成",
+      "llm_evidence": "端到端实时音视频交互基础模型；直接支持说话头生成",
+      "canonical_evidence": "端到端实时音视频交互基础模型；直接支持说话头生成",
+      "llm_tldr_en": "Wan-Streamer is an end-to-end real-time interactive foundation model that jointly models language, audio, and video with block-causal attention, supporting full-duplex audio-visual interaction without external modules, directly enabling talking head synthesis and avatar creation.",
+      "llm_tldr_cn": "现有对话系统依赖级联模块导致延迟和高复杂性。Wan-Streamer提出原生流式端到端交互基础模型，在单一Transformer中联合建模语言、音频和视频，通过块因果注意力实现增量流式处理。无需外部语音、动画或视频生成模块即可完成感知、推理和生成，支持全双工实时音视频交互。该模型直接适用于说话头生成和数字人创建，显著降低系统复杂度和延迟。",
+      "llm_tldr": "现有对话系统依赖级联模块导致延迟和高复杂性。Wan-Streamer提出原生流式端到端交互基础模型，在单一Transformer中联合建模语言、音频和视频，通过块因果注意力实现增量流式处理。无需外部语音、动画或视频生成模块即可完成感知、推理和生成，支持全双工实时音视频交互。该模型直接适用于说话头生成和数字人创建，显著降低系统复杂度和延迟。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.19823v1",
+      "source": "arxiv",
+      "title": "Low-Burden Data Augmentation for Dysarthric ASR via Zero-Shot Voice Cloning",
+      "abstract": "Automatic speech recognition remains unreliable for dysarthric speech due to data scarcity and high inter-speaker variability. While synthetic data can address these gaps, traditional methods often require extensive speaker-specific data, reintroducing the collection bottleneck. We investigate zero-shot voice cloning as a low-burden augmentation strategy, using Higgs Audio V2 to clone speakers in the TORGO dataset. We fine-tune (FT) Whisper-medium on cloned, real, and hybrid data and evaluate on held-out real speech. Compared to the zero-shot (31.62%), Clone FT achieved a competitive 26.00% WER, nearly matching the 24.44% and 25.12% seen with Real and Hybrid FT, respectively. Notably, Clone and Hybrid FT outperform Real FT for moderate-severe speakers. Clone FT achieves the best results (11.45% relative) in cross-corpus evaluation on the SAP-1102. These results suggest that zero-shot cloning provides scalable training data that circumvents the costly data collection bottleneck.",
+      "authors": [
+        "Satwinder Singh",
+        "Qianli Wang",
+        "Zihan Zhong",
+        "Clarion Mendes",
+        "Hasegawa-Johnson",
+        "Waleed Abdulla",
+        "Seyed Reza Shahamiri"
+      ],
+      "primary_category": "eess.AS",
+      "categories": [
+        "eess.AS",
+        "cs.LG"
+      ],
+      "published": "2026-06-18T05:55:58+00:00",
+      "link": "https://arxiv.org/pdf/2606.19823v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "zero-shot voice cloning for talking head audio generation",
+      "llm_evidence_cn": "零样本语音克隆用于说话头音频生成",
+      "llm_evidence": "零样本语音克隆用于说话头音频生成",
+      "canonical_evidence": "零样本语音克隆用于说话头音频生成",
+      "llm_tldr_en": "Proposes zero-shot voice cloning as low-burden data augmentation for dysarthric ASR, achieving competitive WER. The cloning method is transferable to talking head audio synthesis.",
+      "llm_tldr_cn": "针对构音障碍语音识别因数据稀缺和说话人变异大而性能不佳的问题，本文探索了零样本语音克隆作为低负担数据增强策略。使用Higgs Audio V2对TORGO数据集中的说话人进行克隆，并在Whisper-medium上微调。实验表明，克隆数据微调的词错误率与真实数据微调相当，且对中重度说话人表现更优。该零样本语音克隆方法可直接应用于说话头生成中的音频合成，增强语音多样性和自然度。",
+      "llm_tldr": "针对构音障碍语音识别因数据稀缺和说话人变异大而性能不佳的问题，本文探索了零样本语音克隆作为低负担数据增强策略。使用Higgs Audio V2对TORGO数据集中的说话人进行克隆，并在Whisper-medium上微调。实验表明，克隆数据微调的词错误率与真实数据微调相当，且对中重度说话人表现更优。该零样本语音克隆方法可直接应用于说话头生成中的音频合成，增强语音多样性和自然度。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
