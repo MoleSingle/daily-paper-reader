@@ -1,0 +1,39 @@
+{
+  "label": "2026-06-27",
+  "date": "2026-06-27",
+  "generated_at": "2026-06-27T21:18:38",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202606/27/2606.22811v1-bagpiper-tts-natural-language-guided-universal-speech-synthesis",
+      "section": "quick",
+      "title_en": "Bagpiper-TTS: Natural Language Guided Universal Speech Synthesis",
+      "authors": "Jinchuan Tian, Haoran Wang, Siddhant Arora, Takashi Maekaku, Keita Goto, Jin Sakuma, Yusuke Shinohara, Chao-Han Huck Yang, Shinji Watanabe",
+      "date": "2026-06-22",
+      "pdf": "https://arxiv.org/pdf/2606.22811v1",
+      "score": "6.0",
+      "evidence": "自然语言引导的通用语音合成系统，可用作说话头部生成的音频组件",
+      "tldr": "经典TTS系统受限于固定输入格式和预定义元数据，难以满足灵活需求。本文提出Bagpiper-TTS，通过自然语言提示推理用户意图，生成包含转录和细粒度元数据的丰富caption，并以此引导目标语音合成。在Seed-TTS-Eval上词错误率仅1.7%，在多说话人、意图转语音、角色扮演和歌声合成等任务中均匹配专用模型性能。该方法实现了自然语言引导的通用语音合成，扩展了TTS的应用边界。",
+      "tags": "query:talking-head",
+      "abstract_en": "Classical TTS systems typically rely on rigid input formats and predefined metadata slots, limiting their ability to fulfill flexible user requirements. This paper introduces Bagpiper-TTS, a universal speech synthesis system that deals with diverse natural language user requests. Given a natural language prompt, Bagpiper-TTS first reasons over the users' intent to derive a rich caption, i.e., a comprehensive textual blueprint encompassing both transcription and nuanced metadata. Subsequently, this caption guides the synthesis of the target speech. Our model inherently supports a broad spectrum of tasks besides classical TTS applications, including multi-talker, intent-to-speech, role-play synthesis, singing voice synthesis, and more. Experimental results demonstrate that Bagpiper-TTS achieves an 1.7% Word Error Rate (WER) on the Seed-TTS-Eval benchmark and match the performance of dedicated models in both LLM-as-a-judge and human subjective evaluations across multiple applications.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/27/2606.24320v1-zonos2-technical-report",
+      "section": "quick",
+      "title_en": "ZONOS2 Technical Report",
+      "authors": "Gabriel Clark, Sofian Mejjoute, Mohamed Osman, George Close, Beren Millidge",
+      "date": "2026-06-23",
+      "pdf": "https://arxiv.org/pdf/2606.24320v1",
+      "score": "6.0",
+      "evidence": "先进的语音合成与克隆模型，可为说话头部提供驱动音频",
+      "tldr": "现有TTS模型在自然度和语音克隆方面仍有提升空间。本文提出ZONOS2 8B，采用混合专家架构将参数扩展至8B（900M活跃），并利用超过6M小时数据训练。该方法在自然度、韵律和语音克隆保真度上达到SOTA，在ZTTS1-Eval基准上表现优异，同时保持流式低延迟。开源模型权重和代码，促进TTS研究。",
+      "tags": "query:talking-head",
+      "abstract_en": "We present ZONOS2 8B, our latest TTS model, which achieves state-of-the-art naturalness, prosody, and voice cloning fidelity. We improve upon Zonos-v0.1 across scale, data, and training recipe. We scale the model from 1.6B to 8B total parameters (900M active) with a novel mixture-of-experts (MoE) backbone, improving inference latency and throughput. We expand our training corpus from 200K to over 6M hours using a new data processing pipeline, and we simplify our post-training and conditioning recipes to improve naturalness and voice cloning fidelity. We evaluate ZONOS2 8B on quality, speaker similarity, WER, and ZTTS1-Eval, our novel TTS benchmark, where it performs competitively with state-of-the-art systems while maintaining good streaming latency. We release our model weights and example inference code under an Apache 2.0 license on GitHub and Hugging Face.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

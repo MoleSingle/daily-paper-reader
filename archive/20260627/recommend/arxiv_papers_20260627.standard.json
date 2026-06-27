@@ -1,0 +1,101 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-27T21:17:32.719075+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2606.22811v1",
+      "source": "arxiv",
+      "title": "Bagpiper-TTS: Natural Language Guided Universal Speech Synthesis",
+      "abstract": "Classical TTS systems typically rely on rigid input formats and predefined metadata slots, limiting their ability to fulfill flexible user requirements. This paper introduces Bagpiper-TTS, a universal speech synthesis system that deals with diverse natural language user requests. Given a natural language prompt, Bagpiper-TTS first reasons over the users' intent to derive a rich caption, i.e., a comprehensive textual blueprint encompassing both transcription and nuanced metadata. Subsequently, this caption guides the synthesis of the target speech. Our model inherently supports a broad spectrum of tasks besides classical TTS applications, including multi-talker, intent-to-speech, role-play synthesis, singing voice synthesis, and more. Experimental results demonstrate that Bagpiper-TTS achieves an 1.7% Word Error Rate (WER) on the Seed-TTS-Eval benchmark and match the performance of dedicated models in both LLM-as-a-judge and human subjective evaluations across multiple applications.",
+      "authors": [
+        "Jinchuan Tian",
+        "Haoran Wang",
+        "Siddhant Arora",
+        "Takashi Maekaku",
+        "Keita Goto",
+        "Jin Sakuma",
+        "Yusuke Shinohara",
+        "Chao-Han Huck Yang",
+        "Shinji Watanabe"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-06-22T03:40:28+00:00",
+      "link": "https://arxiv.org/pdf/2606.22811v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "universal speech synthesis system with natural language guidance, applicable as audio component in talking head generation",
+      "llm_evidence_cn": "自然语言引导的通用语音合成系统，可用作说话头部生成的音频组件",
+      "llm_evidence": "自然语言引导的通用语音合成系统，可用作说话头部生成的音频组件",
+      "canonical_evidence": "自然语言引导的通用语音合成系统，可用作说话头部生成的音频组件",
+      "llm_tldr_en": "Bagpiper-TTS is a universal speech synthesis system that interprets natural language prompts to generate expressive speech, supporting multi-talker and role-play. It can provide the audio driving signal for talking heads.",
+      "llm_tldr_cn": "Bagpiper-TTS提出了一种自然语言引导的通用语音合成系统，能够根据用户意图生成包含丰富元数据的语音，支持多说话人、角色扮演等多种任务。该系统可作为说话头部生成中的音频驱动源，为后续面部动画提供逼真的语音输入。实验证明其在多个TTS任务上达到先进水平。",
+      "llm_tldr": "Bagpiper-TTS提出了一种自然语言引导的通用语音合成系统，能够根据用户意图生成包含丰富元数据的语音，支持多说话人、角色扮演等多种任务。该系统可作为说话头部生成中的音频驱动源，为后续面部动画提供逼真的语音输入。实验证明其在多个TTS任务上达到先进水平。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.24320v1",
+      "source": "arxiv",
+      "title": "ZONOS2 Technical Report",
+      "abstract": "We present ZONOS2 8B, our latest TTS model, which achieves state-of-the-art naturalness, prosody, and voice cloning fidelity. We improve upon Zonos-v0.1 across scale, data, and training recipe. We scale the model from 1.6B to 8B total parameters (900M active) with a novel mixture-of-experts (MoE) backbone, improving inference latency and throughput. We expand our training corpus from 200K to over 6M hours using a new data processing pipeline, and we simplify our post-training and conditioning recipes to improve naturalness and voice cloning fidelity. We evaluate ZONOS2 8B on quality, speaker similarity, WER, and ZTTS1-Eval, our novel TTS benchmark, where it performs competitively with state-of-the-art systems while maintaining good streaming latency. We release our model weights and example inference code under an Apache 2.0 license on GitHub and Hugging Face.",
+      "authors": [
+        "Gabriel Clark",
+        "Sofian Mejjoute",
+        "Mohamed Osman",
+        "George Close",
+        "Beren Millidge"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.AI"
+      ],
+      "published": "2026-06-23T08:57:34+00:00",
+      "link": "https://arxiv.org/pdf/2606.24320v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "state-of-the-art TTS model with voice cloning, can produce audio for talking head driving",
+      "llm_evidence_cn": "先进的语音合成与克隆模型，可为说话头部提供驱动音频",
+      "llm_evidence": "先进的语音合成与克隆模型，可为说话头部提供驱动音频",
+      "canonical_evidence": "先进的语音合成与克隆模型，可为说话头部提供驱动音频",
+      "llm_tldr_en": "ZONOS2 8B is a large TTS model with MoE backbone achieving state-of-the-art naturalness and voice cloning, evaluated on novel benchmark. Relevant for providing high-quality audio in talking head systems.",
+      "llm_tldr_cn": "ZONOS2 8B是一款采用混合专家架构的大规模语音合成模型，在自然度、韵律和语音克隆方面达到最优水平。它通过扩大数据和模型规模显著提升了语音质量，并引入了新型TTS基准。该模型可为说话头部生成提供高质量的语音驱动信号，并支持流式推理。",
+      "llm_tldr": "ZONOS2 8B是一款采用混合专家架构的大规模语音合成模型，在自然度、韵律和语音克隆方面达到最优水平。它通过扩大数据和模型规模显著提升了语音质量，并引入了新型TTS基准。该模型可为说话头部生成提供高质量的语音驱动信号，并支持流式推理。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
