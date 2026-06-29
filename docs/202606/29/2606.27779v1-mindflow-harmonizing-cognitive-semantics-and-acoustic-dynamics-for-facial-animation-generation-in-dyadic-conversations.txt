@@ -1,0 +1,453 @@
+Title: MindFlow: Harmonizing Cognitive Semantics and Acoustic Dynamics for Facial Animation Generation in Dyadic Conversations
+
+URL Source: https://arxiv.org/pdf/2606.27779v1
+
+Published Time: Mon, 29 Jun 2026 00:33:23 GMT
+
+Number of Pages: 22
+
+Markdown Content:
+# MindFlow: Harmonizing Cognitive Semantics and Acoustic Dynamics for Facial Animation Generation in Dyadic Conversations 
+
+Hejia Chen 1⋆, Haoxian Zhang 2⋆⋆ , Xu He 2, Xiaoqiang Liu 2, Pengfei Wan 2,Shoulong Zhang 3#, and Shuai Li 1,3# 
+
+> 1
+
+Beihang University  
+
+> 2
+
+Kling Team, Kuaishou Technology  
+
+> 3
+
+Zhongguancun Laboratory 
+
+https://harryxd2018.github.io/MindFlow/ Wow, you are really good at horse riding ! Thanks! You’re much better. When did you learn this?   
+
+> [surprised] [happy] [happy] [neutral]
+
+Fig. 1: Grounded in the Ventral-Dorsal dual-pathway cognitive model, MindFlow 
+
+introduces a novel framework for streaming facial animation in dyadic conversations, under which digital avatars simultaneously perceive conversational emotions while re-flexively synchronizing with acoustic rhythms, naturally yielding interactions that are both semantically rich and physically fluid. 
+
+Abstract. Generating lifelike facial animation for dyadic conversations requires reconciling high-level cognitive intent with precise low-level mo-tor reflexes, yet existing methods fall short in the semantic understanding of dialogue context and in precise dynamic control. In this paper, we pro-pose MindFlow , a dual-pathway generative framework inspired by the Ventral-Dorsal pathway model in neuroscience, which decouples genera-tion into two collaborative streams, thereby harmonizing deep semantic reasoning with fine-grained control. In the Ventral module, we trans-form the conventional Sentence-Action approach into a novel Chunk-State approach that models raw acoustic streams as a context-aware, evolving emotional state chain, capturing subtle paralinguistic nuances and mid-utterance emotional shifts missed by sentence-level modeling.  
+
+> ⋆
+
+This work was conducted during the internship at Kling Team, Kuaishou Technology  
+
+> ⋆⋆
+
+Project lead       
+
+> arXiv:2606.27779v1 [cs.CV] 26 Jun 2026 2H. Chen et al. The Dorsal module features a conditional autoregressive flow matching network for high-fidelity facial motion, driven by high-frequency acoustic cues and modulated by emotion states, plus a Selective Acoustic Injector for adaptive audio gating to ensure robustness in talking-and-listening dynamics without interference. Extensive experiments demonstrate that MindFlow achieves superior semantic appropriateness and motion natu-ralness compared to state-of-the-art baselines.
+> Keywords: Facial Animation ·Multimodal LLM ·Flow Matching
+
+## 1 Introduction 
+
+Creating realistic digital avatars capable of fluid, natural conversational interac-tions is a longstanding fundamental goal within the computer vision and graph-ics community [29, 33, 35]. In particular, generating natural facial dynamics for avatars acting as active conversational interlocutors has garnered significant research attention across multiple fields, including education [37], entertain-ment [24], and social companionship [14]. However, despite substantial recent advancements, facial animations of both talking and listening behaviors pro-duced by existing approaches often appear stiff and semantically hollow, due to insufficient semantic understanding of dialogue and limited fine-grained control-lability, which limits avatar realism and user engagement. Compellingly, in neuroscience, a well-established Ventral-Dorsal dual-pathway model [19] explains that natural conversation relies on two distinct neural path-ways working in parallel: 1) a fast, reflexive Dorsal pathway that processes prosodic information and maps acoustic signals directly to articulatory motor areas, and 2) a slow, deliberative Ventral pathway that consumes high-level cog-nitive resources and decodes complex semantic and emotional information. How-ever, existing computational approaches have yet to fully reconcile this functional duality in conversational facial animation generation. Traditional audio-driven methods [32, 33, 35, 54] seek to directly map listening behaviors from audio sig-nals, mimicking the Dorsal pathway’s functionality, yet they neglect the explicit semantic understanding modeled by the Ventral pathway. This results in anima-tions that are visually reactive but semantically ungrounded and hollow. While recent works have attempted to address this gap by leveraging large language models (LLMs) as proxies for the Ventral pathway to decode sentence-level se-mantics from the text modality [29, 48], their sentence-to-action mapping ap-proch suffers from two critical unresolved limitations: 1) prosodic information loss : relying solely on text modality inevitably discards critical paralinguistic cues and emotional semantics inherent in the raw conversational audio; and 2) 
+
+coarse granularity : sentence-level segmentation is inherently coarse, which fails to semantically guided fine-grained temporal dynamics of human expression dur-ing conversation. To address the aforementioned limitations, we propose MindFlow , a novel dual-stream framework for high-fidelity conversational facial animation genera-tion in dyadic interactions. Drawing direct inspiration from the Ventral-Dorsal MindFlow 3
+
+dual-pathway model [19] in neuroscience, we decouple conversation-driven facial animation generation into two complementary streams: a cognitive semantic-understanding stream (dubbed Mind) and a reflexive flow-matching-based gen-eration stream (dubbed Flow), implemented via our proposed Ventral module and Dorsal module, respectively. The proposed Ventral module extracts high-level semantic and emotional intent from the evolving dialogue context by incorporating multimodal LLMs (MLLMs). To overcome the problems of coarse granularity and prosodic infor-mation loss, rather than using the conventional Sentence-Action approach, we design a novel chunk-state approach that encodes the stream of fixed-window raw dialogue audio chunks and extracts corresponding emotion states. Additionally, we devise a streaming Chain-of-State mechanism that dynamically aggregates historical audio chunks and their corresponding emotion states as an expanding context for the MLLM, enabling temporally consistent reasoning across continu-ous audio streams. Our Ventral module can preserve delicate paralinguistic cues and encode acoustic context into temporally evolving, continuous emotion states, thereby replacing the static, rigid sentence summaries used in previous work. Complementarily, the proposed Dorsal module aims to mimic the senso-rimotor reflex system to generate high-fidelity, physically plausible facial mo-tions. To support continuous, variable-length inference and mitigate boundary artifacts [33, 35], we utilize a conditional autoregressive flow matching architec-ture [46]. However, existing methods often implement a static fusion of dyadic audio signals, diluting effective acoustic features. This diminishes the capability of the audio signal to guide facial motion generation, consequently weakening the avatar’s expressiveness during both listening and speaking phases. To explicitly address this critical gap, our key innovation in this module is a novel Selec-tive Acoustic Injector . By adaptively filtering high-frequency raw audio features, this component selects the most relevant audio signals to drive facial motions based on the conversational state. Consequently, it guarantees precise, audio-synchronized lip movements during speech and focuses more on the conversa-tional partner’s voice during listening phases to generate semantically aligned reactive expressions. Extensive experiments confirm that our novel dual-stream approach for facial animation generation in the dyadic conversation setting improves lip synchro-nization and expression accuracy compared with state-of-the-art methods. In summary, our main contributions are as follows: 1. We propose MindFlow, a novel dual-stream framework inspired by the Ventral-Dorsal pathway model, designed to address the problem of rigid, hollow facial expressions in dyadic conversation animation. 2. We establish a Chunk-State approach that enables MLLMs in the Ventral module to analyze the interlocutor’s dynamic emotion states from audio streams, effectively preserving audio information and enabling continuous, fine-grained control for expression generation. 4 H. Chen et al. 
+
+3. We design a Selective Acoustic Injector in the Dorsal module, which adap-tively gates listening and talking dynamics to generate high-quality stream-ing facial motions seamlessly across both talking and listening states. 
+
+## 2 Related Work 
+
+Dorsal-Stream-Based Generation. Early studies [28,32,38] and [4,8,16,33,35,52, 53] build upon talking-head architectures [7,13,17,18,46,47,50,51] by introducing listening branches to extract reactive cues directly from audio signals. These approaches primarily rely on learning low-level correlations between acoustic patterns and facial dynamics. Recent advancements [5,23,39] further distill video generation models into autoregressive frameworks to enable online streaming synthesis. While these methods effectively model the temporal causality required for low-latency reflexes, they function similarly to a motor system without a cognitive center. By focusing solely on signal-level mapping, they often fail to capture the long-term semantic coherence and evolving emotion states inherent in dyadic conversations. 
+
+Dorsal-Ventral Dual-Stream-Based Generation. To incorporate high-level un-derstanding, recent works leverage LLMs to guide facial animation. Some meth-ods [25,32] fine-tune LLMs [2] to directly predict reactions, but often suffer from scenario-specific biases due to limited training data. A more prevalent strategy, adopted by [22,29,41,44,48], utilizes external LLMs to analyze dialogue content and generate predefined behaviors, such as specific head nods or gaze shifts. We term this the Sentence-Action approach. Although this approach ensures seman-tic fitness, it suffers from fundamental limitations inherent to its design: relying primarily on the textual modality discards crucial prosodic and emotional cues, while sentence-level reasoning results in coarse-grained, unsynchronized reac-tions. Similarly, recent holistic conversational frameworks [21,31,34,42] integrate LLMs to synthesize comprehensive multimodal responses. However, these sys-tems predominantly prioritize the active talking phase—generating content and motion during the avatar’s turn—often overlooking the continuous, semantically grounded non-verbal feedback required during active listening . Unlike these ap-proaches, our framework shifts to a Chunk-State approach, ensuring continuous semantic guidance for both talking and listening roles. 
+
+## 3 Method 
+
+3.1 Problem Formulation 
+
+We formulate the task of dyadic facial animation generation from the perspective of an interlocutor a engaged in a symmetric interaction with another interlocu-tor b. Drawing inspiration from the natural operation of the human sensory system, which processes continuous stimuli sequentially, we formulate this task MindFlow 5
+
+as a causal, streaming generation problem, which naturally diverges from ex-isting non-causal approaches that rely on accessing the full conversational con-text [29, 33, 35, 54]. At any time step t, the system generates the facial motion 
+
+M ta for interlocutor a, conditioning solely on the historical information available up to t. The generation process G is modeled as: 
+
+M ta = G(A≤ta , A ≤tb , S <t a ), (1) where A≤ta and A≤tb denote continuous raw audio streams, and S<t a represents the evolving emotion state derived from the interaction history. By adhering to this streaming causality, our formulation mirrors the continuous information flow of biological communication, where future contexts remain inherently inaccessible. Under this biomimetic constraint, the primary challenge is to simultaneously en-sure instantaneous audio-visual alignment for dynamic conversational behavior while maintaining the long-term coherence of emotion states. 
+
+3.2 Framework: Ventral-Dorsal Dual Pathway 
+
+Inspired by the biological Ventral-Dorsal dual-pathway model, which separately processes semantic comprehension and sensory-motor reflexes, we construct the MindFlow framework (Fig. 2). Specifically, MindFlow incorporates a Ventral module and a Dorsal module to emulate these respective functions, where the two modules collaborate seamlessly to ensure the avatar’s facial dynamics are both contextually appropriate and consistently engaging, effectively overcoming the issue of hollow expressions common in traditional audio-driven methods. To bridge these two modules, we introduce a novel Chunk-State approach .Previous methods [29, 48] typically adopt a Sentence-Action approach , which performs behavior reasoning based on sentence-level textual content. To plan proper movements, they often force the reasoning model to output verbose mo-tion descriptions burdened with complex spatial and temporal details, leading to temporally mismatched and coarse-grained responses. In contrast, our approach operates directly on raw audio streams at a much finer chunk-level granularity. Because it reasons at the scale of short chunks, our Ventral module naturally achieves more precise alignment without needing to explicitly predict temporal details. Furthermore, aligning with the biological dual-pathway model, we argue that intricate spatial expression details should not be pre-planned cognitively. Instead, the Ventral module acts solely as the cognitive foundation, continuously ingesting audio chunks to decode and update a fluid emotion state. Concurrently, the Dorsal module functions as the sensory-motor executor. Conditioned on the Ventral module’s semantic guidance and instantaneous acoustic cues, it takes over the generation of fine spatial details, translating them into high-fidelity, synchronous reflexes including accurate lip articulation, rhythmic head move-ments, and dynamic expressions. Formally, this dual-pathway process at time step t can be formulated as: 
+
+(
+
+Ska = Ventral (A≤ka , A ≤kb , S <k a )
+
+M ta = Dorsal (A≤ta , A ≤tb , M <t a , S ⌊t/w ⌋ 
+
+> a
+
+) , (2) 6 H. Chen et al. Stylistic Temporal Modulator                
+
+> Selective Acoustic Injector
+> 𝑀 !
+> "𝑀 !
+> #𝑀 !
+> $𝑀 !
+> %𝑀 !
+> &
+> 𝑀 !
+> '
+> Mix &split
+> One -hot embed
+> Interleave Separate encode
+> [2, T, D] [2 *T, D]
+> MLP
+> AdaLN
+> MLP
+> AdaLN
+> Noise
+> 𝑡
+> Flow Head
+> ×6
+> ×16
+
+(a) Ventral Module (b) Dorsal Module                                 
+
+> MLLM (Qwen3 -Omni -Instruct)
+> <task prompt> []𝑆 (
+> "[]𝑆 (
+> #
+> []𝑆 (
+> #[]𝑆 (
+> "
+> Emotion state 3D motion Latent motion
+> Other audio 𝐴 #
+> Self audio 𝐴 $
+> Input Output Streaming self motion 𝑀 %
+> &
+> 8emotion categories
+> [neutral]
+> [angry]
+> [contempt]
+> [disgusted]
+> 😐
+> 😠
+> 🙄
+> 🤢
+> [fear]
+> [happy]
+> [sad]
+> [surprised]
+> 😨
+> 😊
+> 😢
+> 😲 async
+> 0.6 fps 25 fps
+> Chain -of -State
+> Emotion state 3D motion Latent motion
+
+Fig. 2: Inspired by the Ventral-Dorsal dual-pathway model, MindFlow generates life-like conversational facial animations (both listening and speaking) driven by continuous dialogue audio Aa and Ab. 1) The Ventral module functions as a cognitive semantic perceiver, leveraging an MLLM with a streaming Chain-of-State to decode evolving emotion states chunk-by-chunk, conditioned on the historical cognitive trajectory. 2) The Dorsal module functions as a reflexive sensory-motor executor. It incorporates a 
+
+Selective Acoustic Injector that uses motion queries to adaptively gate unmixed audio streams, and a Stylistic Temporal Modulator that injects the Ventral emotion states as semantic guidance. These combined features condition an autoregressive flow-matching backbone for the continuous generation of high-fidelity, synchronous facial motions. 
+
+where k = ⌊t/w ⌋ denotes the discrete chunk index, and w represents the chunk window size. Through this chunk-state collaboration, MindFlow bypasses the stiffness of sentence-level textual planning, guaranteeing that the avatar not only comprehends the semantic flow to react reasonably but also remains physically "alive" and highly responsive at every moment. 
+
+3.3 Ventral Module: Streaming Cognitive State Modeling 
+
+The Ventral module functions as the cognitive anchor of the MindFlow frame-work, emulating the biological Ventral pathway responsible for semantic and emotional comprehension. Its primary objective is to maintain an emotion state derived from the evolving conversation history. By operating on a coarse tem-poral scale, it distills the continuous audio streams into context-aware cognitive states via semantic reasoning. Unlike the Sentence-Action approach [29, 48] that relies on sentence-level reasoning, our Chunk-State approach analyzes the interlocutor’s emotional vari-ations using fine-grained audio chunks as the fundamental unit. Operating di-rectly on the audio modality offers two critical advantages. First, it avoids the inevitable loss of prosodic information that occurs when converting speech to textual transcripts. Second, the smaller temporal window of audio chunks signif-icantly enhances the temporal granularity of the semantic guidance provided by the Ventral module. Consequently, we turn to MLLMs [9, 43] to perform direct semantic and emotional analysis natively within the audio modality. MindFlow 7
+
+However, existing MLLMs are predominantly tailored for turn-based question-answering tasks, posing a significant challenge for streaming continuous conver-sations. If we were to independently query the MLLM to analyze the emotion of each individual chunk, the rich conversational context would be completely de-stroyed. Conversely, if we simply concatenated the current chunk with historical chunks as the input query, the MLLM would lack explicit awareness of its past emotion states, frequently leading to unstable and temporally inconsistent pre-dictions for the current chunk. To resolve this dilemma, we propose a streaming Chain-of-State mechanism (Fig. 3) that explicitly models the evolving emotion state while simultaneously preserving the complete history of the interaction. Emotion                                                
+
+> state
+> Audio
+> chunk
+> I just heard on the news that it’s going to rain in LA tomorrow, so our trip plan are probably ruined .
+> neutral neutral neutral neutral neutral sad sad sad
+> 𝐴 !𝑆 !𝐴 "𝑆 "𝐴 #𝑆 #𝐴 $𝑆 $𝐴 %𝑆 %𝐴 &𝑆 &𝐴 '𝑆 '
+> 𝐴 !𝑆 !𝐴 "𝑆 "𝐴 #𝐴 $𝑆 $𝐴 %𝑆 %𝐴 &𝑆 &𝐴 '𝑆 '𝑆 #𝐴 (𝑆 (
+> Step 7
+> Step 8
+> Chain -of -State
+
+Fig. 3: Visualization of Ventral module reasoning and corresponding generated result. The MetaHuman plugin in Unreal Engine is utilized for rendering. 
+
+Formally, at step k, the Ventral module predicts the current state Ska condi-tioned not only on the current audio chunk Ak (as mixed chunk Awk :wk +wa and 
+
+Awk :wk +wb from both interlocutors) but also on the history of past audio inputs and previously inferred states (A≤wk a , A ≤wk b , S <k a ). By progressively appending the predicted emotion state to the context alongside the audio stream, this for-mulation establishes an expanding memory of both the sensory input and the cognitive trajectory. These derived emotion states are concurrently transmitted to the Dorsal module to guide facial motion generation. Ultimately, this Chain-of-State mechanism effectively mitigates the inherent instability of memory-less MLLM inferences; by explicitly conditioning on the trajectory of past states, it preserves contextual continuity, ensuring the avatar’s emotional expressions evolve smoothly, robustly, and coherently throughout the continuous interaction. 
+
+3.4 Dorsal Module: Reflexive Motion Generation 
+
+Acting as the sensory-motor executor of our framework, the Dorsal module em-ulates the biological Dorsal pathway, tasked with generating immediate subcon-scious reflexes driven by high-frequency acoustic cues. To achieve high-fidelity motion that is both responsive and physically coherent, we design a unified 8 H. Chen et al. 
+
+architecture comprising an autoregressive Transformer backbone tailored with mechanism-specific injectors, and a flow matching head for generating expressive and diverse facial motion [3, 46]. 
+
+Stylistic Temporal Modulator. To ensure that the generated reflexes adhere to the emotion state obtained by the Ventral module, we introduce the Stylistic Temporal Modulator. Implemented as a specialized Transformer encoder layer, this module enforces semantic consistency while preserving temporal continuity. The emotion state Ska from the Ventral module is first embedded and appended to the input hidden motion sequence at step t = wk . We employ a masked causal attention mechanism where the emotion state embedding is visible to subsequent hidden motion Hwk :wk +wm as guidance, while preventing information leakage from future frames. Guided by this semantic-aware emotion state, the Dorsal module generates rich high-frequency dynamics, ensuring that the avatar’s expressions during the conversation are both vivid and engaging. 
+
+Selective Acoustic Injector. Following the sensory-motor integration function of the biological Dorsal pathway, the Dorsal module takes the audio streams of both interlocutors ( Aa and Ab) as input. Audio-driven methods [33, 35, 54] commonly adopt concatenation-based fusion to early-mix these distinct signals. Specifically, they concatenate the audio features and map them through an MLP prior to cross-attention injection, which can be formulated as: 
+
+Fconcat = Attn (Hm, A fuse , A fuse ), where Afuse = MLP (Concat (Aa, A b)) . (3) This early-mix strategy prematurely entangles disparate acoustic sources into a shared latent space. Since the attention mechanism is forced to query from this mixed context, it obscures the distinct functional boundaries required for talking articulation versus listening reaction, inevitably causing signal dilution. To address this, we introduce the Selective Acoustic Injector, implemented as a modified Transformer decoder layer. Instead of early mixing, the audio features from both interlocutors are temporally interleaved to form a composite, source-independent acoustic context Actx = Interleave (Aa, A b). We formulate the injection process as a query-response mechanism where the motion history 
+
+Hm actively attends to relevant acoustic cues: 
+
+Finject = Attn (Hm, A ctx , A ctx ) = Softmax 
+
+ QmK⊤
+
+> ctx
+
+√d
+
+
+
+Vctx . (4) By exposing the unmixed audio streams directly to the attention mechanism, this design allows the injector to learn a dynamic gating policy. Crucially, we do not impose any explicit supervision or speaker labels to direct this attention mechanism. Instead, the dynamic gating strategy acts as an emergent behavior optimized purely by the flow matching objective. As visualized in the attention heatmap (Fig. 4), the model exhibits a clear, unsupervised phase transition: while generating the motion of interlocutor a, the query predominantly locks onto the 
+
+self track ( Aa) for precise lip-sync during active speech, but spontaneously shifts MindFlow 9
+
+focus to the other track ( Ab) to trigger reactive behaviors during listening. This confirms that our injector naturally internalizes the turn-taking dynamics of dyadic conversation, dynamically filtering the acoustic context based solely on motion causality. -7 -6 -5 -4 -3 -2 -1 0              
+
+> Aa
+> Ab
+> talking
+> -7 -6 -5 -4 -3 -2 -1 0
+> listening
+> 0.02 0.04 0.06 0.08 0.10 0.12 0.14 0.16
+
+Fig. 4: Attention map showing motion query focusing on relevant audio. 
+
+Autoregressive Transformer Backbone. To effectively integrate the stylistic and acoustic representations, our backbone is constructed by alternately stacking the aforementioned modules. Specifically, the network comprises L = 6 identical blocks, where each block sequentially applies the Stylistic Temporal Modula-tor and the Selective Acoustic Injector. During training, the backbone operates under a teacher-forcing strategy, utilizing the historical ground-truth motion se-quence M <t a to predict the motion condition Cta for the current frame. Formally, we define the end-to-end conditioning generation process as: 
+
+Cta = Backbone  M<t , S ta, A ctx 
+
+ , (5) where the function Backbone (·) encapsulates the feature embedding, L alter-nating blocks, and a final linear projection. The output Cta provides the precise expression context required for the subsequent flow matching process. 
+
+Flow Matching Head. To capture the inherent expressive diversity of realistic interactions, we discard deterministic regression in favor of a generative flow matching approach [27]. We formulate facial motion generation as learning a transport map from a standard Gaussian distribution π0 = N (0 , I ) to the data distribution π1. The flow matching head, parameterized as an MLP vθ , learns to predict the velocity field that drives the ordinary differential equation: 
+
+dZ τ = vθ (Zτ , τ |C)dτ,  (6) where Zτ is the motion state at timestep τ ∈ [0 , 1] , and C represents the con-ditioning context from the transformer backbone. During training, we optimize the flow matching objective: 
+
+Lf low = Eτ ∼U [0 ,1] ,Z 0∼π0,Z 1∼π1 [∥vθ (Zτ , τ |C) − (Z1 − Z0)∥2]. (7) Unlike diffusion models [20] that require iterative denoising, flow matching learns straight-line trajectories, allowing us to approximate the solution using a simple 5-step Euler solver during inference. This efficiency is critical, enabling our Dorsal module to synthesize high-fidelity, non-deterministic facial details with a rapid responsiveness characteristic of the biological Dorsal pathway. 10 H. Chen et al. 
+
+## 4 Experiments 
+
+4.1 Implementation Details 
+
+The Dorsal module is trained on a combination of public datasets totaling ap-proximately 20 hours: HDTF [49] provides fundamental motion priors; VICOX 4
+
+strengthens listening behavior and interaction modeling; and MEAD [40] and VICO [53] capture emotional talking and listening behaviors, respectively. We adopt a two-stage strategy: the model is first pre-trained on HDTF and VICOX for 90k steps to establish basic talking and conversational behaviors, then fine-tuned on MEAD and VICO for 30k steps to improve emotion awareness and expressiveness ( ∼ 4 days in total). Both stages use the Adam optimizer with a batch size of 64, a peak learning rate of 1e−5 with a cosine schedule and a 
+
+1% warmup, and no weight decay. The audio encoder [1] is frozen throughout both stages. Facial movements are encoded as 51-dimensional ARKit blendshape coefficients for expressions and 3D Euler angles for head pose, extracted via Me-diaPipe [30] and FSA-Net [45], respectively. During inference, the two modules run asynchronously. The Ventral module processes each 1.5 s audio chunk in 1.38 ± 0.10s , while the Dorsal module gener-ates facial reactions at 25 FPS in real time, reusing Ska until the next state Sk+1 
+
+> a
+
+arrives. The full system requires 59 GB VRAM and sustains real-time output over 2-minute sequences without memory growth. 
+
+4.2 Comparison with Prior Methods Quantitative Evaluation 
+
+Metrics. We introduce a comprehensive set of evaluation metrics to system-atically assess the quality of generated facial movements in both talking and listening states. To evaluate motion realism, we employ the Fréchet Distance (FD). For assessing lip synchronization during talking phases, we utilize Sync-Net scores (SyncC and SyncD), while Mean Squared Error (MSE) is adopted to measure expression accuracy within the listening context. Notably, we adapt SyncNet [10,26] from video-based synchronization evaluation to the 3D modality. 
+
+Talking Performance. We compare the talking performance of our method with previous approaches on the HDTF testset [49]. Specifically, we compare with talking head models EmoTalk and UniTalker [11, 36], which use the same mo-tion representation as ours. Meanwhile, we re-train the dyadic methods [33,35] to align with our motion representation. As shown in Tab. 1a, MindFlow achieves state-of-the-art performance across all metrics, encompassing lip synchroniza-tion, facial expression fidelity, and head movement realism. Notably, our Dorsal module operates via autoregressive rollout to generate motion in a frame-by-frame streaming manner, supporting continuous inference for long conversational audio and overcoming the fixed-length limitations ( ∼ 10 s) of previous methods.                                             
+
+> 4https://project.mhzhou.com/vico MindFlow 11
+> Table 1: Quantitative comparison with SOTA methods. We evaluate perfor-mance on two distinct interaction modes: (a) talking generation and (b) listening re-sponsiveness. Green and Cyan highlights denote the best and second-best results.
+> (a) Evaluation on talking state.
+> SyncNet FD ↓
+> Method SyncD ↓SyncC ↑Exp Pose
+> EmoTalk 0.429 0.412 23.52 -UniTalker 0.480 0.300 29.88 -DualTalk 0.467 0.346 26.06 0.18 A2P 0.341 0.519 17.64 0.03 Ours 0.333 0.520 15.76 0.01
+> (b) Evaluation on listening state.
+> FD ↓MSE ↓
+> Method Exp Pose Exp Pose
+> L2L 33.93 0.06 0.93 0.01 RLHG 39.02 0.07 0.86 0.01 DIM 23.88 0.06 0.70 0.01 DualTalk 22.27 0.05 0.58 0.01 A2P 14.24 0.03 0.34 0.01 Ours 13.86 0.03 0.30 0.01
+
+Listening Performance. We follow the evaluation protocol of DualTalk to assess the quality of generated listening behaviors on the VICO testset. As shown in Tab. 1b, our model achieves lower scores in terms of FD and MSE, indicating that it generates more accurate and appropriate facial movements during the listening state. We attribute this improvement to: 1) the introduction of semantic guidance as a prior for motion generation, making the generated results more appropriate; and 2) the use of a generative network architecture, which is capable of producing more diverse facial motion patterns and effectively mitigates the over-smoothing issue commonly observed in discriminative models. 
+
+Qualitative Evaluation We further conduct a qualitative comparison to assess the proposed method from the perspectives of motion naturalness and lip-sync consistency. First, we adopt DualTalk and A2P as baseline Dorsal-only meth-ods for comparison. Fig. 5 presents representative results generated by different methods over multiple dialogue turns, including alternating talking and listening states. Compared to DualTalk, whose head pose exhibits noticeable discrepan-cies in motion amplitude and frequency between talking and listening states, our method produces smoother and more natural head movements across different interaction modes. In contrast to A2P, which struggles to maintain stable facial expressions over extended durations, our approach is able to preserve controllable and coherent emotional expressions over long sequences. We attribute this limita-tion of A2P to its fixed-length diffusion transformer structure, which hinders the long-term consistency of facial motions via sliding-window inference, whereas the autoregressive flow matching generation structure in the Dorsal module enables more stable and reliable inference for long-duration facial animation. Second, we compare with CustomListener 5, which leverages LLM for seman-tic understanding on sentence-level textual dialogue. As illustrated in Fig. 6, our  
+
+> 5Obtained from the CustomListener homepage.
+
+12 H. Chen et al. [L] I can‘t believe you did that without even asking me first!            
+
+> [R] Oh, come on! It wasn't a big deal, and I knew you would overreact like this.
+> [L] Overreact? You made a decision that affects both of us without even considering my opinion!
+> [R] Because I didn't have time to sit around waiting for you to make up your mind! Someone had to act .
+> DualTalk
+> Audio2
+> Photoreal
+> Ours
+> Dialogue
+> as king ov erreact de cision act Subtitle
+
+Fig. 5: Performance under conversational tension : MindFlow captures the in-tense atmosphere to exhibit semantically and temporally appropriate expressions, whereas baseline methods suffer from unstable and hollow expressions due to the boundary artifacts and a lack of semantic guidance. 
+
+approach generates appropriate, well-timed reactions ( i.e ., a smile at the end). In contrast, CustomListener fails to produce noticeable reactions and exhibits static facial expressions, a limitation stemming from its coarse sentence-level action constraints. This indicates that our Chunk-State approach possesses a distinct advantage in temporal granularity over the Sentence-Action approach. Finally, we conduct a perception study for a more comprehensive evaluation. We designed a survey utilizing a comparative format, where evaluators were asked to select the best generation results based on two criteria: the naturalness and fitness of the generated movements. To ensure a blind evaluation and pre-vent bias, the correspondence between the methods and the presented options was randomized. As illustrated in Fig. 7, out of the 24 collected evaluations, our model consistently outperforms previous methods in both naturalness and fitness. 
+
+4.3 Ablation Study 
+
+Semantic Guidance. We analyze the impact of the Ventral module’s semantic guidance provided to the Dorsal module through quantitative ablation exper-iments. Specifically, on the VICO testset, we provide the Dorsal module with three distinct types of guidance signals: a random state, a fixed state (sentence-level GT), and the emotion state derived from the Ventral module. As shown in Tab. 2a, compared to random or fixed guidance, the evolving emotion state extracted from the dialogue by the Ventral module effectively guides the Dorsal module to generate more contextually appropriate facial expressions. This indi-MindFlow 13 Custom    
+
+> Listener
+> Ours
+> S-AVer
+> Ours
+> Premature reaction
+> Jitter lips
+
+Fig. 6: Compared to the Sentence-Action approach, our proposed Chunk-State ap-proach yields reactions with more appropriate timing and style. 33% 17% 50%      
+
+> 30% 10% 60%
+> 33% 67%
+> 30% 70%
+> CL DT A2P Ours
+
+Naturalness 
+
+Fitness 
+
+> Ours
+
+Fig. 7: Results of the perception study. 
+
+cates the guidance from the Ventral module is temporally dynamic, fine-grained, and aligned with the ground-truth facial expressions. 
+
+Chunk-State Approach. We compare our method against a Sentence-Action variant of our own model, which degrades the Chain-of-State mechanism to sentence-level reasoning. As shown in Fig. 6, although the variant can also yield appropriate emotional states, the resulting reactions are temporally unsynchro-nized and premature. This distinctly underscores the critical role of fine-grained semantic reasoning, which is further validated in Tab. 2a ( v.s. S-A). 
+
+Table 2: Results of component-wise ablation study.  
+
+> (a) Ventral module.
+
+FD ↓ MSE ↓
+
+Method Exp Pose Exp Pose Random 15.21 0.03 0.36 0.01 Fixed 14.15 0.03 0.32 0.01 S-A 14.39 0.03 0.33 0.01 Ours 13.86 0.03 0.30 0.01  
+
+> (b) Selective Acoustic Injector (SAI).
+
+Method SAI SyncD ↓ SyncC ↑
+
+w/o 0.341 0.519 A2P w/ 0.331 0.526 w/o 0.350 0.424 Ours w/ 0.333 0.520 14 H. Chen et al. 
+
+Reason Unit Length. The window size of the chunk w serves as a critical hy-perparameter governing the trade-off between the granularity of emotion state and stability. To identify the optimal setting, we conduct a user study to as-sess emotion prediction accuracy (Acc) and perceptual synchronicity (pSync) under different chunk sizes. As shown in Fig. 8, while increasing the chunk size improves accuracy, which is likely due to the incorporation of richer temporal context, it degrades the perceptual synchronicity. To balance these trade-offs, we empirically set the chunk size to 1.5 seconds. 0.5 1.0 1.5 2.0 2.5 3.0  
+
+> chuck size (seconds)
+> 0
+> 2
+> 4
+> Score (5-point grade)
+> Acc (grade)
+> pSync (grade)
+> Fig. 8: Impact of chunk size.
+
+Selective Acoustic Injector. We validate this injector by comparing our method and a retrained A2P [33] against two cross-ablated variants: (1) A2P augmented with our proposed injector, and (2) our method using the A2P acoustic module. As shown in Tab. 2b, incorporating the injector consistently improves lip-sync quality across architectures. This demonstrates its effectiveness in selectively modeling cross-temporal acoustic features and providing more informative guid-ance. Moreover, the superior performance of the A2P-augmented variant over our causal method aligns with the known advantage of bidirectional approaches, further validating the consistent effectiveness of the proposed injector. 
+
+## 5 Conclusion 
+
+We presented MindFlow, a novel dual-stream framework that bridges the gap between high-level cognitive reasoning and precise motor reflexes for streaming dyadic facial animation. By introducing a hierarchical Chunk-State approach, MindFlow overcomes the limitations of rigid sentence-level constraints. Ventral module leverages a streaming Chain-of-State mechanism to extract continuous, fine-grained emotional semantics directly from audio chunks. Concurrently, the Dorsal module employs a Selective Acoustic Injector and a flow matching head to generate high-fidelity, synchronous facial dynamics seamlessly across both talk-ing and listening phases. Extensive experiments demonstrate that MindFlow sig-nificantly outperforms state-of-the-art methods in semantic appropriateness and motion naturalness, enabling more lifelike and engaging conversational avatars. MindFlow 15 
+
+## 6 Limitations and Future Work 
+
+While MindFlow significantly advances audio-driven dyadic facial animation, it presents certain limitations that pave the way for future research. Primarily, our current framework relies exclusively on auditory inputs to infer the interlocu-tor’s emotional and semantic states. In natural face-to-face interactions, visual information, e.g ., the interlocutor’s eye contact, facial expressions, and body lan-guage, is equally crucial for conveying non-verbal intent and emotional nuances. Relying solely on the acoustic modality may occasionally limit the avatar’s capac-ity to react to silent yet semantically rich behaviors. Therefore, a key direction for future work is to extend our framework to accommodate multimodal sen-sory inputs. By seamlessly integrating the interlocutor’s visual cues alongside the raw audio streams, the framework can achieve a more holistic contextual understanding, enabling the generation of even more empathetic, accurate, and contextually appropriate facial responses. 
+
+## Acknowledgments 
+
+This work was supported by the National Key R&D Program of China (2023YF F1203803), Zhongguancun Laboratory, and the National Natural Science Foun-dation of China (62502469, 62525204). 
+
+## Supplementary Material A Overview 
+
+In this supplementary material, we provide additional technical details. Section B elaborates on the implementation of our proposed model, while Section C presents further experimental results and configurations. Furthermore, we in-clude a supplementary video 6 to provide visual demonstrations of our work. 
+
+## B Implementation Details 
+
+B.1 Ventral Module 
+
+We demonstrate the prompt design that leverages Multimodal Large Language Models (MLLMs) within the Ventral module to implement a Chain-of-State mechanism.  
+
+> 6https://www.youtube.com/watch?v=tQfgv38swJs
+
+16 H. Chen et al. 
+
+You are a streaming audio conversational emotion analyzer designed for online, chunk-level inference, serving an expressive conversational digital human system. You will receive multiple audio chunks from the same conversation in chronological order. The conversation always and exclusively involves two speakers: one male and one female. 
+
+Core Task 
+
+After receiving each new audio chunk, you must: - Determine the dominant emotional state of the male speaker at the current moment (i.e., at the end of the current audio chunk), based on all historical audio content received up to this point. - Even when the male speaker is silent and in a listening state, you must infer his emotional reaction based on the female speaker’s speech content, rather than defaulting to [neutral]. Emotion Label Set (you must strictly select one) - [angry] - [contempt] - [disgusted] - [fear] - [happy] - [sad] - [surprised] - [neutral] 
+
+Decision Rules (critical constraints affecting expressiveness) - You must jointly consider both speech content (semantics) and vocal prosody (intonation, tone, stress, rhythm, energy variation, etc.) when determining emotion. - When the male speaker is listening, prioritize analyzing the female speaker’s speech content and tone, and infer the emotional impact on the male speaker as his internal emotional response. - Whenever any perceivable emotional cue exists (whether from the male speaker’s own speech or emotional stimulation caused by the female speaker’s dialogue), you should select the closest specific emotion label instead of [neutral]. - [neutral] should be used only when: 1) The overall conversation remains stable and lacks semantic or prosodic cues that may trigger emotional change in the male speaker; 2) The current audio chunk contains insufficient emotion-related information to determine an emotional tendency. - When a mild but recognizable emotional tendency is present, prefer selecting alow-intensity specific emotion label rather than reverting to [neutral]. 
+
+Continuity and Emotional Evolution Constraints 
+
+- You can and must reference your previous emotion predictions from earlier audio chunks. - Emotion should be treated as a continuously evolving state rather than independent classification results. - If the current audio chunk continues the emotional trend from the previous moment, you should maintain or smoothly transition to a similar emotion instead of frequently reverting to [neutral]. - Emotional changes should be gradual and explainable, with significant transitions occurring only when clear semantic or prosodic changes are observed. 
+
+Output Format (must be strictly followed) - For each audio chunk, output exactly one emotion label. - Do not output any explanation, reasoning process, punctuation, or additional text. 
+
+B.2 Dorsal Module 
+
+To mitigate the exposure bias introduced by teacher-forcing and the resulting error accumulation, and to enable stable inference over arbitrarily long audio-driven dialogues, we carefully design both the training and inference procedures. 
+
+Head-pose representation. We observe that when the Dorsal module is trained to directly predict head poses represented by 3D Euler angles, noticeable drift emerges during inference, as the predicted orientation gradually rotates toward MindFlow 17 
+
+an extreme angle (as shown in Fig. 9). We attribute this phenomenon to the module becoming overly dependent on historical motion during training, thereby encouraging it to perpetuate the previous head-pose trajectory at inference time.   
+
+> Fig. 9: A failure case of head-pose drift : the drift appears after only a few inference steps. Frames are displayed at 2.5fps for clarity.
+
+To address this issue, we train the Dorsal module to predict the angular velocity of the head pose instead of the absolute Euler angles. This formulation not only prevents the module from exploiting such shortcuts but also aligns better with the intrinsic correlation between audio and head-pose dynamics. We further find that angular velocity exhibits stronger coupling with the speech signal, leading to more coherent and speech-consistent head movements during talking. During inference, for all frames except the first, the current head pose is obtained by adding the predicted angular velocity to the head pose of the previous frame. For the first frame, the module still directly predicts the absolute head pose rather than its angular velocity, which keeps the training and inference procedures consistent. 
+
+Historical perturbation. To further prevent the Transformer backbone from over-relying on historical motion and learning undesirable shortcuts, we follow the inspiration of Chen et al . [6] and add Gaussian noise N to the input M as in Eq. 8. During training, σ is randomly sampled from [0 .01 , 0.05] to ensure that the noise does not disrupt the overall motion structure. During inference, σ is fixed to 0.02 .
+
+M noised = (1 − σ)M + σN  (8) This perturbation encourages a balanced reliance between historical motion and audio features when generating the current frame’s motion. 
+
+Talking dynamic expressiveness. We aim to enhance the expressiveness of the generated motions by increasing the influence of audio features. This is achieved by adjusting the cross-modal injection coefficient λcross within the Selective Acoustic Injector. In the cross-attention module where audio conditions are in-jected (Eq. 9), we introduce an additional scaling factor before the multi-head attention residual term: 
+
+Hout  
+
+> m
+
+= Hin  
+
+> m
+
++ λcross · Softmax 
+
+ (Norm( Hm))( Actx )⊤
+
+√d
+
+
+
+Actx , (9) 18 H. Chen et al. 
+
+where Hm and Actx are intermediate motion latent and audio feature, respec-tively. By increasing λcross , the model relies more heavily on audio features when autoregressively predicting the next-frame motion, thereby strengthening the influence of acoustic cues on expression generation. In practice, λcross is set to 2.5.
+
+## C Experiments 
+
+SyncNet Metrics. Building upon LatentSync [26], we adapt the SyncNet model to our motion representation to evaluate lip-sync accuracy. Specifically, we re-place the original visual branch with a series of MLP layers to accommodate the new modality. This modified network is then trained on a high-quality 3D mocap talking dataset. The resulting model calculates evaluation metrics following the original SyncNet methodology [10]. 
+
+Talking Performance We further report the evaluation results on the HDTF test set. Using the LVE and Diversity metrics [12, 15] , we compare the pro-posed method with previous works from two perspectives: lip-sync accuracy and expression diversity. As shown in Tab. 3, MindFlow achieves state-of-the-art per-formance in both lip accuracy and expression diversity on the benchmark. We attribute this improvement to the autoregressive flow-matching-based architec-ture adopted in the Dorsol module.                
+
+> Table 3: Further evaluation on the HDTF testset. Method EmoTalk UniTalker Audio2photoreal DualTalk Ours LVE ↓6.212 7.866 9.676 8.806 6.305 Diversity ↑(×10 −2)5.558 2.242 21.332 2.074 24.197
+
+Impact of Sampling Steps. To determine the optimal trade-off of the Dorsal mod-ule between synthesis quality and inference latency, we analyze the effect of the number of sampling steps on the lip-synchronization performance. We evaluate the results using SyncD and inference speed (FPS). As shown in Fig. 10, the relationship between sampling steps and SyncD is non-monotonic. At low step counts ( ≤ 5), the discretization error is dominant, leading to under-convergence of the ODE solver and coarse lip shapes. Increasing the steps initially improves alignment; however, we observe a performance degradation when sampling steps exceed 5. This counterintuitive phenomenon can be attributed to the accumula-tion of prediction errors in the vector field over a longer integration trajectory, which introduces temporal jitter and high-frequency artifacts that negatively impact the SyncNet scores. Consequently, we adopt 5-step sampling as the op-timal setting, achieving the lowest SyncD score while maintaining a real-time throughput. MindFlow 19 1 3 5 7 9
+
+> Step Size
+> 25
+> 30
+> 35
+> 40
+> 45
+> 50
+> 55
+> Inference FPS
+> FPS
+> 25 fps (Real-time)
+> pSyncD
+> 0.30
+> 0.32
+> 0.34
+> 0.36
+> 0.38
+> 0.40
+> pSyncD
+
+Fig. 10: Impact of sampling step on synthesis quality and inference latency 
+
+## D Ethics Statement 
+
+MindFlow introduces a dual-pathway framework for generating streaming 3D facial animations in dyadic conversations. By harmonizing cognitive semantics with acoustic dynamics, this model enables digital avatars to achieve natural, context-aware, and expressive interactions. While this technology offers signifi-cant benefits in domains such as social companionship, virtual education, and accessibility tools, it also presents potential ethical risks. The high-fidelity 3D facial parameter generation and coefficient-driven techniques could be misused to create unauthorized digital avatar interactions, fabricated character perfor-mances, or identity impersonation. To mitigate these risks, the application of this technology must be grounded in informed consent and respect for individual pri-vacy. We advocate for transparent disclosure or data provenance technologies to ensure users can distinguish AI-generated digital content. Strict adherence to ethical standards is essential to ensure that conversational animation technology contributes positively to society and enhances the human-computer interaction experience. 
+
+## References 
+
+1. Baevski, A., Zhou, Y., Mohamed, A., Auli, M.: wav2vec 2.0: A framework for self-supervised learning of speech representations. In: NeurIPS. pp. 12449–12460 (2020) 2. Brown, T., Mann, B., Ryder, N., Subbiah, M., Kaplan, J.D., Dhariwal, P., Nee-lakantan, A., Shyam, P., Sastry, G., Askell, A., et al.: Language models are few-shot learners. In: NeurIPS. vol. 33, pp. 1877–1901 (2020) 3. Cen, Z., Pi, H., Peng, S., Shuai, Q., Shen, Y., Bao, H., Zhou, X., Hu, R.: Ready-to-React: Online reaction policy for two-character interaction generation. In: ICLR (2025) 4. Chatziagapi, A., Morency, L.P., Gong, H., Zollhöfer, M., Samaras, D., Richard, A.: Av-flow: Transforming text to audio-visual human-like interactions. In: ICCV. pp. 14270–14282 (2025) 20 H. Chen et al. 5. Chen, B., Liu, H.: Dystream: Streaming dyadic talking heads generation via flow matching-based autoregressive model. arXiv preprint arXiv:2512.24408 (2025) 6. Chen, B., Martí Monsó, D., Du, Y., Simchowitz, M., Tedrake, R., Sitzmann, V.: Diffusion forcing: Next-token prediction meets full-sequence diffusion (2024) 7. Chen, H., Zhang, H., Zhang, S., Liu, X., Zhuang, S., Wan, P., ZHANG, D., Li, S., et al.: Cafe-talk: Generating 3d talking face animation with multimodal coarse-and fine-grained control. In: ICLR (2025) 8. Chen, M., Cui, L., Zhang, W., Zhang, H., Zhou, Y., Li, X., Tang, S., Liu, J., Liao, B., Chen, H., et al.: Midas: Multimodal interactive digital-human synthesis via real-time autoregressive video generation. arXiv preprint arXiv:2508.19320 (2025) 9. Chen, Q., Cheng, L., Deng, C., Li, X., Liu, J., Tan, C.H., Wang, W., Xu, J., Ye, J., Zhang, Q., Zhang, Q., Zhou, J.: Fun-audio-chat technical report. arXiv preprint arXiv:2512.20156 (2025) 10. Chung, J.S., Zisserman, A.: Out of time: automated lip sync in the wild. In: ACCV 2016 Workshops. pp. 251–263. Springer (2017) 11. Fan, X., Li, J., Lin, Z., Xiao, W., Yang, L.: Unitalker: Scaling up audio-driven 3d facial animation through a unified model. In: ECCV. pp. 204–221 (2024) 12. Fan, Y., Lin, Z., Saito, J., Wang, W., Komura, T.: FaceFormer: Speech-driven 3d facial animation with transformers. In: CVPR. pp. 18770–18780 (2022) 13. Feng, Y., Feng, H., Black, M.J., Bolkart, T.: Learning an animatable detailed 3d face model from in-the-wild images. ACM ToG 40 (4) (2021) 14. Gao, Y., Dai, Y., Zhang, G., Guo, H., Hao, A., Li, S.: Effects of interaction modal-ities and emotional states on user’s perceived empathy with an llm-based embod-ied conversational agent. International Journal of Human-Computer Studies 204 ,103585 (2025) 15. Guo, C., Zuo, X., Wang, S., Zou, S., Sun, Q., Deng, A., Gong, M., Cheng, L.: Action2motion: Conditioned generation of 3d human motions. In: ACM MM. pp. 2021–2029 (2020) 16. Guo, Y., Liu, X., Zhen, C., Yan, P., Wei, X.: ARIG: Autoregressive interactive head generation for real-time conversations. In: ICCV. pp. 12956–12965 (2025) 17. He, X., Huang, Q., Zhang, Z., Lin, Z., Wu, Z., Yang, S., Li, M., Chen, Z., Xu, S., Wu, X.: Co-speech gesture video generation via motion-decoupled diffusion model. In: CVPR. pp. 2263–2273 (2024) 18. He, X., Zhang, H., Chen, H., Zheng, C., Chen, L., Tang, S., Huang, J., Liu, X., Wan, P., Wu, Z.: From inpainting to editing: A self-bootstrapping framework for context-rich visual dubbing. arXiv preprint arXiv:2512.25066 (2025) 19. Hickok, G., Poeppel, D.: The cortical organization of speech processing. Nature reviews neuroscience 8(5), 393–402 (2007) 20. Ho, J., Jain, A., Abbeel, P.: Denoising diffusion probabilistic models. In: NeurIPS. pp. 6840–6851 (2020) 21. Hu, Y., Liu, R., Ren, Y., Yin, X., Li, H.: Unitalker: Conversational speech-visual synthesis. In: ACM MM. pp. 10248–10257 (2025) 22. Ji, X., Lin, C., Ding, Z., Tai, Y., Zhu, J., Hu, X., Luo, D., Ge, Y., Wang, C.: Realtalk: Real-time and realistic audio-driven face generation with 3d facial prior-guided identity alignment network. arXiv preprint arXiv:2406.18284 (2024) 23. Ki, T., Jang, S., Jo, J., Yoon, J., Hwang, S.J.: Avatar forcing: Real-time interactive head avatar generation for natural conversation. arXiv preprint arXiv:2601.00664 (2026) 24. Kyrlitsias, C., Michael-Grigoriou, D.: Social interaction with agents and avatars in immersive virtual environments: A survey. Frontiers in Virtual Reality 2, 786665 (2022) MindFlow 21 25. Lai, P., Zhong, W., Qin, Y., Ren, X., Wang, B., Li, G.: LLM-driven multimodal and multi-identity listening head generation. In: CVPR. pp. 10656–10666 (2025) 26. Li, C., Zhang, C., Xu, W., Lin, J., Xie, J., Feng, W., Peng, B., Chen, C., Xing, W.: LatentSync: Taming audio-conditioned latent diffusion models for lip sync with syncnet supervision. arXiv preprint arXiv:2412.09262 (2024) 27. Lipman, Y., Chen, R.T., Ben-Hamu, H., Nickel, M., Le, M.: Flow matching for generative modeling. arXiv preprint arXiv:2210.02747 (2022) 28. Liu, M., Wang, J., Qian, X., Li, H.: Listenformer: Responsive listening head gener-ation with non-autoregressive transformers. In: ACM MM. pp. 7094–7103 (2024) 29. Liu, X., Guo, Y., Zhen, C., Li, T., Ao, Y., Yan, P.: Customlistener: Text-guided responsive interaction for user-friendly listening head generation. In: CVPR. pp. 2415–2424 (2024) 30. Lugaresi, C., Tang, J., Nash, H., McClanahan, C., Uboweja, E., Hays, M., Zhang, F., Chang, C.L., Yong, M.G., Lee, J., et al.: Mediapipe: A framework for building perception pipelines. arXiv preprint arXiv:1906.08172 (2019) 31. Luo, C., Wang, J., Li, B., Song, S., Ghanem, B.: Omniresponse: Online multimodal conversational response generation in dyadic interactions. In: NeurIPS (2025) 32. Ng, E., Joo, H., Hu, L., Li, H., Darrell, T., Kanazawa, A., Ginosar, S.: Learning to listen: Modeling non-deterministic dyadic facial motion. In: CVPR. pp. 20395– 20405 (2022) 33. Ng, E., Romero, J., Bagautdinov, T., Bai, S., Darrell, T., Kanazawa, A., Richard, A.: From audio to photoreal embodiment: Synthesizing humans in conversations. In: CVPR. pp. 1001–1010 (2024) 34. Park, S., Kim, C., Rha, H., Kim, M., Hong, J., Yeo, J., Ro, Y.: Let’s go real talk: Spoken dialogue model for face-to-face conversation. In: ACL (2024) 35. Peng, Z., Fan, Y., Wu, H., Wang, X., Liu, H., He, J., Fan, Z.: Dualtalk: Dual-speaker interaction for 3d talking head conversations. In: CVPR. pp. 21055–21064 (2025) 36. Peng, Z., Wu, H., Song, Z., Xu, H., Zhu, X., He, J., Liu, H., Fan, Z.: Emotalk: Speech-driven emotional disentanglement for 3d face animation. In: ICCV. pp. 20687–20697 (2023) 37. Pratticó, F.G., Shabkhoslati, J.A., Shaghaghi, N., Lamberti, F.: Bot undercover: on the use of conversational agents to stimulate teacher-students interaction in remote learning. In: 2022 IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW). pp. 277–282. IEEE (2022) 38. Siniukov, M., Chang, D., Tran, M., Gong, H., Chaubey, A., Soleymani, M.: Di-TaiListener: Controllable high fidelity listener video generation with diffusion. In: ICCV. pp. 11991–12001 (2025) 39. Sun, Z., Peng, Z., Ma, Y., Chen, Y., Zhou, Z., Zhou, Z., Zhang, G., Zhang, Y., Zhou, Y., Lu, Q., et al.: Streamavatar: Streaming diffusion models for real-time interactive human avatars. arXiv preprint arXiv:2512.22065 (2025) 40. Wang, K., Wu, Q., Song, L., Yang, Z., Wu, W., Qian, C., He, R., Qiao, Y., Loy, C.C.: MEAD: A large-scale audio-visual dataset for emotional talking-face gener-ation. In: ECCV. pp. 700–717. Springer (2020) 41. Wang, R., Ma, C., Li, G., Xu, H., Li, Y., Wang, Z.: You think, you act: The new task of arbitrary text to motion generation. In: Proceedings of the IEEE/CVF International Conference on Computer Vision. pp. 12012–12022 (2025) 42. Xie, Y., Gu, T., Li, Z., Zhang, C., Song, G., Zhao, X., Liang, C., Jiang, J., Xu, H., Luo, L.: X-streamer: Unified human world modeling with audiovisual interaction. arXiv preprint arXiv:2509.21574 (2025) 22 H. Chen et al. 43. Xu, J., Guo, Z., Hu, H., Chu, Y., et al.: Qwen3-omni technical report. arXiv preprint arXiv:2509.17765 (2025) 44. Xue, H., Fan, Y., Wang, X., Wu, Z.: Echo: Enhancing conversational behavior generation via hierarchical semantic comprehension with large language models. In: SIGGRAPH Asia. pp. 1–9 (2025) 45. Yang, T.Y., Chen, Y.T., Lin, Y.Y., Chuang, Y.Y.: Fsa-net: Learning fine-grained structure aggregation for head pose estimation from a single image. In: CVPR. pp. 1087–1096 (2019) 46. Yang, Y., Cen, Z., Peng, S., Chen, X., Deng, Y., Zhu, X., Jia, F., Zhou, X., Bao, H.: StreamingTalker: Audio-driven 3d facial animation with autoregressive diffusion model. In: AAAI (2025) 47. Zhang, Y., Zhong, Z., Liu, M., Chen, Z., Wu, B., Zeng, Y., Zhan, C., He, Y., Huang, J., Zhou, W.: Musetalk: Real-time high-fidelity video dubbing via spatio-temporal sampling. arXiv preprint arXiv:2410.10122 (2024) 48. Zhang, Z., Zhou, Y., Yao, H., Ao, T., Zhan, X., Liu, L.: Social agent: Master-ing dyadic nonverbal behavior generation via conversational llm agents. In: ACM SIGGRAPH Asia. pp. 1–12 (2025) 49. Zhang, Z., Li, L., Ding, Y., Fan, C.: Flow-guided one-shot talking face generation with a high-resolution audio-visual dataset. In: CVPR. pp. 3661–3670 (2021) 50. Zhao, X., Dai, J., Zhou, F., Wang, H., Song, Z., Hao, A., Qin, H., Gao, Y.: Emo-poseface: Head pose aware speech-driven 3d emotional facial animation using latent diffusion. IEEE TVCG (2026) 51. Zhong, Z., Ji, Y., Kong, Z., Liu, Y., Wang, J., Feng, J., Liu, L., Wang, X., Li, Y., She, Y., et al.: Anytalker: Scaling multi-person talking video generation with interactivity refinement. arXiv preprint arXiv:2511.23475 (2025) 52. Zhou, M., Bai, Y., Zhang, W., Yao, T., Zhao, T.: Interactive conversational head generation. TPAMI (2025) 53. Zhou, M., Bai, Y., Zhang, W., Yao, T., Zhao, T., Mei, T.: Responsive listening head generation: a benchmark dataset and baseline. In: ECCV. Springer (2022) 54. Zhu, Y., Zhang, L., Rong, Z., Hu, T., Liang, S., Ge, Z.: INFP: Audio-driven inter-active head generation in dyadic conversations. In: CVPR. pp. 10667–10677 (2025)

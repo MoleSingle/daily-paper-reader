@@ -1,0 +1,261 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-29T20:49:52.418615+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 4,
+    "quick_skim_target": 11,
+    "quick_selected": 4
+  },
+  "deep_dive": [
+    {
+      "id": "2606.27779v1",
+      "source": "arxiv",
+      "title": "MindFlow: Harmonizing Cognitive Semantics and Acoustic Dynamics for Facial Animation Generation in Dyadic Conversations",
+      "abstract": "Generating lifelike facial animation for dyadic conversations requires reconciling high-level cognitive intent with precise low-level motor reflexes, yet existing methods fall short in the semantic understanding of dialogue context and in precise dynamic control. In this paper, we propose MindFlow, a dual-pathway generative framework inspired by the Ventral-Dorsal pathway model in neuroscience, which decouples generation into two collaborative streams, thereby harmonizing deep semantic reasoning with fine-grained control. In the Ventral module, we transform the conventional Sentence-Action approach into a novel Chunk-State approach that models raw acoustic streams as a context-aware, evolving emotional state chain, capturing subtle paralinguistic nuances and mid-utterance emotional shifts missed by sentence-level modeling. The Dorsal module features a conditional autoregressive flow matching network for high-fidelity facial motion, driven by high-frequency acoustic cues and modulated by emotion states, plus a Selective Acoustic Injector for adaptive audio gating to ensure robustness in talking-and-listening dynamics without interference. Extensive experiments demonstrate that MindFlow achieves superior semantic appropriateness and motion naturalness compared to state-of-the-art baselines.",
+      "authors": [
+        "Hejia Chen",
+        "Haoxian Zhang",
+        "Xu He",
+        "Xiaoqiang Liu",
+        "Pengfei Wan",
+        "Shoulong Zhang",
+        "Shuai Li"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-26T07:11:10+00:00",
+      "link": "https://arxiv.org/pdf/2606.27779v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "facial animation generation in dyadic conversations driven by acoustic dynamics",
+      "llm_evidence_cn": "双人对话中基于声学动态的面部动画生成",
+      "llm_evidence": "双人对话中基于声学动态的面部动画生成",
+      "canonical_evidence": "双人对话中基于声学动态的面部动画生成",
+      "llm_tldr_en": "MindFlow proposes a dual-pathway generative framework for facial animation in dyadic conversations, harmonizing cognitive semantics with acoustic dynamics via a Chunk-State approach for fine-grained control.",
+      "llm_tldr_cn": "现有对话面部动画缺乏对语义理解和精细动态控制。本文提出MindFlow，受神经科学腹侧-背侧通路启发，采用双路径生成框架。腹侧模块创新地将句子-动作范式转换为块-状态方法，建模声学流为上下文感知的情感状态。实验在多个数据集上展示了更自然、更精准的面部动画。该工作为对话场景的数字人交互提供了技术基础。",
+      "llm_tldr": "现有对话面部动画缺乏对语义理解和精细动态控制。本文提出MindFlow，受神经科学腹侧-背侧通路启发，采用双路径生成框架。腹侧模块创新地将句子-动作范式转换为块-状态方法，建模声学流为上下文感知的情感状态。实验在多个数据集上展示了更自然、更精准的面部动画。该工作为对话场景的数字人交互提供了技术基础。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.28026v1",
+      "source": "arxiv",
+      "title": "EMOSH: Expressive Motion and Shape Disentanglement for Human Animation",
+      "abstract": "High-fidelity and expressive controllable human animation is essential for content creation and digital avatar applications. However, existing methods face a dilemma between expressiveness and disentanglement. Mainstream 2D pose-conditioned approaches suffer from \"motion-shape entanglement\", leading to the leakage of the driving subject's body shape. Conversely, methods relying on 3D priors (e.g., SMPL) achieve geometric disentanglement but struggle to capture facial expressions and complex gestures, resulting in rigid animations. To this end, we propose EMOSH, a novel framework for high-fidelity controllable human video generation. First, an Expressive Human Model (EHM) is introduced as the core control representation. By explicitly disentangling shape and pose parameters, we fundamentally resolve the body shape leakage issue. Alongside this, a robust motion tracker is designed to accurately estimate EHM parameters from video. Second, we propose a Coarse-to-Fine Hybrid Motion Injection strategy, enabling more fine-grained control over expressions and gestures. Furthermore, we introduce a Spatially-Aligned Conditioning mechanism to bridge the domain gap between training and inference, improving identity consistency. Extensive experiments demonstrate that EMOSH outperforms previous methods in both self-driven and cross-driven scenarios, producing high-fidelity videos with vivid expressions while maintaining shape disentanglement.",
+      "authors": [
+        "Dongbin Zhang",
+        "Hao Liu",
+        "Binquan Dai",
+        "Kangjie Chen",
+        "Chuming Wang",
+        "Chen Li",
+        "Jing Lyu",
+        "Haoqian Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-26T12:30:29+00:00",
+      "link": "https://arxiv.org/pdf/2606.28026v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "high-fidelity controllable human video generation for digital avatar applications",
+      "llm_evidence_cn": "面向数字人应用的高保真可控人体视频生成",
+      "llm_evidence": "面向数字人应用的高保真可控人体视频生成",
+      "canonical_evidence": "面向数字人应用的高保真可控人体视频生成",
+      "llm_tldr_en": "EMOSH introduces an Expressive Human Model for high-fidelity controllable human video generation, disentangling motion and shape to capture facial expressions and gestures while avoiding body shape leakage.",
+      "llm_tldr_cn": "现有可控人体动画方法在表达性与解耦性之间存在矛盾，2D方法导致形状泄露，3D方法难以捕捉表情。本文提出EMOSH框架，引入表现力人体模型作为核心控制表示，显式解耦形状和动作。实验证明该方法在保真度和表达性上超越基线，支持精细的面部表情和手势控制。该工作为数字人创建提供了更灵活可控的生成方案。",
+      "llm_tldr": "现有可控人体动画方法在表达性与解耦性之间存在矛盾，2D方法导致形状泄露，3D方法难以捕捉表情。本文提出EMOSH框架，引入表现力人体模型作为核心控制表示，显式解耦形状和动作。实验证明该方法在保真度和表达性上超越基线，支持精细的面部表情和手势控制。该工作为数字人创建提供了更灵活可控的生成方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.22550v1",
+      "source": "arxiv",
+      "title": "Training-Free Semantic Correction for Autoregressive Visual Models",
+      "abstract": "Autoregressive visual models (AVMs) based on next-scale prediction have emerged as a prominent paradigm for image and video synthesis. However, decomposing the generation process into discrete scales with varying granularities in AVM makes semantic errors difficult to identify and correct, thereby undermining the quality of the final output. Prior efforts to enhance AVM can be categorized into training-based and training-free approaches. Although training-based efforts to enhance AVM generation quality come at substantial computational cost, existing training-free methods neglect intermediate generation states, leaving semantic errors undiagnosed and allowing them to accumulate into the final output. In this paper, we focus on training-free paradigms and propose Gazer, a framework that integrates multimodal large language model feedback into the AVM sampling loop for in-generation semantic correction. Concretely, Gazer operates via two cooperating stages: the Reflective Diagnosis stage diagnoses semantic errors from intermediate states, while the Semantic Correction stage rewinds and rectifies the generation trajectory to realign with the target prompt. Experiments on compositional image and video benchmarks demonstrate that Gazer improves semantic alignment and compositional accuracy across multiple AVMs without additional training.",
+      "authors": [
+        "Junhao Chen",
+        "Chanyu Zhu",
+        "Zheqi Lv",
+        "Keting Yin",
+        "Shengyu Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.CL",
+        "cs.MM"
+      ],
+      "published": "2026-06-21T15:10:32+00:00",
+      "link": "https://arxiv.org/pdf/2606.22550v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "training-free semantic correction for autoregressive video synthesis, applicable to talking head generation",
+      "llm_evidence_cn": "用于自回归视频合成的免训练语义校正，可应用于说话头生成",
+      "llm_evidence": "用于自回归视频合成的免训练语义校正，可应用于说话头生成",
+      "canonical_evidence": "用于自回归视频合成的免训练语义校正，可应用于说话头生成",
+      "llm_tldr_en": "Proposes a training-free method to correct semantic errors in autoregressive visual models for image/video synthesis, improving quality without extra training. Directly applicable to talking head video generation tasks.",
+      "llm_tldr_cn": "针对自回归视觉模型在视频合成中语义错误累积的问题，本文提出一种免训练的语义校正方法。通过诊断中间生成状态并实时修正语义错误，有效提升最终输出质量。在多种图像和视频生成基准上验证了有效性，且无需额外训练成本。该方法可直接应用于说话头视频合成，为音频驱动面部动画等任务提供更优质的生成基础。",
+      "llm_tldr": "针对自回归视觉模型在视频合成中语义错误累积的问题，本文提出一种免训练的语义校正方法。通过诊断中间生成状态并实时修正语义错误，有效提升最终输出质量。在多种图像和视频生成基准上验证了有效性，且无需额外训练成本。该方法可直接应用于说话头视频合成，为音频驱动面部动画等任务提供更优质的生成基础。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "video synthesis of talking heads",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.26942v1",
+      "source": "arxiv",
+      "title": "TraMP-LLaMA: Generative Interpretability with Decoupled Instruction Tuning for Facial Expression Quality Assessment",
+      "abstract": "Existing facial expression quality assessment (FEQA) methods typically produce only a severity score, without explicitly communicating the observable facial motion evidence that supports the prediction. This limits interpretability and makes it difficult to inspect the basis of model outputs in Parkinson's disease assessment. To address this gap, we propose TraMP-LLaMA, a unified multimodal framework that jointly predicts severity scores and generates structured textual reports from facial motion cues. The framework integrates RGB appearance and landmark trajectory cues, and adopts a decoupled instruction-tuning strategy to reduce task interference between severity prediction and language generation. To support this task, we further extend the PFED5 dataset with expert-guided textual motion descriptions and construct PFED5-plus. Experiments on PFED5-plus show that TraMP-LLaMA outperforms competitive video-language baselines in report generation and achieves the best severity prediction performance among the compared methods under joint multi-expression training, improving Spearman's rank correlation by at least 4.39 percent over all competing methods. The text annotations and code are available at https://github.com/shuchaoduan/TraMP-LLaMA.",
+      "authors": [
+        "Shuchao Duan",
+        "Alan Whone",
+        "Hossein Rahmani",
+        "Jun Liu",
+        "Majid Mirmehdi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-25T12:15:52+00:00",
+      "link": "https://arxiv.org/pdf/2606.26942v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "facial expression quality assessment method using RGB and landmark trajectories; applicable to talking head evaluation",
+      "llm_evidence_cn": "面部表情质量评估方法，利用RGB和关键点轨迹，可用于说话头生成模型的评估",
+      "llm_evidence": "面部表情质量评估方法，利用RGB和关键点轨迹，可用于说话头生成模型的评估",
+      "canonical_evidence": "面部表情质量评估方法，利用RGB和关键点轨迹，可用于说话头生成模型的评估",
+      "llm_tldr_en": "TraMP-LLaMA proposes a multimodal framework for facial expression quality assessment that generates severity scores and textual reports, offering a potential evaluation method for talking head synthesis.",
+      "llm_tldr_cn": "现有面部表情质量评估仅输出严重性分数，缺乏可解释性。本文提出TraMP-LLaMA，一个统一的多模态框架，集成RGB外观和关键点轨迹，采用解耦指令调优策略，同时预测严重性分数并生成结构化文本报告。该方法为面部表情质量评估提供了可解释的评估方式，其技术可迁移至说话头合成中的面部表情真实性评估，从而支持说话头生成模型的细粒度评价。",
+      "llm_tldr": "现有面部表情质量评估仅输出严重性分数，缺乏可解释性。本文提出TraMP-LLaMA，一个统一的多模态框架，集成RGB外观和关键点轨迹，采用解耦指令调优策略，同时预测严重性分数并生成结构化文本报告。该方法为面部表情质量评估提供了可解释的评估方式，其技术可迁移至说话头合成中的面部表情真实性评估，从而支持说话头生成模型的细粒度评价。",
+      "llm_tags": [
+        "query:talking-head:composite"
+      ],
+      "matched_query_tag": "query:talking-head:composite",
+      "matched_query_text": "Papers central to 数字人及talking head的基准测试和数据集论文, especially work that connects or combines: generation and synthesis of talking heads; digital human avatar creation; benchmark for talking head synthesis; dataset for talking head animation; audio-driven facial animation for talking heads; video synthesis of talking heads; benchmark datasets for evaluating talking head generation models; public datasets for digital human and talking head research; state of the art talking head synthesis benchmarks and datasets.",
+      "matched_requirement_id": "req-composite-talking-head",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.24336v1",
+      "source": "arxiv",
+      "title": "TIGER: Taming Identity, Geometry, and Generative Priors for High-Quality Face Video Restoration",
+      "abstract": "Face Video Restoration (FVR) aims to recover high-fidelity facial videos from degraded input while preserving identity and semantic consistency across frames. Existing methods often struggle to simultaneously address three key challenges: identity shift, viewpoint-entangled guidance, and perceptual realism. To tackle these issues, we propose TIGER, a structured tri-prior fusion framework that Tames Identity, Geometry, and gEnerative pRiors for high-quality FVR. Specifically, an Identity Prior is first established by injecting subject-discriminative embeddings into the latent space, effectively anchoring the subject's identity against severe degradations. Then, to provide temporally consistent structural guidance for dynamic videos, TIGER constructs a Geometry Prior by lifting 2D reference cues into a disentangled 3D parameter space, creating a geometric anchor through cross-source parameter fusion. Moreover, to achieve maximum efficiency without compromising realism, we harness the video generation model's Generative Prior through a one-step rectified flow. We further design a progressive three-stage training optimization strategy that refines structural fidelity, textural reconstruction, and distribution-level realism to ensure robust optimization. We also construct a large-scale FVR dataset to facilitate robust training and standardized evaluation. Extensive experiments demonstrate that TIGER achieves state-of-the-art performance in both identity fidelity and temporal stability, delivering a high-quality, efficient and identity-consistent FVR. Project page: https://yzhoulv.github.io/Tiger/.",
+      "authors": [
+        "Yang Zhou",
+        "Wenxue Li",
+        "Peng Zhang",
+        "Yifei Chen",
+        "Fei Wang",
+        "Daiguo Zhou"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-23T09:21:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.24336v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "face video restoration with identity and generative priors",
+      "llm_evidence_cn": "人脸视频修复，涉及身份和生成先验",
+      "llm_evidence": "人脸视频修复，涉及身份和生成先验",
+      "canonical_evidence": "人脸视频修复，涉及身份和生成先验",
+      "llm_tldr_en": "TIGER proposes a tri-prior fusion framework for face video restoration, addressing identity shift and perceptual realism, relevant to video synthesis of talking heads.",
+      "llm_tldr_cn": "针对人脸视频修复中身份偏移和视角纠缠等问题，该论文提出TIGER框架，融合身份、几何和生成先验。通过注入身份嵌入和时域一致的结构引导，有效恢复高清面部视频。实验表明在保持身份和语义一致性上优于现有方法，为高质量talking head视频合成提供了可借鉴的技术路径。",
+      "llm_tldr": "针对人脸视频修复中身份偏移和视角纠缠等问题，该论文提出TIGER框架，融合身份、几何和生成先验。通过注入身份嵌入和时域一致的结构引导，有效恢复高清面部视频。实验表明在保持身份和语义一致性上优于现有方法，为高质量talking head视频合成提供了可借鉴的技术路径。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "video synthesis of talking heads",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.25225v1",
+      "source": "arxiv",
+      "title": "MJEPA: A Simple and Scalable Joint-Embedding Predictive Architecture for Audio-Visual Learning",
+      "abstract": "Self-supervised learning from large-scale video data has emerged as a dominant paradigm for visual representation learning. Since audio and visual streams naturally co-occur in video data, extending this success to jointly learn from both modalities is a natural next step, yet it remains challenging. Existing audio-visual self-supervised methods rely on modality-specific encoders and complex combinations of contrastive or reconstruction objectives, limiting cross-modal synergy and scalability. Joint Embedding Predictive Architectures (JEPAs) offer a simple, modality-agnostic alternative, but have to date been applied primarily to individual modalities. We introduce MJEPA, a joint-embedding predictive architecture for audio-visual learning that uses a single, unified encoder for both modalities. Our approach uses only a single predictive objective, applied both within and across modalities. We show that cross-modal prediction is critical: without it, a shared encoder degrades below unimodal baselines; with it, each modality's representation benefits from the other. Our frozen ViT-g model outperforms the best prior frozen baseline by over 6.8 mAP on AudioSet-20K, surpasses fully finetuned models on ESC-50 and FSD50K, and is competitive on video benchmarks despite using 10x less video data.",
+      "authors": [
+        "Revant Teotia",
+        "Adrien Bardes",
+        "Michael Rabbat",
+        "Sumit Chopra",
+        "Matthew J. Muckley",
+        "Nicolas Ballas"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-06-23T22:48:42+00:00",
+      "link": "https://arxiv.org/pdf/2606.25225v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "audio-visual joint embedding predictive architecture for cross-modal learning, foundational for audio-driven facial animation",
+      "llm_evidence_cn": "提出音频-视觉联合嵌入预测架构，为音频驱动面部动画提供基础方法",
+      "llm_evidence": "提出音频-视觉联合嵌入预测架构，为音频驱动面部动画提供基础方法",
+      "canonical_evidence": "提出音频-视觉联合嵌入预测架构，为音频驱动面部动画提供基础方法",
+      "llm_tldr_en": "MJEPA proposes a simple, scalable joint-embedding predictive architecture for audio-visual self-supervised learning, enabling cross-modal synergy without complex objectives. It achieves state-of-the-art on multiple downstream tasks, providing a strong representation foundation for audio-driven facial animation.",
+      "llm_tldr_cn": "音频-视觉自监督学习是跨模态理解的核心，但现有方法结构复杂且缺乏通用性。MJEPA提出一种简单的联合嵌入预测架构（JEPA），使用模态无关的编码器和预测目标，无需复杂的对比或重建损失，在多个下游任务上取得最优性能。该方法特别适合需要音频-视频对齐的任务，如音频驱动面部动画，为说话头合成中的音频-视觉联合表征提供了有效且可扩展的解决方案。实验表明，MJEPA在跨模态检索、分类等任务上均优于基线，展示了良好的迁移能力。",
+      "llm_tldr": "音频-视觉自监督学习是跨模态理解的核心，但现有方法结构复杂且缺乏通用性。MJEPA提出一种简单的联合嵌入预测架构（JEPA），使用模态无关的编码器和预测目标，无需复杂的对比或重建损失，在多个下游任务上取得最优性能。该方法特别适合需要音频-视频对齐的任务，如音频驱动面部动画，为说话头合成中的音频-视觉联合表征提供了有效且可扩展的解决方案。实验表明，MJEPA在跨模态检索、分类等任务上均优于基线，展示了良好的迁移能力。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
