@@ -1,0 +1,54 @@
+{
+  "label": "2026-06-30",
+  "date": "2026-06-30",
+  "generated_at": "2026-06-30T21:03:26",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202606/30/2606.28568v1-km-speaker-keypoint-based-style-control-for-high-quality-speech-driven-3d-facial-animation-and-dialogue-localization",
+      "section": "deep",
+      "title_en": "KM-Speaker: Keypoint-Based Style Control for High-Quality Speech-Driven 3D Facial Animation and Dialogue Localization",
+      "authors": "Arthur Josi, Emeline Got, Abdallah Dib, Luiz Gustavo Hafemann, Rafael M. O. Cruz",
+      "date": "2026-06-26",
+      "pdf": "https://arxiv.org/pdf/2606.28568v1",
+      "score": "9.0",
+      "evidence": "语音驱动3D面部动画与风格控制",
+      "tldr": "语音驱动的3D面部动画面临高保真运动与精细艺术控制的矛盾。现有可控模型依赖大规模低质量数据集，缺乏时间精度，难以用于对话本地化。KM-Speaker提出基于关键点的流生成框架，通过解耦音频驱动唇动与关键点驱动上部面部，并保持全局风格上下文，在数据受限条件下实现高保真动画。在唇同步、风格一致性和时间控制上显著优于现有方法，为精细表达任务提供新方案。",
+      "tags": "query:talking-head",
+      "abstract_en": "Speech-driven 3D facial animation methods face significant challenges in simultaneously achieving high-fidelity motion and precise artistic control at production quality. Existing controllable models typically learn global style control by relying on large-scale, low-quality \\emph{in-the-wild} datasets that compromise overall animation realism. Furthermore, these frameworks often lack the fine-grained temporal precision required for demanding tasks such as dialogue localization (e.g., dubbing), where matching specific facial expressions is as critical as lip synchronization. We present KM-Speaker (Keypoint-Matching Speaker), a novel keypoint-conditioned flow-based generative framework that provides both global style guidance and frame-level temporal control from reference performances. We propose a disentanglement strategy that separates audio-driven lip motion from keypoint-driven upper-face dynamics, together with a global style context preservation mechanism to ensure coherent full-face expressiveness. KM-Speaker advances example-based 3D facial animation by achieving high-fidelity motion and flexible controllability in a data-constrained setting, consistently outperforming state-of-the-art methods in lip-sync accuracy, style adherence, and expressive temporal control.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/30/2606.30145v1-faceplex-full-duplex-joint-speech-facial-motion-generation-for-conversational-avatars",
+      "section": "deep",
+      "title_en": "FacePlex: Full-Duplex Joint Speech-Facial Motion Generation for Conversational Avatars",
+      "authors": "Habin Lim, Jae-Ho Lee, Hah Min Lew, Ji-Su Kang, Gyeong-Moon Park",
+      "date": "2026-06-29",
+      "pdf": "https://arxiv.org/pdf/2606.30145v1",
+      "score": "9.0",
+      "evidence": "面向对话虚拟形象的联合语音-面部运动生成",
+      "tldr": "现有对话系统要么只生成语音，要么需用已有音频驱动面部，无法在线联合生成。FacePlex提出统一流式框架，通过Rolling Flow Matching实现逐帧运动生成，并用Rolling Cross-Attention耦合语音与运动队列。实验表明，在流式约束下，FacePlex能同时生成同步语音和面部运动，唇同步质量和运动保真度均优于音频驱动基线，为全双工对话虚拟形象提供了有效方案。",
+      "tags": "query:talking-head",
+      "abstract_en": "Natural face-to-face conversation requires real-time speech generation together with synchronized facial motion. Existing systems only partially address this problem: speech-only full-duplex models can generate speech in real time but do not produce facial motion, while audio-driven facial motion models animate a face from already available audio rather than jointly generating speech and motion online. To bridge this gap, we first formalize full-duplex joint speech-facial motion generation, where speech tokens and facial motion tokens are produced together every step. Building on this formulation, we propose FacePlex, a unified streaming framework with two key components. First, Rolling Flow Matching adapts flow matching to online motion generation by committing new motion frames at each streaming step. Second, Rolling Cross-Attention couples the streaming audio queue with the motion queue, allowing speech and facial motion to condition each other as generation progresses. Through extensive experiments, ablation studies, and a user study, we show that FacePlex enables full-duplex joint speech-facial motion generation under online streaming constraints, while achieving stronger lip-sync quality and motion fidelity than audio-driven facial motion baselines.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/30/2606.30347v1-ffavatar-feed-forward-4d-head-avatar-reconstruction-from-sparse-portrait-images",
+      "section": "deep",
+      "title_en": "FFAvatar: Feed-Forward 4D Head Avatar Reconstruction from Sparse Portrait Images",
+      "authors": "Jianjiang Yao, Ke Xian, Renxiang Dai, Robert Caiming Qiu",
+      "date": "2026-06-29",
+      "pdf": "https://arxiv.org/pdf/2606.30347v1",
+      "score": "9.0",
+      "evidence": "从稀疏图像前馈式4D头部化身重建",
+      "tldr": "从稀疏肖像图像快速构建可动画4D头部虚拟人是一项挑战。FFAvatar采用Transformer和3D高斯框架，通过交替注意力机制解耦身份与表情视角，并引入稀疏到密集学习及运动细化模块。它支持增量重建，高效生成高保真、身份一致、可控的4D头像，在多种表情和视角下表现优异。该工作为数字人应用提供了灵活高效的4D头部虚拟人重建新范式。",
+      "tags": "query:talking-head",
+      "abstract_en": "We present FFAvatar, a Transformer-based 3D Gaussian framework for fast construction of high-quality and animatable 4D head avatars from one or more reference portrait images. Unlike existing feed-forward approaches that require a fixed number of input views, FFAvatar supports incremental reconstruction, progressively refining the avatar representation as additional reference images become available. At the core of our method is an alternating attention mechanism that disentangles identity appearance from expression and viewpoint variations, enabling the reconstruction of a canonical 3D appearance that remains consistent across poses and facial expressions. To balance visual fidelity and computational efficiency, we introduce a sparse-to-dense learning paradigm. Coarse appearance features are first learned using sparse primitives anchored to the FLAME vertex level and are subsequently densified in the UV domain to capture fine-grained geometric and texture details. We further propose a plug-and-play motion refinement module that enables subject-specific dynamic personalization by modeling residual motion beyond parametric deformation. Extensive experiments demonstrate that FFAvatar efficiently produces high-fidelity and controllable 4D head avatars, achieving superior flexibility, driving efficiency, and identity-consistent rendering across diverse expressions and viewpoints.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

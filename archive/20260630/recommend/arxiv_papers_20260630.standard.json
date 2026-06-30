@@ -1,0 +1,135 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-30T21:00:11.540182+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2606.28568v1",
+      "source": "arxiv",
+      "title": "KM-Speaker: Keypoint-Based Style Control for High-Quality Speech-Driven 3D Facial Animation and Dialogue Localization",
+      "abstract": "Speech-driven 3D facial animation methods face significant challenges in simultaneously achieving high-fidelity motion and precise artistic control at production quality. Existing controllable models typically learn global style control by relying on large-scale, low-quality \\emph{in-the-wild} datasets that compromise overall animation realism. Furthermore, these frameworks often lack the fine-grained temporal precision required for demanding tasks such as dialogue localization (e.g., dubbing), where matching specific facial expressions is as critical as lip synchronization. We present KM-Speaker (Keypoint-Matching Speaker), a novel keypoint-conditioned flow-based generative framework that provides both global style guidance and frame-level temporal control from reference performances. We propose a disentanglement strategy that separates audio-driven lip motion from keypoint-driven upper-face dynamics, together with a global style context preservation mechanism to ensure coherent full-face expressiveness. KM-Speaker advances example-based 3D facial animation by achieving high-fidelity motion and flexible controllability in a data-constrained setting, consistently outperforming state-of-the-art methods in lip-sync accuracy, style adherence, and expressive temporal control.",
+      "authors": [
+        "Arthur Josi",
+        "Emeline Got",
+        "Abdallah Dib",
+        "Luiz Gustavo Hafemann",
+        "Rafael M. O. Cruz"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.LG"
+      ],
+      "published": "2026-06-26T19:48:44+00:00",
+      "link": "https://arxiv.org/pdf/2606.28568v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "speech-driven 3D facial animation with style control",
+      "llm_evidence_cn": "语音驱动3D面部动画与风格控制",
+      "llm_evidence": "语音驱动3D面部动画与风格控制",
+      "canonical_evidence": "语音驱动3D面部动画与风格控制",
+      "llm_tldr_en": "KM-Speaker proposes a keypoint-conditioned flow-based generative framework for high-quality speech-driven 3D facial animation, enabling precise style control and dialogue localization, outperforming prior methods.",
+      "llm_tldr_cn": "现有语音驱动3D面部动画方法难以同时实现高保真运动与精细艺术控制。本文提出KM-Speaker，一种关键点条件流生成框架，通过关键点匹配实现全局风格与局部表情的精确控制，支持高质量对话定位。实验证明该方法在生成质量和控制精度上超越现有技术，可满足制作级需求，为动画制作和配音领域提供了高效解决方案。",
+      "llm_tldr": "现有语音驱动3D面部动画方法难以同时实现高保真运动与精细艺术控制。本文提出KM-Speaker，一种关键点条件流生成框架，通过关键点匹配实现全局风格与局部表情的精确控制，支持高质量对话定位。实验证明该方法在生成质量和控制精度上超越现有技术，可满足制作级需求，为动画制作和配音领域提供了高效解决方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.30145v1",
+      "source": "arxiv",
+      "title": "FacePlex: Full-Duplex Joint Speech-Facial Motion Generation for Conversational Avatars",
+      "abstract": "Natural face-to-face conversation requires real-time speech generation together with synchronized facial motion. Existing systems only partially address this problem: speech-only full-duplex models can generate speech in real time but do not produce facial motion, while audio-driven facial motion models animate a face from already available audio rather than jointly generating speech and motion online. To bridge this gap, we first formalize full-duplex joint speech-facial motion generation, where speech tokens and facial motion tokens are produced together every step. Building on this formulation, we propose FacePlex, a unified streaming framework with two key components. First, Rolling Flow Matching adapts flow matching to online motion generation by committing new motion frames at each streaming step. Second, Rolling Cross-Attention couples the streaming audio queue with the motion queue, allowing speech and facial motion to condition each other as generation progresses. Through extensive experiments, ablation studies, and a user study, we show that FacePlex enables full-duplex joint speech-facial motion generation under online streaming constraints, while achieving stronger lip-sync quality and motion fidelity than audio-driven facial motion baselines.",
+      "authors": [
+        "Habin Lim",
+        "Jae-Ho Lee",
+        "Hah Min Lew",
+        "Ji-Su Kang",
+        "Gyeong-Moon Park"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-06-29T11:22:50+00:00",
+      "link": "https://arxiv.org/pdf/2606.30145v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "joint speech-facial motion generation for conversational avatars",
+      "llm_evidence_cn": "面向对话虚拟形象的联合语音-面部运动生成",
+      "llm_evidence": "面向对话虚拟形象的联合语音-面部运动生成",
+      "canonical_evidence": "面向对话虚拟形象的联合语音-面部运动生成",
+      "llm_tldr_en": "FacePlex proposes a unified streaming framework for full-duplex joint generation of speech and facial motion, enabling real-time conversational avatars with synchronized audio-visual output.",
+      "llm_tldr_cn": "现有系统要么只生成语音，要么用已有音频驱动面部，无法在线联合生成。FacePlex提出全双工联合语音-面部运动生成框架，采用滚动流匹配（Rolling Flow Matching）实现实时流式生成。实验表明该方法能同步产生自然的面部动画和语音，为对话式数字人虚拟形象创建提供了高效解决方案。",
+      "llm_tldr": "现有系统要么只生成语音，要么用已有音频驱动面部，无法在线联合生成。FacePlex提出全双工联合语音-面部运动生成框架，采用滚动流匹配（Rolling Flow Matching）实现实时流式生成。实验表明该方法能同步产生自然的面部动画和语音，为对话式数字人虚拟形象创建提供了高效解决方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.30347v1",
+      "source": "arxiv",
+      "title": "FFAvatar: Feed-Forward 4D Head Avatar Reconstruction from Sparse Portrait Images",
+      "abstract": "We present FFAvatar, a Transformer-based 3D Gaussian framework for fast construction of high-quality and animatable 4D head avatars from one or more reference portrait images. Unlike existing feed-forward approaches that require a fixed number of input views, FFAvatar supports incremental reconstruction, progressively refining the avatar representation as additional reference images become available. At the core of our method is an alternating attention mechanism that disentangles identity appearance from expression and viewpoint variations, enabling the reconstruction of a canonical 3D appearance that remains consistent across poses and facial expressions. To balance visual fidelity and computational efficiency, we introduce a sparse-to-dense learning paradigm. Coarse appearance features are first learned using sparse primitives anchored to the FLAME vertex level and are subsequently densified in the UV domain to capture fine-grained geometric and texture details. We further propose a plug-and-play motion refinement module that enables subject-specific dynamic personalization by modeling residual motion beyond parametric deformation. Extensive experiments demonstrate that FFAvatar efficiently produces high-fidelity and controllable 4D head avatars, achieving superior flexibility, driving efficiency, and identity-consistent rendering across diverse expressions and viewpoints.",
+      "authors": [
+        "Jianjiang Yao",
+        "Ke Xian",
+        "Renxiang Dai",
+        "Robert Caiming Qiu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-29T14:21:33+00:00",
+      "link": "https://arxiv.org/pdf/2606.30347v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "feed-forward 4D head avatar reconstruction from sparse images",
+      "llm_evidence_cn": "从稀疏图像前馈式4D头部化身重建",
+      "llm_evidence": "从稀疏图像前馈式4D头部化身重建",
+      "canonical_evidence": "从稀疏图像前馈式4D头部化身重建",
+      "llm_tldr_en": "FFAvatar presents a Transformer-based 3D Gaussian framework for fast, animatable 4D head avatar reconstruction from sparse images using alternating attention and sparse-to-dense refinement.",
+      "llm_tldr_cn": "现有前馈式头部化身重建方法受限于固定输入视图数量，且缺乏增量能力。本文提出FFAvatar，基于Transformer和3D高斯表示，利用交替注意力机制解耦身份与表情，支持从一张或多张参考图像逐步重建4D头部化身。实验表明，该方法在视觉保真度和动画一致性上均优于现有工作，为数字人快速创建和虚拟现实提供了高效方案。",
+      "llm_tldr": "现有前馈式头部化身重建方法受限于固定输入视图数量，且缺乏增量能力。本文提出FFAvatar，基于Transformer和3D高斯表示，利用交替注意力机制解耦身份与表情，支持从一张或多张参考图像逐步重建4D头部化身。实验表明，该方法在视觉保真度和动画一致性上均优于现有工作，为数字人快速创建和虚拟现实提供了高效方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": []
+}

@@ -1,0 +1,557 @@
+Title: KM-Speaker: Keypoint-Based Style Control for High-Quality Speech-Driven 3D Facial Animation and Dialogue Localization
+
+URL Source: https://arxiv.org/pdf/2606.28568v1
+
+Published Time: Tue, 30 Jun 2026 00:15:45 GMT
+
+Number of Pages: 20
+
+Markdown Content:
+# KM-Speaker: Keypoint-Based Style Control for High-Quality Speech-Driven 3D Facial Animation and Dialogue Localization 
+
+# Arthur Josi 1,2 Emeline Got 2 Abdallah Dib 2 Luiz Gustavo Hafemann 2* Rafael M. O. Cruz 1
+
+# Ecole de Technologie Sup´ erieure 1 Ubisoft LaForge 2oI ain mow 
+
+oI ain mow       
+
+> Example B
+> Target style
+> Example-based generation
+> (Global control)
+> Dialogue localization
+> (fine-grained control)
+> "Iam n ot telling you ag ain ,you ow e me money"
+> "Iam n ot telling you ag ain ,you ow e me money"
+
+oI ain mow 
+
+> Example A
+
+oI ain mow 
+
+Figure 1. KM-speaker enables two types of style control from a source animation (top): (i) dialogue localization (middle) that preserves the source’s upper-face expressions while lip-syncing to new audio, and (ii) example-based stylization (bottom) that captures the source’s general style. All four generated animations lip-sync to the same target audio but produce distinct results reflecting their respective source styles and control granularities. 
+
+# Abstract 
+
+Speech-driven 3D facial animation methods face signif-icant challenges in simultaneously achieving high-fidelity motion and precise artistic control at production quality. Existing controllable models typically learn global style control by relying on large-scale, low-quality in-the-wild 
+
+datasets that compromise overall animation realism. Fur-thermore, these frameworks often lack the fine-grained tem-poral precision required for demanding tasks such as di-alogue localization (e.g., dubbing), where matching spe-cific facial expressions is as critical as lip synchronization. We present KM-Speaker (Keypoint-Matching Speaker), a novel keypoint-conditioned flow-based generative frame-work that provides both global style guidance and frame-
+
+> *This work was done while the author was at Ubisoft LaForge.
+
+level temporal control from reference performances. We propose a disentanglement strategy that separates audio-driven lip motion from keypoint-driven upper-face dynam-ics, together with a global style context preservation mech-anism to ensure coherent full-face expressiveness. KM-Speaker advances example-based 3D facial animation by achieving high-fidelity motion and flexible controllability in a data-constrained setting, consistently outperforming state-of-the-art methods in lip-sync accuracy, style adher-ence, and expressive temporal control. 
+
+# 1. Introduction 
+
+Facial animation plays a crucial role in creating im-mersive experiences in games and animated films. Tra-ditional production pipelines heavily rely on high-end 4D 1
+
+> arXiv:2606.28568v1 [cs.CV] 26 Jun 2026
+
+capture systems, professional actors, and skilled animators to achieve high-fidelity animations [11]. This enables di-rectors and designers to follow a precise creative vision by leveraging the organic nuances of real-world speech and expressions. Despite these advantages, this approach is costly, labor-intensive, and inherently rigid, limiting post-capture flexibility and making it impractical for animating large casts of characters or producing content in multiple languages (e.g., dubbing). Speech-driven 3D facial animation has emerged as a scalable alternative to traditional capture-based pipelines, with approaches broadly falling into two categories. Artist-centric systems (e.g., viseme- or curve-based rigs) [12,27,42] offer interpretability and fine control but require extensive manual tuning to achieve high-quality expressive motion. In contrast, data-driven methods [8, 37, 38] learn facial dynamics directly from real performances, offering a significantly higher ceiling for realism. These methods typically operate in vertex space rather than rig-specific pa-rameter spaces, which limits direct artistic controllability but provides a practical advantage: the generated motion is not tied to a rig parameterization, facilitating integration into different production setups. A key challenge, therefore, lies in bridging the gap be-tween realism and controllability. This motivates recent work to explore controllable generative frameworks, often conditioning on discrete labels concept tags such as emo-tions [10, 21, 22, 35]. While effective for coarse adjust-ments, this paradigm is inherently rigid: models are trained on a fixed vocabulary of styles, requiring retraining to in-troduce new expressions. Moreover, expanding the label set significantly increases annotation cost, encouraging the use of broad categories (e.g., “angry”) that collapse ex-pressive variability into caricature-like behaviors. Alterna-tive approaches introduce control via text or image prompts [6,22,36,40,41]. However, such modalities struggle to cap-ture subtle behavioral traits, speaker-specific dynamics, and temporal nuances of facial motion, due to language ambi-guity and the static nature of images. As a result, achieving precise, expressive, and production-oriented controls over speech-driven facial animation remains an open challenge. Example-based strategies [7, 14, 28, 32] offer a com-pelling alternative by allowing reference videos or anima-tions to guide the global delivery style, greatly simplifying the specification of the desired intent. However, these meth-ods face two key limitations. First, they rely on large-scale datasets derived from 3D reconstructions [13, 33] of in-the-wild monocular videos, which significantly compromises quality in two ways: the source videos themselves are of-ten of poor quality (e.g., low resolution, challenging light-ing conditions, occlusions), and the parametric morphable models [17] used for reconstruction have limited expressiv-ity. This combination results in imprecise facial motion and poor lip sync. While high-end 4D capture systems would address these issues, their cost makes large-scale collec-tion impractical. Second, they lack the fine-grained con-trol mechanisms necessary for applications such as dubbing (used interchangeably with dialogue localization through-out this work), where lip-synchronization must be adapted to new audio while preserving the original eyebrow raises, eye closures, and general expressions [3]. MeshTalk [29] partially addresses dubbing by preserving upper-face motion while generating new lip motion from audio, but it lacks a global style mechanism for ensur-ing coherent integration of upper- and lower-face motion. In summary, existing methods face a fundamental trade-off between animation quality and controllability, failing to meet production requirements where artists need both high-fidelity and flexible control. In this paper, we present KM-Speaker (Keypoint Match-ing Speaker), a flow-based framework [24] for speech-driven facial animation providing both example-based global control and fine-grained temporal controllability (as illustrated in Fig. 1). Unlike prior example-based ap-proaches, our model operates in a realistic data-constrained setting using a curated, high-quality expressive dataset, re-flecting practical data acquisition and usage constraints, while producing accurate and synchronized facial motion. We condition generation on sparse facial keypoints from a reference animation, encoding them as global and temporal style signals, and design a disentanglement strategy to sep-arate lower-face motion from audio and upper-face motion from temporal style. The explicit temporal signal, together with this disentanglement strategy, enables dubbing appli-cations. We also propose a style context preservation mech-anism based on modality dropout that enforces reliance on global style to maintain full-face coherence. This enables example-based generation, where the animation adheres to the target’s overall expressive intent. The contributions of our paper are as follows: • We introduce KM-Speaker, a keypoint-conditioned framework for speech-driven 3D facial animation. Our model achieves high-fidelity generation with control-lable style in data-constrained settings using high-quality expressive data. • Our framework enables both example-based global style control and fine-grained frame-level temporal control from reference performances, supporting pro-duction workflows such as dialogue localization. • We propose a disentanglement strategy that separates audio-driven lip motion from keypoint-driven upper-face dynamics, combined with a global style context preservation mechanism that maintains coherent full-face expressiveness. 2Linear   
+
+> GeLu
+> Linear
+> Flow transformer model
+> Example-based generation Dialogue localization
+> Flow transformer model
+> Global style Tile Temporal style Source audio Audio context Audio encoder Upper-face keypoints Full face keypoints Global style encoder (VAE) Temporal style encoder
+> Target style sequence
+> Linear
+> Wav2Bert 2.0
+> Conditioning signals encoding
+
+Figure 2. KM-Speaker architecture and applications. A source audio signal and two sets of target keypoints are processed independently. Full-face keypoints provide global style features, while upper-face keypoints provide temporal style cues. Conditioning the flow model Ψ
+
+on all inputs enables dialogue localization, where the target upper-face motion (green boxes) is matched to a new audio clip. Conditioning the same model only on audio and global style enables example-based generation, where the generation’s overall style matches the target. 
+
+• Extensive evaluations and user studies demonstrate that our method outperforms state-of-the-art ap-proaches in lip-sync accuracy, style adherence, and di-alogue localization. 
+
+# 2. Related work 
+
+Example-based facial animation generation. Recent literature explores the benefits of example-based genera-tion, aiming to capture the global delivery style of a short target animation sequence (e.g., speaker-specific idiosyn-crasies or characteristic speaking patterns) [7, 14, 28, 32]. DiffPoseTalk [32] extracts style through a temporally ag-nostic full-face encoder–decoder trained with contrastive learning. MIMIC [14] also derives global style from full-face motion but uses an end-to-end approach with a speaker-classification regularizer, effectively constrain-ing the style space to speaker-dependent clusters. Dis-enEmo [7] further restricts the latent style representation through emotion-aware supervision. MSMD [28] infers style from implicit latent expression codes from SEREP [15] instead, using a VAE to structure the style manifold while relaxing constraints to preserve both inter-speaker and inter-emotion variability. Despite their strengths, cur-rent example-based methods [7, 14, 28, 32] rely on large-scale, reconstruction-based datasets, whose limited fidelity inherently constrains the realism of generated motion. In contrast, our method operates in a challenging yet high-quality data setting. Furthermore, we introduce a temporal style signal, enabling additional controls through dialogue localization, a capability not addressed in prior example-based work. 
+
+Dialogue localization. Dialogue localization adapts spoken content in films and video games across languages and cul-tures, primarily through dubbing. The goal is to preserve the original actor’s performance, such as eye blinks, eye-brow motion, and expressions, while seamlessly adapting lip motion to a new audio [3]. Often referred to as video dubbing in 2D, existing methods fall into either end-to-end pipelines [23, 39], which map source frames and audio di-rectly to the output, or structural approaches [4] that rely on interpretable intermediate representations, such as facial keypoints. Although structural methods require extra pre-processing (e.g., detection and landmark extraction), they offer improved interpretability and higher-fidelity expres-sion synthesis [3]. Trained on a large-scale capture dataset of 250 individu-als, Mesh-Talk [29] is the first speech-driven 3D facial ani-mation framework explicitly designed for dubbing. It con-ditions a decoder on audio features fused with full-face tem-poral embeddings and employs a disentanglement mech-anism to separate audio-driven motion from the target upper-face dynamics. However, MeshTalk does not enforce full facial expressive coherence, which is essential when the audio alone cannot convey the intended emotional delivery. To address this limitation, we introduce a global style signal that ensures coherent full-face expression, complementing both audio and target temporal cues. Furthermore, inspired by the demonstrated benefits of keypoints in video dubbing and their effectiveness in 3D settings [26, 34], we intro-duce a lightweight and explicit style representation based on sparse, semantically meaningful 3D facial landmarks, well-suited for training in our realistic data constrained set-ting. 
+
+# 3. Method 
+
+Our goal is to generate speech-driven facial animation that flexibly matches a reference style. Given input audio and keypoints from a reference animation, we extract two style signals: a time-invariant global style from full-face keypoints captures general style, and a frame-wise temporal style from upper-face keypoints that enables precise upper-face matching. This allows two generation modes: dia-3Random batch exchange         
+
+> Flow transformer model
+> Flow transformer model Valid upper face Valid lower face Figure 3. Disentanglement strategy. We randomly exchange either audio Aior temporal style Si
+> temp signals using the corresponding signal from another sample jof the same batch. Coherent lower-face motion is enforced through losses masked by Mlower , while upper-face coherence is encouraged via Mupper . Never swapping the global style signal enforces global facial coherence. Masks are visualized on a neutral face, where greener vertices correspond to mask weights closer to 1.
+
+logue localization, where all signals condition the model to re-synchronize lip motion while preserving upper-face dy-namics, and example-based generation, where only audio and global style condition the model to synthesize full mo-tion matching the reference’s overall style. We first provide a general description of our model, including its compo-nents and formulation within the flow-matching paradigm (Sec. 3.1). We follow with our audio–keypoint disentan-glement strategy (Sec. 3.2) and finally introduce our global style context preservation approach (Sec. 3.3). 
+
+3.1. Model architecture 
+
+The overall architecture of KM-Speaker is illustrated in Fig. 2. Our flow-based transformer model generates facial motion sequences for fixed window of length N frames con-ditioned on three features signals: audio context A, global style Sglob , and temporal style Stemp . We describe how each feature vector is obtained below. 
+
+Audio encoder. Input speech is encoded using a pretrained audio encoder. We average its hidden-layer features, project them to our model’s latent dimension d, and resample to match the animation frame rate. The processed audio fea-tures are denoted A ∈ RN ×d.
+
+Global style encoder. The global style encoder Eglob takes a sequence of full-face 3D keypoints K ∈ RN ×3K , where 
+
+K is the number of keypoints per frame. The encoder first encodes the keypoint signal K to a sequence of framewise feature embeddings using convolutional layers followed by a transformer encoder, and then applies a temporal aver-age pooling to form a compact global style representation 
+
+zg ∈ Rd which captures the reference animation’s overall style. This vector is then replicated across all frames to form the global style representation Sglob = [ zg ]Nn=1 ∈ RN ×d.We implement Eglob as a VAE-based encoder following [28], which predicts a mean and variance regularized via KL divergence. 
+
+Temporal style encoder. The temporal style encoder Etemp 
+
+encodes frame-wise upper-face dynamics from an upper-face keypoint sequence Ku ∈ RN ×3Ku , where Ku is the number of upper-face keypoints. The encoder produces a temporal style sequence Stemp ∈ RN ×d. This signal en-ables precise frame-level matching of upper-face motion, essential for dialogue localization where lip motion is re-animated while preserving eyebrow raises, gaze shifts, and other upper-face expressions. We implement Etemp as a two-layer MLP that projects each keypoint frame to the model latent dimension d.
+
+Flow transformer model. We represent the target facial animation using PCA-compressed vertex offsets. Specifi-cally, we project the per-frame mesh deformations into a low-dimensional latent space of dimension l, resulting in a target latent sequence x ∈ RN ×l of latent codes. We employ a transformer-based flow model Ψ parameterizes a continuous transformation from a standard normal prior 
+
+p0 to plausible facial motion trajectories, inspired by condi-tional flow matching [20]. This transformation is governed by the ODE dxt 
+
+> dt
+
+= ut(xt), where xt ∈ RN ×l denotes the latent sequence at flow time t ∈ [0 , 1] . We construct trajectories using conditional optimal transport paths [19], with linear interpolation xt = (1 − t)x0 + tx1, where 
+
+x0 ∼ N (0 , I). Rather than directly regressing velocities, we adopt an x1-prediction parameterization: Ψ(xt, t, c)
+
+predicts the clean target x1 from xt, conditioned on c =(A, Sglob , Stemp ). This enables supervision through vertex-based losses without ODE integration during training. At inference, the predicted ˆx1 is converted to a velocity esti-mate ˆut = (ˆ x1 − xt)/(1 − t), and the ODE is solved (mid-point, 50 steps) to produce latent coefficients ˆx ∈ RN ×l.Latents are decoded to vertex space via the PCA basis 
+
+RPCA : RN ×l → RN ×3V , where V is the number of mesh vertices, yielding the final animation ˆX = RPCA (ˆ x).
+
+3.2. Audio-keypoint disentanglement 
+
+We propose a disentanglement strategy to achieve three objectives: (1) audio must control lip synchronization and mouth shapes for natural delivery, (2) temporal style must precisely drive upper-face motion frame-by-frame accord-ing to the target animation, enabling dialogue localization, and (3) global style must govern overall delivery intent and enforce coherent full-face motion. Inspired by MeshTalk [29], we define per-vertex weight masks Mupper , Mlower with weights in [0 , 1] that partition the face into upper and lower regions. We extend their ap-proach by incorporating style conditioning to ensure facial 4coherence (Fig. 3). During training, for each sample i in a batch of size B,we define a conditioning tuple ci = ( Ai, Si
+
+> glob
+
+, Si
+
+> temp
+
+) cor-responding to target animation X i. To enforce disentangle-ment, we randomly select another sample j̸ = i from the batch and create two mismatched conditioning variants: 1) 
+
+Audio conditioning: ci 
+
+> audio
+
+= ( Ai, Si
+
+> glob
+
+, Sj
+
+> temp
+
+): keeps au-dio from i, swaps temporal style from j. 2) Temporal con-ditioning: ci 
+
+> temp
+
+= ( Aj , Si
+
+> glob
+
+, Si
+
+> temp
+
+): swaps audio from j,keeps temporal style from i. Crucially, the global style Si
+
+> glob
+
+always matches the target animation X i, ensuring coherent integration of upper- and lower-face motion even when au-dio and temporal style intent is different (objective (3) ). We generate predictions for both conditioning variants: 
+
+ˆX i 
+
+> audio
+
+= RPCA (Ψ( xit, t, ci
+
+> audio
+
+)) enforces to match X i in the 
+
+lower face (audio drives lips, objective (1) ) and ˆX i 
+
+> temp
+
+=
+
+RPCA (Ψ( xit, t, ci
+
+> temp
+
+)) , which enforces to match X i in the 
+
+upper face (temporal style drives upper face, objective (2) ). 
+
+Training losses. We train the model using a disentangled reconstruction loss: 
+
+Lmse =∥M lower ⊙ (X i − ˆX i
+
+> audio
+
+)∥2
+
+> F
+
++ ∥M upper ⊙ (X i − ˆX i
+
+> temp
+
+)∥2
+
+> F
+
+(1) where ⊙ denotes the Hadamard product and ∥·∥ F is the Frobenius norm. To regularize temporal smoothness, we add a velocity loss [9] adapted for our disentanglement strategy: 
+
+Lvel =Mlower ⊙ (∆ X i − ∆ ˆX i
+
+> audio
+
+)∥2
+
+> F
+
++ ∥M upper ⊙ (∆ X i − ∆ ˆX i
+
+> temp
+
+)∥2
+
+> F
+
+(2) where ∆X = X1: N − X 0: N −1.Finally, we regularize the global style en-coder’s latent space with KL divergence: LKL =
+
+> 12
+
+Pdi=1 
+
+ μ2 
+
+> i
+
++ σ2 
+
+> i
+
+− log( σ2 
+
+> i
+
+) − 1 .
+
+The total training loss is: 
+
+L = Lmse + λvel Lvel + λKL LKL , (3) where λvel and λKL are hyperparameters balancing each loss term. 
+
+3.3. Global style preservation 
+
+The disentanglement strategy described above creates an asymmetry in conditioning strength: the temporal style sig-nal Stemp provides rich, frame-wise upper-face motion infor-mation that can dominate the generation, while the global style Sglob encodes only high-level information. This im-balance poses a problem for example-based generation. At inference, when temporal style is absent (i.e., when we want to match the reference’s style), the model may fail to leverage Sglob effectively for upper-face generation as it has learned to rely primarily on the stronger temporal signal during training. To address this, we randomly zero out the temporal style signal while always retaining the global style. This forces the model to learn to capture the overall style from Sglob 
+
+alone when temporal information is unavailable, ensuring that global style remains influential even in the presence of strong temporal conditioning. Combined with our dis-entanglement strategy, this dropout naturally creates train-ing samples with conditioning tuples (Aj , Si
+
+> glob
+
+, ∅) paired with target X i. This configuration encourages the model to maintain the target’s global style across arbitrary audio inputs, including those with conflicting emotions. 
+
+# 4. Experimental protocol 
+
+Our experimental protocol is designed to assess lip-motion accuracy, global style transfer fidelity, and the model’s dubbing capabilities. 
+
+Dataset. Our dataset consists of 2.6 hours of 4D captured data in consistent topology, evenly distributed across 12 professional actors and recorded at 60 FPS. Each actor per-forms a personalized set of sentences spanning 8 emotional states and 2 intensities (see capture protocol details in Ap-pendix A). We do not leverage label information during training to preserve diversity within each emotional state (Sec. 1). We use data from 8 actors for training, 1 for vali-dation, and 3 for testing. 
+
+Baseline models. For global stylization evaluation, we compare our method to the state-of-the-art example-based models MIMIC [14] (deterministic) and MSMD [28] (diffu-sion-based). Both methods are originally learned on large-scale datasets, encode style from full-face, and accept an audio and a target window animation for style extraction. We compare against their original released models, as well as their retrained and finetuned versions on our small high-quality dataset (respectively noted retrain or finetune) for fair comparison. These variants assess the impact of data sources on style control and lip synchronization. For dia-logue localization evaluation, we compare against the orig-inal MeshTalk [29] model, which to our knowledge is the only prior work explicitly addressing this task. We also evaluate the impact of the style input through training with a dense set of 1660 keypoints derived from [34] (denoted Ours 1660 keypoints) and a sparse set of 68 keypoints com-monly used for facial tasks [30] (noted Ours 68 keypoints) visually presented Fig. 6. In all experiments, bold entries indicate statistically significant improvements (Wilcoxon signed rank test, ρ < 0.01 ). 
+
+Implementation details. Our audio encoder relies on w2v-BERT 2.0 [2]. Our global style encoder is formed of 1D convolutions followed by transformer layers, fol-lowing MIMIC and MSMD style encoder architectures 5Table 1. Quantitative evaluation on our held-out set of actors in a matching audio and style context. We present baseline mod-els’ performance and ablations regarding the signal passed to our global style encoder.                                                
+
+> Model LVE MSE MOD FDD
+> (mm) ↓(mm) ↓(mm) ↓(mm −2)↓
+> MIMIC [14] 2.48 2.00 0.68 4.68 MIMIC finetune 2.41 1.97 0.47 4.59 MIMIC retrain 0.85 0.49 0.50 4.69 MSMD [28] 1.96 1.10 0.91 9.38 MSMD finetune 1.35 0.73 0.62 6.38 MSMD retrain 1.11 0.65 0.56 4.51 ours meshtalk encoder 1.10 0.65 0.50 5.63 ours 1660 keypoints 0.83 0.49 0.46 5.23 ours 68 keypoints 0.78 0.47 0.45 4.52 ours 0.77 0.45 0.46 4.31
+
+[14, 28]. The temporal style encoder is an MLP, while our flow model is a transformer-based model conditioned using style-adaptive layer normalization [25]. We trained our full model using Adam optimizer [16] for 2.3 days on a single RTX 8000 GPU. More details on the training, architecture, and mask construction are provided in Appendix B.1 (train-ing), B.2 (architecture), and B.3 (masks). We preserved the original MIMIC and MSMD proto-cols (25 FPS training) when training and finetuning those models on our dataset. MSMD and MIMIC use 100-frame style context windows at 25 FPS, whereas our method uses 200-frame context windows at 60 FPS. MIMIC finetune is trained in the FLAME topology [17] and the output ani-mation is converted back to our topology for evaluation, whereas MIMIC retrain is directly trained in our own topol-ogy. For the MeshTalk model, we convert the input neutral mesh and target style animations to their topology prior to generation, and revert the topology to our own for evalua-tion. Topology conversion details are provided in Appendix B.4. For fair comparison, example-based experiments are conducted at 25 FPS, and dialogue localization experiments at 30 FPS. Unless stated otherwise, rendered animations are aug-mented with textures, eyes, and teeth to improve perceptual realism. Details on assets are provided in Appendix B.5. We provide additional geometry-only visualizations in Ap-pendix C. 
+
+# 5. Results 
+
+5.1. Matching audio-style context 
+
+We first quantitatively evaluate example-based models under matching audio and style contexts (e.g., same emo-tion), measuring lip-sync and motion accuracy. Using all sequences from our test set, we condition on the previous window as global style and the current window as audio, with no overlap to prevent leakage [28]. Note that no tem-poral style is used for example-based generations. We evaluate generation accuracy using standard met-rics: vertex MSE (global motion), LVE [29] (lip accuracy), MOD [32] (mouth aperture), and FDD [37] (upper-face dy-namics). Results for all baselines and related ablations are reported in Tab. 1. Baseline results for the MIMIC and MSMD vari-ants highlight the benefits of finetuning and training on higher-quality data, yielding consistent improvements across both lip-related metrics (LVE, MOD) and global motion (MSE) compared to the author-released versions. Upper-face dynamics (FDD) also improve for MSMD, whereas they remain comparatively stable for MIMIC, which we attribute to MIMIC’s deterministic nature that constrains stochastic events such as blinks and brow mo-tion. Overall, our model achieves significant improvements over baseline methods thanks to the efficiency of our flow-based formulation and the use of a sparse yet explicit global-style keypoint signal. This is supported by ablation results (Tab. 1) showing that substituting our keypoint repre-sentation with implicit embeddings or denser keypoint con-figurations reduces general performance. For instance, us-ing implicit representations derived from the MeshTalk en-coder as input to our global style encoder yields the lowest scores across all ablation metrics. Then, reducing the key-point density from 1660 to 68 and our 55 keypoints (as de-tailed Section 4) while preserving semantically meaningful facial locations or refining them by introducing nasolabial folds keypoints produces a more explicit and informative style cue, consistently benefiting the model. This likely fa-cilitates encoding, yielding a compact representation better suited to our challenging data setting. Notably, MSMD de-rives its style features from implicit expression codes com-puted via SEREP [15], while MIMIC operates on full-face inputs, both of which are conceptually aligned with the im-plicit and dense alternatives tested in our ablations. 
+
+5.2. Cross audio-style context 
+
+We qualitatively evaluate our model against baselines trained on the our high-quality dataset (MSMD retrain and MIMIC retrain) as well as an ablated version of our method without the context-preservation mechanism (Sec. 3.3). The goal is to assess how well each model adheres to a target an-imation’s global style when the audio does not match the target intent. Such a scenario is common in production, where style nuances (e.g., suspicion, doubt, or irony con-veyed through eyebrow) are absent from the audio. Figure 4 illustrates this by using a desired angry target style paired with a neutral audio line. We provide additional qualitative examples in supplementary video (3:33 to 4:31). 6MIMIC_retrain  Target global style MSMD_retrain Ours no context preservation Ours   
+
+> say ing Th ey mon ths le ft only might Figure 4. Generation for the different baselines with a desired an-gry target style sequence while the audio intent is mostly neutral.
+
+By balancing the importance of conditioning signals and training with conflicting audio–style pairs (Sec. 3.3), our model produces upper-face motion that more faithfully re-flects the target style. This improvement is especially visi-ble when comparing our model’s expressive upper-face in-tent to its less expressive ablated variant. Similarly, MIMIC retrain and MSMD retrain remain mostly neutral, which we believe stems from the challenging size of our dataset that hinders their ability to capture style. 
+
+5.3. User study 
+
+We conducted two user studies to evaluate (1) lip syn-chronization quality and (2) global style adherence across three models: Ours, MIMIC retrain, and MSMD retrain. We include textures, as well as eye and teeth assets for more natural assessment and ensure fair comparison by compar-ing models trained on our dataset (best-performing variants in our quantitative evaluation Sec. 5.1). Each study comprises five sets of ten randomly selected, non-overlapping videos covering all test actors. Samples from the lip-sync and style-adherence studies are drawn from pools of 83 lip-sync and 200 style examples, re-spectively, with randomized model ordering. We adopt a MUSHRA-like protocol [31], where participants rate sam-ples on a 0–100 scale, and a negative anchor is hidden in each set. Lip-sync evaluation includes audio, whereas style evaluation is muted, following [28], to improve fo-
+
+> Figure 5. Lip-synchronization (25 responses) and style-adherence user study (23 responses) results. We report mean ratings ( 95%
+> CI).
+
+cus on style consistency. Studies were conducted with re-searchers from the video-game industry and professionals in animation, yielding 25 and 23 responses for the lip-synchronization and style-adherence tasks, respectively. We report the mean rating ( 95% CI) in Fig. 5. Study guidelines, structure, visuals, anchor selection, and additional analyses (i.e., mean rankings and agreement measures) are provided in Appendix D. Results show our method as preferred for lip-synchronization, with MIMIC retrain lagging significantly behind, and MSMD retrain scoring closely behind. This ranking differs from the quantitative close-context scenario, where lip-related metrics (LVE) show MIMIC retrain per-forming better than MSMD retrain. We attribute this in-version to the limitations of LVE, which measures strict geometric distance to a single ground-truth reference. Be-cause speech-to-motion is a one-to-many mapping, gener-ative models can produce plausible, high-quality lip artic-ulations that diverge from the specific actor’s performance, yet are penalized by this metric. Visually, MIMIC retrain presents a less organic, expressive, and more damped mo-tion than MSMD, further supported by qualitative results in Fig. 7. While this conservative behavior benefits MIMIC retrain regarding LVE (by remaining closer to the mean), it degrades perceptual quality. In comparison, our model achieves better lip-synchronization than all competitors in both the user study and quantitative measures, confirming the benefits of the flow-based approach in delivering both geometrically accurate and perceptually convincing results. Across the style-adherence evaluation, MIMIC retrain and MSMD retrain underperform markedly, consistent with our qualitative observations in Sec. 5.2 that these models struggle to capture style when trained on small datasets (see additional examples in supplementary video 3:33). Upon inspection, we observe that MIMIC retrain and MSMD 7retrain frequently produce either near-neutral or aligned with the speech emotion deliveries, both of which deviate from the target style and are therefore similarly penalized. 
+
+5.4. Dialogue localization 
+
+We evaluate dialogue localization: matching target ex-pressions while resynchronizing lip motion to new audio. For quantitative evaluation, we randomly sample 100 pairs of audio and target facial animations of the same length. We report the upper-face mean squared error (U-MSE) mea-sured with respect to the target ground-truth animation and the Lip Vertex Error (LVE) with respect to the correspond-ing audio ground-truth animation in Tab. 2. We compare MeshTalk [29] against our model and three ablations: using the MeshTalk full-face encoder instead of keypoints, using MeshTalk disentanglement masks (that allow the target an-imation to affect jaw motion Fig. 6), and our model trained with no disentanglement strategy. Our model achieves the lowest LVE while best pre-serving target upper-face motion, indicating superior dia-logue localization performance. The temporal keypoint sig-nal provides strong supervision: without disentanglement (Ours no disentangle), it leaks into lip motion, degrading lip-sync quality. MeshTalk’s disentanglement partially mit-igates this effect but still allows upper-face dynamics to in-fluence lip articulation via jaw motion, which is detrimen-tal in expressive scenarios. MeshTalk also exhibits lower fidelity to ground-truth motion, likely due to less expres-sive training data and the absence of mechanisms enforc-ing coherent full-face expressiveness. Replacing explicit keypoint conditioning with a learned full-face embedding (Ours meshtalk encoder) also degrades performance, high-lighting the benefits of our explicit signal for robust style encoding in constrained data settings. We complement these findings with qualitative results in Fig. 8, showing raw geometry outputs without eyes, teeth, or textures. This setup follows the MeshTalk setup and pro-vides a complementary perspective to our previous render-ings by isolating predicted geometry motion from rendering assets. The issues described above are clearly visible in dy-namic sequences (see supplementary video 5:45–7:07) and, to a lesser extent, in Fig. 8. Overall, these results highlight the importance of explicit keypoint conditioning and prin-cipled disentanglement for coherent localization. We provide additional qualitative analysis comparing against a baseline that deterministically blends mouth mo-tion, with or without global style conditioning, with a fixed upper-face animation (see Appendix E). This setup is in-spired by common practices in artist-driven pipelines (e.g., viseme-based systems such as JALI [12]), in which mouth motion is often edited or blended independently of upper-face animation [12]. The comparison highlights inherent limitations of such strategies, which often require time-              
+
+> Table 2. Dialogue localization quantitative comparison of the pro-posed model, MeshTalk, and related ablations.
+> Models U-MSE (mm −1)↓LVE (mm) ↓
+> MeshTalk [29] 6.60 1.68 Ours meshtalk encoder 5.64 1.42 Ours meshtalk masks 2.81 1.22 Ours no disentangle 2.83 1.32 Ours 2.77 1.02
+
+consuming manual editing and struggle to generalize across diverse expressions and geometries. These observations further support our unified approach, which enables both example-based generation and dialogue localization within a single framework. 
+
+# 6. Limitations and future works 
+
+While effective in our high-fidelity setting, training on 8 actors with production-quality audio limits the diversity of the learned facial prior and the range of styles and acous-tic conditions, potentially introducing bias toward specific morphologies, expressions, or speech characteristics. This limitation is observed in our generalization experiment (Ap-pendix F and supplementary video 7:20), where certain fa-cial morphologies lead to imperfect mouth closure or inner-mouth mesh intersections. Addressing these limitations calls for exploring few-shot adaptation to better capture actor-specific attributes. Despite this, our model shows rea-sonable robustness to in-the-wild styles and audio. Be-yond these limitations, our method raises ethical consid-erations related to example-based generation and dubbing. Such systems should only be used with appropriate consent from the individuals whose likeness or performance is re-produced. 
+
+# 7. Conclusion 
+
+In this paper, we present KM-Speaker, a flow-based gen-erative framework with the explicit goal of making data-driven models more amenable to artistic direction. To this end, we introduce the first data-driven method enabling both example-based generation and dialogue localization, com-bining captured realism with flexible control. Leveraging a keypoint-conditioned architecture and a disentanglement strategy, KM-Speaker achieves accurate lip synchroniza-tion while capturing global and temporal cues from refer-ence performances. We view this approach as a step toward production-ready solutions that give artists full control over performance while leveraging the realism learned from cap-tured data at scale. 88. Acknowledgements 
+
+This research was supported by the Natural Sciences and Engineering Research Council of Canada (NSERC) and MITACS through the Alliance-Mitacs program (Grant No. ALLRP 589317 - 23). We would also like to thank the authors of MeshTalk [29], MIMIC [14], and MSMD [28] for releasing their code and advancing research in the field. We also thank the actors who consented to the use of their likenesses for the qualitative results presented in this paper. 
+
+# References 
+
+[1] Triplegangers Face Models. https : / / triplegangers . com/ , 2024. Online; Accessed: 13-11-2024. 18 [2] Lo¨ ıc Barrault, Yu-An Chung, Mariano Coria Meglioli, David Dale, Ning Dong, Mark Duppenthaler, Paul-Ambroise Duquenne, Brian Ellis, Hady Elsahar, Justin Haaheim, et al. Seamless: Multilingual expressive and streaming speech translation. arXiv preprint arXiv:2312.05187 , 2023. 5 [3] Dan Bigioi and Peter Corcoran. Multilingual video dub-bing—a technology review and current challenges. Frontiers in signal processing , 3:1230755, 2023. 2, 3 [4] Dan Bigioi, Hugh Jordan, Rishabh Jain, Rachel McDonnell, and Peter Corcoran. Pose-aware speech driven facial land-mark animation pipeline for automated dubbing. IEEE Ac-cess , 10:133357–133369, 2022. 3 [5] Yujin Chai, Yanlin Weng, Tianjia Shao, and Kun Zhou. Asemantic talking style space for speech-driven facial ani-mation. IEEE Transactions on Visualization and Computer Graphics , 2025. 19 [6] Hejia Chen, Haoxian Zhang, Shoulong Zhang, Xiaoqiang Liu, Sisi Zhuang, Pengfei Wan, Di ZHANG, and Shuai Li. Cafe-talk: Generating 3d talking face animation with multi-modal coarse-and fine-grained control. In International Con-ference on Learning Representations , 2025. 2 [7] Ziang Chen, Tianhua Qi, Cheng Lu, and Wenming Zheng. Disenemo: Learning disentangled emotional representation from facial motion for 3d talking head generation. In 2025 IEEE International Conference on Image Processing (ICIP) ,pages 289–294. IEEE, 2025. 2, 3 [8] Xuangeng Chu, Nabarun Goswami, Ziteng Cui, Hanqin Wang, and Tatsuya Harada. Artalk: Speech-driven 3d head animation via autoregressive model. In Proceedings of the SIGGRAPH Asia 2025 Conference Papers , pages 1–9, 2025. 2[9] Daniel Cudeiro, Timo Bolkart, Cassidy Laidlaw, Anurag Ranjan, and Michael J. Black. Capture, learning, and synthe-sis of 3d speaking styles. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , June 2019. 5 [10] Radek Danˇ eˇ cek, Kiran Chhatre, Shashank Tripathi, Yandong Wen, Michael Black, and Timo Bolkart. Emotional speech-driven animation with content-emotion disentanglement. In 
+
+SIGGRAPH Asia 2023 Conference Papers , SA ’23, New York, NY, USA, 2023. Association for Computing Machin-ery. 2 [11] Paul Debevec. The light stages and their applications to pho-toreal digital actors. SIGGRAPH Asia , 2(4):1–6, 2012. 2 [12] Pif Edwards, Chris Landreth, Eugene Fiume, and Karan Singh. Jali: an animator-centric viseme model for expressive lip synchronization. ACM Transactions on graphics (TOG) ,35(4):1–11, 2016. 2, 8 [13] Yao Feng, Haiwen Feng, Michael J. Black, and Timo Bolkart. Learning an animatable detailed 3d face model from in-the-wild images. ACM Trans. Graph. , 40(4), July 2021. 2 [14] Hui Fu, Zeqing Wang, Ke Gong, Keze Wang, Tianshui Chen, Haojie Li, Haifeng Zeng, and Wenxiong Kang. Mimic: Speaking style disentanglement for speech-driven 3d facial animation. In Proceedings of the AAAI conference on artifi-cial intelligence , volume 38, pages 1770–1777, 2024. 2, 3, 5, 6, 9 [15] Arthur Josi, Luiz Gustavo Hafemann, Abdallah Dib, Eme-line Got, Rafael MO Cruz, and Marc-Andre Carbonneau. Serep: Semantic facial expression representation for robust in-the-wild capture and retargeting. In Proceedings of the IEEE/CVF International Conference on Computer Vision ,pages 14538–14548, 2025. 3, 6, 18, 19, 20 [16] Diederik Kingma and Jimmy Ba. Adam: A method for stochastic optimization. In International Conference on Learning Representations (ICLR) , San Diega, CA, USA, 2015. 6 [17] Tianye Li, Timo Bolkart, Michael. J. Black, Hao Li, and Javier Romero. Learning a model of facial shape and ex-pression from 4D scans. ACM Transactions on Graphics, (Proc. SIGGRAPH Asia) , 36(6):194:1–194:17, 2017. 2, 6 [18] Xuanchen Li, Jianyu Wang, Yuhao Cheng, Yikun Zeng, Xingyu Ren, Wenhan Zhu, Weiming Zhao, and Yichao Yan. Towards high-fidelity 3d talking avatar with personalized dy-namic texture. In Proceedings of the Computer Vision and Pattern Recognition Conference , pages 204–214, 2025. 15 [19] Yaron Lipman, Ricky TQ Chen, Heli Ben-Hamu, Maximil-ian Nickel, and Matt Le. Flow matching for generative mod-eling. In 11th International Conference on Learning Repre-sentations, ICLR 2023 , 2023. 4 [20] Yaron Lipman, Marton Havasi, Peter Holderrieth, Neta Shaul, Matt Le, Brian Karrer, Ricky TQ Chen, David Lopez-Paz, Heli Ben-Hamu, and Itai Gat. Flow matching guide and code. arXiv preprint arXiv:2412.06264 , 2024. 4 [21] Chang Liu, Qunfen Lin, Zijiao Zeng, and Ye Pan. Emoface: Audio-driven emotional 3d face animation. In 2024 IEEE Conference Virtual Reality and 3D User Interfaces (VR) ,pages 387–397. IEEE, 2024. 2 [22] Chang Liu, Ye Pan, Chenyang Ding, Susanto Rahardja, and Xiaokang Yang. Medtalk: Multimodal controlled 3d facial animation with dynamic emotions by disentangled embed-ding. arXiv preprint arXiv:2507.06071 , 2025. 2 [23] Runzhen Liu, Qinjie Lin, Yunfei Liu, Lijian Lin, Ye Zhu, Yu Li, Chuhua Xian, and Fa-Ting Hong. Identity-preserving video dubbing using motion warping. arXiv preprint arXiv:2501.04586 , 2025. 3 
+
+9Ours Ours_1660_keypoints Ours_68_keypoints Our disentanglement masks MeshTalk disentanglement masks Figure 6. We visually present the keypoints used in Ours 1660 keypoints, Ours 68 keypoints, and Ours (top row), along with the disen-tanglement masks from our method and from MeshTalk [29] (bottom row). Green keypoints denote the upper-face keypoints used by the temporal encoder model, while the combination of green and grey keypoints represents the full-face keypoint signal used as style input. Disentanglement masks correspond to per-vertex weights, where grey vertices indicate weights of zero and green vertices indicate non-zero weights, with more intense green representing weights closer to 1. MSMD_retrain MIMIC_retrain Ours 
+
+# sick.. co rner.. over smell is unmist akea ble the the re, so meone.. 
+
+Figure 7. Qualitative comparison of MSMD retrain, MIMIC retrain, and Ours in the matching context scenario, where the target style matches the audio intent. We do not display the target to encourage focus on the lip-sync and naturalness. [24] Xingchao Liu, Chengyue Gong, et al. Flow straight and fast: Learning to generate and transfer data with rectified flow. In 
+
+NeurIPS 2022 Workshop on Score-Based Methods , 2022. 2 [25] Dongchan Min, Dong Bok Lee, Eunho Yang, and Sung Ju Hwang. Meta-stylespeech: Multi-speaker adaptive text-to-speech generation. In International Conference on Machine 
+
+10 Target temporal style 
+
+so mething wa nder.. fog I an yon e dis org su ch condi tion sig ht fo g
+
+> MeshTalk Ours meshalk encoder Ours mesthalk mask  Ours Ours no disentanglement
+
+Figure 8. Qualitative results for two different actors and target temporal style for the dialogue localization task. We compare perfor-mance between MeshTalk [29] and our model, and also conduct ablations on MeshTalk components relative to our approach through: Ours meshtalk encoder, Ours meshtalk masks, and Ours no disentanglement. The red rectangles clearly identify mismatches between the target upper face and the corresponding generated frame, or inaccurate lip shapes with respect to the pronounced sound. Our method precisely matches the target animation’s upper face, including challenging eyebrow motion and eye closure. 
+
+Learning , pages 7748–7759. PMLR, 2021. 6 [26] Federico Nocentini, Claudio Ferrari, and Stefano Berretti. Learning landmarks motion from speech for speaker-agnostic 3d talking heads generation. In International Con-ference on Image Analysis and Processing , pages 340–351. Springer, 2023. 3 [27] Yifang Pan, Chris Landreth, Eugene Fiume, and Karan Singh. Vocal: Vowel and consonant layering for expres-sive animator-centric singing animation. In SIGGRAPH Asia 2022 Conference Papers , pages 1–9, 2022. 2 [28] Yifang Pan, Karan Singh, and Luiz Gustavo Hafemann. Model see model do: Speech-driven facial animation with style control. In Proceedings of the Special Interest Group on Computer Graphics and Interactive Techniques Confer-ence Conference Papers , pages 1–10, 2025. 2, 3, 4, 5, 6, 7, 9[29] Alexander Richard, Michael Zollh¨ ofer, Yandong Wen, Fer-nando De la Torre, and Yaser Sheikh. Meshtalk: 3d face an-imation from speech using cross-modality disentanglement. In Proceedings of the IEEE/CVF international conference on computer vision , pages 1173–1182, 2021. 2, 3, 4, 5, 6, 8, 9, 10, 11 [30] Christos Sagonas, Epameinondas Antonakos, Georgios Tz-imiropoulos, Stefanos Zafeiriou, and Maja Pantic. 300 faces in-the-wild challenge: Database and results. Image and vi-sion computing , 47:3–18, 2016. 5 [31] B Series. Method for the subjective assessment of interme-diate quality level of audio systems. International Telecom-munication Union Radiocommunication Assembly , 2, 2014. 7[32] Zhiyao Sun, Tian Lv, Sheng Ye, Matthieu Lin, Jenny Sheng, Yu-Hui Wen, Minjing Yu, and Yong-jin Liu. Diffposetalk: 
+
+11 Speech-driven stylistic 3d facial animation and head pose generation via diffusion models. ACM Transactions on Graphics (TOG) , 43(4):1–9, 2024. 2, 3, 6 [33] Erroll Wood, Tadas Baltruˇ saitis, Charlie Hewitt, Matthew Johnson, Jingjing Shen, Nikola Milosavljevi´ c, Daniel Wilde, Stephan Garbin, Toby Sharp, Ivan Stojiljkovi´ c, et al. 3d face reconstruction with dense landmarks. In European Confer-ence on Computer Vision , pages 160–177. Springer, 2022. 2[34] Erroll Wood, Tadas Baltruˇ saitis, Charlie Hewitt, Matthew Johnson, Jingjing Shen, Nikola Milosavljevi´ c, Daniel Wilde, Stephan Garbin, Toby Sharp, Ivan Stojiljkovi´ c, et al. 3d face reconstruction with dense landmarks. In European Confer-ence on Computer Vision , pages 160–177. Springer, 2022. 3, 5[35] Sichun Wu, Kazi Injamamul Haque, and Zerrin Yumak. Probtalk3d: Non-deterministic emotion controllable speech-driven 3d facial animation synthesis using vq-vae. In Pro-ceedings of the 17th ACM SIGGRAPH Conference on Mo-tion, Interaction, and Games , pages 1–12, 2024. 2 [36] Sijing Wu, Yunhao Li, Yichao Yan, Huiyu Duan, Ziwei Liu, and Guangtao Zhai. Mmhead: Towards fine-grained multi-modal 3d facial animation. In Proceedings of the 32nd ACM International Conference on Multimedia , pages 7966–7975, 2024. 2 [37] Jinbo Xing, Menghan Xia, Yuechen Zhang, Xiaodong Cun, Jue Wang, and Tien-Tsin Wong. Codetalker: Speech-driven 3d facial animation with discrete motion prior. In Proceed-ings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , pages 12780–12790, 2023. 2, 6 [38] Zhihao Xu, Shengjie Gong, Jiapeng Tang, Lingyu Liang, Yining Huang, Haojie Li, and Shuangping Huang. Kmtalk: Speech-driven 3d facial animation with key motion embed-ding. In European Conference on Computer Vision , pages 236–253. Springer, 2024. 2 [39] Yue Zhang, Zhizhou Zhong, Minhao Liu, Zhaokang Chen, Bin Wu, Yubin Zeng, Chao Zhan, Yingjie He, Junxin Huang, and Wenjiang Zhou. Musetalk: Real-time high-fidelity video dubbing via spatio-temporal sampling. arXiv preprint arXiv:2410.10122 , 2024. 3 [40] Qingcheng Zhao, Pengyu Long, Qixuan Zhang, Dafei Qin, Han Liang, Longwen Zhang, Yingliang Zhang, Jingyi Yu, and Lan Xu. Media2face: Co-speech facial animation gen-eration with multi-modality guidance. In ACM SIGGRAPH 2024 conference papers , pages 1–13, 2024. 2 [41] Yicheng Zhong, Huawei Wei, Peiji Yang, and Zhisheng Wang. Expclip: Bridging text and facial expressions via se-mantic alignment. In Proceedings of the AAAI Conference on Artificial Intelligence , 2024. 2 [42] Yang Zhou, Zhan Xu, Chris Landreth, Evangelos Kaloger-akis, Subhransu Maji, and Karan Singh. Visemenet: Audio-driven animator-centric speech animation. ACM Transac-tions on Graphics (ToG) , 37(4):1–10, 2018. 2 [43] Hao Zhu, Wayne Wu, Wentao Zhu, Liming Jiang, Siwei Tang, Li Zhang, Ziwei Liu, and Chen Change Loy. Celebv-hq: A large-scale video facial attributes dataset. In European conference on computer vision , pages 650–667. Springer, 2022. 18 
+
+12 Appendices A. Data collection protocol 
+
+We built our dataset by recording synchronized speech audio and high-fidelity facial performances from 12 profes-sional actors. To ensure broad demographic coverage, we conducted a targeted casting aimed at maximizing diversity in age, gender, and ethnicity within the limited number of actors we captured. Our final cast includes six male and six female actors, with four identifying as White, three as Asian, three as Black, one as Middle Eastern, and one as Latin, spanning an age range from 18 to 64. Data was captured in two configurations: (1) a seated light-stage setup consisting of six synchronized cameras, and (2) a head-mounted rig containing four cameras aimed at the actor’s face. Actors performed a curated set of actor-specific sen-tences across eight target emotional states: Neutral, Angry, Fear, Happy, Disgust, Sad, Surprise, and Authority. Ex-cept for Neutral, each emotion was recorded at two intensity levels: Moderate and Heightened. The Moderate condition corresponds to a controlled, conversational delivery appro-priate for everyday dialogue, whereas the Heightened con-dition reflects amplified facial expressiveness suited for dra-matic or high-impact narrative moments commonly found in digital media. All the performances were conducted in English. Because actor expressiveness was critical to the overall quality of the dataset, we designed emotion-specific sen-tences to help actors deliver consistent, contextually coher-ent performances. Example sentences associated with each emotion are provided in Table 3. 
+
+Emotion Example Sentence 
+
+Angry I’m not telling you again. You owe me money, and you need to pay up. Fear I don’t like the look of that building, let’s try a different route. Happy Do you think this is a good day for a picnic? Disgust Did you see the state of their bath-room? I couldn’t even use it. Sad The world keeps turning, but I feel like I’m stuck in a still frame. Surprise ¡gasping¿ How is this even possible?! Everything we thought we knew is wrong! Authority You there, stop what you’re doing and come over here immediately. 
+
+> Table 3. Example sentences with the emotion to be portrayed.
+
+Following capture, we followed the standard cinematic-quality procedure of the Faceform 4D-capture system 1. More precisely, all footage was processed through a standard photogrammetry pipeline, in which each video frame was 3D-reconstructed using Reality-Capture, a commercial photogrammetry software. Then, raw mesh sequences were aligned to a common mesh topology of 13,473 vertices using Faceform Wrap 4D, with additional manual refinements by an experienced facial motion-capture supervisor to achieve accurate and stable results. Processing a single minute of footage under this full pipeline takes approximately 8 hours. 
+
+# B. Additional implementation details 
+
+B.1. Training details 
+
+Importance weights. The following importance weights are used in eq. 4 of the main manuscript: λmse = 100 ,
+
+λvel = 100 , and λKL = 1 e − 6.
+
+Optimization hyperparameters. We trained with a batch size of 32, a learning rate of 1e − 4, and a weight decay of 
+
+1e − 06 .
+
+Temporal-style dropout. We randomly drop the tempo-ral style conditioning signal with a probability of 0.1 dur-ing training, analogous to classifier-free guidance strategies. This encourages the model to rely on global style for full-face coherence when temporal information is absent. We experimented with higher dropout rates (0.2–0.3) and ob-served no significant qualitative differences, leading us to adopt 0.1 as a stable default. 
+
+B.2. Model and Representations 
+
+Model architecture. We detail our model architecture in Tab. 4, including audio encoder, global style encoder, tem-poral style encoder, and our flow transformer model. 
+
+PCA construction and dimensionality. We construct the PCA basis from the full training set of eight identities using vertex displacements computed with respect to each iden-tity’s neutral face mesh in rest pose. We retain l = 128 prin-cipal components, which preserve approximately 99.5% of the total variance. This dimensionality provides a good balance between compression and reconstruction fidelity, while enabling efficient sequence modeling. We did not fur-ther reduce l, as maintaining high-fidelity facial motion is critical for our target applications. 
+
+Keypoint signal. We use a fixed set of K = 55 full-face keypoints and Ku = 47 upper-face keypoints. The upper-face set is a subset of the full-face set, as illustrated in Fig.6 of the main paper. 
+
+Keypoint extraction and consistency. Since all meshes share a fixed topology (see supplementary section A), key-points are defined via direct vertex correspondences rather 
+
+> 1Faceform 4D processing pipeline
+
+13 Function Details 
+
+Audio encoder • w2v-BERT 2.0() 
+
+• Linear: Linear(1024 →512) 
+
+Global style encoder • Input Layers: – Conv1d(165 →512,k=3,p=1) → Dropout(p=0.2) → ELU →
+
+LayerNorm(512) 
+
+– Conv1d(512 →512,k=3,p=1) → Dropout(p=0.2) → ELU →
+
+LayerNorm(512) 
+
+• Positional Encoding: Dropout(p=0.1) 
+
+• Transformer Encoder Layer: – MultiheadAttention(512) → Dropout(p=0.1) 
+
+– FeedForward: Linear(512 →512) → Dropout(p=0.1) →
+
+Linear(512 →512) 
+
+– LayerNorm(512) (x2) • Output Layers: – Conv1d(512 →1024,k=3,p=1) → Dropout(p=0.1) → ELU →
+
+LayerNorm(1024) 
+
+– Conv1d(1024 →1024,k=3,p=1) 
+
+Temporal style encoder • MLP: Linear(141 →512) → GELU → Linear(512 →512) 
+
+Flow transformer model • TransformerLayers (×8): – SelfAttention: 
+
+* Projections: Linear(512 →512) for q, k, v, and output * Dropout: Dropout(p=0.1) 
+
+* Norm: AdaLN with conditioning net: Linear(512 →512) → SiLU →
+
+Linear(512 →1024) 
+
+– CrossAttention: 
+
+* Projections: Linear(512 →512) for q, k, v, and output * Dropout: Dropout(p=0.1) 
+
+* Norm: AdaLN with conditioning net: Linear(512 →512) → SiLU →
+
+Linear(512 →1024) 
+
+– FeedForward: Linear(512 →1024) → Dropout(p=0.1) →
+
+Linear(1024 →512) 
+
+– Norm (FF): AdaLN with conditioning net: Linear(512 →512) → SiLU →
+
+Linear(512 →1024) 
+
+• Head MLP: Linear(512 →256) → GELU → Linear(256 →128) 
+
+Table 4. Full model architecture, including the audio encoder, global style encoder, temporal style encoder, and flow trans-former model. than learned detectors. This ensures consistent spatial align-ment across identities and sequences. 
+
+Keypoint preprocessing. Keypoint signals are computed as vertex displacements with respect to each identity’s neu-tral face mesh in rest pose. These displacements are stan-dardized per keypoint using training-set statistics before be-ing fed to the model. This consistent parameterization en-sures robustness across identities while improving condi-tioning stability and generalization. 14 B.3. Facial region masks 
+
+The facial masks Mlower and Mupper are vectors of length 13 ,473 , with all elements in the range [0 , 1] . To con-struct those, we first define two disjoint vertex sets on the template mesh: a lower-face region Rlower and an upper-face region Rupper , leaving a middle band of vertices unas-signed to either region to enable a smooth integration of lower-and upper-face. To construct Mlower , which emphasizes audio-driven de-formations on the lower part of the face, we set: 
+
+Mlower (v) = 
+
+(1, if v ∈ Rlower ,
+
+0, if v ∈ Rupper . (4) For vertices v in the middle band, we define a smooth transition using a distance-based inverse decay from the lower region. We define a point-to-region distance opera-tor d based on Euclidean distance: 
+
+d(v, Rlower ) = min 
+
+> u∈Rlower
+
+∥v − u∥2, (5) and define a lower-face mask as: 
+
+Mlower (v) = 11 + β d (v, Rlower ) , for v / ∈ Rlower ∪ Rupper ,
+
+(6) where β > 0 controls the rate of inverse decay (we use 
+
+β = 1 .0). The upper-face mask is then defined as the complement: 
+
+Mupper = 1 − M lower , (7) which, analogously, enforces temporal-style keypoints to drive the upper face. 
+
+B.4. Topology conversion 
+
+To convert mesh data from a source topology to a target topology, we compute a sparse conversion matrix that maps each vertex of the target mesh to a barycentric combination of the closest triangle in the source mesh. Meshes must be spatially aligned and scaled before computing the matrix. The process is as follows: (1) For each vertex in the target topology, we find the closest triangle in the source topology using a point-to-triangle distance metric. (2) We compute the barycentric coordinates of the target vertex with respect to this closest triangle. (3) These barycentric weights are used to populate a sparse matrix, where each row corre-sponds to a target vertex and each column to a source vertex. The resulting matrix enables efficient conversion: multi-plying the source vertex data by it yields the corresponding data in the target topology. This method ensures that geo-metric information is transferred as accurately as possible between different mesh topologies, while the conversion is performed via a single matrix multiplication. MIMIC_retrain  Target global style MSMD_retrain Ours no context preservation Ours    
+
+> wire mesh kee pair thr ough front
+
+Figure 9. Raw geometry renderings for the different baselines with a desired angry target style sequence while the audio intent mostly neutral. 
+
+B.5. Auxiliary Components for Rendering 
+
+Textures. We apply static per-actor textures to the animated meshes to enhance visual realism. Modeling dynamic or view-dependent textures could further improve fidelity, as highlighted by Li et al. [18], but such aspects are not the focus of this work. We leave these extensions to future re-search. 
+
+Eye and jaw processing. For all retrained models, we pre-dict eye motion and jaw articulation using lightweight re-gressors trained directly on top of the model’s latent mo-tion features. Given the predicted motion feature sequence 
+
+ˆx ∈ RN ×l, where N denotes the number of frames and l
+
+the feature dimension, we train a small MLP to infer (i) eye gaze and (ii) jaw rotation. Eye motion is represented by four parameters corre-sponding to yaw and pitch for the left and right eyes, while jaw articulation is represented as a 3 × 3 rotation matrix parameterized as a 9-dimensional vector. For each target sequence yeyes jaw ∈ RN ×13 , the MLP predicts ˆyeyes jaw = g(ˆ x) and is optimized using Leyes jaw 
+
+defined with a combination of mean-squared error (MSE) 15 MSMD_retrain MIMIC_retrain 
+
+# been si tting you r ho w long ? wouldn't Ifor car  
+
+> Ours Figure 10. Raw geometry renderings for qualitative comparison of MSMD retrain, MIMIC retrain, and Ours in the matching context scenario, where the target style matches the audio intent. We do not display the target to encourage focus on the lip-sync and naturalness.
+
+and velocity consistency losses: 
+
+Leyes jaw =
+
+> N
+
+X
+
+> n=0
+
+∥ˆyeyes jaw ,n − yeyes jaw ,n ∥22
+
++
+
+> N
+
+X
+
+> n=1
+
+∥(ˆ yeyes jaw ,n − ˆyeyes jaw ,n −1)
+
+− (yeyes jaw ,n − yeyes jaw ,n −1)∥22 .
+
+(8) where both terms are weighted equally. This post-hoc regression strategy enables satisfying es-timation of eye and jaw motion while keeping the core facial-motion model unchanged . We emphasize that these components are included primarily to enhance visual real-ism rather than as a core contribution of our method. While such components could be integrated directly into the mesh topology for end-to-end prediction, most produc-tion pipelines treat eyes and teeth as separate assets and animate them independently to meet scene-specific require-ments. Our design, therefore, aligns with common practices while maintaining architectural simplicity. 
+
+# C. Raw geometry results 
+
+This section presents additional qualitative results show-ing facial geometry only (without textures, eyes, or teeth). These visualizations correspond directly to the model’s pre-dictions, while rendering assets are used in the main paper solely to improve perceptual realism. Fig. 9 presents additional geometry-only results for the example-based style generation task, where neutral audio is paired with an angry target style, similar to fig. 4 of the main paper. Fig. 10 presents results for the lip-synchronization experiment, similar to fig. 7 in the main paper. The same observations apply. 
+
+# D. Perceptual study 
+
+D.1. Perceptual study construction details 
+
+We present screenshots of the user-study guidelines for both the lip-synchronization and the style-adherence in Fig. 11. For the lip-synchronization study, raters were shown videos containing the four model outputs, displayed in random order, and asked to rate each generation individu-ally on a scale from 0 to 100. For the style-adherence study, the videos were muted to ensure raters focused solely on the delivery style, while the target-style animation was dis-played in a separate upper row, playing simultaneously with the generated outputs. See Fig. 12 for screenshots of both studies videos and rating display. Participants were allowed to replay the videos as many times as needed and encour-aged to submit their ratings only when confident in their assessments. They were also asked to ignore eyes and teeth motion at all time, given those assets are added to improve realism and not part of the evaluated methods. 
+
+Negative anchor For the lip-synchronization study, the negative anchor is randomly sampled from other available sequences of the same actor. In the style-adherence study, constructing a meaningful negative anchor is more challenging, as some emotion cat-egories are semantically and behaviorally close (e.g., sur-16 Figure 11. Guidelines for the lip-synchronization (left) and style-adherence (right) user studies. 
+
+> Figure 12. Videos and rating interface for the lip-synchronization (left) and style-adherence (right) studies.
+
+prise vs. happiness, or authority vs. anger). To obtain more robust negatives, we represent each animation clip using summary statistics of its facial landmark dynamics, computed from the KM-Speaker set of 55 keypoints. For each frame, we concatenate the flattened 3D landmark po-sitions with their first-order temporal velocities, forming a 17 per-frame descriptor. For each clip, we then compute the temporal mean and covariance of these descriptors. To select a negative emotion class for a given target emo-tion, we compute an inter-emotion distance based on the centroid statistics of each emotion class. Given a target animation, the negative sample is drawn from the emotion class that maximizes this distance. All centroid statistics and distance computations are performed within the test ac-tor’s data distribution only, as different actors exhibit dis-tinct styles and interpretations when conveying emotions. 
+
+D.2. Perceptual study additional analysis 
+
+> Table 5. Mean rankings for lip Synchronization and style adher-ence user studies.
+
+Method Lip Sync Style Adherence 
+
+(Mean Rank) ↓ (Mean Rank) ↓
+
+Negative 4.00 3.30 MIMIC retrain 2.90 2.69 MSMD retrain 1.75 2.75 Ours 1.35 1.26 
+
+To complete the analysis of the pursued user studies, we additionally compute the mean ranking for each method (Tab. 5), including the negative anchor, and ensured statis-tical significance ( ρ < 0.01 ) using a Wilcoxon test between our methods’ performances and each baseline and negative. Across both user studies, our method consistently achieves the lowest mean ranking, demonstrating its con-sistency across diverse generations and styles. Importantly, we observe that the mean ranking of the negative in both studies consistently comes behind other methods, while the ordering of MSMD retrain and MIMIC retrain follows the main paper results. We further assess inter-rater agreement to evaluate the reliability of the collected perceptual judgments. For lip synchronization, agreement is strong at the pairwise level, with a mean Pearson correlation of 0.88 , indicating a high degree of consistency in relative comparisons across raters. This level of pairwise agreement suggests that lip synchro-nization is generally perceived as a more objective task, leading to stable and reproducible evaluations. For style adherence, we likewise observe consistent inter-rater agree-ment, with a mean pairwise Pearson correlation of 0.57 .This suggests that, while individual assessments of style may vary due to subjective interpretation, raters nonethe-less tend to converge toward a consistent consensus when judgments are considered collectively. 
+
+# E. Dialogue localization: Blending baseline and global style 
+
+In this section, we evaluate a blending-based baseline inspired by common practices in artist-driven pipelines, where mouth motion is edited or composed independently from upper-face animation. This setup serves as a strong deterministic reference for dialogue localization. Specifically, we construct a blended animation by com-bining target upper-face motion with lip-sync animation generated by our model. The blended animation Xblend is defined as: 
+
+Xblend = Mupper ⊙ X target + Mlower ⊙ X generated , (9) where ⊙ denotes element-wise multiplication, Mupper and 
+
+Mlower are blending masks (Supplementary Section B), and 
+
+Xtarget , Xgenerated denote the target and generated animations, respectively. We evaluate this baseline both without global style con-ditioning ( Blend (no global) ) and with it ( Blend ), to assess its impact on overall coherence. Qualitative results are shown in Fig. 13. While blend-ing preserves upper-face motion, it introduces geometric in-consistencies in transition regions, particularly near mask boundaries (see zoomed-in views), even when global style is applied. These discontinuities affect both surface geome-try and normals, and would lead to shading artifacts in ren-dered animations. More fundamentally, such compositing strategies remain sensitive to identity-specific geometry and expression vari-ation. Although careful tuning of blending parameters can improve results in constrained cases, this process is time-consuming and does not generalize well across diverse con-ditions. Also, while global style conditioning improves coherence between upper- and lower-face motion (partic-ularly visible for the left target style), it does not address the fundamental limitations of compositing-based strate-gies. In contrast, our model directly generates coherent full-face animations, avoiding boundary artifacts and gen-eralizing across identities without manual intervention. In addition, our approach supports both dialogue localization and example-based generation within a unified framework. 
+
+# F. Generalization 
+
+We conduct a qualitative generalization experiment in the example-based setting to evaluate our model beyond the controlled high-fidelity setting, considering variations in fa-cial geometry, non production quality audio, and styles ex-tracted from off-the-shelf face expression capture method [15] rather than 4D capture. To this end, we sample three audio clips from CelebV-HQ [43], three target videos serv-ing as styles, and three neutral meshes with diverse facial traits from Triplegangers [1]. 18 Ours no global  Target animation Blend no global Blend Ours Figure 13. Qualitative results for two distinct examples (left and right), given a target animation (first row), comparing the blending baseline with our model with and without global style conditioning. Zoomed-in visualizations are provided in the center to highlight geometry inconsistencies. Best viewed in color. 
+
+We present those qualitative results in Fig. 14, with cor-responding dynamic results visible in our supplementary video (7:20 to 7:50). Despite these challenging conditions, our model demonstrates reasonable robustness: it captures global style from reconstructed expressions and produces convincing lip motion with accurate synchronization. For instance, expressive styles such as anger (first row) are clearly conveyed through both facial dynamics and motion intensity, whereas more neutral styles (last row) yield cor-respondingly restrained animations without introducing ar-tifacts. At the same time, this experiment reveals limitations in geometric generalization. For certain identities, we ob-serve imperfect mouth closure (last row) and inner-mouth mesh intersections (middle row), particularly for challeng-ing facial morphologies. These failure cases highlight the limits of the learned facial prior when applied to out-of-distribution geometries. Despite this, the observed artifacts remain moderate. Inner-mouth intersections could likely be mitigated through appropriate regularization, whereas imperfect lip closure re-mains a more fundamental limitation. In both cases, incor-porating identity-specific modeling, such as few-shot adap-tation or explicit identity encoding/decoding (e.g., SEREP [15] or [5]), would likely improve robustness and reduce these effects. 19 Target style Generated animation 
+
+see fro m re cipe kn owmarin ade 
+
+infla tion glo bal glo bal sc ale fact 
+
+out shou ld be fighting pleas er Figure 14. KM-Speaker generalization results on in-the-wild audio, style, and varying face geometries. Given a target video providing the desired style (left), we first extract the corresponding facial expressions onto an arbitrary mesh using an off-the-shelf expression capture model [15]. We then generate a speech-driven animation (right) using KM-Speaker, conditioned on the extracted style and a different speech signal. Corresponding dynamic results are shown in the supplementary video (7:20–7:50). Best viewed in color. 
+
+20
