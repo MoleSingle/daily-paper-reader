@@ -6,30 +6,32 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-30
-- 运行时间：2026-06-30 21:03:18 UTC
+- 最新运行日期：2026-07-01
+- 运行时间：2026-07-01 21:32:25 UTC
 - 运行状态：成功
-- 本次总论文数：3
-- 精读区：3
-- 速读区：0
+- 本次总论文数：4
+- 精读区：1
+- 速读区：3
 
 ### 今日简报（AI）
-今日聚焦两篇9.0高分研究：语音驱动的3D面部动画与对话化身动作生成。KM-Speaker通过关键点控制实现高质量面部动画，FacePlex则攻克全双工语音-面部联合生成。建议重点研读这两篇论文，以提升虚拟人交互的自然度与实时表现力。
-- 详情：[/202606/30/README](/202606/30/README)
+今日关注4篇论文，聚焦对话式人脸生成、实时交互基础模型与音视频生成。最值得精读的是《Towards Flexible, Natural, Efficient Interaction for Conversational Talking Face Generation》（9.0分），其交互式说话人脸生成思路极具启发性。建议下一步重点关注该方向与端到端实时交互模型的结合应用。
+- 详情：[/202607/01/README](/202607/01/README)
 
 ### 精读区论文标签
-1. [KM-Speaker: Keypoint-Based Style Control for High-Quality Speech-Driven 3D Facial Animation and Dialogue Localization](/202606/30/2606.28568v1-km-speaker-keypoint-based-style-control-for-high-quality-speech-driven-3d-facial-animation-and-dialogue-localization)  
+1. [Towards Flexible, Natural, Efficient Interaction for Conversational Talking Face Generation](/202607/01/2606.31088v1-towards-flexible-natural-efficient-interaction-for-conversational-talking-face-generation)  
    标签：评分：9.0/10、query:talking-head
-   evidence：语音驱动3D面部动画与风格控制
-2. [FacePlex: Full-Duplex Joint Speech-Facial Motion Generation for Conversational Avatars](/202606/30/2606.30145v1-faceplex-full-duplex-joint-speech-facial-motion-generation-for-conversational-avatars)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：面向对话虚拟形象的联合语音-面部运动生成
-3. [FFAvatar: Feed-Forward 4D Head Avatar Reconstruction from Sparse Portrait Images](/202606/30/2606.30347v1-ffavatar-feed-forward-4d-head-avatar-reconstruction-from-sparse-portrait-images)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：从稀疏图像前馈式4D头部化身重建
+   evidence：对话场景中的说话头生成与合成
 
 ### 速读区论文标签
-- 本次无速读推荐。
+1. [Wan-Streamer v0.1: End-to-end Real-time Interactive Foundation Models](/202607/01/2606.25041v3-wan-streamer-v01-end-to-end-real-time-interactive-foundation-models)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：端到端交互基础模型，涵盖音频驱动动画和视频生成
+2. [AVTok: 1D Unified Tokenization for Holistic Audio-Video Generation](/202607/01/2606.30811v1-avtok-1d-unified-tokenization-for-holistic-audio-video-generation)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：统一的音频-视频联合分词用于生成
+3. [LUNA: Learning Universal 3D Human Animation Beyond Skinning](/202607/01/2606.31981v1-luna-learning-universal-3d-human-animation-beyond-skinning)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：从单目图像创建3D人体化身
 
 
 <div class="dpr-home-promo-card">

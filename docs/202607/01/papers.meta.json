@@ -1,0 +1,69 @@
+{
+  "label": "2026-07-01",
+  "date": "2026-07-01",
+  "generated_at": "2026-07-01T21:32:32",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202607/01/2606.31088v1-towards-flexible-natural-efficient-interaction-for-conversational-talking-face-generation",
+      "section": "deep",
+      "title_en": "Towards Flexible, Natural, Efficient Interaction for Conversational Talking Face Generation",
+      "authors": "Baiqin Wang, Sen Chen, Jiankuo Zhao, Xiangyu Liu, Zhen Lei, Xiangyu Zhu",
+      "date": "2026-06-30",
+      "pdf": "https://arxiv.org/pdf/2606.31088v1",
+      "score": "9.0",
+      "evidence": "对话场景中的说话头生成与合成",
+      "tldr": "对话式说话人脸生成面临灵活性、自然性和效率三大挑战。现有方法难以平衡三者。本文提出InterTalk，基于运动架构，显式建模多轮对话动态，引入多参与者运动反馈和迭代生成策略，并解耦面部运动组件。在30 FPS实时性能下实现优越交互质量。该方法支持任意多参与者，为交互式对话人脸生成提供了灵活、自然、高效的解决方案。",
+      "tags": "query:talking-head",
+      "abstract_en": "Conversational talking face generation has recently attracted increasing attention, aiming to synthesize interactive talking videos where characters speak, listen, and respond dynamically to each other. This task presents three core challenges: 1) Flexibility: enabling multi-round dialogues with an arbitrary number of participants; 2) Naturalness: maintaining coherent motion and appropriate non-verbal feedback throughout the interaction; and 3) Efficiency: achieving real-time generation and low computation overhead for long-term continuous online conversation. Despite recent advances, existing methods still fall short in balancing all three requirements. To bridge this gap, we introduce InterTalk, a novel and efficient framework designed for highly interactive conversational talking face generation. Built upon a motion-based architecture, InterTalk supports real-time conversation synthesis. Our method achieves strong flexibility by explicitly modeling multi-round conversational dynamics among each participant, eliminating constraints on their numbers. To enhance interactivity, we incorporate motion feedback from multiple participants and introduce an iterative generation strategy for more natural behaviors. Besides, we disentangle motion into several facial components, enabling targeted refinements for natural response such as precise lip sync and realistic eye blinking. Finally, we construct a new multi-person conversational dataset and enrich it with 3D face-based data augmentation. Extensive experiments demonstrate that InterTalk achieves superior interaction quality while maintaining real-time performance at 30 FPS.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/01/2606.25041v3-wan-streamer-v01-end-to-end-real-time-interactive-foundation-models",
+      "section": "quick",
+      "title_en": "Wan-Streamer v0.1: End-to-end Real-time Interactive Foundation Models",
+      "authors": "Lianghua Huang, Zhi-Fan Wu, Wei Wang, Yupeng Shi, Mengyang Feng, Junjie He, Chen-Wei Xie, Yu Liu, Jingren Zhou, Ang Wang, Bang Zhang, Baole Ai, Chen Liang, Cheng Yu, Chongyang Zhong, Jinwei Qi, Kai Zhu, Pandeng Li, Peng Zhang, Wenyuan Zhang, Xinhua Cheng, Yitong Huang, Yun Zheng, Yuzheng Wang, Zoubin Bi",
+      "date": "2026-06-23",
+      "pdf": "https://arxiv.org/pdf/2606.25041v3",
+      "score": "7.0",
+      "evidence": "端到端交互基础模型，涵盖音频驱动动画和视频生成",
+      "tldr": "现有交互系统依赖级联模块（VAD、ASR、TTS等），导致延迟累积和错误传播。Wan-Streamer提出原生流式端到端统一模型，在一个Transformer中联合建模语言、音频和视频的输入输出，采用块因果注意力和流式因果编解码器，实现低延迟全双工音视频交互。模型侧响应延迟约200ms，总交互延迟约550ms（含350ms双向网络延迟），支持160ms流式单元。",
+      "tags": "query:talking-head",
+      "abstract_en": "We present Wan-Streamer, a native-streaming, end-to-end interactive foundation model designed from the ground up for real-time, low-latency, full-duplex audio-visual interaction. Wan-Streamer seamlessly models language, audio, and video as both input and output within a single Transformer, where the sequence is represented as interleaved visual, audio, and text input tokens together with visual, audio, and text output tokens, coordinated by block-causal attention for incremental streaming. Unlike cascaded interactive systems that rely on separate VAD, ASR, language, TTS, audio-driven animation, or video-generation modules, Wan-Streamer does not rely on external language, speech, avatar, or video-generation modules: perception, reasoning, generation, response timing, turn management, and cross-modal synchronization are learned jointly within one unified model, reducing pipeline latency and error accumulation. To support natural audio-visual responsiveness, we redesign the entire stack around streamability, including causal encoders, causal decoders, block-causal attention, and low-latency multimodal token scheduling, enabling streaming units as short as 160 ms at 25 fps. Wan-Streamer achieves approximately 200 ms model-side response latency and approximately 550 ms total interaction latency when combined with 350 ms bidirectional network latency, supporting sub-second duplex audio-visual communication. These results position Wan-Streamer as a unified, end-to-end, multimodal interactive foundation model for low-latency streaming interaction.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/01/2606.30811v1-avtok-1d-unified-tokenization-for-holistic-audio-video-generation",
+      "section": "quick",
+      "title_en": "AVTok: 1D Unified Tokenization for Holistic Audio-Video Generation",
+      "authors": "Kien T. Pham, I Chieh Chen, Qifeng Chen, Long Chen",
+      "date": "2026-06-29",
+      "pdf": "https://arxiv.org/pdf/2606.30811v1",
+      "score": "7.0",
+      "evidence": "统一的音频-视频联合分词用于生成",
+      "tldr": "当前音视频生成方法多采用双分支设计，忽视模态间表征鸿沟且计算昂贵。AVTok提出统一tokenizer，通过双流Transformer架构和共享编码解码器，将音视频对编码为紧凑一维潜在表示。采用分层训练策略解决异构信息不平衡问题。实验证明其在音视频重建以及音到视频、视频到音频等下游任务中均取得优异效果，为构建统一多模态生成模型奠定基础。",
+      "tags": "query:talking-head",
+      "abstract_en": "Audio-video generation has recently gained unprecedented research attention, aiming to synthesize high-quality sounding video content with fine-grained synchronization and semantic alignment between the auditory and visual components. The preceding methods predominantly adopt a dual-branch design with separate tokenization and generation modules per modality, neglecting the representation gap while necessitating intensive computational resources for proper training. Inspired by recent advancements in one-dimensional visual tokenization, we present \\textbf{AVTok}, a novel unified tokenizer designated for holistic audio-video generation. AVTok features a dual-stream transformer-based architecture with shared encoder-decoder and modal-specific learnable queries to efficiently and effectively encode an audio-video pair into a compact one-dimensional latent representation with a unified codebook. To cope with the heterogeneous information imbalance that hinders AVTok from exploiting aligned audio-visual information, we devise a hierarchical training strategy to progressively realize reconstruction capabilities for each modality. Extensive experiments demonstrate that AVTok excels both in audio-video reconstruction and when integrated into downstream pipelines for audio-to-video, video-to-audio, and class-conditional joint audio-video generation. AVTok paves the way for the challenge of joint audio-video tokenization and provides a potential direction to build unified large multimodal models for audio-video generation.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/01/2606.31981v1-luna-learning-universal-3d-human-animation-beyond-skinning",
+      "section": "quick",
+      "title_en": "LUNA: Learning Universal 3D Human Animation Beyond Skinning",
+      "authors": "Peng Li, Rawal Khirodkar, Junxuan Li, Yuan Dong, Chen Cao, Yuan Liu, Wenhan Luo, Yike Guo, Shunsuke Saito",
+      "date": "2026-06-30",
+      "pdf": "https://arxiv.org/pdf/2606.31981v1",
+      "score": "7.0",
+      "evidence": "从单目图像创建3D人体化身",
+      "tldr": "现有3D人体动画依赖LBS和参数化模型，存在表达受限和拟合伪影。提出LUNA，一种无LBS的神经动画模型，通过transformer运动回归器从2D控制（图像、关键点等）直接预测3D高斯变形，解耦刚体与局部运动。混合监督结合LBS软先验和野外视频训练，实现逼真动画。实验表明视觉质量与LBS方法相当，且零-shot泛化到未见角色与驱动方式。这是首个支持隐式2D驱动的端到端3D可动画模型。",
+      "tags": "query:talking-head",
+      "abstract_en": "Creating photorealistic, animatable 3D human avatars from monocular images still largely depends on Linear Blend Skinning (LBS) and parametric body models, which constrain expressivity and often introduce artifacts due to imperfect fitting. We propose LUNA, an LBS-free universal neural animation model that directly maps multiple 2D controls like images, keypoints, sketches, and unseen characters into 3D Gaussian deformations, bypassing explicit body fitting. At its core, a transformer-based motion regressor disentangles global rigid motion from fine-grained local dynamics to capture both coherent movement and subtle non-rigid effects. To resolve the inherent ambiguity of 2D-to-3D lifting while scaling beyond fitted datasets, we introduce hybrid supervision that distills soft structural priors from an LBS teacher and a loss that supports training on both limited fitted data and large in-the-wild unlabeled videos. Extensive experiments show LUNA achieves competitive visual fidelity compared to LBS-based approaches, while delivering realistic human motion and zero-shot cross-identity generalization across diverse driving modalities. To the best of our knowledge, LUNA is the first end-to-end 3D animatable model that supports implicit 2D driving.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
