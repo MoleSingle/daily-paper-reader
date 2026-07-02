@@ -1,0 +1,92 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-02T20:59:00.381053+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2607.00959v1",
+      "source": "arxiv",
+      "title": "GaussianEmoTalker: Real-Time Emotional Talking Head Synthesis with Audio-Driven and Blendshape-Based 3D Gaussian Splatting",
+      "abstract": "Audio-driven talking head synthesis has achieved impressive progress in lip synchronization and visual quality, yet generating expressive emotional avatars with controllable intensity remains challenging, especially under real-time constraints. In this paper, we present GaussianEmoTalker, an audio-driven framework for real-time emotional talking head synthesis based on 3D Gaussian Splatting. Instead of directly predicting the final emotional avatar from speech, we formulate emotional animation as a neutral-to-emotional residual deformation problem. GaussianEmoTalker first constructs an identity-specific neutral talking space with GaussianBlendshapes, which provides high-fidelity Gaussian attributes and phoneme-synchronized neutral motion. It then predicts an emotion-conditioned residual deformation by combining mesh displacement cues, audio features, emotion categories, and intensity encodings. To fuse these heterogeneous signals, we introduce a spatial-audio-emotion attention module that estimates the offsets of Gaussian attributes for expressive and temporally stable rendering. Extensive experiments demonstrate that GaussianEmoTalker achieves competitive video quality, accurate lip synchronization, controllable emotional expression, and real-time rendering compared with recent emotional talking head methods. Our project page is available at https://njust-yang.github.io/GaussianEmoTalker.github.io/",
+      "authors": [
+        "Haijie Yang",
+        "Zhenyu Zhang",
+        "Yixuan Dong",
+        "Jianjun Qian",
+        "Jian Yang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-01T13:56:38+00:00",
+      "link": "https://arxiv.org/pdf/2607.00959v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "audio-driven emotional talking head synthesis with 3D Gaussian Splatting",
+      "llm_evidence_cn": "基于音频驱动和3D高斯泼溅的情感说话头合成",
+      "llm_evidence": "基于音频驱动和3D高斯泼溅的情感说话头合成",
+      "canonical_evidence": "基于音频驱动和3D高斯泼溅的情感说话头合成",
+      "llm_tldr_en": "GaussianEmoTalker proposes a real-time audio-driven talking head framework using 3D Gaussian Splatting with blendshape-based emotional control, achieving high-fidelity lip sync and expression intensity adjustment.",
+      "llm_tldr_cn": "针对实时情感说话头合成中表情控制强度难以调节的问题，本文提出GaussianEmoTalker，一种基于3D高斯泼溅的音频驱动框架。该方法将情感动画建模为中性与情感残差变形问题，首先构建身份中性的高斯混合形状空间，再通过音频驱动预测残差，从而实现高质量唇同步和可控制的表情强度。实验证明该方法在实时性能下达到先进水平。",
+      "llm_tldr": "针对实时情感说话头合成中表情控制强度难以调节的问题，本文提出GaussianEmoTalker，一种基于3D高斯泼溅的音频驱动框架。该方法将情感动画建模为中性与情感残差变形问题，首先构建身份中性的高斯混合形状空间，再通过音频驱动预测残差，从而实现高质量唇同步和可控制的表情强度。实验证明该方法在实时性能下达到先进水平。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.31947v1",
+      "source": "arxiv",
+      "title": "LuxEmo: Expressive Text-to-Speech Corpus for Luxembourgish",
+      "abstract": "State-of-the-art speech datasets predominantly focus on widely spoken languages, often overlooking low-resource languages such as Luxembourgish, which remain underrepresented in speech technology research. In this work, we introduce LuxEmo, a 21-hour conversational expressive speech corpus for Luxembourgish with 4 emotion categories. LuxEmo is derived from Radio Télévision Luxembourg (RTL) youth broadcasts, using automated detection followed by human validation. We propose a semi-automatic curation workflow combining voice activity detection, denoising, language identification, LuxASR-based segmentation, automatic emotion prediction, lexical cues, and targeted human review. Additionally, we benchmark five expressive TTS systems covering German-based cross-lingual transfer, multilingual Luxembourgish support, Luxembourgish adaptation, and non-parametric prosody transfer. Performance is evaluated using both objective metrics and human evaluation.",
+      "authors": [
+        "Nina Hosseini-Kivanani",
+        "Sandipana Dowerah"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-30T16:53:15+00:00",
+      "link": "https://arxiv.org/pdf/2606.31947v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "provides an expressive TTS corpus and benchmarks TTS systems; relevant for audio-driven talking head synthesis as a dataset contribution",
+      "llm_evidence_cn": "提供表达性TTS语料库并对TTS系统进行基准测试；作为数据集贡献与音频驱动的talking head合成相关",
+      "llm_evidence": "提供表达性TTS语料库并对TTS系统进行基准测试；作为数据集贡献与音频驱动的talking head合成相关",
+      "canonical_evidence": "提供表达性TTS语料库并对TTS系统进行基准测试；作为数据集贡献与音频驱动的talking head合成相关",
+      "llm_tldr_en": "Introduces LuxEmo, a 21-hour expressive TTS corpus for Luxembourgish with 4 emotions, and benchmarks five TTS systems. Relevant for talking head audio datasets and evaluation.",
+      "llm_tldr_cn": "该论文针对低资源语言卢森堡语构建了LuxEmo表达性语音语料库，包含21小时对话语音和4种情感类别。采用半自动化工作流结合语音活动检测、去噪、语言识别和自动情感预测。对五种表达性TTS系统进行了基准测试。该语料库可作为数字人类和talking head中语音生成的数据资源，且基准测试方法可用于评估TTS模块。",
+      "llm_tldr": "该论文针对低资源语言卢森堡语构建了LuxEmo表达性语音语料库，包含21小时对话语音和4种情感类别。采用半自动化工作流结合语音活动检测、去噪、语言识别和自动情感预测。对五种表达性TTS系统进行了基准测试。该语料库可作为数字人类和talking head中语音生成的数据资源，且基准测试方法可用于评估TTS模块。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "public datasets for digital human and talking head research",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

@@ -6,32 +6,26 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-01
-- 运行时间：2026-07-01 21:32:25 UTC
+- 最新运行日期：2026-07-02
+- 运行时间：2026-07-02 21:00:42 UTC
 - 运行状态：成功
-- 本次总论文数：4
+- 本次总论文数：2
 - 精读区：1
-- 速读区：3
+- 速读区：1
 
 ### 今日简报（AI）
-今日关注4篇论文，聚焦对话式人脸生成、实时交互基础模型与音视频生成。最值得精读的是《Towards Flexible, Natural, Efficient Interaction for Conversational Talking Face Generation》（9.0分），其交互式说话人脸生成思路极具启发性。建议下一步重点关注该方向与端到端实时交互模型的结合应用。
-- 详情：[/202607/01/README](/202607/01/README)
+今日聚焦2篇论文，精读1篇高分情感说话头合成研究。最值得关注的是《GaussianEmoTalker》的实时、音频驱动与blendshape结合的3D高斯泼溅方法（9.0/10）。建议优先精读此篇，把握情绪表达与实时渲染的关键突破。
+- 详情：[/202607/02/README](/202607/02/README)
 
 ### 精读区论文标签
-1. [Towards Flexible, Natural, Efficient Interaction for Conversational Talking Face Generation](/202607/01/2606.31088v1-towards-flexible-natural-efficient-interaction-for-conversational-talking-face-generation)  
+1. [GaussianEmoTalker: Real-Time Emotional Talking Head Synthesis with Audio-Driven and Blendshape-Based 3D Gaussian Splatting](/202607/02/2607.00959v1-gaussianemotalker-real-time-emotional-talking-head-synthesis-with-audio-driven-and-blendshape-based-3d-gaussian-splatting)  
    标签：评分：9.0/10、query:talking-head
-   evidence：对话场景中的说话头生成与合成
+   evidence：基于音频驱动和3D高斯泼溅的情感说话头合成
 
 ### 速读区论文标签
-1. [Wan-Streamer v0.1: End-to-end Real-time Interactive Foundation Models](/202607/01/2606.25041v3-wan-streamer-v01-end-to-end-real-time-interactive-foundation-models)  
-   标签：评分：7.0/10、query:talking-head
-   evidence：端到端交互基础模型，涵盖音频驱动动画和视频生成
-2. [AVTok: 1D Unified Tokenization for Holistic Audio-Video Generation](/202607/01/2606.30811v1-avtok-1d-unified-tokenization-for-holistic-audio-video-generation)  
-   标签：评分：7.0/10、query:talking-head
-   evidence：统一的音频-视频联合分词用于生成
-3. [LUNA: Learning Universal 3D Human Animation Beyond Skinning](/202607/01/2606.31981v1-luna-learning-universal-3d-human-animation-beyond-skinning)  
-   标签：评分：7.0/10、query:talking-head
-   evidence：从单目图像创建3D人体化身
+1. [LuxEmo: Expressive Text-to-Speech Corpus for Luxembourgish](/202607/02/2606.31947v1-luxemo-expressive-text-to-speech-corpus-for-luxembourgish)  
+   标签：评分：6.0/10、query:talking-head
+   evidence：提供表达性TTS语料库并对TTS系统进行基准测试；作为数据集贡献与音频驱动的talking head合成相关
 
 
 <div class="dpr-home-promo-card">
