@@ -1,0 +1,668 @@
+Title: SICAGE: Speaker-Independent Culture-Aware Gesture Generation using TED4C-L Dataset
+
+URL Source: https://arxiv.org/pdf/2606.30001v1
+
+Published Time: Tue, 30 Jun 2026 02:21:08 GMT
+
+Number of Pages: 30
+
+Markdown Content:
+# SICAGE: Speaker-Independent Culture-Aware Gesture Generation using TED4C-L Dataset 
+
+Ariel Gjaci 1 *, Antonio Sgorbissa 2 , and Vittorio Murino 1 
+
+> 1
+
+Italian Institute of Technology, Genoa, Italy 
+
+> *
+
+ariel.gjaci@iit.it  
+
+> 2
+
+University of Genoa, Genoa, Italy 
+
+Abstract. Recent co-speech gesture generation methods often overlook cultural differences, limiting their effectiveness in human–agent inter-action. Moreover, culture-conditioned models are rarely evaluated un-der speaker-disjoint splits, so apparent “cultural” behavior may be con-founded with speaker-specific gesturing style. We introduce SICAGE, a modular framework for culture-aware co-speech gesture generation that conditions motion synthesis models on speaker-independent cultural rep-resentations. SICAGE learns these representations from audio and text by treating each speaker as a separate domain while imposing invari-ance across speakers. This encourages representations to remain culture-discriminative while reducing dependence on speaker identity. The re-sulting cultural embeddings condition a multimodal generator to pro-duce culturally appropriate gestures. We instantiate this idea with two domain generalization approaches: adversarial learning and Fishr reg-ularization. We further introduce ALaDiT, a real-time diffusion-based gesture generator designed to efficiently incorporate the learned cultural embeddings. To validate our method, we built TED4C-L, a 106-hour multimodal dataset of 764 TED speakers from four cultural groups. Ex-periments show that SICAGE improves motion realism, diversity, beat synchronization, semantic relevance, and cultural consistency. 
+
+Keywords: Co-speech gestures · Culture · Multimodal learning 
+
+## 1 Introduction 
+
+Human communication is inherently multimodal, combining speech with co-speech gestures that reinforce verbal messages and convey abstract concepts and emotions. The importance of gestures is well documented in human–human [2, 6, 33, 43], human–agent [8, 19, 32, 40], and social robotics interactions [7, 50]. A critical yet underexplored dimension in gesture generation is culture, as cul-tural norms shape gesture performance and interpretation [5, 31, 41]. Defining cultural boundaries is itself nontrivial, especially in dynamic and multiethnic societies [52]. As a result, “culture-aware” modeling must clearly specify what aspects of culture are being measured and how evaluation is conducted; other-wise, apparent cultural effects may simply reflect confounding factors.   
+
+> arXiv:2606.30001v1 [cs.CV] 29 Jun 2026 2A. Gjaci et al.
+> Fig. 1: Overview of our implementation of SICAGE. We extract text, audio, and mo-tion features from TED4C-L (blue), regularize text/audio into speaker-independent cultural embeddings via Fishr or adversarial training (green), then feed these em-beddings together with other raw inputs into ALaDiT (yellow) to generate real-time, culture-aware gestures. All components are modular and replaceable.
+
+Existing culture-aware gesture generation methods [20,51,58] rely on cultur-ally annotated datasets but often do not rigorously test whether learned cul-tural patterns transfer across speakers. In particular, evaluations frequently use speaker-dependent protocols in which the same speakers appear in both training and test splits. In such settings, models may appear to capture culture while relying on speaker-specific cues that reflect individual style rather than group-level patterns. A robust evaluation of cultural generalization therefore requires both large-scale data and explicitly speaker-disjoint splits, so that culture must be inferred from patterns shared across speakers rather than memorized from individuals. In this paper, we address these limitations by proposing SICAGE 3 (Speaker-Independent Culture-Aware Gesture gEneration), a modular framework for syn-thesizing culture-aware gestures while explicitly reducing dependence on speaker identity. Within SICAGE, we adopt the view of culture as a learned social and individual construct affecting both behavior and interpretation [52], and opera-tionally model it as speaker-disjoint, group-level communication patterns shared within cultural groups. Since these patterns are expressed through entangled lin-guistic, prosodic, semantic, and other behavioral cues [22, 38], our goal is not to causally disentangle culture from these modalities. Instead, we learn condition-ing embeddings that are discriminative of cultural groups while reducing their dependence on individual speaker style. We therefore cast cultural representation    
+
+> 3Project page, dataset, and source code: https://arielgjaci.com/sicage SICAGE: Speaker-Independent Culture-Aware Gesture Generation 3
+
+learning as a domain-generalization problem, treating each speaker as a domain and using speaker-invariant learning objectives to encourage embeddings that generalize to unseen speakers from the same cultural group. To support robust training and evaluation under this objective, we introduce 
+
+TED4C-L , a large-scale, multimodal, and speaker-balanced dataset with 106 hours of TED talks from 764 speakers across four regions: India (TED Talks in Hindi), Italy, Turkey, and Japan. We select these groups based on abundant native-language TED talks and clear geographic separation to minimize cultural overlap. Unlike English, these languages closely reflect geographic and cultural identity, enhancing annotation reliability. To assess whether cultural patterns are detectable from gesture motion alone, we train a motion-based classifier to predict cultural labels (see supplementary for details). Under speaker-disjoint evaluation, the classifier achieves approximately 45% balanced accuracy on un-seen speakers, compared to a 25% random baseline for four classes. This result indicates that gesture motion contains culture-related signals that generalize across speakers, while also highlighting the substantial intra-cultural variability that makes the task challenging. Within SICAGE, we learn speaker-invariant cultural representations using two domain generalization strategies that treat each speaker as a domain: Fishr regularization [49] and adversarial learning [17], which has proven effective in related multimodal settings [22]. These objectives encourage representations that remain predictive of culture while reducing sensitivity to speaker identity. For gesture synthesis, we adopt a diffusion-based motion generator [53], AL-aDiT, conditioned on audio, text, and the learned cultural embeddings. This design enables gestures that remain synchronized with speech while reflect-ing culture-dependent motion patterns. Figure 1 provides an overview of the SICAGE framework. Our experiments show that enforcing speaker-invariance improves motion quality, diversity, cultural consistency, and alignment with rhythmic and contextual features extracted from text and culture. In addition, our diffusion-based generator outperforms recent baselines on standard gesture generation metrics. Overall, the contributions of this work are: (i) SICAGE , a modular frame-work for speaker-independent, culture-aware co-speech gesture generation; (ii) 
+
+TED4C-L , a large-scale, multimodal dataset explicitly designed for cultural generalization with disjoint-speaker splits; (iii) the introduction of domain gen-eralization methods, instantiated with Fishr and adversarial learning , to learn cultural cues that generalize across speakers; and (iv) ALaDiT, a diffusion-based gesture generator conditioned on these cues to synthesize high-quality culture-aware motion. 
+
+## 2 Related Work 
+
+2.1 Rule-based methods 
+
+Early gesture generation relied on rule-based systems mapping linguistic or prosodic cues to predefined gestures. BEAT [10], for example, uses linguistic 4 A. Gjaci et al. 
+
+and contextual annotations to animate gestures via a knowledge-based engine. Similarly, other approaches combine part-of-speech tagging and speech timing with grammar rules to sample gesture trajectories [44]. More recent works [1] learn mappings from video but suffer scalability and memory issues. Although these methods produce smooth motion, they rely on predefined gesture units, and to our knowledge, only one study [21] explicitly considers cultural variations. 
+
+2.2 Data-driven methods 
+
+With larger datasets, gesture synthesis has transitioned to data-driven mod-els, favoring scalability over interpretability. Early probabilistic models, such as MDP controllers [46] and parameter-based selection [16], infer gestures from prosodic features. LLM-based approaches use language models for intent extrac-tion to generate gestures [18, 24], yet remain limited by gesture set size. End-to-end generative methods (GANs [23], attention-based [56], diffusion models [25]) produce novel, diverse motions, with diffusion-transformer models achieving state-of-the-art quality due to tight text/audio alignment [4, 11, 39, 59, 65]. How-ever, existing diffusion models lack explicit cultural conditioning. Some works implicitly embed cultural cues via attention [58] or culture-specific GANs [20], but provide limited quality and generalization to unseen speakers. Our approach conditions diffusion models on dedicated, speaker-independent cultural embed-dings for robust cross-cultural synthesis. 
+
+2.3 Domain Generalization 
+
+Domain Generalization (DG) aims to generalize to unseen domains by train-ing on related ones [57]. Common strategies include data augmentation [26, 47], representation learning [17, 42], and advanced training schemes [14, 49]. Follow-ing [22], in this work we treat each speaker in the dataset as a domain and condition gesture synthesis on cultural embeddings. We utilize adversarial learn-ing [17], shown to be effective in similar tasks [22], and Fishr [49], known for efficiently matching domain gradient variances. Fishr’s scalability and perfor-mance make it ideal for embedding cultural representations across numerous domains. 
+
+2.4 Datasets 
+
+High-quality multimodal data is critical for gesture synthesis. Motion-capture datasets such as CMU Panoptic [29] and Talking With Hands 16.2M [34] provide accurate 3D keypoints but lack diversity; only LISI-HHI [54] provides cultural annotations, but at a small scale. TED-Talk datasets [62, 63], using OpenPose-extracted skeletons [9], GloVe text embeddings [45], and audio features, offer similar size and greater diversity (97 hours, 1,700+ speakers) but omit cultural labels. MCGD [58] annotates culture for 263 speakers, but it is not public and covers only ∼20 speakers per culture. We introduce TED4C-L, comprising ap-proximately 190 speakers per culture across four cultures (106 hours total), ex-plicitly designed for cultural generalization and gesture generation tasks. SICAGE: Speaker-Independent Culture-Aware Gesture Generation 5
+
+Fig. 2: Overview of ALaDiT. Top (Training): Motion is encoded via a pretrained VQVAE encoder, split into seed Xseed  
+
+> 0
+
+and target Xf in  
+
+> 0
+
+, which is noised to Xf in t .A timestep embedding is concatenated, and motion is processed via self- and cross-attention with audio features ( Xlow ), while cultural and textual features ( Xhigh ) are injected through AdaIN. All features are aligned in a shared space, while cultural classification ˆc further enforces cultural consistency. Bottom (Inference) Given Xf in T ,
+
+Xseed  
+
+> 0
+
+, and context, the model iteratively denoises motion to ˆXf in  
+
+> 0
+
+, then decodes it via the VQVAE decoder. 
+
+## 3 Methodology 
+
+We introduce SICAGE, a modular framework for culture-aware co-speech gesture generation comprising: (i) a culturally diverse dataset (TED4C-L in our imple-mentation), (ii) a model for learning speaker-independent cultural representa-tions (via Fishr regularization or adversarial learning in our implementation), and (iii) a motion generator conditioned on culture and other features (ALa-DiT in our implementation). Each step can be implemented in various ways; our implementation is detailed in the following sections. 
+
+3.1 Data Collection 
+
+TED4C-L contains YouTube TED Talks from four coarse country-level groups: India (Hindi TED talks), Italy, Japan, and Turkey. These labels serve as prac-tical group annotations and should not be interpreted as implying cultural ho-mogeneity within countries. Our assumption is only that, despite intra-group variability, these groups may contain detectable group-associated communica-tion patterns that can be studied at scale under speaker-disjoint evaluation. We selected groups with distinct spoken languages and a large number of available TED Talks. 6 A. Gjaci et al. 
+
+To ensure quality, we include only videos in which speakers are clearly visi-ble, standing, speaking their native language (Hindi for India), and not holding objects that could affect gestures. From a total of 106.45h of video data, we extracted 659,454 overlapping five-second samples using 0.5s stride, each with aligned audio, motion, and transcripts. Table 1 compares TED4C-L with the largest available TED-Talk dataset. Although TED4C-L has fewer speakers (764 vs. 1766), it features longer, higher-quality videos and a shorter stride (0.5s vs. 0.67s), resulting in longer duration (106h vs. 97h) and significantly more sam-ples (659k vs. 252k), along with explicit cultural labels, multiple languages, and balanced speaker counts per culture. Audio is downsampled to 16 kHz, then processed to extract 64 mel-log fea-tures (spectral content), onset strength (rhythm), and 1024-dimensional wav2vec features from a model pretrained on 56 languages [12]. For text, we use Language-Agnostic BERT Sentence Embeddings (LaBSE) [15] to represent contextual meaning, including the first and last words that overlap each sample window for better alignment. Since LaBSE mainly aligns sentences by semantic con-tent and may attenuate language-specific idiomatic structure, the audio features provide complementary acoustic, rhythmic, and prosodic cues not captured by text semantics alone. Motion is represented by 9 upper-body 3D keypoints (neck, head, central hip, shoulders, elbows, wrists) at 15 FPS, extracted with pretrained MMPose [13] models. Choosing only 9 keypoints reflects a deliberate reliability and scope trade-off. SICAGE targets macro-level upper-body gesticulation in unconstrained TED videos, where hands and fingers are often blurred, occluded, or out of frame, and the lower body is frequently truncated by camera framing. Under these conditions, monocular 3D finger extraction or full-body tracking would introduce substantial detection noise and sharply reduce the amount of usable data. Nonetheless, this compact configuration retains a robust group-level signal, enabling our speaker-disjoint classifier to achieve approximately 45% bal-anced accuracy against a 25% random baseline. Following [62], we retain only sequences where the main speaker is continuously detected for at least 5 seconds. To reduce camera-dependent variability, we normalize poses to be yaw-invariant (removing average shoulder rotation around the vertical axis) and pitch-invariant (removing hip-to-neck rotation around the horizontal axis), ensuring speakers are front-facing and upright. Each 75-frame motion sequence is represented in 6D continuous format [64] and encoded by a pretrained VQVAE into 25 tokens (1024-entry VQVAE codebook with 512-dimensional embeddings) via a 1D con-volutional encoder with residual blocks and velocity/acceleration losses [60] to reduce jitter and improve reconstruction (see supplementary for details). 
+
+3.2 Speaker-Independent cultural representation 
+
+Cultural traits should generalize across individuals from the same group. To ob-tain speaker-independent representations, we split the dataset so that training, validation, and test sets contain disjoint speakers within each culture. We then train a feed-forward network (FFN) to classify culture using either Fishr regular-SICAGE: Speaker-Independent Culture-Aware Gesture Generation 7                       
+
+> TED Talk TED4C-L Speakers 1766 764
+> Cultures /4
+> Shots of Interest /16,326
+> Motion FPS 15 15
+> Duration shots of interest (hours) 97h 106.45h
+> Average Video Length (minutes) 13m 15.41m
+> Transcript Languages En En/Tr/It/Hi/Ja
+> Languages Spoken /Tr/It/Hi/Ja
+> Sample Duration (frames) 34 75
+> Stride (seconds) 0.67 0.5
+> Total Samples 252,109 659,454
+
+Table 1: Comparison between TED Talk [62] and TED4C-L Datasets. 
+
+Fig. 3: Feed-forward network trained with Fishr regularization to learn speaker-independent cultural embeddings. 
+
+ization or adversarial learning for domain generalization, treating each speaker as a domain and culture as the prediction target. For Fishr, due to the large number of domains, we randomly sample k = 64 
+
+speakers per training step. For each selected domain d ∈ S (with S ⊆ { 1, . . . , D }
+
+and |S| = 64 ), we form a minibatch of nd = 16 samples. As illustrated in Figure 3, audio features (wav2vec, mel-log, and onset) and sentence embeddings are processed by separate F F N (∗) branches with attention pooling, concatenated, and projected by F F N emb , before being passed to the culture classifier F F N cult . Motion is intentionally not used to learn the cultural embedding: target motion is the output to be generated and is therefore unavail-able at inference, while the one-second seed is absent at sequence start and too short to estimate culture reliably. The overall loss for a training step is: 
+
+L(θ) = 1
+
+N
+
+X
+
+> d∈S
+> nd
+
+X
+
+> i=1
+
+ℓdi + λp P (θ) + λsL(τ )SupCon ,8 A. Gjaci et al. 
+
+where N = X
+
+> d∈S
+
+nd, ℓdi = − log p  cdi | xdi ; θ ,
+
+where λp is a penalty weight, cdi denotes the cultural label of sample i from speaker d, and θ represents the model parameters. The term L(τ )SupCon represents the supervised contrastive loss [30] operating on the learned cultural embeddings to enforce speaker invariance. By considering a multi-domain batch from 1 to N , it is formulated as: 
+
+L(τ )SupCon = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+− 1
+
+|P (i)|
+
+X 
+
+> p∈P(i)
+
+log exp  z⊤ 
+
+> i
+
+zp/τ P 
+
+> a∈A(i)
+
+exp  z⊤ 
+
+> i
+
+za/τ  ,
+
+where τ is the temperature parameter, A(i) = {1, . . . , N } \ { i} represents the set of all sample indices within the current batch excluding the anchor instance itself, and P (i) = {p ∈ A(i) : cp = ci} denotes the set of all positive sample indices sharing the same cultural label c as the anchor. The Fishr penalty P (θ) quantifies discrepancies in gradient variance across domains: 
+
+P (θ) = 1
+
+|S| 
+
+X
+
+> d∈S
+
+∥vd − ¯v∥2
+
+with vd = 1
+
+ndndX
+
+> i=1
+
+ gdi − ¯gd2 , ¯gd = 1
+
+ndndX
+
+> i=1
+
+gdi , gdi = ∇θ ℓdi
+
+where  ¯v = |S| −1 P 
+
+> d∈S
+
+vd denotes the mean variance across domains. We set 
+
+λp = 0 for the first 500 updates to stabilize training, and then increase it to 
+
+λp = 1000 to enforce invariant gradient statistics. The supervised contrastive weight is set to λs = 0 .2, and the temperature parameter is τ = 0 .07 .For adversarial learning, we use the same architecture as in the Fishr model, with an additional speaker-classification head after a gradient reversal layer (GRL) [17]. The speaker classifier is trained to predict speaker identity, while the gradient reversal layer makes the shared encoder discard speaker-specific infor-mation. Let  θl, θc, and  θs denote the parameters of the shared encoder, culture classifier, and speaker classifier. The encoder is optimized with: 
+
+Ltot (θl, θ c, θ s) = Lcult (θl, θ c) − λ2 · L spk (θl, θ s) + λsL(τ )SupCon 
+
+The adversarial weight  λ2 is gradually increased during training [17]. The losses 
+
+Lcult and Lspk are the cross-entropy terms for culture and speaker classification. 
+
+3.3 Culture-aware Gesture Generation model 
+
+We propose ALaDiT, a diffusion-based architecture for gesture generation in-corporating six modalities: mel-log spectrogram, onset strength, wav2vec em-beddings, sentence embeddings, seed motion, and culture embeddings. By using motion embeddings instead of raw poses, our model reduces jitter and focuses SICAGE: Speaker-Independent Culture-Aware Gesture Generation 9
+
+on key motion characteristics. ALaDiT can generate a 4-second motion sequence in under 14 ms, enabling real-time gesture synthesis. As shown in Figure 2, each sample comprises 25 motion tokens, split into a 1-second seed ( Xseed  
+
+> 0
+
+∈ RTp×d, Tp = 5 ) and a four-second target ( Xf in  
+
+> 0
+
+∈ RTr ×d,
+
+Tr = 20 ). Following Motion Diffusion Model (MDM) [53], Gaussian noise at timestep t is added to Xf in  
+
+> 0
+
+, yielding Xf in t . Each sample also contains five sec-onds of aligned features: mel-log spectrogram ( Xmel ), onset strength ( Xon ), wav2vec embeddings ( Xw2v ), sentence embedding ( Xtext ), and culture embed-ding ( Xcu ). To construct the low-level audio context Xlow ∈ R(Tp+Tr )×d, we concatenate mel-log and onset features and project them to d/ 2 dimensions via F F N 1, while wav2vec features are projected to d/ 2 via F F N 2. We apply windowed atten-tion pooling to the mel-log and onset features to align their temporal dimension (Tmel ) to that of wav2vec ( Tw2v ). The projected features are then concatenated and further downsampled to (Tp + Tr ) tokens using another windowed attention pooling step, yielding Xlow , such that each audio token corresponds to a motion token. This pooling operation functions like standard attention-pooling but re-stricts attention to inputs within a fixed window, efficiently downsampling the temporal dimension while preserving local context. After applying Positional Encoding ( P E ) to Xlow , we build the high-level context Xhigh by concatenating sentence and culture embeddings, followed by a projection F F N 3. The seed Xseed  
+
+> 0
+
+and noisy motion Xf in t are concatenated, and then positional encoding is added to create Xmot . The diffusion timestep embedding et is computed using sinusoidal encodings followed by a projection 
+
+F F N 4, and then concatenated with Xmot to yield: 
+
+Xin = concat 
+
+
+
+et, X mot 
+
+
+
+, Xin ∈ R(1+ Tp+Tr )×d
+
+A 10-layer hierarchical Transformer then applies: self-attention to Xin , cross-attention to Xlow , and finally AdaIN conditioning [27] with Xhigh , producing 
+
+Xout ∈ R(1+ Tp+Tr )×d
+
+A residual connection and layer normalization follow each attention layer. After processing, the first six tokens ( et and Xseed  
+
+> 0
+
+) are discarded. The rest are projected by F F N 5 to form the denoised motion ˆXf in  
+
+> 0
+
+. The reconstruction loss is defined as: 
+
+Lrec = EX0∼p(X0|(Xlow ,X high ))  
+
+> t∼[1 ,T ]
+
+h
+
+H
+
+
+
+Xf in  
+
+> 0
+
+− ˆXf in 
+
+> 0
+
+i 
+
+where H is the Huber Loss [28]. To align the generated motion with both low-level audio and high-level textual/cultural contexts, we project Xout and Xlow 
+
+into a common space of dimension d using windowed attention pooling, resulting in the embeddings zo and zl, while Xhigh remains in Rd. We then define the cosine-alignment losses: 
+
+Llow = E[ 1 − cos( zo, z l)] , Lhigh = E[ 1 − cos( zo, X high )] 10 A. Gjaci et al. 
+
+To avoid trivial solutions, we further incorporate a contrastive loss [48] to pull together matching pairs and separate non-matching ones. We apply this loss separately for the low-level ( Llow contrastive ) and the high-level (Lhigh contrastive ) contexts, and define the final contrastive loss Lcont as their average. Following [58], we add a classification head F F N 6 on ˆXf in  
+
+> 0
+
+to predict the culture label ˆc, and include a cross-entropy loss Lcult .The final loss is a weighted sum of these loss components: 
+
+L = Lrec + λcu Lcult + λl Llow + λh Lhigh + λc Lcont 
+
+where λcu , λl, and λh are set to 0.1, and λc = 0 .01 .
+
+## 4 Experimental Setup 
+
+ALaDiT variants. We train three main ALaDiT variants differing only in cul-tural conditioning:(i) ALaDiT NC , where culture must be inferred implicitly from the audio/text while an auxiliary culture-classification head is used during training; (ii) ALaDiT FI , which is conditioned on speaker-independent cultural embeddings learned with Fishr regularization; and (iii) ALaDiT ADV , which is conditioned on embeddings learned via adversarial domain generalization. These variants isolate the effect of explicit culture embeddings and different domain generalization strategies. To isolate possible confounds, we also evaluate three additional ALaDiT ablations: OneHot , which conditions on the discrete group label after projecting it with a two-layer MLP and injecting it through the same conditioning pathway; NoDG , which uses the same audio/text embedding archi-tecture as FI but removes speaker-domain regularization; and NoAlign , which uses Fishr embeddings but removes ALaDiT’s multimodal alignment losses. 
+
+Baselines comparison. We adapt Motion Diffusion Model (MDM) [53] and DiffuseStyleGesture+ (DSG+) [61] using the same TED4C-L features as ALa-DiT whenever supported by the architecture, while matching optimization set-tings and diffusion steps ( T = 50 ). We train NC, FI, and ADV variants for each baseline. For DSG+, we additionally evaluate DSG+/FI+Align , which adds an explicit multimodal alignment loss to test whether DSG+ can better exploit Fishr embeddings when alignment is provided. Details on how culture embed-dings are injected are provided in the supplementary material. 
+
+Objective evaluation. We evaluate models on the test split using (i) Fréchet Gesture Distance (FGD) [62], (ii) Semantic Relevance Gesture Recall (SRGR) [36], (iii) Beat Alignment Score (BAS) [35], and (iv) Diversity (mean ℓ1 dis-tance between randomly sampled generated motion codebook sequences). Met-rics are averaged over 10 evaluations, each computed on a random subsample of 3000 test instances drawn without replacement; statistical significance is as-sessed with paired t-tests ( p < 0.01 ). To quantify cultural consistency, we apply a speaker-disjoint motion-based cultural classifier to generated gestures and re-port weighted F1-score on Cultural Expressivity (CE F1) (see supplementary). SRGR is computed on temporally aligned motion pairs using the original PCK SICAGE: Speaker-Independent Culture-Aware Gesture Generation 11                                                                                                     
+
+> Model FGD ↓CE F1(%) ↑BAS(%) ↑SRGR(%) ↑Diversity ↑
+> (§) OneHot 1.63 ±0.23 43 .73 ±1.13 ∗22 .51 ±0.17 67 .63 ±0.25 111 .79 ±0.58 ‡,†,◦
+> (¶) NoDG 1.56 ±0.22 43 .18 ±1.20 22 .51 ±0.23 67 .76 ±0.23 ∗,§111 .60 ±0.71 ‡,†,◦
+> (◦) NoAlign 1.36 ±0.16 ‡,∗,§,¶43 .37 ±0.91 22 .58 ±0.17 68 .17 ±0.23 ‡,∗,§,¶111 .10 ±0.77 ‡,†
+> (‡) NC 1.60 ±0.18 43 .41 ±1.10 22 .51 ±0.15 67 .72 ±0.23 109 .50 ±0.68
+> (∗) ADV 1.53 ±0.17 42 .71 ±0.95 22 .45 ±0.17 67 .57 ±0.27 111 .75 ±0.71 ‡,†,◦
+> (†) FI 1.03 ±0.15 ‡,∗,§,¶,◦44 .61 ±0.95 ‡,∗,§,¶,◦22 .63 ±0.22 68 .09 ±0.25 ‡,∗,§,¶110 .27 ±0.70 ‡
+
+Table 2: ALaDiT ablations, reported as mean ± std over 10 test runs. FI uses Fishr reg-ularization; ADV uses adversarial learning; NC removes explicit cultural conditioning; OneHot uses one hot cultural labels for conditioning; NoDG uses the same audio/text embedding architecture as FI, but without speaker-domain regularization; NoAlign re-moves ALaDiT alignment losses while using Fishr regularization. Bold marks the best value within the ALaDiT block. Superscripts denote values significantly better than the rows indicated by the corresponding symbols under paired two-sided t-tests ( p < 0.01 ). 
+
+formulation with δ = 0 .05 , BAS uses σ = 3 , and FGD embeddings are extracted using the pretrained VQVAE. 
+
+Qualitative comparisons. To visualize culture-specific differences, we trans-late the sentence “This example helps explain the idea of cultural styles” into each dataset language (Google Translate) and synthesize speech with Bark. Us-ing the same fixed ground-truth seed pose, we generate motions for each culture and compare ALaDiT-FI, ALaDiT-ADV, and ALaDiT-NC. 
+
+User study. We conduct a user study with N = 20 participants. For each cul-ture and condition (Real, NC, FI, ADV), we generate two 30-second clips (32 clips total). Clips are presented in random order with original audio and English subtitles, and each participant rates all clips. After each clip, participants eval-uate six questions from [20] (speech coherence, appropriateness, fluency, timing, amount of gesticulation, naturalness) plus an additional question on cultural fit using an 11-point Likert scale (0–10). Before the study, participants viewed two short TED Talk examples per culture to familiarize themselves with the evaluated gesturing styles. 
+
+## 5 Results 
+
+5.1 Quantitative analysis 
+
+We evaluate SICAGE through both ablation studies and comparisons with strong diffusion-based gesture generation baselines. 
+
+Effect of speaker-independent cultural embeddings. Table 2 reports an ablation study of the proposed cultural representation within the same ALa-DiT generator. Introducing explicit cultural representations improves most met-rics. Fishr conditioning (FI) achieves the best motion realism (lowest FGD) and the highest cultural classification accuracy (CE F1), indicating that speaker-invariant embeddings learned with Fishr capture culturally relevant motion pat-terns more effectively. Adversarial learning (ADV) remains closer to NC on most metrics, except for Diversity, suggesting that the adversarial objective provides 12 A. Gjaci et al.                                                                                                                                                                  
+
+> Model FGD ↓CE F1(%) ↑BAS(%) ↑SRGR(%) ↑Diversity ↑
+> DSG+ variants and ablations
+> (△) DSG+/NC 2.76 ±0.31 ⋄,•41 .51 ±0.78 ⋆22 .48 ±0.11 68 .17 ±0.24 ⋄,⋆ 108 .85 ±0.63 ⋄
+> (⋄) DSG+/ADV 4.81 ±0.43 42 .21 ±0.96 △,•,⋆ 22 .58 ±0.19 66 .78 ±0.32 ⋆107 .78 ±0.71
+> (•) DSG+/FI 4.89 ±0.40 40 .67 ±1.31 22 .48 ±0.15 68 .46 ±0.29 △,⋄,⋆ 108 .85 ±1.14 ⋄
+> (⋆) DSG+/FI+Align 2.52 ±0.21 ⋄,•39 .80 ±0.56 22 .67 ±0.16 △65 .17 ±0.24 111 .13 ±1.07 △,⋄,•
+> MDM variants
+> (§) MDM/NC 15 .58 ±1.43 38 .57 ±0.80 22 .52 ±0.14 51 .62 ±0.22 107 .62 ±1.08 ¶
+> (¶) MDM/ADV 13 .67 ±1.17 §38 .92 ±0.93 22 .59 ±0.13 52 .25 ±0.25 §,◦105 .92 ±0.84
+> (◦) MDM/FI 7.59 ±0.59 §,¶47 .09 ±0.79 §,¶22 .59 ±0.17 51 .86 ±0.24 109 .37 ±0.74 §,¶
+> ALaDiT variants
+> (‡) ALaDiT/NC 1.60 ±0.18 43 .41 ±1.10 22 .51 ±0.15 67 .72 ±0.23 109 .50 ±0.68
+> (∗) ALaDiT/ADV 1.53 ±0.17 42 .71 ±0.95 22 .45 ±0.17 67 .57 ±0.27 111 .75 ±0.71 ‡,†
+> (†)ALaDiT/FI (ours) 1.03 ±0.15 ‡,∗44 .61 ±0.95 ‡,∗22 .63 ±0.22 68 .09 ±0.25 ‡,∗110 .27 ±0.70 ‡
+
+Table 3: Comparison across DSG+, MDM, and ALaDiT variants (FI, ADV, NC), reported as mean ± std over 10 matched test runs. Bold marks the best value within each architecture family, not necessarily the best global value. Superscripts denote significantly better results than the marked row within the same family under paired two-sided t-tests ( p < 0.01 ). 
+
+weaker perceptual and objective gains in this setting. The OneHot ablation shows that a discrete cultural label alone is not sufficient: although it can increase Di-versity, it does not match FI in FGD or CE F1. NoDG further shows that using the same audio/text embedding architecture without speaker-domain regular-ization is also insufficient. Finally, NoAlign confirms that ALaDiT’s alignment losses help exploit the learned embeddings, but do not by themselves explain the FI gains: removing alignment worsens FGD and CE F1 despite a small increase in SRGR. Overall, the ablations show that the strongest results come from com-bining Fishr-based speaker-independent embeddings with an architecture able to align multimodal conditioning. 
+
+Comparison with existing models. Table 3 compares ALaDiT with Dif-fuseStyleGesture+ (DSG+) and Motion Diffusion Model (MDM), each trained with the same features and diffusion settings. Overall, ALaDiT provides the strongest trade-off across the evaluated metrics. In particular, ALaDiT achieves substantially lower FGD, indicating closer similarity to real motion distributions, while maintaining competitive or superior CE F1, BAS, Diversity, and SRGR scores. Introducing cultural embeddings generally improves performance for the baseline models. For MDM, both FI and ADV improve several metrics, partic-ularly FGD and CE F1, with FI consistently outperforming ADV, following the same trend observed for ALaDiT. In contrast, improvements for DSG+ are more limited, suggesting that cultural embeddings are most effective when combined with architectures that explicitly model multimodal alignment. This is further supported by the DSG+/FI+Align ablation, where adding explicit alignment substantially improves FGD, Diversity, and BAS over DSG+/FI, although per-formance still remains below ALaDiT/FI in terms of motion realism and cultural consistency. Taken together, these results show that (i) speaker-independent cul-tural embeddings significantly improve gesture generation when effectively inte-grated within the generator architecture, (ii) Fishr provides the strongest cul-SICAGE: Speaker-Independent Culture-Aware Gesture Generation 13 
+
+tural representation among the evaluated domain-generalization strategies, and (iii) the proposed ALaDiT architecture achieves the best overall performance when combined with these embeddings. 
+
+5.2 Qualitative analysis 
+
+We visually compare ALaDiT-FI and ALaDiT-ADV with the no-culture variant (NC) under matched seed pose and semantic content (“This example helps ex-plain the idea of cultural styles”), translated into each language and synthesized with Bark. Figure 4 shows Japanese and Italian examples, where each column summarizes one second of motion at 15 fps, while the final column shows the remaining frames of the sequence; darker regions indicate joint locations that are occupied more frequently within that second. For Japanese, all models produce relatively compact upper-body motion throughout the utterance. However, NC exhibits higher spatial dispersion at the wrists and elbows, particularly toward the end of the clip when speech activity decreases. This residual motion during silence suggests lower motion realism, consistent with the quantitative results. In contrast, FI and ADV show more stable motion trajectories and terminate ges-tures more cleanly as the speech ends. For Italian, FI, and ADV generate broader spatial gestures and larger arm excursions than NC, with movement sustained across multiple seconds. In contrast, NC remains more constrained and shows a limited range of motion. Among the culture-conditioned variants, FI distributes motion more globally across the upper body, whereas ADV concentrates motion more strongly on the arms (notably the left arm in this example). Overall, these qualitative trends support the benefit of explicit culture embeddings in produc-ing motion that is both better aligned to speech dynamics and more consistent with culture-specific patterns captured by our motion-based classifier. Additional qualitative examples and rendered videos for all cultures, including comparisons to ground-truth motion, are provided in the supplementary material. 
+
+5.3 User study 
+
+The user study results shown in Figure 5, conducted with 20 participants from different cultural backgrounds, further support the findings of the objective and qualitative analyses. Overall differences between generated models are relatively small, which is expected given the subjective nature of the task and the lim-ited number of raters. Nevertheless, FI obtains the highest average score among generated models and is significantly preferred over ADV overall ( 6.06 vs. 5.65 ,
+
+p = 0 .033 ). FI is also significantly preferred over NC on Cultural Match ( 6.16 vs. 
+
+5.81 , p = 0 .038 ), suggesting that Fishr-based cultural embeddings produce per-ceptible improvements in culture-associated gesture style. NC and ADV receive comparable ratings, indicating that the adversarial domain-generalization ob-jective yields less consistent perceptual gains. Real motion remains the highest-rated condition, confirming that generated gestures are still perceptually dis-tinguishable from ground-truth motion. These findings are consistent with the 14 A. Gjaci et al. 
+
+Fig. 4: Motion generated by the No Culture, Fishr and Adversarial models for Japanese (top rows) and Italian (bottom rows) cultures given the sentence “This example helps explain the idea of cultural styles”. Each image represents one second of motion, except the last one, which represents the last frames. SICAGE: Speaker-Independent Culture-Aware Gesture Generation 15 
+
+objective results, where FI provides the strongest balance between motion re-alism and cultural consistency. We also observe variation across cultures; for Turkish samples, NC is slightly preferred over FI and ADV, but this difference is not statistically significant. A more detailed per-culture analysis is provided in the supplementary material.  
+
+> Fig. 5: User-study scores across cultures and conditions. Bars show mean ratings across participants (N = 20); error bars show standard deviation.
+
+## 6 Conclusion 
+
+We introduced SICAGE, a modular framework for culture-aware co-speech ges-ture generation that learns speaker-independent cultural embeddings by treating speakers as domains. We also introduced TED4C-L, a large-scale multicultural dataset with speaker-disjoint splits for evaluating cultural generalization. Exper-iments show that explicitly modeling culture improves gesture synthesis. Fishr-based embeddings provide the most consistent gains in motion realism, cultural consistency, and speech–gesture alignment. Combined with these embeddings, our ALaDiT diffusion model achieves state-of-the-art performance compared to recent diffusion-based baselines. Quantitative results, qualitative analysis, and a user study indicate that differences between models are perceptible to human observers, with the Fishr-based model receiving the highest ratings in most eval-uation criteria. Future work should consider finer-grained cultural annotations, reliable hand/finger tracking in in-the-wild videos, and representation learning methods that better disentangle culture-associated regularities from language, prosody, semantics, and coarse country-level grouping effects. User studies in-volving participants more familiar with the evaluated cultures could also provide more reliable perceptual assessments. 16 A. Gjaci et al. 
+
+## References 
+
+1. Ali, G., Lee, M., Hwang, J.I.: Automatic text-to-gesture rule generation for em-bodied conversational agents. Computer Animation and Virtual Worlds 31 (4-5), e1944 (2020) 2. Alibali, M.W., Kita, S., Young, A.J.: Gesture and the process of speech production: We think, therefore we gesture. Language and Cognitive Processes 15 (6), 593–613 (2000) 3. Ao, T., Gao, Q., Lou, Y., Chen, B., Liu, L.: Rhythmic gesticulator: Rhythm-aware co-speech gesture synthesis with hierarchical neural embeddings. ACM Transac-tions on Graphics (TOG) 41 (6), 1–19 (2022) 4. Ao, T., Zhang, Z., Liu, L.: Gesturediffuclip: Gesture diffusion model with clip latents. ACM Transactions on Graphics (TOG) 42 (4), 1–18 (2023) 5. Archer, D.: Unspoken diversity: Cultural differences in gestures. Qualitative soci-ology 20 , 79–105 (1997) 6. Beyan, C., Vinciarelli, A., Bue, A.D.: Co-located human–human interaction anal-ysis using nonverbal cues: A survey. ACM Comput. Surv. 56 (5) (Nov 2023) 7. Bremner, P., Pipe, A.G., Melhuish, C., Fraser, M., Subramanian, S.: The effects of robot-performed co-verbal gesture on listener behaviour. In: 2011 11th IEEE-RAS International Conference on Humanoid Robots. pp. 458–465. IEEE (2011) 8. Buisine, S., Abrilian, S., Martin, J.C.: Evaluation of multimodal behaviour of em-bodied agents: Cooperation between speech and gestures. From brows to trust: evaluating embodied conversational agents pp. 217–238 (2004) 9. Cao, Z., Hidalgo Martinez, G., Simon, T., Wei, S., Sheikh, Y.A.: Openpose: Real-time multi-person 2d pose estimation using part affinity fields. IEEE Transactions on Pattern Analysis and Machine Intelligence (2019) 10. Cassell, J., Vilhjálmsson, H.H., Bickmore, T.: Beat: the behavior expression anima-tion toolkit. In: Proceedings of the 28th annual conference on Computer graphics and interactive techniques. pp. 477–486 (2001) 11. Chemburkar, A., Lu, S., Feng, A.: Discrete diffusion for co-speech gesture synthesis. In: Companion Publication of the 25th International Conference on Multimodal Interaction. pp. 186–192 (2023) 12. Conneau, A., Baevski, A., Collobert, R., Mohamed, A., Auli, M.: Unsuper-vised cross-lingual representation learning for speech recognition. Interspeech 2021 (2021) 13. Contributors, M.: Openmmlab pose estimation toolbox and benchmark (2020) 14. Du, Y., Xu, J., Xiong, H., Qiu, Q., Zhen, X., Snoek, C.G., Shao, L.: Learning to learn with variational information bottleneck for domain generalization. In: Euro-pean conference on computer vision. pp. 200–216. Springer (2020) 15. Feng, F., Yang, Y., Cer, D., Arivazhagan, N., Wang, W.: Language-agnostic bert sentence embedding. In: Proceedings of the 60th Annual Meeting of the Asso-ciation for Computational Linguistics (Volume 1: Long Papers). Association for Computational Linguistics (2022) 16. Ferstl, Y., Neff, M., McDonnell, R.: Expressgesture: Expressive gesture generation from speech through database matching. Computer Animation and Virtual Worlds 
+
+32 (3-4), e2016 (2021) 17. Ganin, Y., Lempitsky, V.: Unsupervised domain adaptation by backpropagation. In: International conference on machine learning. pp. 1180–1189. PMLR (2015) 18. Gao, N., Zhao, Z., Zeng, Z., Zhang, S., Weng, D., Bao, Y.: Gesgpt: Speech gesture synthesis with text parsing from chatgpt. IEEE Robotics and Automation Letters (2024) SICAGE: Speaker-Independent Culture-Aware Gesture Generation 17 19. Gjaci, A., Oneto, L., Recchiuto, C.T., Sgorbissa, A.: Culture awareness in intelli-gent systems. In: Proceedings of the 9th Italian Workshop on Artificial Intelligence and Robotics, AIRO 2022. CEUR Workshop Proceedings, vol. 3417, pp. 25–30. CEUR-WS.org (2022) 20. Gjaci, A., Recchiuto, C.T., Sgorbissa, A.: Towards culture-aware co-speech gestures for social robots. International Journal of Social Robotics 14 (6), 1493–1506 (2022) 21. Gjaci, A., Recchiuto, C.T., Sgorbissa, A.: Labeling sentences with symbolic and deictic gestures via semantic similarity. In: 2024 33rd IEEE International Confer-ence on Robot and Human Interactive Communication (ROMAN). pp. 477–484. IEEE (2024) 22. Gjaci, A., Schmuck, V., Sgorbissa, A., Celiktutan, O.: Exploring cultural cues in multimodal interactions. In: 2024 12th International Conference on Affective Com-puting and Intelligent Interaction Workshops and Demos (ACIIW). pp. 306–313. IEEE (2024) 23. Goodfellow, I.J., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair, S., Courville, A., Bengio, Y.: Generative adversarial nets. Advances in neural in-formation processing systems 27 (2014) 24. Hensel, L.B., Yongsatianchot, N., Torshizi, P., Minucci, E., Marsella, S.: Large language models in textual analysis for gesture selection. In: Proceedings of the 25th International Conference on Multimodal Interaction. pp. 378–387 (2023) 25. Ho, J., Jain, A., Abbeel, P.: Denoising diffusion probabilistic models. Advances in neural information processing systems 33 , 6840–6851 (2020) 26. Huang, J., Guan, D., Xiao, A., Lu, S.: Fsdr: Frequency space domain randomiza-tion for domain generalization. In: Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. pp. 6891–6902 (2021) 27. Huang, X., Belongie, S.: Arbitrary style transfer in real-time with adaptive instance normalization. In: Proceedings of the IEEE international conference on computer vision. pp. 1501–1510 (2017) 28. Huber, P.J.: Robust estimation of a location parameter. In: Breakthroughs in statis-tics: Methodology and distribution, pp. 492–518. Springer (1992) 29. Joo, H., Simon, T., Li, X., Liu, H., Tan, L., Gui, L., Banerjee, S., Godisart, T.S., Nabbe, B., Matthews, I., Kanade, T., Nobuhara, S., Sheikh, Y.: Panoptic studio: A massively multiview system for social interaction capture. IEEE Transactions on Pattern Analysis and Machine Intelligence (2017) 30. Khosla, P., Teterwak, P., Wang, C., Sarna, A., Tian, Y., Isola, P., Maschinot, A., Liu, C., Krishnan, D.: Supervised contrastive learning. Advances in neural information processing systems 33 , 18661–18673 (2020) 31. Kita, S.: Cross-cultural variation of speech-accompanying gesture: A review. Lan-guage and cognitive processes 24 (2), 145–167 (2009) 32. Krämer, N.C., Simons, N., Kopp, S.: The effects of an embodied conversational agent’s nonverbal behavior on user’s evaluation and behavioral mimicry. In: In-telligent Virtual Agents: 7th International Conference, IVA 2007 Paris, France, September 17-19, 2007 Proceedings 7. pp. 238–251. Springer (2007) 33. Krauss, R.M., Chen, Y., Chawla, P.: Nonverbal behavior and nonverbal communi-cation: What do conversational hand gestures tell us? In: Advances in experimental social psychology, vol. 28, pp. 389–450. Elsevier (1996) 34. Lee, G., Deng, Z., Ma, S., Shiratori, T., Srinivasa, S.S., Sheikh, Y.: Talking with hands 16.2 m: A large-scale dataset of synchronized body-finger motion and audio for conversational motion analysis and synthesis. In: Proceedings of the IEEE/CVF International Conference on Computer Vision. pp. 763–772 (2019) 18 A. Gjaci et al. 35. Li, R., Yang, S., Ross, D.A., Kanazawa, A.: Ai choreographer: Music conditioned 3d dance generation with aist++. In: Proceedings of the IEEE/CVF international conference on computer vision. pp. 13401–13412 (2021) 36. Liu, H., Zhu, Z., Iwamoto, N., Peng, Y., Li, Z., Zhou, Y., Bozkurt, E., Zheng, B.: Beat: A large-scale semantic and emotional multi-modal dataset for conversa-tional gestures synthesis. In: European conference on computer vision. pp. 612–630. Springer (2022) 37. Loshchilov, I., Hutter, F.: Sgdr: Stochastic gradient descent with warm restarts. In: International Conference on Learning Representations (2017) 38. Ma, W., Datta, S., Wang, L., Vosoughi, S.: EnCBP: A new benchmark dataset for finer-grained cultural background prediction in English. In: Muresan, S., Nakov, P., Villavicencio, A. (eds.) Findings of the Association for Computational Linguis-tics: ACL 2022. pp. 2811–2823. Association for Computational Linguistics, Dublin, Ireland (May 2022) 39. Mao, X., Jiang, Z., Wang, Q., Fu, C., Zhang, J., Wu, J., Wang, Y., Wang, C., Li, W., Chi, M.: Mdt-a2g: Exploring masked diffusion transformers for co-speech gesture generation. In: Proceedings of the 32nd ACM International Conference on Multimedia. pp. 3266–3274 (2024) 40. Martin, J.C., Niewiadomski, R., Devillers, L., Buisine, S., Pelachaud, C.: Mul-timodal complex emotions: Gesture expressivity and blended facial expressions. International Journal of Humanoid Robotics 3(03), 269–291 (2006) 41. Matsumoto, D., Hwang, H.C.: Cultural similarities and differences in emblematic gestures. Journal of Nonverbal Behavior 37 , 1–27 (2013) 42. Matsuura, T., Harada, T.: Domain generalization using a mixture of multiple latent domains. In: Proceedings of the AAAI conference on artificial intelligence. vol. 34, pp. 11749–11756 (2020) 43. McNeill, D.: Hand and mind: What gestures reveal about thought. University of Chicago press (1992) 44. Ng-Thow-Hing, V., Luo, P., Okita, S.: Synchronized gesture and speech production for humanoid robots. In: 2010 IEEE/RSJ International Conference on Intelligent Robots and Systems. pp. 4617–4624. IEEE (2010) 45. Pennington, J., Socher, R., Manning, C.D.: Glove: Global vectors for word repre-sentation. In: Proceedings of the 2014 conference on empirical methods in natural language processing (EMNLP). pp. 1532–1543 (2014) 46. Puterman, M.L.: Markov decision processes: discrete stochastic dynamic program-ming. John Wiley & Sons (2014) 47. Qiao, F., Zhao, L., Peng, X.: Learning to learn single domain generalization. In: Proceedings of the IEEE/CVF conference on computer vision and pattern recog-nition. pp. 12556–12565 (2020) 48. Radford, A., Kim, J.W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., Sastry, G., Askell, A., Mishkin, P., Clark, J., et al.: Learning transferable visual models from natural language supervision. In: International conference on machine learning. pp. 8748–8763. PmLR (2021) 49. Rame, A., Dancette, C., Cord, M.: Fishr: Invariant gradient variances for out-of-distribution generalization. In: International Conference on Machine Learning. pp. 18347–18377. PMLR (2022) 50. Salem, M., Eyssel, F., Rohlfing, K., Kopp, S., Joublin, F.: To err is human (-like): Effects of robot gesture on perceived anthropomorphism and likability. Interna-tional Journal of Social Robotics 5, 313–323 (2013) 51. Shen, Y., Johal, W.: Ted-culture: culturally inclusive co-speech gesture generation for embodied social agents. Frontiers in Robotics and AI 12 , 1546765 (2025) SICAGE: Speaker-Independent Culture-Aware Gesture Generation 19 52. Spencer-Oatey, H., Franklin, P.: What is culture. A compilation of quotations. GlobalPAD Core Concepts 1(22), 1–21 (2012) 53. Tevet, G., Raab, S., Gordon, B., Shafir, Y., Cohen-or, D., Bermano, A.H.: Human motion diffusion model. In: The Eleventh International Conference on Learning Representations (2023) 54. Tuyen, N.T.V., Georgescu, A.L., Di Giulio, I., Celiktutan, O.: A multimodal dataset for robot learning to imitate social human-human interaction. In: Com-panion of the 2023 ACM/IEEE International Conference on Human-Robot Inter-action. pp. 238–242 (2023) 55. Van Den Oord, A., Vinyals, O., et al.: Neural discrete representation learning. Advances in neural information processing systems 30 (2017) 56. Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A.N., Kaiser, Ł., Polosukhin, I.: Attention is all you need. Advances in neural information pro-cessing systems 30 (2017) 57. Wang, J., Lan, C., Liu, C., Ouyang, Y., Qin, T., Lu, W., Chen, Y., Zeng, W., Yu, P.S.: Generalizing to unseen domains: A survey on domain generalization. IEEE transactions on knowledge and data engineering 35 (8), 8052–8072 (2022) 58. Wu, J., Chen, S., Gan, S., Li, W., Yang, C., Sun, L.: Cultural self-adaptive mul-timodal gesture generation based on multiple culture gesture dataset. In: Pro-ceedings of the 31st ACM International Conference on Multimedia. pp. 3538–3549 (2023) 59. Yang, S., Wu, Z., Li, M., Zhang, Z., Hao, L., Bao, W., Cheng, M., Xiao, L.: Dif-fusestylegesture: stylized audio-driven co-speech gesture generation with diffusion models. In: Proceedings of the Thirty-Second International Joint Conference on Artificial Intelligence. pp. 5860–5868 (2023) 60. Yang, S., Wu, Z., Li, M., Zhang, Z., Hao, L., Bao, W., Zhuang, H.: Qpgesture: Quantization-based and phase-guided motion matching for natural speech-driven gesture generation. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 2321–2330 (2023) 61. Yang, S., Xue, H., Zhang, Z., Li, M., Wu, Z., Wu, X., Xu, S., Dai, Z.: The dif-fusestylegesture+ entry to the genea challenge 2023. In: Proceedings of the 25th International Conference on Multimodal Interaction. pp. 779–785 (2023) 62. Yoon, Y., Cha, B., Lee, J.H., Jang, M., Lee, J., Kim, J., Lee, G.: Speech gesture generation from the trimodal context of text, audio, and speaker identity. ACM Transactions on Graphics (TOG) 39 (6), 1–16 (2020) 63. Yoon, Y., Ko, W.R., Jang, M., Lee, J., Kim, J., Lee, G.: Robots learn social skills: End-to-end learning of co-speech gesture generation for humanoid robots. In: Proceedings of the IEEE International Conference on Robotics and Automation (ICRA). pp. 4303–4309 (2019) 64. Zhou, Y., Barnes, C., Lu, J., Yang, J., Li, H.: On the continuity of rotation rep-resentations in neural networks. In: Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. pp. 5745–5753 (2019) 65. Zhu, L., Liu, X., Liu, X., Qian, R., Liu, Z., Yu, L.: Taming diffusion models for audio-driven co-speech gesture generation. In: Proceedings of the IEEE/CVF Con-ference on Computer Vision and Pattern Recognition. pp. 10544–10553 (2023) 20 A. Gjaci et al. 
+
+# Supplementary Material 
+
+## A VQVAE 
+
+A.1 Architecture 
+
+Recent work [3, 60] has shown that discrete motion representations via Vector-Quantized Variational Autoencoders (VQVAEs) can improve co-speech gesture generation. By discretizing motion into codebook units, VQVAEs mitigate high-frequency jitter, stabilize training, and yield higher-fidelity reconstructions than conventional continuous (e.g., 6D rotations) representations. In this work, we develop a VQVAE tailored to the TED4C-L dataset, which contains 5-second gesture sequences sampled at 15 fps across diverse speakers and cultures. Our goal is to produce robust, compressed motion representations that facilitate ges-ture generation, improve motion realism, and generalize across all speakers and cultures in TED4C-L.   
+
+> Fig. S1: VQVAE architecture for reconstructing motion in TED4C-L. Encoder (red), codebooks (blue), and decoder (orange) are highlighted. SICAGE: Speaker-Independent Culture-Aware Gesture Generation 21
+
+Our architecture (Figure S1) is designed to (1) capture both local and long-range temporal dependencies, (2) compress motion efficiently, and (3) recon-struct high-quality gestures. The processing pipeline is: 1. Input: each gesture sequence consists of 5 seconds of motion ( 75 frames at 
+
+15 fps), with 9 joints per frame and 6D rotation per joint, forming a [75 , 54] 
+
+matrix. 2. Temporal Compression: a 1D convolutional layer (kernel size k = 5 , stride 
+
+s = 3 , padding p = 1 , number of filters d = 512 ) projects the input to a 
+
+[25 , 512] representation, providing the initial compression and contextualiza-tion over time. 3. Dilated Convolutional Blocks: three sequential blocks, each with a 1D con-volution ( k = 3 , dil ∈ 1, 3, 9, p = dil , s = 1 , d = 512 ) followed by another 1D convolution ( k = 1 , p = 0 , s = 1 , d = 512 ). Dilation rates dil expand the temporal receptive field, enabling the model to capture both short- and long-term dependencies crucial for natural gesture synthesis. Residual con-nections and padding preserve sequence length and ease optimization. 4. Encoder Output: a final 1D convolution ( k = 3 , p = 1 , d = 512 ) produces the encoder output. 5. Quantization: each of the 25 latent vectors is quantized by selecting the nearest entry from a codebook of 1024 embeddings of dimension 512 , fol-lowing the VQVAE paradigm. This discrete bottleneck is key to suppressing spurious frame-to-frame noise and focusing the generative model on salient dynamics. 6. Decoder: the decoder mirrors the encoder, using transposed 1D convolutions to progressively expand the temporal dimension. The final output is pro-jected back to [75 , 54] via a 1D convolution ( k = 3 , s = 1 , p = 1 , d = 54 ) to match the input dimension and improve local detail in the reconstruction. The architecture achieves a temporal downsampling factor of 3, balancing compactness and motion fidelity. To further improve temporal smoothness and physical plausibility, we ex-tend the standard VQVAE loss with additional velocity and acceleration terms, following best practices from prior work [60]. The final loss consists of: (i) recon-struction loss Lrec = x−ˆx 1, (ii) commitment loss Lcom = ze(x)−sg( zq (x)) 22,(iii) velocity loss Lvel = ˙x− ˙ˆx 1, (iv) acceleration loss Lacc = ¨x− ¨ˆx 1, and (v) a temporal regularization term Lreg = 1  
+
+> N(T−2)
+
+PNn=1 
+
+PT −1 
+
+> t=2
+
+ˆx(n) 
+
+> t+1
+
++ ˆ x(n) 
+
+> t−1
+
+− 2ˆ x(n)
+
+> t
+> 22
+
+,where N denotes the batch size, T the number of frames in each motion sequence, 
+
+x and ˆx denote the ground-truth and reconstructed motions, ze(x) is the encoder output, zq (x) is the quantized representation of the encoder output, sg is the stop-gradient operation [55], ˙x and ¨x are angular velocities and accelerations. 
+
+Lreg penalizes the squared second-order finite difference of the reconstructed motion sequence and therefore reduces high-frequency jitter. In the exponential moving average (EMA) variant of VQ-VAE, the codebook embeddings are not optimized through an explicit codebook loss. Instead, each codebook vector is 22 A. Gjaci et al. 
+
+updated using an exponential moving average of the encoder outputs assigned to that entry during training. Note that Lacc and Lreg serve complementary purposes. The acceleration loss matches the second-order dynamics of the recon-struction to those of the ground-truth motion, whereas the regularization term directly penalizes excessive second-order variation in the reconstructed sequence itself, encouraging smoother outputs even when the target motion contains local noise. The total loss is: 
+
+L = Lrec + λβ Lcom + λvel Lvel + λacc Lacc + λreg Lreg 
+
+Hyperparameters are set as λβ = 0 .2, λvel = 0 .1, λacc = 0 .1, λreg = 0 .1.
+
+A.2 Training and evaluation 
+
+We train the VQ-VAE for 300 epochs on speaker-dependent splits. We use: 
+
+– Optimizer: Adam ( β1 = 0 .9, β2 = 0 .999 ). 
+
+– Batch size: 512 
+
+– Learning rate: 1 × 10 −4, reduced by 10 × every 100 epochs. 
+
+– EMA: Exponential Moving Average with β = 0 .99 for codebook updates. 
+
+– Hardware: Single RTX 3090 GPU with 64GB of RAM. Model selection is based on the best mean Euclidean reconstruction error per epoch. Qualitative inspection confirms that the VQVAE achieves smooth, high-fidelity reconstructions that closely match real motion. 
+
+## B Dataset distribution 
+
+This section provides additional details about the TED4C-L dataset. Figure S2 summarizes the distribution of data across cultures in terms of cumulative video duration, duration of usable data, number of extracted poses, number of speak-ers, and number of scenes. Overall, the dataset is reasonably balanced in terms of speakers, but it is not perfectly balanced in terms of usable motion data. In particular, the Japanese subset contains noticeably fewer extracted poses than the other cultures, de-spite having a relatively high number of speakers. This suggests that speaker count alone does not determine the final amount of usable pose data. Instead, the difference appears to be related to the visibility of the main speaker and the structure of the scene: in the Japanese subset, the main speaker is less consis-tently visible, which reduces both the number and duration of valid scenes, and the number of reliable extracted keypoints. Figure S3 analyzes this issue by showing the distribution of the average num-ber of poses extracted per video across cultures. Figure S4 complements this analysis by showing the distribution of the average length of the scene, mea-sured only in scenes where the main speaker is clearly visible. Together, these SICAGE: Speaker-Independent Culture-Aware Gesture Generation 23  
+
+> Fig. S2: TED4C-L data distribution by culture. “Tot duration” is cumulative video duration per culture; “Usable" is the subset with reliable pose extraction. “N.poses," “N. speakers," and “N. scenes" denote total poses, speakers, and scenes per culture.
+
+plots clarify that the effective amount of usable motion data varies not only with the number of videos or speakers, but also with how often and how long the speaker remains visible on screen. This analysis is useful for interpreting dataset-level imbalances and can in-form future dataset curation. 
+
+## C Generative Models training and evaluation 
+
+We train the proposed ALaDiT model together with the DSG+ [61] and MDM [53] baselines on speaker-independent splits, ensuring no speaker overlap between training, validation, and test sets. For all reported model families, checkpoints are saved every 50 ,000 steps, and model selection is performed over checkpoints up to the 500 ,000 -step checkpoint. We use: 
+
+– Optimizer: AdamW 
+
+– Batch size: 64 
+
+– Diffusion steps: 50 
+
+– Attention heads: 8 
+
+– Layers: 10 
+
+– Latent dimension: 512 
+
+– Learning rate: 5 × 10 −524 A. Gjaci et al. 
+
+Fig. S3: Box plot comparing the average number of poses that could be extracted from videos across cultures. The vertical lines indicate standard deviations, the horizontal lines denote median values, and the boxes represent the interquartile range (Q1 to Q3). 
+
+Fig. S4: Box plot comparing the average scene length (in seconds) of scenes where the main speaker is clearly visible in the videos across cultures. The vertical lines indicate standard deviations, the horizontal lines denote median values, and the boxes represent the interquartile range (Q1 to Q3). SICAGE: Speaker-Independent Culture-Aware Gesture Generation 25 
+
+– Hardware: Single RTX 3090 GPU with 64GB of RAM In ALaDiT, the optimizer uses β1 = 0 .9 and β2 = 0 .999 , model parameters are tracked with EMA ( β = 0 .999 ), and the learning rate is decayed by a factor of 
+
+0.5 every 100 ,000 steps. DSG+ and MDM baselines follow their original training code and do not use EMA. The feed-forward network (FFN) modules in ALaDiT are structured as fol-lows: 
+
+– Each F F N (∗), except F F N t and F F N 6, is implemented as a single linear layer followed by GELU activation, Layer Normalization, and dropout (rate 
+
+0.1). 
+
+– F F N t consists of two linear projections: 512 → 2048 , followed by GELU and dropout ( 0.1), and 2048 → 512 .
+
+– F F N 6 includes an attention pooling layer (attention weights computed by a single linear projection and softmax), followed by Batch Normalization, dropout, and a final classification layer for culture prediction. For DSG+, culture is treated as a style feature, and all features (wav2vec, on-set strength, mel-log spectrogram, sentence embeddings) are concatenated after being mapped to the same temporal length as motion. Attention pooling is used for audio features, and sentence embeddings are repeated along the temporal dimension. For MDM, text and culture embeddings are concatenated, projected to the model’s latent dimension (512), and added to the timestep encoding as in the original implementation. All other hyperparameters follow the original works. All saved configurations use seed 10 . In ALaDiT training and in the evalua-tion, Python, NumPy, and PyTorch random seeds are explicitly fixed. For validation, checkpoints saved every 50 ,000 steps are evaluated offline on the validation split. For each checkpoint, 10 ,000 validation samples are synthe-sized and the overall FGD score is computed; the checkpoint with the lowest validation FGD is selected. The selected checkpoint is then evaluated on the speaker-independent test split over 10 repeated runs. In each run, a seeded sub-set of 3,000 test instances is sampled, generation is performed on that subset, and all metrics are computed. Final scores are reported as mean ± standard deviation across the 10 runs. Diversity is computed as the average pairwise Eu-clidean distance between 300 randomly sampled pairs of flattened continuous motion embeddings. SRGR is computed on temporally aligned motion pairs us-ing the original PCK formulation with δ = 0 .05 , following [36]. BAS is computed as in [35] with σ = 3 , aligning motion-beat times (local minima in joint-velocity) with audio-beat times (onset strength). FGD is computed in the continuous VQ-VAE latent space by fitting multivariate Gaussians to real and generated motion encodings. The total parameter count for ALaDiT is approximately 50 million. 26 A. Gjaci et al. 
+
+## D Culture Classifiers training and evaluation 
+
+We train the culture classifiers on speaker independent splits, ensuring no speaker overlap between training, validation, and test sets. The multimodal classifiers used to produce the culture embeddings for SICAGE operate only on text and audio features, since motion is not available at inference time. In the reported setting, each sample is represented by sentence embeddings, mel-log spectrogram features, onset-strength features, and wav2vec features. The final multimodal Fishr and adversarial classifiers share the same encoder backbone. The sentence branch F F N S maps the 768 -dimensional sentence em-bedding through two linear projections, 768 → 512 and 512 → 512 , each followed by Layer Normalization, GELU activation, and dropout (rate 0.1). The mel branch F F N M maps each 64 -dimensional mel frame through 64 → 512 → 256 
+
+with the same pattern, while the onset branch F F N O maps each scalar onset value through 1 → 512 → 256 with the same structure. The mel and onset features are then concatenated frame-wise to obtain a 512 -dimensional audio sequence over 156 time steps and summarized with attention pooling, where at-tention weights are computed by a single linear projection followed by a softmax over time. The wav2vec branch F F N W maps each 1024 -dimensional wav2vec frame through 1024 → 512 → 512 , again with Layer Normalization, GELU, and dropout ( 0.1), and the resulting sequence is summarized by attention pooling. The three modality embeddings, namely the sentence embedding, the pooled mel-onset embedding, and the pooled wav2vec embedding, are concatenated into a 1536 -dimensional vector. This vector is processed by a shared fusion block 
+
+F F N emb implemented as 1536 → 512 , followed by Layer Normalization, GELU, and dropout ( 0.1). A second embedding block maps 512 → 512 with the same LayerNorm-GELU-dropout structure, yielding the final 512 -dimensional culture embedding. This embedding is normalized before classification and is the repre-sentation used to condition the generative models. For Fishr, the normalized embedding is fed to a single linear classification head F F N cult that predicts the cultural class. The culture head F F N cult is im-plemented as 512 → 512 → 4, with Layer Normalization, GELU, and dropout (0.1) between the two linear layers. Fishr regularization is applied across speaker domains by matching the gradient-variance statistics of the classifier across speakers; these per-domain statistics are tracked with an exponential moving average of 0.95 . Thus, in the reported multimodal setting, the Fishr model dif-fers from the adversarial model mainly in the training objective and in the final prediction head. For the adversarial classifier, the same normalized 512 -dimensional embed-ding is connected to two heads. The speaker-classification head F F N spk has the same structure, with the final layer mapping to the number of training speakers. A gradient reversal layer is applied before F F N spk so that the shared embed-ding remains discriminative for culture while suppressing speaker-specific infor-mation. To compute Cultural Expressivity (CE) on generated motion, we addition-ally train a motion-only Fishr classifier. This model takes as input the last 20 SICAGE: Speaker-Independent Culture-Aware Gesture Generation 27 
+
+VQ-VAE codebooks of each sample, excluding the first 5 codebooks correspond-ing to ALaDiT’s seed motion. The resulting 20 × 512 sequence is processed by a Transformer encoder with model dimension 512 , 8 attention heads, 2 encoder layers, dropout 0.1, and feed-forward dimension 512 . The transformer output is then projected through a final 512 → 512 linear layer with GELU and dropout (0.1), summarized by attention pooling, and classified by a linear culture head. We also trained an adversarial motion-only classifier, but it achieved lower per-formance on the speaker-independent test set and less stable training; therefore, the Fishr motion-only classifier is the one used to evaluate CE on generated motion. We train all classifiers for 50 epochs on speaker-independent splits. We use: 
+
+– Optimizer: AdamW ( β1 = 0 .9, β2 = 0 .999 ; weight decay 10 −4)
+
+– Batch size: 256 for adversarial training; effective batch size 1024 for Fishr (64 speaker domains ×16 samples per domain) 
+
+– Learning rate: 1 × 10 −4
+
+– Learning rate schedule: cosine annealing for adversarial training with ηmin =1 × 10 −6 [37]; no learning-rate scheduler is used for Fishr 
+
+– Fishr regularization: penalty weight 1000 , activated after 500 warmup up-dates and linearly ramped over the next 100 updates 
+
+– Hardware: Single RTX 3090 GPU with 64GB of RAM Validation is performed at every epoch. For both adversarial and Fishr train-ing, we report weighted F1, balanced accuracy, accuracy, ROC-AUC, and cross-entropy on the validation split, and select the checkpoint with the lowest val-idation cross-entropy. On unseen speakers, both multimodal classifiers achieve approximately 98% weighted F1 for culture recognition. The motion-only Fishr classifier achieves approximately 45% weighted F1, while the adversarial motion-only classifier reaches approximately 40 .5% . For this reason, and because of its more stable training behavior, the Fishr motion-only classifier is used to compute CE F1 on generated motion. 
+
+## E Per-culture results 
+
+We further analyze the results separately for each culture to better interpret the findings reported in the main paper. In the main paper, we compare the three principal ALaDiT variants, ALaDiT NC, ALaDiT ADV, and ALaDiT FI, together with three ablations: OneHot, NoDG, and NoAlign. Results show that FI provides the strongest overall trade-off, achieving the best FGD, CE F1, and BAS, while remaining competitive on SRGR and Diversity. NoAlign obtains the highest SRGR, whereas OneHot and ADV mainly increase Diversity. The user study, conducted with N = 20 participants, also supports this interpretation: FI obtains the highest average score among generated models, is significantly preferred over ADV overall, and is significantly preferred over NC on Cultural Match. The per-culture results in Table S1 and Table S2 show how these trends vary across cultural groups. 28 A. Gjaci et al. 
+
+Cultures Metric Indian Japanese Italian Turkish (§) ALaDiT OneHot 
+
+FGD ↓ 3.68 ± 0.61 2.44 ± 0.26 ‡,†,¶ 2.68 ± 0.50 3.91 ± 0.69 ∗
+
+CE F1(%) ↑ 50 .94 ± 1.55 ∗ 43 .90 ± 2.23 ∗,◦ 37 .51 ± 2.21 ∗ 42 .57 ± 1.13 ‡
+
+BAS(%) ↑ 22 .28 ± 0.27 22 .37 ± 0.42 22 .58 ± 0.57 22 .85 ± 0.28 
+
+SRGR(%) ↑ 70 .10 ± 0.45 ‡ 67 .07 ± 0.87 71 .69 ± 0.76 ∗ 63 .02 ± 0.64 ∗
+
+Diversity ↑ 107 .18 ± 2.70 ‡,† 114 .62 ± 2.35 ‡,†,◦ 112 .64 ± 1.23 ‡,†,◦ 112 .45 ± 1.45 ‡,†
+
+(¶) ALaDiT NoDG 
+
+FGD ↓ 2.80 ± 0.52 ‡,§ 2.96 ± 0.29 2.79 ± 0.48 4.00 ± 0.59 ∗
+
+CE F1(%) ↑ 49 .85 ± 1.34 42 .93 ± 2.02 36 .58 ± 2.20 43 .35 ± 1.73 ‡
+
+BAS(%) ↑ 22 .30 ± 0.26 22 .53 ± 0.38 22 .53 ± 0.44 22 .74 ± 0.46 
+
+SRGR(%) ↑ 70 .41 ± 0.38 ‡,§ 67 .13 ± 0.75 71 .69 ± 0.74 ∗ 63 .06 ± 0.54 ∗
+
+Diversity ↑ 106 .39 ± 2.21 † 114 .67 ± 2.63 ‡,†,◦ 112 .22 ± 0.95 ‡,†,◦ 113 .09 ± 1.25 ‡,†
+
+(◦) ALaDiT NoAlign 
+
+FGD ↓ 2.87 ± 0.47 ‡,§ 2.45 ± 0.23 ‡,†,¶ 2.09 ± 0.54 ∗,§,¶ 3.12 ± 0.47 ‡,∗,§,¶
+
+CE F1(%) ↑ 51 .01 ± 1.21 ∗ 42 .08 ± 2.09 36 .56 ± 1.85 43 .84 ± 1.24 ‡,†,§
+
+BAS(%) ↑ 22 .34 ± 0.25 22 .50 ± 0.29 22 .76 ± 0.26 22 .82 ± 0.35 
+
+SRGR(%) ↑ 70 .75 ± 0.41 ‡,∗,§,¶ 67 .63 ± 0.77 ∗,§,¶ 72 .36 ± 0.61 ‡,∗,§,¶ 63 .35 ± 0.57 ∗,§
+
+Diversity ↑ 106 .28 ± 2.34 † 113 .66 ± 2.52 ‡ 111 .60 ± 1.29 112 .50 ± 1.30 ‡,†
+
+(‡) ALaDiT NC 
+
+FGD ↓ 3.96 ± 0.65 3.45 ± 0.61 2.31 ± 0.38 ∗,¶ 3.94 ± 0.49 
+
+CE F1(%) ↑ 51 .54 ± 1.25 ∗,¶ 44 .17 ± 2.45 ∗,◦ 37 .92 ± 1.79 ∗ 40 .00 ± 1.48 
+
+BAS(%) ↑ 22 .37 ± 0.28 22 .36 ± 0.39 22 .67 ± 0.55 22 .69 ± 0.26 
+
+SRGR(%) ↑ 69 .39 ± 0.33 67 .66 ± 0.76 ∗,§,¶ 71 .78 ± 0.85 ∗ 63 .69 ± 0.67 ∗,†,§,¶,◦
+
+Diversity ↑ 105 .76 ± 2.36 111 .43 ± 2.59 111 .11 ± 1.05 110 .99 ± 1.06 
+
+(∗) ALaDiT ADV 
+
+FGD ↓ 2.70 ± 0.51 ‡,§,◦ 2.46 ± 0.34 ‡,†,¶ 2.81 ± 0.41 4.27 ± 0.60 
+
+CE F1(%) ↑ 49 .38 ± 0.98 42 .25 ± 1.65 35 .88 ± 1.58 43 .32 ± 1.28 ‡
+
+BAS(%) ↑ 22 .37 ± 0.37 22 .22 ± 0.29 22 .41 ± 0.41 22 .75 ± 0.37 
+
+SRGR(%) ↑ 70 .36 ± 0.37 ‡ 67 .21 ± 0.85 71 .20 ± 0.58 62 .64 ± 0.63 
+
+Diversity ↑ 106 .78 ± 2.58 † 114 .20 ± 2.79 ‡,† 112 .82 ± 1.30 ‡,†,¶,◦ 113 .49 ± 1.49 ‡,†,§,◦
+
+(†) ALaDiT FI 
+
+FGD ↓ 2.71 ± 0.47 ‡,§ 3.03 ± 0.27 ‡ 2.34 ± 0.60 ∗,¶ 2.89 ± 0.43 ‡,∗,§,¶,◦
+
+CE F1(%) ↑ 52 .44 ± 1.42 ‡,∗,§,¶,◦ 45 .83 ± 1.57 ‡,∗,§,¶,◦ 37 .36 ± 1.57 ∗ 42 .79 ± 1.55 ‡
+
+BAS(%) ↑ 22 .44 ± 0.34 22 .57 ± 0.35 22 .93 ± 0.56 ∗,¶ 22 .74 ± 0.35 
+
+SRGR(%) ↑ 70 .66 ± 0.41 ‡,∗,§ 67 .52 ± 0.76 ∗,§,¶ 72 .20 ± 0.82 ∗,§,¶ 63 .34 ± 0.57 ∗,§,¶
+
+Diversity ↑ 105 .19 ± 2.42 112 .81 ± 2.57 111 .32 ± 0.98 111 .19 ± 0.90 
+
+Table S1: Per-culture ALaDiT ablations, reported as mean ± std over 10 matched test runs. Bold marks the best value within each culture and metric across the ALa-DiT block. Superscripts denote values significantly better than the marked row under paired two-sided t-tests ( p < 0.01 ). Per-culture CE F1 is the one-vs-rest F1 for the corresponding culture class; BAS and SRGR are reported as percentages. SICAGE: Speaker-Independent Culture-Aware Gesture Generation 29 
+
+Cultures Questions Indian Japanese Italian Turkish ALaDiT FI 
+
+Coherence with Speech ↑ 5.33 ± 1.75 6.35 ± 1.93 ‡ 5.90 ± 2.54 6.00 ± 2.17 
+
+Appropriateness ↑ 5.58 ± 1.50 6.67 ± 1.84 ‡ 6.05 ± 2.29 6.17 ± 1.42 
+
+Fluency ↑ 5.83 ± 1.64 6.22 ± 1.54 6.30 ± 2.17 6.38 ± 1.48 
+
+Timing ↑ 5.38 ± 1.59 6.22 ± 1.77 6.22 ± 2.05 6.05 ± 1.41 
+
+Amount of Gesticulation ↑ 5.60 ± 1.62 6.20 ± 1.85 ‡ 5.70 ± 2.11 5.97 ± 1.82 
+
+Naturalness ↑ 6.22 ± 1.69 ∗ 6.55 ± 1.45 ‡ 6.10 ± 2.26 6.12 ± 1.80 
+
+Cultural Match ↑ 5.83 ± 1.50 6.45 ± 2.32 ‡ 6.15 ± 2.87 6.20 ± 1.61 
+
+ALaDiT ADV 
+
+Coherence with Speech ↑ 5.30 ± 1.48 5.38 ± 1.36 † 6.00 ± 2.25 5.72 ± 1.59 
+
+Appropriateness ↑ 4.95 ± 1.99 5.58 ± 1.52 † 5.92 ± 1.93 5.62 ± 1.31 ∗
+
+Fluency ↑ 5.55 ± 1.98 5.60 ± 1.52 6.40 ± 1.45 6.12 ± 1.57 
+
+Timing ↑ 4.90 ± 1.80 5.62 ± 1.40 6.08 ± 1.60 6.17 ± 1.48 
+
+Amount of Gesticulation ↑ 5.05 ± 2.28 5.00 ± 1.95 †,∗ 5.53 ± 2.22 5.78 ± 2.17 
+
+Naturalness ↑ 5.67 ± 1.82 5.70 ± 1.45 † 6.25 ± 1.94 5.83 ± 1.42 ∗
+
+Cultural Match ↑ 5.20 ± 1.41 5.42 ± 1.63 † 5.95 ± 2.21 6.03 ± 1.59 
+
+ALaDiT NC 
+
+Coherence with Speech ↑ 5.17 ± 2.20 5.70 ± 1.73 5.75 ± 1.96 6.20 ± 1.94 
+
+Appropriateness ↑ 5.12 ± 2.16 5.95 ± 1.42 5.90 ± 1.54 6.50 ± 1.69 ‡
+
+Fluency ↑ 5.42 ± 2.49 6.22 ± 1.80 5.58 ± 1.30 6.42 ± 2.01 
+
+Timing ↑ 4.80 ± 2.34 6.05 ± 1.96 6.17 ± 1.65 6.50 ± 1.85 
+
+Amount of Gesticulation ↑ 5.08 ± 2.61 6.00 ± 2.24 ‡ 5.72 ± 1.56 6.58 ± 2.01 
+
+Naturalness ↑ 4.97 ± 2.16 † 6.28 ± 1.79 5.83 ± 1.64 6.83 ± 2.14 ‡
+
+Cultural Match ↑ 5.15 ± 2.13 5.83 ± 2.31 5.90 ± 1.86 6.38 ± 2.15 
+
+Real 
+
+Coherence with Speech ↑ 6.88 ± 2.13 § 6.72 ± 2.04 § 7.45 ± 1.97 § 6.75 ± 1.98 §
+
+Appropriateness ↑ 6.83 ± 1.64 § 6.58 ± 2.03 7.72 ± 1.80 § 6.88 ± 1.53 §
+
+Fluency ↑ 6.85 ± 1.74 § 7.08 ± 1.64 § 7.72 ± 1.85 § 6.95 ± 1.74 §
+
+Timing ↑ 6.97 ± 1.35 § 6.70 ± 1.73 § 7.80 ± 1.41 § 6.97 ± 1.76 §
+
+Amount of Gesticulation ↑ 6.15 ± 2.32 § 6.92 ± 2.18 § 7.50 ± 1.99 § 7.03 ± 1.85 §
+
+Naturalness ↑ 6.88 ± 1.68 § 7.15 ± 1.73 § 7.47 ± 1.84 § 6.72 ± 1.60 
+
+Cultural Match ↑ 6.72 ± 2.04 § 6.28 ± 1.96 7.88 ± 1.78 § 7.05 ± 2.08 §
+
+Table S2: Per-culture user-study ratings for the three generated ALaDiT models (FI, ADV, and NC) plus the Real reference motion. Values are participant-level mean ± std over 20 participants; repeated trials from the same participant for the same question, culture, and model are averaged before aggregation. Within each culture and question, the best generated model is bolded. Real values are not bolded; § marks cells where Real exceeds the best generated model for the same culture and question. Superscripts on generated-model cells mark paired t-test significance at p < 0.05 : † vs ALaDiT FI,  
+
+> ‡
+
+vs ALaDiT ADV, and ∗ vs ALaDiT NC. All scores use the original 0–10 user-study scale. 30 A. Gjaci et al. 
+
+Overall, the per-culture objective results are consistent with the main conclu-sion, but they also show that the effect of cultural conditioning is not uniform across cultures or metrics. FI remains the most balanced variant: it gives the strongest results overall, with the best CE F1 for Indian and Japanese samples, the best BAS for Indian, Japanese, and Italian samples, and the best FGD for Turkish samples. However, some isolated metrics are optimized by other variants for specific cultures. NoAlign reaches the best SRGR for Indian and Italian sam-ples and the best FGD for Italian samples, showing that removing the alignment losses can sometimes improve specific per-culture metrics, although its aggregate FGD and CE F1 remain inferior to FI. OneHot and NoDG occasionally obtain the highest Diversity, while ADV remains competitive mainly in Diversity and in some per-culture FGD cases. NC is also not uniformly worse at the per-culture level, since it remains best for some isolated cases, such as Italian CE F1 and Japanese/Turkish SRGR. These results therefore support the interpretation that FI gives the most reliable gains overall, while per-culture behavior remains heterogeneous. The per-culture user-study results follow the same pattern of overall improve-ment with substantial cultural heterogeneity. FI obtains the strongest ratings for Indian samples across all questions, and for Japanese samples, it is best or tied for all questions, with several significant advantages over ADV. For Italian samples, FI is strongest on Appropriateness, Timing, and Cultural Match, while ADV and NC lead some other perceptual questions.Turkish samples are the main ex-ception: NC obtains the highest mean score on most questions, although the differences with FI are not statistically significant. This explains why the aggre-gate user-study result favors FI while the per-culture table still contains mixed local rankings. This pattern should be interpreted cautiously, since participants may not be equally familiar with all evaluated cultural styles. Including the Real reference clarifies the absolute scale of the perceptual results. Real motion usually remains above the best generated model, especially for Italian samples and for several Indian, Japanese, and Turkish questions, confirming that generated gestures are still perceptually distinguishable from ground-truth motion. At the same time, the gaps are not equally large for every culture and question, suggesting that generated motion can approach real-motion ratings in some settings. Overall, the supplementary results reinforce the main-paper conclusion: Fishr based cultural embeddings provide the most reliable trade-off between realism, cultural consistency, and perceptual quality, while the per-culture analysis shows that these gains are not homogeneous across all cultural groups.
