@@ -1,0 +1,24 @@
+{
+  "label": "2026-07-04",
+  "date": "2026-07-04",
+  "generated_at": "2026-07-04T20:40:33",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202607/04/2606.30611v1-reweighting-framewise-attention-in-video-transformers-for-facial-expression-understanding",
+      "section": "quick",
+      "title_en": "Reweighting Framewise Attention in Video Transformers for Facial Expression Understanding",
+      "authors": "Seongro Yoon, Donghyeon Cho, Jinsun Park, François Brémond",
+      "date": "2026-06-29",
+      "pdf": "https://arxiv.org/pdf/2606.30611v1",
+      "score": "7.0",
+      "evidence": "视频中面部表情理解，可迁移至说话头生成中的细粒度面部动态建模",
+      "tldr": "视频人脸表情理解中，现有ViT模型注意力偏向全局运动，对细微面部动态不敏感。本文提出MiRA框架，利用自注意力图计算帧级置信度和集中度，重分布注意力至时空局部线索，无需额外参数。精确模式基于softmax后重分布，高效flashLite模式集成到FlashAttention。在多个FER基准上一致提升ViT基线性能，证明该方法有效增强细粒度表情识别。",
+      "tags": "query:talking-head",
+      "abstract_en": "Understanding facial expressions in videos requires modeling subtle and localized facial dynamics under unconstrained conditions. Although recent Vision Transformer~(ViT)-based video models have shown strong performance through large-scale self-supervised pretraining, their attention mechanisms often emphasize dominant global motions and coarse temporal dynamics, limiting sensitivity to fine-grained facial variations. To address this limitation, we propose MiRA (Marginal-induced Attention Redistribution), a plug-in frame-marginal attention redistribution framework for ViT backbones that enhances spatio-temporal selectivity toward subtle facial dynamics without introducing additional trainable parameters. MiRA derives frame-level confidence and intra-frame concentration statistics from self-attention maps to estimate frame-wise marginal importance and redistribute attention toward spatiotemporally localized facial cues. We first introduce a principled \\textit{exact mode} based on post-softmax attention redistribution. To further improve efficiency, we propose \\textit{flashLite mode}, a lightweight pre-softmax approximation that integrates frame-marginal redistribution into FlashAttention kernels while preserving the effectiveness of the exact formulation. Experimental results on challenging Facial Expression Recognition~(FER) benchmarks demonstrate consistent improvements over strong ViT baselines.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

@@ -6,43 +6,24 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-03
-- 运行时间：2026-07-03 20:27:46 UTC
+- 最新运行日期：2026-07-04
+- 运行时间：2026-07-04 20:40:27 UTC
 - 运行状态：成功
-- 本次总论文数：7
-- 精读区：1
-- 速读区：6
+- 本次总论文数：1
+- 精读区：0
+- 速读区：1
 
 ### 今日简报（AI）
-今日推荐7篇论文，精读1篇关于音视频同步解耦基准的论文。
-重点推荐《AV-SyncBench》，它从时序和语义两个维度系统评估音视频同步能力。
-对多模态对齐感兴趣者可深入阅读该基准的设计思路与实验结论。
-- 详情：[/202607/03/README](/202607/03/README)
+今日共处理1篇论文，速读一篇关于视频Transformer的面部表情理解研究。该论文提出通过重加权帧注意力机制提升面部表情识别性能。建议关注注意力机制在视频理解中的创新应用。
+- 详情：[/202607/04/README](/202607/04/README)
 
 ### 精读区论文标签
-1. [AV-SyncBench: Decoupled Benchmarking of Temporal and Semantic Audio-Visual Synchronization](/202607/03/2607.00726v1-av-syncbench-decoupled-benchmarking-of-temporal-and-semantic-audio-visual-synchronization)  
-   标签：评分：8.0/10、query:talking-head
-   evidence：与说话头评估相关的音视频同步基准
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [HPRO: Hierarchical Progressive Reward Optimization via Preference Extraction for Emotional Text-to-Speech](/202607/03/2606.28249v1-hpro-hierarchical-progressive-reward-optimization-via-preference-extraction-for-emotional-text-to-speech)  
+1. [Reweighting Framewise Attention in Video Transformers for Facial Expression Understanding](/202607/04/2606.30611v1-reweighting-framewise-attention-in-video-transformers-for-facial-expression-understanding)  
    标签：评分：7.0/10、query:talking-head
-   evidence：情感文本转语音，可用于音频驱动的面部动画
-2. [SICAGE: Speaker-Independent Culture-Aware Gesture Generation using TED4C-L Dataset](/202607/03/2606.30001v1-sicage-speaker-independent-culture-aware-gesture-generation-using-ted4c-l-dataset)  
-   标签：评分：7.0/10、query:talking-head
-   evidence：面向数字人的文化感知手势生成
-3. [JacobianAvatar: Temporally Consistent Semi-rigid Avatar Reconstruction from a Monocular Video](/202607/03/2606.31115v1-jacobianavatar-temporally-consistent-semi-rigid-avatar-reconstruction-from-a-monocular-video)  
-   标签：评分：7.0/10、query:talking-head
-   evidence：单目视频人体化身重建，与数字人创建相关
-4. [VoiceTTA: Enhancing Zero-Shot Text-to-Speech via Reinforcement Learning-Based Test-Time Adaptation](/202607/03/2606.26534v1-voicetta-enhancing-zero-shot-text-to-speech-via-reinforcement-learning-based-test-time-adaptation)  
-   标签：评分：6.0/10、query:talking-head
-   evidence：改进说话头音频生成的语音合成
-5. [Generative Learning as a Tool to Improve Perception of Emotional Body Motion Expressions](/202607/03/2606.28769v1-generative-learning-as-a-tool-to-improve-perception-of-emotional-body-motion-expressions)  
-   标签：评分：6.0/10、query:talking-head
-   evidence：生成式模型用于虚拟化身的情感体动
-6. [TurnNat: Automatic Evaluation of Turn-Taking Naturalness in Dyadic Spoken Dialogue](/202607/03/2607.01345v1-turnnat-automatic-evaluation-of-turn-taking-naturalness-in-dyadic-spoken-dialogue)  
-   标签：评分：6.0/10、query:talking-head
-   evidence：对话中轮换自然性的自动评估
+   evidence：视频中面部表情理解，可迁移至说话头生成中的细粒度面部动态建模
 
 
 <div class="dpr-home-promo-card">

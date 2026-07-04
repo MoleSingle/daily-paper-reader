@@ -1,0 +1,55 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-04T20:38:56.962432+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2606.30611v1",
+      "source": "arxiv",
+      "title": "Reweighting Framewise Attention in Video Transformers for Facial Expression Understanding",
+      "abstract": "Understanding facial expressions in videos requires modeling subtle and localized facial dynamics under unconstrained conditions. Although recent Vision Transformer~(ViT)-based video models have shown strong performance through large-scale self-supervised pretraining, their attention mechanisms often emphasize dominant global motions and coarse temporal dynamics, limiting sensitivity to fine-grained facial variations. To address this limitation, we propose MiRA (Marginal-induced Attention Redistribution), a plug-in frame-marginal attention redistribution framework for ViT backbones that enhances spatio-temporal selectivity toward subtle facial dynamics without introducing additional trainable parameters. MiRA derives frame-level confidence and intra-frame concentration statistics from self-attention maps to estimate frame-wise marginal importance and redistribute attention toward spatiotemporally localized facial cues. We first introduce a principled \\textit{exact mode} based on post-softmax attention redistribution. To further improve efficiency, we propose \\textit{flashLite mode}, a lightweight pre-softmax approximation that integrates frame-marginal redistribution into FlashAttention kernels while preserving the effectiveness of the exact formulation. Experimental results on challenging Facial Expression Recognition~(FER) benchmarks demonstrate consistent improvements over strong ViT baselines.",
+      "authors": [
+        "Seongro Yoon",
+        "Donghyeon Cho",
+        "Jinsun Park",
+        "François Brémond"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-29T17:46:10+00:00",
+      "link": "https://arxiv.org/pdf/2606.30611v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "facial expression understanding in videos, directly relevant to talking head synthesis as understanding fine-grained facial dynamics",
+      "llm_evidence_cn": "视频中面部表情理解，可迁移至说话头生成中的细粒度面部动态建模",
+      "llm_evidence": "视频中面部表情理解，可迁移至说话头生成中的细粒度面部动态建模",
+      "canonical_evidence": "视频中面部表情理解，可迁移至说话头生成中的细粒度面部动态建模",
+      "llm_tldr_en": "MiRA reweights framewise attention in video Transformers to enhance sensitivity to subtle facial dynamics without extra parameters, improving facial expression understanding which is crucial for talking head synthesis.",
+      "llm_tldr_cn": "该论文针对视频Transformer注意力机制过度关注全局运动而忽略细微面部动态的问题，提出边缘诱导注意力重分布框架MiRA。无需额外参数，MiRA通过推导帧级置信度对注意力权重进行重分布，增强对微妙面部变化的时空选择性。在多个面部表情理解基准上，该方法在不增加参数的前提下显著提升了性能。该技术可直接应用于说话头生成中的面部动画控制和质量评估，为音频驱动面部动画提供更精细的动态建模工具。",
+      "llm_tldr": "该论文针对视频Transformer注意力机制过度关注全局运动而忽略细微面部动态的问题，提出边缘诱导注意力重分布框架MiRA。无需额外参数，MiRA通过推导帧级置信度对注意力权重进行重分布，增强对微妙面部变化的时空选择性。在多个面部表情理解基准上，该方法在不增加参数的前提下显著提升了性能。该技术可直接应用于说话头生成中的面部动画控制和质量评估，为音频驱动面部动画提供更精细的动态建模工具。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
