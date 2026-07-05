@@ -1,0 +1,54 @@
+{
+  "label": "2026-07-05",
+  "date": "2026-07-05",
+  "generated_at": "2026-07-05T20:01:41",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202607/05/2607.01594v1-enhancing-acoustic-to-articulatory-inversion-with-multi-target-pretraining-for-low-resource-settings",
+      "section": "quick",
+      "title_en": "Enhancing Acoustic-to-Articulatory Inversion with Multi-Target Pretraining for Low-Resource Settings",
+      "authors": "Jesuraj Bandekar, Prasanta Kumar Ghosh",
+      "date": "2026-07-02",
+      "pdf": "https://arxiv.org/pdf/2607.01594v1",
+      "score": "7.0",
+      "evidence": "声学到发音反演用于音频驱动的面部动画",
+      "tldr": "声学到发音反演（AAI）估计声道运动，但自监督学习（SSL）特征虽提升低资源性能却引入推理开销。本文提出一种无需SSL提取器的多目标预训练方法，联合音素、发音特征和关键发音器三种标签进行预训练。实验表明，该方法在多种数据条件下显著提升AAI性能，尤其在低资源场景下，同时大幅降低计算成本，实现精度与效率的平衡。",
+      "tags": "query:talking-head",
+      "abstract_en": "Acoustic-to-Articulatory Inversion (AAI) estimates vocal tract articulator movements from speech, benefiting tasks like ASR, speech synthesis, and speaker verification. While deep learning-based methods (CNNs, RNNs, Transformers) have advanced AAI, recent studies show that Self-Supervised Learning (SSL) features further enhance performance, particularly in low-resource settings. However, SSL feature extractors introduce inference latency and computational overhead. To address this, we propose a novel pretraining method leveraging three target representations-Phoneme Labels, Articulatory Feature Labels, and Critical-articulator Labels-eliminating the need for an SSL extractor during inference. We evaluate our approach against both baseline and SSL-based models across various data conditions. Results demonstrate that our method consistently improves AAI performance, particularly in low-resource scenarios, while significantly reducing inference costs without sacrificing accuracy.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/05/2606.29473v1-mavin-multi-shot-audio-visual-generation-with-narrative-control",
+      "section": "quick",
+      "title_en": "MAVIN: Multi-Shot Audio-Visual Generation with Narrative Control",
+      "authors": "Kaiqi Liu, Yunyao Mao, Ziqi Cai, Zheng Geng, Jing Wang, Qiulin Wang, Xintao Wang, Pengfei Wan, Kun Gai, Shuchen Weng, Boxin Shi",
+      "date": "2026-06-28",
+      "pdf": "https://arxiv.org/pdf/2606.29473v1",
+      "score": "6.0",
+      "evidence": "具有叙事控制的多镜头音视频生成，可迁移至说话头视频合成",
+      "tldr": "现有生成模型难以实现多镜头音视频的连贯叙事控制，存在时间错位、可控性差和脚本不完整问题。本文提出MAVIN框架，通过边界感知注意力解决时间对齐，ID感知传播绑定主体身份与外观/音色，多智能体流水线将用户输入转为层级字幕。在MAVINSet数据集上达到SOTA，为专业影视制作提供新方案。",
+      "tags": "query:talking-head",
+      "abstract_en": "While recent generative models produce high-fidelity videos, they struggle with the complex narrative control required for coherent multi-shot audio-visual generation. Existing methods suffer from temporal misalignment, limited controllability, and incomplete scripting. In this paper, we propose MAVIN, the first framework for multi-shot audio-visual generation with customized narrative control. To resolve temporal misalignment, we propose boundary-aware attention, which leverages hierarchical captions and boundary-aware token routing to render audio-visual elements within their respective temporal boundaries. To improve the controllability for multi-subject scenarios, we propose ID-aware propagation, utilizing identity embeddings and an identity-aware mask to bind specific identities to consistent visual appearances and vocal timbres. To provide comprehensive audio-visual narratives, we present a multi-agent scripting pipeline to transform free-form user inputs into hierarchical captions. Furthermore, we construct MAVINSet, a multi-shot audio-visual dataset for robust training and evaluation. Extensive experiments demonstrate that MAVIN achieves state-of-the-art performance, opening up a new avenue for integrating generative models into professional filmmaking workflows.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/05/2607.02129v1-speaker-head-orientation-estimation-with-a-single-microphone-array-using-phase-spectrogram-features",
+      "section": "quick",
+      "title_en": "Speaker head orientation estimation with a single microphone array using phase spectrogram features",
+      "authors": "Balint Turi, Archontis Politis, Parthasaarathy Sudarsanam, Tuomas Virtanen",
+      "date": "2026-07-02",
+      "pdf": "https://arxiv.org/pdf/2607.02129v1",
+      "score": "6.0",
+      "evidence": "从音频估计说话人头朝向，可用于语音驱动面部动画",
+      "tldr": "从音频估计说话者头部朝向在智能环境中有重要应用。本文提出使用单个麦克风阵列的相位谱图特征，结合CNN、RNN和自注意力机制的深度网络进行估计。在大规模合成数据上训练并微调于真实数据，取得最优精度，在噪声条件下也优于基线。个性化后平均角度误差仅11.3度，表明该方法鲁棒且实用。",
+      "tags": "query:talking-head",
+      "abstract_en": "Estimating a speaker's head orientation from audio can provide valuable information in smart environments, meetings, and driver monitoring. We propose a novel approach that leverages the phase component of the short-time Fourier transform from a single microphone array as input to a deep neural network combining convolutional, recurrent, and self-attention layers. Unlike prior methods that use physics-informed handcrafted features or raw waveform inputs, our approach enables robust learning from simulated and real data. Trained on a large-scale dataset generated with voice directivity patterns and fine-tuned on real recordings, our model achieves state-of-the-art accuracy, outperforming baselines under both clean and noisy conditions. Personalization experiments further demonstrate significant gains, reaching a mean angular error of 11.3 degrees when adapting to individual users and environments.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

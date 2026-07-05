@@ -1,0 +1,136 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-05T19:59:57.257627+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.01594v1",
+      "source": "arxiv",
+      "title": "Enhancing Acoustic-to-Articulatory Inversion with Multi-Target Pretraining for Low-Resource Settings",
+      "abstract": "Acoustic-to-Articulatory Inversion (AAI) estimates vocal tract articulator movements from speech, benefiting tasks like ASR, speech synthesis, and speaker verification. While deep learning-based methods (CNNs, RNNs, Transformers) have advanced AAI, recent studies show that Self-Supervised Learning (SSL) features further enhance performance, particularly in low-resource settings. However, SSL feature extractors introduce inference latency and computational overhead. To address this, we propose a novel pretraining method leveraging three target representations-Phoneme Labels, Articulatory Feature Labels, and Critical-articulator Labels-eliminating the need for an SSL extractor during inference. We evaluate our approach against both baseline and SSL-based models across various data conditions. Results demonstrate that our method consistently improves AAI performance, particularly in low-resource scenarios, while significantly reducing inference costs without sacrificing accuracy.",
+      "authors": [
+        "Jesuraj Bandekar",
+        "Prasanta Kumar Ghosh"
+      ],
+      "primary_category": "eess.AS",
+      "categories": [
+        "eess.AS"
+      ],
+      "published": "2026-07-02T01:43:57+00:00",
+      "link": "https://arxiv.org/pdf/2607.01594v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Acoustic-to-Articulatory Inversion for audio-driven facial animation",
+      "llm_evidence_cn": "声学到发音反演用于音频驱动的面部动画",
+      "llm_evidence": "声学到发音反演用于音频驱动的面部动画",
+      "canonical_evidence": "声学到发音反演用于音频驱动的面部动画",
+      "llm_tldr_en": "Proposes multi-target pretraining for acoustic-to-articulatory inversion, eliminating SSL feature extractors at inference, improving accuracy in low-resource settings, directly relevant to audio-driven talking head animation.",
+      "llm_tldr_cn": "该论文针对低资源场景下声学到发音反演（AAI）任务中自监督学习特征提取器导致推理延迟和计算开销的问题，提出了一种多目标预训练方法，利用音素标签、发音特征标签和关键发音器标签三种表示进行预训练，从而在不依赖SSL提取器的情况下提升AAI性能。实验表明该方法在多个数据集上优于现有方法，为音频驱动的说话头动画提供了高效的发音参数估计途径，具有重要的方法学价值。",
+      "llm_tldr": "该论文针对低资源场景下声学到发音反演（AAI）任务中自监督学习特征提取器导致推理延迟和计算开销的问题，提出了一种多目标预训练方法，利用音素标签、发音特征标签和关键发音器标签三种表示进行预训练，从而在不依赖SSL提取器的情况下提升AAI性能。实验表明该方法在多个数据集上优于现有方法，为音频驱动的说话头动画提供了高效的发音参数估计途径，具有重要的方法学价值。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.29473v1",
+      "source": "arxiv",
+      "title": "MAVIN: Multi-Shot Audio-Visual Generation with Narrative Control",
+      "abstract": "While recent generative models produce high-fidelity videos, they struggle with the complex narrative control required for coherent multi-shot audio-visual generation. Existing methods suffer from temporal misalignment, limited controllability, and incomplete scripting. In this paper, we propose MAVIN, the first framework for multi-shot audio-visual generation with customized narrative control. To resolve temporal misalignment, we propose boundary-aware attention, which leverages hierarchical captions and boundary-aware token routing to render audio-visual elements within their respective temporal boundaries. To improve the controllability for multi-subject scenarios, we propose ID-aware propagation, utilizing identity embeddings and an identity-aware mask to bind specific identities to consistent visual appearances and vocal timbres. To provide comprehensive audio-visual narratives, we present a multi-agent scripting pipeline to transform free-form user inputs into hierarchical captions. Furthermore, we construct MAVINSet, a multi-shot audio-visual dataset for robust training and evaluation. Extensive experiments demonstrate that MAVIN achieves state-of-the-art performance, opening up a new avenue for integrating generative models into professional filmmaking workflows.",
+      "authors": [
+        "Kaiqi Liu",
+        "Yunyao Mao",
+        "Ziqi Cai",
+        "Zheng Geng",
+        "Jing Wang",
+        "Qiulin Wang",
+        "Xintao Wang",
+        "Pengfei Wan",
+        "Kun Gai",
+        "Shuchen Weng",
+        "Boxin Shi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-28T16:01:04+00:00",
+      "link": "https://arxiv.org/pdf/2606.29473v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Multi-shot audio-visual generation with narrative control, transferable to talking head video synthesis",
+      "llm_evidence_cn": "具有叙事控制的多镜头音视频生成，可迁移至说话头视频合成",
+      "llm_evidence": "具有叙事控制的多镜头音视频生成，可迁移至说话头视频合成",
+      "canonical_evidence": "具有叙事控制的多镜头音视频生成，可迁移至说话头视频合成",
+      "llm_tldr_en": "MAVIN proposes boundary-aware attention and ID-aware propagation for coherent multi-shot audio-visual generation; applicable to talking head video synthesis with narrative control.",
+      "llm_tldr_cn": "该论文提出MAVIN框架，用于具有定制化叙事控制的多镜头音视频生成。通过边界感知注意力解决时间错位，利用身份感知传播实现多主体场景。尽管不直接针对说话头，但其方法可应用于多镜头说话头视频合成中的身份一致性和时间对齐问题，扩展了音频驱动视频生成的适用性。",
+      "llm_tldr": "该论文提出MAVIN框架，用于具有定制化叙事控制的多镜头音视频生成。通过边界感知注意力解决时间错位，利用身份感知传播实现多主体场景。尽管不直接针对说话头，但其方法可应用于多镜头说话头视频合成中的身份一致性和时间对齐问题，扩展了音频驱动视频生成的适用性。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "video synthesis of talking heads",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.02129v1",
+      "source": "arxiv",
+      "title": "Speaker head orientation estimation with a single microphone array using phase spectrogram features",
+      "abstract": "Estimating a speaker's head orientation from audio can provide valuable information in smart environments, meetings, and driver monitoring. We propose a novel approach that leverages the phase component of the short-time Fourier transform from a single microphone array as input to a deep neural network combining convolutional, recurrent, and self-attention layers. Unlike prior methods that use physics-informed handcrafted features or raw waveform inputs, our approach enables robust learning from simulated and real data. Trained on a large-scale dataset generated with voice directivity patterns and fine-tuned on real recordings, our model achieves state-of-the-art accuracy, outperforming baselines under both clean and noisy conditions. Personalization experiments further demonstrate significant gains, reaching a mean angular error of 11.3 degrees when adapting to individual users and environments.",
+      "authors": [
+        "Balint Turi",
+        "Archontis Politis",
+        "Parthasaarathy Sudarsanam",
+        "Tuomas Virtanen"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD"
+      ],
+      "published": "2026-07-02T13:05:36+00:00",
+      "link": "https://arxiv.org/pdf/2607.02129v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "head orientation estimation from audio for talking heads",
+      "llm_evidence_cn": "从音频估计说话人头朝向，可用于语音驱动面部动画",
+      "llm_evidence": "从音频估计说话人头朝向，可用于语音驱动面部动画",
+      "canonical_evidence": "从音频估计说话人头朝向，可用于语音驱动面部动画",
+      "llm_tldr_en": "Proposes a deep learning method using phase spectrogram from a single microphone array to estimate speaker head orientation, achieving state-of-the-art accuracy on simulated and real data, which can enhance audio-driven facial animation for talking heads.",
+      "llm_tldr_cn": "针对说话人头朝向估计问题，现有方法依赖手工特征或原始波形，鲁棒性不足。本文提出基于相位谱图特征和混合深度神经网络的方法，利用单个麦克风阵列进行鲁棒估计。在大规模仿真数据集上训练并在真实数据上微调，在清洁和噪声环境下均达到最优精度。该方法可为语音驱动的人脸动画提供头部姿态信息，增强生成说话头的自然度。",
+      "llm_tldr": "针对说话人头朝向估计问题，现有方法依赖手工特征或原始波形，鲁棒性不足。本文提出基于相位谱图特征和混合深度神经网络的方法，利用单个麦克风阵列进行鲁棒估计。在大规模仿真数据集上训练并在真实数据上微调，在清洁和噪声环境下均达到最优精度。该方法可为语音驱动的人脸动画提供头部姿态信息，增强生成说话头的自然度。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
