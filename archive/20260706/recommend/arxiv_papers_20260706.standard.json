@@ -1,0 +1,101 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-06T20:41:54.783178+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.00946v1",
+      "source": "arxiv",
+      "title": "A Geometric Perspective on Composable Emotion Steering in Text-to-Speech Models",
+      "abstract": "While prior work has explored emotion control in hybrid text-to-speech systems, the geometric properties of these modules, and their implications for steerability, remain poorly understood. We present the first comparative study of speech language model (SLM) and conditional flow-matching (CFM) modules as activation steering sites for mixed emotion speech synthesis. We first characterize emotion representations using linear probing and local intrinsic dimensionality (LID), and then evaluate single-site and joint steering for mixed-emotion synthesis. Our results show that SLM offers a clean, low-dimensional emotion-specific subspace with strong speaker--emotion disentanglement, while CFM exhibitspoor cross-speaker generalization due to speaker--emotion entanglement. Joint steering increases emotion intensity but degrades proportional control and speech quality on in-distribution data. These findings provide practical guidance for multi-site activation steering in hybrid TTS systems and highlight the importance of representation geometry in controllable speech generation.",
+      "authors": [
+        "Siyi Wang",
+        "James Bailey",
+        "Ting Dang"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.LG"
+      ],
+      "published": "2026-07-01T13:46:16+00:00",
+      "link": "https://arxiv.org/pdf/2607.00946v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "emotion steering for TTS relevant to audio-driven facial animation",
+      "llm_evidence_cn": "情感引导的语音合成与音频驱动面部动画相关",
+      "llm_evidence": "情感引导的语音合成与音频驱动面部动画相关",
+      "canonical_evidence": "情感引导的语音合成与音频驱动面部动画相关",
+      "llm_tldr_en": "This paper studies emotion steering in TTS using SLM and CFM modules, providing geometric insights that can be leveraged for expressive audio generation in talking head synthesis.",
+      "llm_tldr_cn": "现有的文本转语音系统在混合情感合成中缺乏对情感控制模块几何性质的理解。本文首次对比了语音语言模型和条件流匹配模块作为情感引导位置的性能，发现SLM提供低维情感子空间且说话人-情感解缠良好。该研究为生成富有表现力的语音提供了几何导向方法，可直接用于音频驱动下的说话人头像动画中的情感表达。",
+      "llm_tldr": "现有的文本转语音系统在混合情感合成中缺乏对情感控制模块几何性质的理解。本文首次对比了语音语言模型和条件流匹配模块作为情感引导位置的性能，发现SLM提供低维情感子空间且说话人-情感解缠良好。该研究为生成富有表现力的语音提供了几何导向方法，可直接用于音频驱动下的说话人头像动画中的情感表达。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.30944v1",
+      "source": "arxiv",
+      "title": "Preserving Speech-to-Text LLM Capabilities in Speech-to-Speech Generation",
+      "abstract": "Strong speech-to-text (S2T) LLMs already provide robust speech perception and text reasoning, but adding speech-to-speech (S2S) output is challenging: fine-tuning the backbone can degrade the original S2T performance, while attaching a downstream talker reintroduces a serial text-to-speech bottleneck. We present PRIME-Speech, a frozen-backbone S2S conversion framework that trains only speech-generation modules. PRIME-Speech synchronizes a causal audio post-decoder with intermediate hidden states of the frozen backbone, so codec tokens are generated from the model's evolving reasoning trajectory rather than from completed text chunks. The post-decoder uses mixed hidden-state, text, and audio-history conditioning, and a training-time packing strategy with turn-level audio KV-cache and position reset stabilizes multi-turn spoken interaction without additional multi-turn S2S training data. Multi-token prediction further reduces the effective codec prediction rate and improves first-audio latency without modifying the reasoning path. Across speech translation, spoken QA, speech understanding, and multi-turn dialogue, PRIME-Speech preserves the S2T behavior of the frozen backbone while producing accurate, low-WER spoken responses.",
+      "authors": [
+        "Yuxuan Hu",
+        "Heng Lu",
+        "Ruchao Fan",
+        "Yao Qian",
+        "Xiaofei Wang",
+        "Jian Xue",
+        "Heming Wang",
+        "Shuohang Wang",
+        "Young Jin Kim",
+        "Yelong Shen",
+        "Jinyu Li"
+      ],
+      "primary_category": "eess.AS",
+      "categories": [
+        "eess.AS",
+        "cs.SD"
+      ],
+      "published": "2026-06-29T21:55:18+00:00",
+      "link": "https://arxiv.org/pdf/2606.30944v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "speech-to-speech generation method applicable to audio-driven talking head",
+      "llm_evidence_cn": "语音到语音生成方法可用于驱动说话人头像的音频部分",
+      "llm_evidence": "语音到语音生成方法可用于驱动说话人头像的音频部分",
+      "canonical_evidence": "语音到语音生成方法可用于驱动说话人头像的音频部分",
+      "llm_tldr_en": "PRIME-Speech preserves S2T LLM capabilities while adding S2S output by training only speech-generation modules on a frozen backbone, enabling efficient audio synthesis for talking head pipelines.",
+      "llm_tldr_cn": "在保留强大的语音到文本能力的前提下添加语音到语音输出面临挑战。本文提出PRIME-Speech框架，冻结骨干网络仅训练语音生成模块，通过因果音频后解码器与中间隐藏状态同步生成码本令牌。该方法避免了性能退化，生成的音频可直接用于驱动说话人头像的唇部和表情动画。",
+      "llm_tldr": "在保留强大的语音到文本能力的前提下添加语音到语音输出面临挑战。本文提出PRIME-Speech框架，冻结骨干网络仅训练语音生成模块，通过因果音频后解码器与中间隐藏状态同步生成码本令牌。该方法避免了性能退化，生成的音频可直接用于驱动说话人头像的唇部和表情动画。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

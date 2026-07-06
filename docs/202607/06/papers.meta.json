@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-06",
+  "date": "2026-07-06",
+  "generated_at": "2026-07-06T20:42:46",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/06/2607.00946v1-a-geometric-perspective-on-composable-emotion-steering-in-text-to-speech-models",
+      "section": "quick",
+      "title_en": "A Geometric Perspective on Composable Emotion Steering in Text-to-Speech Models",
+      "authors": "Siyi Wang, James Bailey, Ting Dang",
+      "date": "2026-07-01",
+      "pdf": "https://arxiv.org/pdf/2607.00946v1",
+      "score": "7.0",
+      "evidence": "情感引导的语音合成与音频驱动面部动画相关",
+      "tldr": "现有混合文本转语音系统中的情感控制缺少对几何性质的研究。本文首次比较了语音语言模型（SLM）和条件流匹配（CFM）模块作为情感激活操控点的表现，通过线性探测和局部本征维度表征情感表示，并评估了单点和联合操控。结果显示SLM具有低维情感子空间和强说话人-情感解耦，而CFM因纠缠导致跨说话人泛化差；联合操控增强情感强度但降低比例控制和语音质量。为混合TTS中的多点激活操控提供了实用指导。",
+      "tags": "query:talking-head",
+      "abstract_en": "While prior work has explored emotion control in hybrid text-to-speech systems, the geometric properties of these modules, and their implications for steerability, remain poorly understood. We present the first comparative study of speech language model (SLM) and conditional flow-matching (CFM) modules as activation steering sites for mixed emotion speech synthesis. We first characterize emotion representations using linear probing and local intrinsic dimensionality (LID), and then evaluate single-site and joint steering for mixed-emotion synthesis. Our results show that SLM offers a clean, low-dimensional emotion-specific subspace with strong speaker--emotion disentanglement, while CFM exhibitspoor cross-speaker generalization due to speaker--emotion entanglement. Joint steering increases emotion intensity but degrades proportional control and speech quality on in-distribution data. These findings provide practical guidance for multi-site activation steering in hybrid TTS systems and highlight the importance of representation geometry in controllable speech generation.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/06/2606.30944v1-preserving-speech-to-text-llm-capabilities-in-speech-to-speech-generation",
+      "section": "quick",
+      "title_en": "Preserving Speech-to-Text LLM Capabilities in Speech-to-Speech Generation",
+      "authors": "Yuxuan Hu, Heng Lu, Ruchao Fan, Yao Qian, Xiaofei Wang, Jian Xue, Heming Wang, Shuohang Wang, Young Jin Kim, Yelong Shen, Jinyu Li",
+      "date": "2026-06-29",
+      "pdf": "https://arxiv.org/pdf/2606.30944v1",
+      "score": "6.0",
+      "evidence": "语音到语音生成方法可用于驱动说话人头像的音频部分",
+      "tldr": "语音到文本大模型（S2T LLMs）虽具强大语音感知和文本推理能力，但扩展语音到语音输出时，微调骨干会退化原能力，附加文本转语音则引入串行瓶颈。PRIME-Speech提出冻结骨干的转换框架，仅训练语音生成模块，通过同步因果音频后解码器与骨干中间隐藏状态，利用混合条件和多令牌预测，在不修改推理路径下生成编解码令牌。实验表明，在语音翻译、口语问答、多轮对话等任务中，PRIME-Speech完整保持原S2T性能，并生成低词错误率的准确语音，为保留已有能力的同时扩展高质量S2S提供了可行方案。",
+      "tags": "query:talking-head",
+      "abstract_en": "Strong speech-to-text (S2T) LLMs already provide robust speech perception and text reasoning, but adding speech-to-speech (S2S) output is challenging: fine-tuning the backbone can degrade the original S2T performance, while attaching a downstream talker reintroduces a serial text-to-speech bottleneck. We present PRIME-Speech, a frozen-backbone S2S conversion framework that trains only speech-generation modules. PRIME-Speech synchronizes a causal audio post-decoder with intermediate hidden states of the frozen backbone, so codec tokens are generated from the model's evolving reasoning trajectory rather than from completed text chunks. The post-decoder uses mixed hidden-state, text, and audio-history conditioning, and a training-time packing strategy with turn-level audio KV-cache and position reset stabilizes multi-turn spoken interaction without additional multi-turn S2S training data. Multi-token prediction further reduces the effective codec prediction rate and improves first-audio latency without modifying the reasoning path. Across speech translation, spoken QA, speech understanding, and multi-turn dialogue, PRIME-Speech preserves the S2T behavior of the frozen backbone while producing accurate, low-WER spoken responses.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
