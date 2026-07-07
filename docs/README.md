@@ -6,27 +6,32 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-06
-- 运行时间：2026-07-06 20:42:40 UTC
+- 最新运行日期：2026-07-07
+- 运行时间：2026-07-07 21:59:44 UTC
 - 运行状态：成功
-- 本次总论文数：2
-- 精读区：0
-- 速读区：2
+- 本次总论文数：3
+- 精读区：3
+- 速读区：0
 
 ### 今日简报（AI）
-今日速读两篇论文，分别探讨TTS情感操控的几何视角和语音生成中保留LLM能力。最值得关注的是如何通过几何方法组合情感，以及语音生成与文本理解能力的平衡。建议后续探索情感可控语音合成在交互式应用中的潜力。
-- 详情：[/202607/06/README](/202607/06/README)
+今日精读两篇9.0高分论文，聚焦对话式音视频谈话生成与数字人构建。  
+最值得关注的是从先验知识到逼真化身的完整管线，以及实时多模态对话数据的合成方法。  
+建议深入研究Avatar先验模型与音频-视频同步技术，可尝试复现demo验证效果。
+- 详情：[/202607/07/README](/202607/07/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [Conversational Human Audio-visual Talking Dialogue Generation](/202607/07/2607.02799v1-conversational-human-audio-visual-talking-dialogue-generation)  
+   标签：评分：9.0/10、query:talking-head
+   evidence：二元视听对话生成，适用于说话头部
+2. [How to Build Digital Humans? From Priors to Photorealistic Avatars](/202607/07/2607.04341v1-how-to-build-digital-humans-from-priors-to-photorealistic-avatars)  
+   标签：评分：9.0/10、query:talking-head
+   evidence：数字人头像创建综述
+3. [EmoteGPT: 3D Human Facial Expressions from Natural Language Descriptions](/202607/07/2607.02674v1-emotegpt-3d-human-facial-expressions-from-natural-language-descriptions)  
+   标签：评分：8.0/10、query:talking-head
+   evidence：文本驱动的3D面部表情合成，可用于虚拟形象
 
 ### 速读区论文标签
-1. [A Geometric Perspective on Composable Emotion Steering in Text-to-Speech Models](/202607/06/2607.00946v1-a-geometric-perspective-on-composable-emotion-steering-in-text-to-speech-models)  
-   标签：评分：7.0/10、query:talking-head
-   evidence：情感引导的语音合成与音频驱动面部动画相关
-2. [Preserving Speech-to-Text LLM Capabilities in Speech-to-Speech Generation](/202607/06/2606.30944v1-preserving-speech-to-text-llm-capabilities-in-speech-to-speech-generation)  
-   标签：评分：6.0/10、query:talking-head
-   evidence：语音到语音生成方法可用于驱动说话人头像的音频部分
+- 本次无速读推荐。
 
 
 <div class="dpr-home-promo-card">

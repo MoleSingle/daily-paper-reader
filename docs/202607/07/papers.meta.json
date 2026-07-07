@@ -1,0 +1,54 @@
+{
+  "label": "2026-07-07",
+  "date": "2026-07-07",
+  "generated_at": "2026-07-07T21:59:52",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202607/07/2607.02799v1-conversational-human-audio-visual-talking-dialogue-generation",
+      "section": "deep",
+      "title_en": "Conversational Human Audio-visual Talking Dialogue Generation",
+      "authors": "Junhao Song, Lluis Guasch, Xilin He, Zhongyu Yang, Yingfang Yuan, Weicheng Xie, Linlin Shen, Haijun Lin, Shizhe Liu, Wei Pang, Siyang Song",
+      "date": "2026-07-02",
+      "pdf": "https://arxiv.org/pdf/2607.02799v1",
+      "score": "9.0",
+      "evidence": "二元视听对话生成，适用于说话头部",
+      "tldr": "大规模双人交互视听对话数据对数字人开发至关重要，但采集成本高且涉及伦理。本文提出CHAT框架，统一大语言模型与说话人脸模型，并引入交互音频与面部行为细化模块，确保语音与嘴唇同步及对话轮换自然性，从单一文本提示生成多样化、成对且相互响应的对话片段。该方法在客观和主观评估中优于现有技术，其合成的CHAT-AVD-50k数据集作为预训练数据，一致提升了PerFRDiff和ReactDiff在REACT 2024上的性能。CHAT为双人对话数据生成提供了可扩展、低成本替代方案，推动数字人交互研究。",
+      "tags": "query:talking-head",
+      "abstract_en": "Large-scale dyadic interactive audio-visual dialogue (DIAD) datasets provide fundamental data resources for developing humanoid interactive virtual agents and digital humans. However, collecting such data is time-consuming, expensive, and ethically sensitive. To address this, we propose CHAT, a new dyadic interactive audio-visual dialogue generation (DIADG) framework that generates diverse, paired, and mutually responsive speech-face dialogue clips from a single textual prompt. CHAT unifies large language models and talking face models with interactive audio and facial behaviour refinement modules, enabling the generation of aligned dyadic dialogue clips with diverse contents and facial identities. Experiments show that CHAT outperforms existing related methods designed for similar tasks under both objective and subjective evaluations. Moreover, our synthesised CHAT-AVD-50k dataset serves as effective pre-training data for downstream interactive head generation, consistently improving PerFRDiff and ReactDiff on REACT 2024. CHAT offers a scalable alternative to the costly and ethically sensitive collection of real dyadic interaction data.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/07/2607.04341v1-how-to-build-digital-humans-from-priors-to-photorealistic-avatars",
+      "section": "deep",
+      "title_en": "How to Build Digital Humans? From Priors to Photorealistic Avatars",
+      "authors": "Wojciech Zielonka, Tobias Kirschstein, Timo Bolkart, Simon Giebenhain, Vanessa Sklyarova, Xiang Deng, Donglai Xiang, Shunsuke Saito, Yebin Liu, Matthias Niessner, Justus Thies",
+      "date": "2026-07-05",
+      "pdf": "https://arxiv.org/pdf/2607.04341v1",
+      "score": "9.0",
+      "evidence": "数字人头像创建综述",
+      "tldr": "可控3D人体化身创建面临表示与动画挑战。本综述系统梳理了从先验学习到个性化化身生成的流程，基于分类法分析全身、头部及分层表示方法，总结了现有技术在人体先验、表示和动画方面的进展。为新手提供入门参考，并指出高保真度、实时性等未来研究方向。",
+      "tags": "query:talking-head",
+      "abstract_en": "This state-of-the-art report provides an overview of controllable 3D human avatar creation. We describe current 3D avatar systems, which typically consist of three stages: (i) learning priors of human appearance and motion, (ii) creating a personalized avatar, and (iii) animating the avatar. To limit the scope, we focus on the prior learning and avatar creation stages. We define current avatar representations and introduce a taxonomy that categorizes existing work along multiple axes, including body regions and employed priors. We review methods for full-body and head avatars, as well as layered representations that decompose the body into components such as hands, hair, and garments. Finally, we outline common underlying principles, reference key literature for newcomers, and discuss open challenges and future research directions.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/07/2607.02674v1-emotegpt-3d-human-facial-expressions-from-natural-language-descriptions",
+      "section": "deep",
+      "title_en": "EmoteGPT: 3D Human Facial Expressions from Natural Language Descriptions",
+      "authors": "Haoran Wang, Mohit Mendiratta, Christian Theobalt, Adam Kortylewski",
+      "date": "2026-07-02",
+      "pdf": "https://arxiv.org/pdf/2607.02674v1",
+      "score": "8.0",
+      "evidence": "文本驱动的3D面部表情合成，可用于虚拟形象",
+      "tldr": "现有文本到3D人脸方法联合生成身份、表情和纹理，难以精细控制表情。本文将其转化为3DMM参数空间的回归问题，并构建Txt2Emote基准数据集，包含由GPT-4o和面捕工具标注的细粒度文本-表情对。提出EmoteGPT框架，基于多模态大语言模型使用<Expr> token语义对齐表情表示，解码为3DMM参数，并通过大规模图像到3DMM数据增强训练。在情感识别指标和表现力上超越SOTA，支持逼真/风格化3D虚拟形象及3D一致2D合成，为虚拟人交互提供精细文本控制。",
+      "tags": "query:talking-head",
+      "abstract_en": "Precise control of 3D facial expressions from text is crucial for virtual avatars, animation, and human-computer interaction, yet existing text-to-3D methods jointly generate identity, expression, and texture, making fine-grained expression control difficult. We instead formulate text-driven expression synthesis as a regression problem in the disentangled parameter space of a 3D Morphable Model (3DMM). This setting, however, requires paired data linking detailed language to precise expression parameters, which are missing from existing resources. To fill this gap, we introduce Txt2Emote, a benchmark of diverse 3D facial expressions with fine-grained textual annotations obtained from GPT-4o and a high-fidelity face tracker, providing both explicit descriptions detailing facial features and implicit descriptions referencing the situational context behind the expression. Leveraging this dataset, we present EmoteGPT, a text-to-3D expression framework based on a Multimodal Large Language Model (MLLM) with a dedicated <Expr> token to semantically ground expression representations, which are then decoded into 3DMM parameters. We further improve EmoteGPT by augmenting training with large-scale image-to-3DMM data, enabling it to surpass state-of-the-art text-to-3D face synthesis methods on emotion recognition metrics and in perceived expressiveness. Integrated into avatar pipelines, our method enables photorealistic and stylized 3D avatars, as well as expressive 3D-consistent 2D face synthesis from textual input.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
