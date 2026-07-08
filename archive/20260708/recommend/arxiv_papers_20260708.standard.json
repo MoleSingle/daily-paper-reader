@@ -1,0 +1,176 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-08T21:39:28.252683+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2607.05243v1",
+      "source": "arxiv",
+      "title": "GUSH3R: Everyone Everywhere All at Once as Gaussians",
+      "abstract": "Reconstructing dynamic human-scene environments from monocular videos is a challenging problem that requires jointly modeling scene geometry, camera motion, and non-rigid human dynamics while enabling photorealistic rendering. Recent feed-forward methods can efficiently predict geometry, but they are often limited to non-photorealistic representations such as point clouds and meshes, or they fail to handle non-rigid objects, particularly dynamic humans. To fill this gap, we present GUSH3R (Gaussian-Unified Scene Human 3D Reconstruction), a feed-forward framework for online dynamic human-scene reconstruction. From a monocular human-scene video, our method reconstructs dynamic humans (everyone) and static scenes (everywhere) in a single forward pass (all at once) as 3D Gaussian Splatting (3DGS) primitives (as gaussians), which are geometrically consistent and capable of novel view synthesis. Experiments on monocular human-scene datasets demonstrate that our approach achieves competitive novel view synthesis quality while significantly improving inference efficiency compared to optimization-based methods.",
+      "authors": [
+        "Keito Abe",
+        "Kaede Shiohara",
+        "Takashi Otonari",
+        "Toshihiko Yamasaki"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-06T15:53:09+00:00",
+      "link": "https://arxiv.org/pdf/2607.05243v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "dynamic human-scene reconstruction for digital human avatar creation",
+      "llm_evidence_cn": "动态人类-场景重建用于数字人创建",
+      "llm_evidence": "动态人类-场景重建用于数字人创建",
+      "canonical_evidence": "动态人类-场景重建用于数字人创建",
+      "llm_tldr_en": "GUSH3R uses feed-forward 3D Gaussian reconstruction from monocular video to reconstruct dynamic humans and static scenes in one forward pass, enabling photorealistic digital human avatars.",
+      "llm_tldr_cn": "本文提出GUSH3R，一个前馈式框架，可从单目视频在线重建动态人类和静态场景为3D高斯表示。它解决了现有方法无法处理非刚性动态人体的问题，实现了照片级真实感的数字人物创建。实验表明该方法在动态人体重建上具有竞争力，为数字人创建提供了高效新方案。",
+      "llm_tldr": "本文提出GUSH3R，一个前馈式框架，可从单目视频在线重建动态人类和静态场景为3D高斯表示。它解决了现有方法无法处理非刚性动态人体的问题，实现了照片级真实感的数字人物创建。实验表明该方法在动态人体重建上具有竞争力，为数字人创建提供了高效新方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.06027v1",
+      "source": "arxiv",
+      "title": "Fréchet Distance Loss on Speech Representations for Text-to-Speech Synthesis",
+      "abstract": "Few-step diffusion and flow-matching text-to-speech (TTS) models are usually trained with local objectives, such as conditional flow matching, reconstruction, and stop prediction. These losses provide stable optimization, but they never ask whether sampled speech follows the distribution of high-quality speech. We propose Speech Representation Fr'echet Distance loss (SR-FD), a training-time distributional regularizer for tokenizer-free flow-matching autoregressive TTS. During fine-tuning, the model synthesizes speech with the same few-step sampler used at deployment, and SR-FD matches the mean and covariance of frozen Whisper and CTC features of this speech to reference statistics computed offline from three complementary content targets. The loss requires no discriminator and no inference-time computation. On Seed-TTS English, four-step SR-FD fine-tuning reduces WER from the original four-step VoxCPM2 baseline's 2.2279% to 1.4147%, a 36.5% relative reduction, and also surpasses the original ten-step baseline at 1.7366%; both gains are significant under an utterance-level paired bootstrap. Speaker similarity and objective quality proxies are preserved at the ten-step level, and an error analysis shows the gain comes from content substitutions across all prompt lengths. SR-FD is thus an intelligibility-improving distributional regularizer for few-step TTS.",
+      "authors": [
+        "Ho-Lam Chung",
+        "Kuan-Po Huang",
+        "Bo-Ru Lu",
+        "Hung-yi Lee"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD"
+      ],
+      "published": "2026-07-07T09:07:30+00:00",
+      "link": "https://arxiv.org/pdf/2607.06027v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Proposes a distributional loss for TTS that can improve speech quality in audio-driven talking head systems.",
+      "llm_evidence_cn": "提出用于TTS的分布损失，可提升音频驱动说话头中的语音质量。",
+      "llm_evidence": "提出用于TTS的分布损失，可提升音频驱动说话头中的语音质量。",
+      "canonical_evidence": "提出用于TTS的分布损失，可提升音频驱动说话头中的语音质量。",
+      "llm_tldr_en": "This paper introduces SR-FD, a Frechet Distance loss on speech representations for fine-tuning TTS models. It matches the distribution of synthesized speech to reference statistics, improving naturalness. The method is directly applicable to the speech component of talking head generation.",
+      "llm_tldr_cn": "SR-FD是一种用于文本到语音合成的分布正则化损失，在微调阶段通过匹配合成语音的Whisper和CTC特征统计量，使分布接近高质量参考语音。该方法可提高少步扩散/流匹配TTS模型的自然度，可直接应用于说话头生成中的语音合成模块，提升整体音质。",
+      "llm_tldr": "SR-FD是一种用于文本到语音合成的分布正则化损失，在微调阶段通过匹配合成语音的Whisper和CTC特征统计量，使分布接近高质量参考语音。该方法可提高少步扩散/流匹配TTS模型的自然度，可直接应用于说话头生成中的语音合成模块，提升整体音质。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.05276v1",
+      "source": "arxiv",
+      "title": "ProPS: Prompted Profile Synthesis for Natural Language-Conditioned Speaker Embedding Distributions",
+      "abstract": "Speaker embeddings, or x-vectors, are widely used to represent speaker identity and speaker-related attributes, but existing embedding extractors are typically descriptive rather than generative: they map an observed speech segment to an x-vector, which is then used for downstream applications. We introduce ProPS, Prompted Profile Synthesis, a framework for generating distributions of speaker embeddings conditioned on natural language prompts such as \"a thirties male speaker with an Indian accent\". ProPS converts human-written profile descriptions into sentence embeddings and uses a mixture density network trained on a large-scale dataset to predict a Gaussian mixture model in the x-vector space. The model is trained by maximizing the likelihood that real speaker embeddings match the requested profile, and its generated distributions are evaluated by negative log-likelihood on held-out x-vectors and by attribute classification accuracies on sampled synthetic x-vectors. Experiments show that ProPS produces profile-conditioned distributions and generates x-vectors that preserve requested speaker attributes such as age, gender, accent, and prosodic characteristics. This design enables controllable speaker-profile synthesis for speech generation systems like Text-To-Speech (TTS) or Voice Conversion (VC) while anchoring generated distributions in observed speaker-embedding structure.",
+      "authors": [
+        "Thomas Thebaud",
+        "Junhyeok Lee",
+        "Laureano Moro-Velazquez",
+        "Jesus Villalba Lopez",
+        "Najim Dehak"
+      ],
+      "primary_category": "eess.AS",
+      "categories": [
+        "eess.AS",
+        "cs.AI"
+      ],
+      "published": "2026-07-06T16:21:34+00:00",
+      "link": "https://arxiv.org/pdf/2607.05276v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Generates speaker embedding distributions from text prompts, enabling controllable identity for digital avatars.",
+      "llm_evidence_cn": "通过文本提示生成说话人嵌入分布，为数字人身份控制提供支持。",
+      "llm_evidence": "通过文本提示生成说话人嵌入分布，为数字人身份控制提供支持。",
+      "canonical_evidence": "通过文本提示生成说话人嵌入分布，为数字人身份控制提供支持。",
+      "llm_tldr_en": "This work presents ProPS, which generates distributions of speaker embeddings conditioned on natural language prompts. It can produce diverse speaker profiles for use in avatar creation, supporting identity control in talking head synthesis.",
+      "llm_tldr_cn": "ProPS框架通过自然语言提示（如\"三十岁男性印度口音\"）生成说话人嵌入分布，将文本描述转换为高斯混合模型分布。该方法训练于大规模数据集，能产生多样化的说话人特征，可用于数字人身份定制，提升说话头合成的个性化和可控性。",
+      "llm_tldr": "ProPS框架通过自然语言提示（如\"三十岁男性印度口音\"）生成说话人嵌入分布，将文本描述转换为高斯混合模型分布。该方法训练于大规模数据集，能产生多样化的说话人特征，可用于数字人身份定制，提升说话头合成的个性化和可控性。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.06461v1",
+      "source": "arxiv",
+      "title": "WordVoice: Explicit and Decoupled Multi-Dimensional Word-Level Control for LLM-Based TTS",
+      "abstract": "While recent Large Language Model (LLM)-based Text-to-Speech (TTS) systems have achieved remarkable naturalness, they predominantly rely on implicit end-to-end generation paradigms, resulting in coarse-grained control. In scenarios demanding precise stylistic interventions and strict temporal alignment, such as audiobook narration and video dubbing, the inability to explicitly manipulate word-level acoustic attributes remains a critical bottleneck. This limitation is primarily amplified by the severe scarcity of fine-grained annotated datasets and the architectural challenge of integrating multi-dimensional control signals into discrete autoregressive generation. To address this, we propose a unified framework for highly precise word-level control. First, we construct WordVoice-5A, a massive 4.7k-hour bilingual dataset featuring five-dimensional word-level annotations (duration, boundary, energy, pitch and tone) developed through a rigorous linguistically-guided pipeline. Second, we introduce WordVoice to transform the implicit generation process into an explicit, highly controllable paradigm. Specifically, we introduce a bound-token mechanism within the LLM to formulate an explicit ``acoustic planning'' process, enabling adaptive multi-task prosodic planning and flexible manual intervention. Furthermore, we augment the token-to-waveform stage with a fine-grained acoustic modulation module, bridging the resolution gap to strictly align word-level attributes between highly compressed discrete tokens and continuous waveforms. Extensive experiments demonstrate that WordVoice achieves superior, decoupled control over multiple acoustic dimensions while maintaining competitive zero-shot synthesis stability. The code and audio samples are publicly available at https://xxh333.github.io/wordvoice-demo/.",
+      "authors": [
+        "Sihang Nie",
+        "Jinxin Ji",
+        "Xiaofen Xing",
+        "Deyi Tuo",
+        "Chengbin Jin",
+        "Jialong Mai",
+        "Xiangmin Xu"
+      ],
+      "primary_category": "eess.AS",
+      "categories": [
+        "eess.AS",
+        "cs.CL",
+        "cs.SD"
+      ],
+      "published": "2026-07-07T16:22:59+00:00",
+      "link": "https://arxiv.org/pdf/2607.06461v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "word-level TTS control for audio-driven facial animation synchronization",
+      "llm_evidence_cn": "词级TTS控制用于音频驱动面部动画同步",
+      "llm_evidence": "词级TTS控制用于音频驱动面部动画同步",
+      "canonical_evidence": "词级TTS控制用于音频驱动面部动画同步",
+      "llm_tldr_en": "WordVoice enables explicit and decoupled multi-dimensional word-level control for LLM-based TTS, enhancing precision for audio-driven facial animation synchronization.",
+      "llm_tldr_cn": "本文提出WordVoice框架，为基于LLM的TTS实现显式解耦的多维词级控制。通过解决细粒度注释稀缺和架构挑战，该框架支持精确的音节级时长和风格控制，可直接用于音视频配音和音频驱动的面部动画同步，提升说话头合成的音频-视觉一致性。",
+      "llm_tldr": "本文提出WordVoice框架，为基于LLM的TTS实现显式解耦的多维词级控制。通过解决细粒度注释稀缺和架构挑战，该框架支持精确的音节级时长和风格控制，可直接用于音视频配音和音频驱动的面部动画同步，提升说话头合成的音频-视觉一致性。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

@@ -6,32 +6,34 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-07
-- 运行时间：2026-07-07 21:59:44 UTC
+- 最新运行日期：2026-07-08
+- 运行时间：2026-07-08 21:41:42 UTC
 - 运行状态：成功
-- 本次总论文数：3
-- 精读区：3
-- 速读区：0
+- 本次总论文数：4
+- 精读区：1
+- 速读区：3
 
 ### 今日简报（AI）
-今日精读两篇9.0高分论文，聚焦对话式音视频谈话生成与数字人构建。  
-最值得关注的是从先验知识到逼真化身的完整管线，以及实时多模态对话数据的合成方法。  
-建议深入研究Avatar先验模型与音频-视频同步技术，可尝试复现demo验证效果。
-- 详情：[/202607/07/README](/202607/07/README)
+今日日报聚焦语音生成与3D高斯表示，精读《GUSH3R》获8.0高分。  
+值得关注GUSH3R在高效3D场景建模的突破，以及Fréchet距离损失和WordVoice在文本转语音中的创新控制方法。  
+建议优先精读GUSH3R，再速读语音相关文章以了解多维度控制与嵌入分布技术。
+- 详情：[/202607/08/README](/202607/08/README)
 
 ### 精读区论文标签
-1. [Conversational Human Audio-visual Talking Dialogue Generation](/202607/07/2607.02799v1-conversational-human-audio-visual-talking-dialogue-generation)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：二元视听对话生成，适用于说话头部
-2. [How to Build Digital Humans? From Priors to Photorealistic Avatars](/202607/07/2607.04341v1-how-to-build-digital-humans-from-priors-to-photorealistic-avatars)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：数字人头像创建综述
-3. [EmoteGPT: 3D Human Facial Expressions from Natural Language Descriptions](/202607/07/2607.02674v1-emotegpt-3d-human-facial-expressions-from-natural-language-descriptions)  
+1. [GUSH3R: Everyone Everywhere All at Once as Gaussians](/202607/08/2607.05243v1-gush3r-everyone-everywhere-all-at-once-as-gaussians)  
    标签：评分：8.0/10、query:talking-head
-   evidence：文本驱动的3D面部表情合成，可用于虚拟形象
+   evidence：动态人类-场景重建用于数字人创建
 
 ### 速读区论文标签
-- 本次无速读推荐。
+1. [Fréchet Distance Loss on Speech Representations for Text-to-Speech Synthesis](/202607/08/2607.06027v1-frchet-distance-loss-on-speech-representations-for-text-to-speech-synthesis)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：提出用于TTS的分布损失，可提升音频驱动说话头中的语音质量。
+2. [WordVoice: Explicit and Decoupled Multi-Dimensional Word-Level Control for LLM-Based TTS](/202607/08/2607.06461v1-wordvoice-explicit-and-decoupled-multi-dimensional-word-level-control-for-llm-based-tts)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：词级TTS控制用于音频驱动面部动画同步
+3. [ProPS: Prompted Profile Synthesis for Natural Language-Conditioned Speaker Embedding Distributions](/202607/08/2607.05276v1-props-prompted-profile-synthesis-for-natural-language-conditioned-speaker-embedding-distributions)  
+   标签：评分：6.0/10、query:talking-head
+   evidence：通过文本提示生成说话人嵌入分布，为数字人身份控制提供支持。
 
 
 <div class="dpr-home-promo-card">
