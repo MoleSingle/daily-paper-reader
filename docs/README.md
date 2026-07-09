@@ -6,34 +6,24 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-08
-- 运行时间：2026-07-08 21:41:42 UTC
+- 最新运行日期：2026-07-09
+- 运行时间：2026-07-09 21:36:51 UTC
 - 运行状态：成功
-- 本次总论文数：4
-- 精读区：1
-- 速读区：3
+- 本次总论文数：1
+- 精读区：0
+- 速读区：1
 
 ### 今日简报（AI）
-今日日报聚焦语音生成与3D高斯表示，精读《GUSH3R》获8.0高分。  
-值得关注GUSH3R在高效3D场景建模的突破，以及Fréchet距离损失和WordVoice在文本转语音中的创新控制方法。  
-建议优先精读GUSH3R，再速读语音相关文章以了解多维度控制与嵌入分布技术。
-- 详情：[/202607/08/README](/202607/08/README)
+Wan-Streamer v0.2 实现更高分辨率且低延迟的流式视频架构。值得关注：通过架构优化在保持低延迟的同时提升分辨率。建议跟进该技术在实时视频应用中的落地效果。
+- 详情：[/202607/09/README](/202607/09/README)
 
 ### 精读区论文标签
-1. [GUSH3R: Everyone Everywhere All at Once as Gaussians](/202607/08/2607.05243v1-gush3r-everyone-everywhere-all-at-once-as-gaussians)  
-   标签：评分：8.0/10、query:talking-head
-   evidence：动态人类-场景重建用于数字人创建
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [Fréchet Distance Loss on Speech Representations for Text-to-Speech Synthesis](/202607/08/2607.06027v1-frchet-distance-loss-on-speech-representations-for-text-to-speech-synthesis)  
-   标签：评分：7.0/10、query:talking-head
-   evidence：提出用于TTS的分布损失，可提升音频驱动说话头中的语音质量。
-2. [WordVoice: Explicit and Decoupled Multi-Dimensional Word-Level Control for LLM-Based TTS](/202607/08/2607.06461v1-wordvoice-explicit-and-decoupled-multi-dimensional-word-level-control-for-llm-based-tts)  
-   标签：评分：7.0/10、query:talking-head
-   evidence：词级TTS控制用于音频驱动面部动画同步
-3. [ProPS: Prompted Profile Synthesis for Natural Language-Conditioned Speaker Embedding Distributions](/202607/08/2607.05276v1-props-prompted-profile-synthesis-for-natural-language-conditioned-speaker-embedding-distributions)  
+1. [Wan-Streamer v0.2: Higher Resolution, Same Latency](/202607/09/2607.04443v2-wan-streamer-v02-higher-resolution-same-latency)  
    标签：评分：6.0/10、query:talking-head
-   evidence：通过文本提示生成说话人嵌入分布，为数字人身份控制提供支持。
+   evidence：音视频交互模型，支持高分辨率实时对话，可用于音频驱动的面部动画
 
 
 <div class="dpr-home-promo-card">
