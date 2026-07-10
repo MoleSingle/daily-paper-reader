@@ -1,0 +1,78 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-10T21:24:29.598442+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2607.03118v1",
+      "source": "arxiv",
+      "title": "Vidu S1: A Real-Time Interactive Video Generation Model",
+      "abstract": "We introduce Vidu S1, a real-time interactive video generation model supporting voice control of digital characters. Users can control video generation content at any moment through voice instructions. Vidu S1 supports infinite-length real-time video generation without blurring, drift, or visual distortion. Built with TurboDiffusion and TurboServe, Vidu S1 outputs 540p real-time videos at up to 42 FPS on regular consumer GPUs. Users can upload custom images of real people, anime, and pets, and choose different voice tones for personalized experiences. Experiments show that Vidu S1 achieves the best performance across all test metrics while fully meeting real-time inference requirements. A playable online demo is available at https://vidu.com/vidu-stream.",
+      "authors": [
+        "Jintao Zhang",
+        "Kai Jiang",
+        "Jintao Chen",
+        "Xu Wang",
+        "Yang Luo",
+        "Yuji Wang",
+        "Dechuang Chen",
+        "Jungang Li",
+        "Chengyang Ye",
+        "Marco Chen",
+        "Hongzhou Zhu",
+        "Min Zhao",
+        "Yuxuan Jiang",
+        "Zhengkun Huang",
+        "Chendong Xiang",
+        "Kaiwen Zheng",
+        "Haoxu Wang",
+        "Xiaohang Wang",
+        "Qi Jia",
+        "Xin Chen",
+        "Yimin Chen",
+        "Youhe Jiang",
+        "Fangcheng Fu",
+        "Zhijie Deng",
+        "Fan Bao",
+        "Jianfei Chen",
+        "Jun Zhu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-07-03T08:58:06+00:00",
+      "link": "https://arxiv.org/pdf/2607.03118v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "real-time interactive video generation with voice control of digital characters",
+      "llm_evidence_cn": "实时交互视频生成，支持语音控制数字角色",
+      "llm_evidence": "实时交互视频生成，支持语音控制数字角色",
+      "canonical_evidence": "实时交互视频生成，支持语音控制数字角色",
+      "llm_tldr_en": "Vidu S1 generates real-time interactive videos with voice control of digital characters, achieving high-quality infinite-length generation.",
+      "llm_tldr_cn": "现有视频生成模型难以实现实时交互和长时间无退化生成。本文提出Vidu S1，基于TurboDiffusion和TurboServe，支持用户通过语音指令实时控制数字角色，生成无限长度、无模糊漂移的高质量视频。在540p分辨率下可达42 FPS，并支持自定义形象和语音。实验表明其在所有指标上达到最优，满足实时推理需求。",
+      "llm_tldr": "现有视频生成模型难以实现实时交互和长时间无退化生成。本文提出Vidu S1，基于TurboDiffusion和TurboServe，支持用户通过语音指令实时控制数字角色，生成无限长度、无模糊漂移的高质量视频。在540p分辨率下可达42 FPS，并支持自定义形象和语音。实验表明其在所有指标上达到最优，满足实时推理需求。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": []
+}
