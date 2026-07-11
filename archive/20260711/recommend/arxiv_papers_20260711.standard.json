@@ -1,0 +1,58 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-11T20:39:24.697363+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.05787v1",
+      "source": "arxiv",
+      "title": "DeSeG: Decoupling Semantic Intent and Geometric Constraints for Physically Plausible Human-Scene Interaction",
+      "abstract": "Synthesizing physically plausible human-scene interactions (HSI) remains a critical challenge in computer vision and the development of human avatars. Although recent generative models enable diverse motion synthesis, they suffer from an inductive bias referred to as semantic-geometric entanglement. Because spatial constraints often strongly correlate with specific actions in training data, monolithic models will learn the shortcut bias, aggressively overriding the semantic intent when faced with strict geometric cues. Furthermore, this entanglement exacerbates physical hallucinations, such as body-scene penetrations. To address these limitations, we propose DeSeG, a hierarchical framework that explicitly decouples semantic intent from geometric constraints. First, we introduce a Residual Semantic Planner that encodes textual instructions and canonicalized goal voxels into a compact latent space, enabling fine-grained semantic control independent of spatial trajectories. Second, we propose a physics regularized diffusion executor that incorporates differentiable repulsive potential fields directly into the diffusion objective, enforcing collision-aware motion generation. Extensive experiments on the Lingo dataset demonstrate that DeSeG achieves state-of-the-art performance, reducing mean scene penetration by 47% and improving semantic alignment by 29% over the SOTA baselines.",
+      "authors": [
+        "Jiakun Li",
+        "Zhe Li",
+        "Wenqiang Wu",
+        "Zheng Chang",
+        "Mingqi Gao",
+        "Jinyu Yang",
+        "Feng Zheng"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-07T03:21:08+00:00",
+      "link": "https://arxiv.org/pdf/2607.05787v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "human-scene interaction synthesis for avatars",
+      "llm_evidence_cn": "人-场景交互合成用于数字人创建",
+      "llm_evidence": "人-场景交互合成用于数字人创建",
+      "canonical_evidence": "人-场景交互合成用于数字人创建",
+      "llm_tldr_en": "Proposes DeSeG, a hierarchical framework that decouples semantic intent from geometric constraints to synthesize physically plausible human-scene interactions, addressing body-scene penetration and improving avatar creation.",
+      "llm_tldr_cn": "本文针对人-场景交互合成中语义与几何约束纠缠导致的物理不真实问题，提出DeSeG层次框架，显式解耦语义意图和几何约束。该方法通过分离建模避免模型学习捷径偏置，显著减少身体-场景穿透等物理幻觉。在多个基准上验证了生成交互的物理合理性和多样性。该框架为数字人化身创建和虚拟人行为合成提供了通用技术。",
+      "llm_tldr": "本文针对人-场景交互合成中语义与几何约束纠缠导致的物理不真实问题，提出DeSeG层次框架，显式解耦语义意图和几何约束。该方法通过分离建模避免模型学习捷径偏置，显著减少身体-场景穿透等物理幻觉。在多个基准上验证了生成交互的物理合理性和多样性。该框架为数字人化身创建和虚拟人行为合成提供了通用技术。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
