@@ -1,0 +1,54 @@
+{
+  "label": "2026-07-12",
+  "date": "2026-07-12",
+  "generated_at": "2026-07-12T19:54:00",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202607/12/2607.04443v1-wan-streamer-v02-higher-resolution-same-latency",
+      "section": "deep",
+      "title_en": "Wan-Streamer v0.2: Higher Resolution, Same Latency",
+      "authors": "Lianghua Huang, Zhi-Fan Wu, Yupeng Shi, Wei Wang, Mengyang Feng, Junjie He, Chen-Wei Xie, Yu Liu, Jingren Zhou, Ang Wang, Bang Zhang, Baole Ai, Chen Liang, Cheng Yu, Chongyang Zhong, Jinwei Qi, Kai Zhu, Pandeng Li, Peng Zhang, Wenyuan Zhang, Xinhua Cheng, Yitong Huang, Yun Zheng, Yuxiang Bao, Yuzheng Wang, Zoubin Bi",
+      "date": "2026-07-05",
+      "pdf": "https://arxiv.org/pdf/2607.04443v1",
+      "score": "9.0",
+      "evidence": "实时音视频交互模型，支持中景智能体面部动画",
+      "tldr": "实时视听交互模型Wan-Streamer v0.2在保持约200ms模型端延迟的前提下，将输出分辨率从192x336提升至640x368。采用thinker-performer分离架构：thinker单GPU处理流式感知和语言缓存，performer多GPU通过Ulysses并行对高分辨率潜视频分片去噪，音频则不并行。该设计在不增加用户延迟的情况下支持更丰富的场景细节，总交互延迟约550ms（含网络），为下一代流式交互提供了可行方案。",
+      "tags": "query:talking-head",
+      "abstract_en": "We present Wan-Streamer v0.2, a latency-preserving upgrade of the native-streaming, end-to-end audio-visual interaction model. v0.2 keeps the v0.1 modeling formulation, but raises the interactive output stream from 192x336 to 640x368 while preserving approximately 200 ms model-side signal-to-signal latency at 25 FPS. The higher-resolution stream supports scene-grounded mid-shot agents whose posture, gaze, hands, nearby objects, and local scene layout remain legible during real-time conversation. To support the larger visual stream without adding user-visible delay, v0.2 keeps the thinker as a single-GPU low-latency path for streaming perception, the short language/state Transformer pass that builds the generation cache, and final decoding. The performer becomes a multi-GPU Ulysses-style context-parallel group for the expensive next-unit latent generation. Each performer rank writes incoming K/V into a pre-sharded local cache. The long high-resolution latent video sequence is split across ranks for denoising and gathered through Ulysses communication, while the much shorter audio latent sequence is generated without sequence sharding. In this split, the thinker's language/state computation reaches the performer only as K/V conditioning, so no separate language sequence has to be communicated inside the performer group. This concentrates additional hardware on visual generation while preserving the compact thinker-performer boundary, keeping total remote interaction latency at approximately 550 ms when a 350 ms bidirectional network budget is included.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/12/2607.04443v3-wan-streamer-v02-higher-resolution-same-latency",
+      "section": "deep",
+      "title_en": "Wan-Streamer v0.2: Higher Resolution, Same Latency",
+      "authors": "Lianghua Huang, Zhi-Fan Wu, Yupeng Shi, Wei Wang, Mengyang Feng, Junjie He, Chen-Wei Xie, Yu Liu, Jingren Zhou, Ang Wang, Bang Zhang, Baole Ai, Chen Liang, Cheng Yu, Chongyang Zhong, Jinwei Qi, Kai Zhu, Pandeng Li, Peng Zhang, Wenyuan Zhang, Xinhua Cheng, Yitong Huang, Yun Zheng, Yuxiang Bao, Yuzheng Wang, Zoubin Bi",
+      "date": "2026-07-05",
+      "pdf": "https://arxiv.org/pdf/2607.04443v3",
+      "score": "9.0",
+      "evidence": "高分辨率流式谈话头模型",
+      "tldr": "Wan-Streamer v0.2在保持约200ms模型端延迟的前提下，将交互输出分辨率从192x336提升至640x368，支持场景接地中景智能体的细粒度细节。该方法维持v0.1的建模框架，通过thinker单GPU低延迟路径处理感知与缓存构建，performer采用多GPU Ulysses上下文并行对高分辨率视频潜序列进行分割去噪与通信。语言计算仅作为K/V条件传递至performer，避免组内额外通信，使得总远程交互延迟（含350ms网络预算）约550ms。该工作实现了分辨率提升而不牺牲交互实时性，对高保真远程音视频交互有重要意义。",
+      "tags": "query:talking-head",
+      "abstract_en": "We present Wan-Streamer v0.2, a latency-preserving upgrade of the native-streaming, end-to-end audio-visual interaction model. v0.2 keeps the v0.1 modeling formulation, but raises the interactive output stream from 192x336 to 640x368 while preserving approximately 200 ms model-side signal-to-signal latency at 25 FPS. The higher-resolution stream supports scene-grounded mid-shot agents whose posture, gaze, hands, nearby objects, and local scene layout remain legible during real-time conversation. To support the larger visual stream without adding user-visible delay, v0.2 keeps the thinker as a single-GPU low-latency path for streaming perception, the short language/state Transformer pass that builds the generation cache, and final decoding. The performer becomes a multi-GPU Ulysses-style context-parallel group for the expensive next-unit latent generation. Each performer rank writes incoming K/V into a pre-sharded local cache. The long high-resolution latent video sequence is split across ranks for denoising and gathered through Ulysses communication, while the much shorter audio latent sequence is generated without sequence sharding. In this split, the thinker's language/state computation reaches the performer only as K/V conditioning, so no separate language sequence has to be communicated inside the performer group. This concentrates additional hardware on visual generation while preserving the compact thinker-performer boundary, keeping total remote interaction latency at approximately 550 ms when a 350 ms bidirectional network budget is included.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/12/2607.08705v1-humanforge-a-human-centric-deepfake-video-benchmark-with-multi-agent-forgery-rationales",
+      "section": "quick",
+      "title_en": "HumanForge: A Human-Centric Deepfake Video Benchmark with Multi-Agent Forgery Rationales",
+      "authors": "Wenbo Xu, Zhimin Chen, Xiaojie Liang, Hengrui Liu, Wei Lu",
+      "date": "2026-07-09",
+      "pdf": "https://arxiv.org/pdf/2607.08705v1",
+      "score": "6.0",
+      "evidence": "面向人类中心深度伪造视频的基准数据集，可用于评估视频合成（包括说话人头）",
+      "tldr": "现有深度伪造视频基准多聚焦于人脸替换或全局视频生成，忽略了人-物/人-人交互及多模态对齐。本文提出HumanForge，一个统一的大规模多范式以人为中心的伪造视频数据集，并设计了Gen2Anno模块化多智能体流水线，通过六个协同智能体生成超过1.8万段高保真视频及结构化对比标注。实验表明，现有检测器和多模态大模型在零样本泛化和细粒度推理上仍面临显著挑战。",
+      "tags": "query:talking-head",
+      "abstract_en": "Rapid advancements in video diffusion models and temporal editing tools have enabled the generation of highly realistic human-centric videos, posing unprecedented challenges to digital content forensics. Existing benchmarks primarily focus on either face-swapping or global text-to-video synthesis, overlooking the crucial dimensions of human-object or human-human interactions and multi-modal alignment. To address these limitations, we introduce HumanForge, a unified, large-scale, and multi-paradigm human-centric video forgery dataset. To construct and annotate this dataset without labor-intensive manual labeling or hallucinated monolithic prompts, we propose Gen2Anno, a modular active multi-agent pipeline built on LangGraph. Gen2Anno coordinates six specialized agents-ranging from source profiling to MoE-based reference analysis and closed-loop forensic verification-to generate over 18K high-fidelity video segments and produce structured, contrastive omni-annotations containing binary decisions, fine-grained artifact categories, and spatio-temporal localization. Extensive benchmarks using state-of-the-art traditional detectors and Large Multimodal Models (LMMs) demonstrate the significant challenges of zero-shot generalization and fine-grained reasoning on HumanForge. Code and dataset will be publicly released.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

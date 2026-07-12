@@ -6,26 +6,31 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-11
-- 运行时间：2026-07-11 20:39:59 UTC
+- 最新运行日期：2026-07-12
+- 运行时间：2026-07-12 19:53:55 UTC
 - 运行状态：成功
-- 本次总论文数：1
-- 精读区：0
+- 本次总论文数：3
+- 精读区：2
 - 速读区：1
 
 ### 今日简报（AI）
-今日速读《DeSeG》，关注物理合理的人-场景交互中语义意图与几何约束的解耦。  
-核心方向是通过分离语义和几何约束来提升交互的真实感，值得留意其对复杂场景的适应性。  
-建议普通读者关注此类方法在虚拟现实或机器人导航中的应用潜力，并留意其性能权衡。
-- 详情：[/202607/11/README](/202607/11/README)
+1) 今日精读高分论文《Wan-Streamer v0.2》实现更高分辨率与相同延迟的突破，速读关注AI换脸基准《HumanForge》。  
+2) 最值得看的方向：视频流处理中的分辨率-延迟平衡优化，以及多代理伪造解释在Deepfake检测中的新思路。  
+3) 建议先精读《Wan-Streamer v0.2》，若需了解换脸伪造与检测前沿可速读《HumanForge》。
+- 详情：[/202607/12/README](/202607/12/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [Wan-Streamer v0.2: Higher Resolution, Same Latency](/202607/12/2607.04443v1-wan-streamer-v02-higher-resolution-same-latency)  
+   标签：评分：9.0/10、query:talking-head
+   evidence：实时音视频交互模型，支持中景智能体面部动画
+2. [Wan-Streamer v0.2: Higher Resolution, Same Latency](/202607/12/2607.04443v3-wan-streamer-v02-higher-resolution-same-latency)  
+   标签：评分：9.0/10、query:talking-head
+   evidence：高分辨率流式谈话头模型
 
 ### 速读区论文标签
-1. [DeSeG: Decoupling Semantic Intent and Geometric Constraints for Physically Plausible Human-Scene Interaction](/202607/11/2607.05787v1-deseg-decoupling-semantic-intent-and-geometric-constraints-for-physically-plausible-human-scene-interaction)  
+1. [HumanForge: A Human-Centric Deepfake Video Benchmark with Multi-Agent Forgery Rationales](/202607/12/2607.08705v1-humanforge-a-human-centric-deepfake-video-benchmark-with-multi-agent-forgery-rationales)  
    标签：评分：6.0/10、query:talking-head
-   evidence：人-场景交互合成用于数字人创建
+   evidence：面向人类中心深度伪造视频的基准数据集，可用于评估视频合成（包括说话人头）
 
 
 <div class="dpr-home-promo-card">
