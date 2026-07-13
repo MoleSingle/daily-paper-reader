@@ -6,31 +6,24 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-12
-- 运行时间：2026-07-12 19:53:55 UTC
+- 最新运行日期：2026-07-13
+- 运行时间：2026-07-13 20:41:49 UTC
 - 运行状态：成功
-- 本次总论文数：3
-- 精读区：2
+- 本次总论文数：1
+- 精读区：0
 - 速读区：1
 
 ### 今日简报（AI）
-1) 今日精读高分论文《Wan-Streamer v0.2》实现更高分辨率与相同延迟的突破，速读关注AI换脸基准《HumanForge》。  
-2) 最值得看的方向：视频流处理中的分辨率-延迟平衡优化，以及多代理伪造解释在Deepfake检测中的新思路。  
-3) 建议先精读《Wan-Streamer v0.2》，若需了解换脸伪造与检测前沿可速读《HumanForge》。
-- 详情：[/202607/12/README](/202607/12/README)
+今日共速读1篇论文，聚焦无参考评估生成式音视频模型的新方法。最值得关注的是《Beyond Time Shifts》提出的Omni-LLM评估框架，可在无人工标注下直接评价音视频生成质量。建议后续关注该无参考评估方法在多模态模型效果验证中的实际表现。
+- 详情：[/202607/13/README](/202607/13/README)
 
 ### 精读区论文标签
-1. [Wan-Streamer v0.2: Higher Resolution, Same Latency](/202607/12/2607.04443v1-wan-streamer-v02-higher-resolution-same-latency)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：实时音视频交互模型，支持中景智能体面部动画
-2. [Wan-Streamer v0.2: Higher Resolution, Same Latency](/202607/12/2607.04443v3-wan-streamer-v02-higher-resolution-same-latency)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：高分辨率流式谈话头模型
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [HumanForge: A Human-Centric Deepfake Video Benchmark with Multi-Agent Forgery Rationales](/202607/12/2607.08705v1-humanforge-a-human-centric-deepfake-video-benchmark-with-multi-agent-forgery-rationales)  
-   标签：评分：6.0/10、query:talking-head
-   evidence：面向人类中心深度伪造视频的基准数据集，可用于评估视频合成（包括说话人头）
+1. [Beyond Time Shifts: Adapting Omni-LLM as a Reference-Free Evaluator for Generative Audio-Visual Models](/202607/13/2607.09091v1-beyond-time-shifts-adapting-omni-llm-as-a-reference-free-evaluator-for-generative-audio-visual-models)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：提出面向生成式音视频模型的免参考跨模态同步评估器，可用于说话人合成评估
 
 
 <div class="dpr-home-promo-card">

@@ -1,0 +1,24 @@
+{
+  "label": "2026-07-13",
+  "date": "2026-07-13",
+  "generated_at": "2026-07-13T20:41:54",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202607/13/2607.09091v1-beyond-time-shifts-adapting-omni-llm-as-a-reference-free-evaluator-for-generative-audio-visual-models",
+      "section": "quick",
+      "title_en": "Beyond Time Shifts: Adapting Omni-LLM as a Reference-Free Evaluator for Generative Audio-Visual Models",
+      "authors": "Yijie Qian, Juncheng Wang, Chao Xu, Huihan Wang, Yuxiang Feng, Yang Liu, Baigui Sun, Yong Liu, Shujun Wang",
+      "date": "2026-07-10",
+      "pdf": "https://arxiv.org/pdf/2607.09091v1",
+      "score": "7.0",
+      "evidence": "提出面向生成式音视频模型的免参考跨模态同步评估器，可用于说话人合成评估",
+      "tldr": "现有音视频生成模型评估依赖人工标注，且指标仅关注时间对齐而忽视结构幻觉。本文提出去参考评估框架：构建SynthSync数据集收集失败案例的成对排序，将Omni-LLM适配连续潜在投影以输出绝对分值，并设计实值组相对策略优化（R-GRPO）学习全局因果结构。该方法在人类偏好对齐上达到最优，建立了标准化评估基准，推动音视频生成评估从信号相关迈向视觉因果。",
+      "tags": "query:talking-head",
+      "abstract_en": "As audio-visual generative models evolve into world simulators, cross-modal synchronization stands as a critical proxy for assessing the consistency of world dynamics and causality in generated content. However, existing evaluation metrics presume structural correctness, reducing synchronization to mere temporal alignment. Consequently, they fail on generative outputs, especially when exhibiting structural hallucinations and asymmetric cross-modal relations, which currently \\textbf{mandate expert human annotation to assess synchronization.} This dependency introduces a critical paradox: \\emph{human evaluators rely on relative, reference-dependent comparisons, whereas automated metrics require reference-free, absolute scalars.} We resolve this paradox by proposing a framework that distills relative human perception into a continuous, globally consistent metric. First, we introduce SynthSync, a dataset of generative failures ranked via pairwise human annotations. Second, we adapt the Omni-LLM equipped with a continuous latent projection to translate relative human rankings into continuous absolute values. Third, we propose Real-Valued Group Relative Policy Optimization ($\\mathbb{R}$-GRPO) to internalize the global causal structure of synchronization via listwise score distributions. Empirically, our metric achieves state-of-the-art human preference alignment. We leverage this estimator to establish a standardized benchmark, advancing AV-Gen assessment from low-level signal correlation to visually grounded causality.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
