@@ -1,0 +1,790 @@
+Title: Learn2Chat: Rethinking Dyadic Talking Heads via Interaction-Modulated Monologic Priors
+
+URL Source: https://arxiv.org/pdf/2607.10313v1
+
+Published Time: Tue, 14 Jul 2026 02:32:57 GMT
+
+Number of Pages: 13
+
+Markdown Content:
+> IEEE TRANSACTIONS ON VISUALIZATION AND COMPUTER GRAPHICS 1
+
+# Learn2Chat: Rethinking Dyadic Talking Heads via Interaction-Modulated Monologic Priors 
+
+Zikai Huang, Siyue Chen, Xuemiao Xu, Haoxin Yang, Cheng Xu, Yihong Lin, and Shengfeng He, Senior Member, IEEE 
+
+Abstract —Dyadic conversational motion generation is essential for realistic interactive digital humans. Existing approaches typically model conversational behaviors within unified dyadic generators. However, such holistic formulations tend to cou-ple self-speech-driven motion with partner-responsive social feedback, leaving the interaction-specific component implicit and underutilizing the speech-motion correspondence already learned by pretrained monologic motion models. We propose Learn2Chat, a unified framework that models dyadic motion as interaction modulation over pretrained monologic motion priors. This design separates intrinsic speech-driven motion from social interaction effects and enables more structured interaction modeling. Specifically, we introduce a Monologic-Anchored Mo-tion Factorization scheme that leverages the semantic motion manifold learned from monologic data to disentangle audio-driven motion dynamics from interaction-induced modulation, yielding clean interaction representations from dyadic sequences. On top of this representation space, a Cross-Attentive Interac-tion Latent Prediction module maps paired speech signals to interaction latents through cross-branch attention and interaction alignment. During inference, the predicted interaction latents modulate canonical monologic motion to generate coherent and synchronized dyadic behaviors in a data-efficient manner. Ex-tensive experiments on the DualTalk benchmark demonstrate that Learn2Chat achieves state-of-the-art performance across both quantitative metrics and perceptual evaluations. Moreover, the framework is model-agnostic and seamlessly integrates with diverse pretrained monologic motion backbones, highlighting the effectiveness of prior reuse and interaction adaptation for scalable conversational motion generation. More visual results are available on the project page. 
+
+Index Terms —Dyadic Motion Generation, Audio-driven Facial Animation, Digital Humans 
+
+I. I NTRODUCTION 
+
+# GENERATING conversational motions is essential for building lifelike interactive digital humans, with broad applications in telepresence [1], [2], virtual assistants [3], and autonomous social agents [4]. Recent audio-driven mo-tion generation methods have achieved remarkable fidelity in monologic settings (Fig. 1(a)), where facial movements 
+
+Zikai Huang, Xuemiao Xu, Haoxin Yang, and Yihong Lin are with the School of Computer Science and Engineering, and Siyue Chen is with the School of Design, South China University of Technology, Guangdong, China. Xuemiao Xu is also with Guangdong Engineering Center for Large Model and GenAI Technology, and also with State Key Laboratory of Subtrop-ical Building and Urban Science, Ministry of Education Key Laboratory of Big Data and Intelligent Robot. E-mail: zikaihuang0428@gmail.com; victoria38yue@gmail.com; harxis@outlook.com; amcsyihonglin@gmail.com; xuemx@scut.edu.cn. Cheng Xu and Shengfeng He are with the School of Comput-ing and Information Systems, Singapore Management University. Email: cschengxu@gmail.com; shengfenghe@smu.edu.sg. 
+
+and head motions are primarily driven by the speaker’s own speech. Extending these advances to dyadic interaction, however, remains fundamentally challenging. Unlike mono-logic speech, conversations are inherently reciprocal: speakers continuously adjust their motions according to both their own utterances and their interlocutor’s behaviors, producing temporally coordinated and socially adaptive motion patterns. Existing dyadic motion generation methods can be broadly categorized into two paradigms. Early approaches rely on motion-conditioned generation, where conversational motion is synthesized by explicitly conditioning on the partner’s mo-tion signals [5]–[7]. Although effective, such methods require access to ground-truth partner motion and are therefore un-suitable for fully autonomous audio-driven applications. More recently, UniLS [8] eliminates this dependency by generating dyadic motions from paired audio streams through end-to-end learning. Despite their differences in input modality and supervision, both paradigms share a common formulation: conversational behaviors are acquired by learning a dedicated dyadic generator from paired conversational data. Meanwhile, monologic motion generation has witnessed rapid progress [9]–[13]. Trained on large speech-motion cor-pora, these models have learned effective self-speech-to-motion correspondence and can produce expressive facial and head motions from the speaker’s own speech. This capability is directly relevant to dyadic generation, since a substantial part of conversational motion remains governed by the speaker’s own utterance. Therefore, pretrained monologic models can provide more than a generic motion prior: they offer a self-speech-conditioned canonical motion reference, describing the motion already explained by the speaker’s own speech. This motivates a different view of dyadic motion gen-eration. Conversational interaction does not replace the in-trinsic speech-driven motion encoded in monologic models. Instead, it modulates how this motion should be expressed under different social contexts. In this view, dyadic motion can be regarded as canonical monologic motion enriched by interaction-induced adaptation, instead of an entirely new motion generation target. The central challenge is therefore to separate the motion already explained by the speaker’s own speech from the interaction-specific modulation intro-duced by dyadic context. Without such a separation, intrinsic speech-driven motion and partner-responsive feedback remain entangled in a single dyadic generator, which may obscure the interaction-specific component and weaken the reuse of pretrained monologic priors. To address this challenge, we propose Learn2Chat , aarXiv:2607.10313v1 [cs.GR] 11 Jul 2026 IEEE TRANSACTIONS ON VISUALIZATION AND COMPUTER GRAPHICS 2𝐀 𝐀𭀀𝐀𭀀 𝐀 𝐀𪰀𝐀𶠀𝐀𰠀   
+
+> Audio 1
+> Audio 2
+> Monologic Audio
+> Monologic Motion Dyadic Motion 2
+> Dyadic Motion 1
+> (a) Monologic Audio-driven Method
+> Pure Audio Driven End-to-End
+> No Interaction
+> Isolated Modeling
+> Non-end-to-end
+> No Prior Reuse
+> Plug-and-Play Monologic Prior Reuse
+> Audio 1
+> Audio 2 Pred Dyadic Motion 1 & 2 (c) Learn2Chat
+
+𝐀 𝐀𭀀𝐀𭀀 
+
+> Audio2Int
+> ...
+
+𝐀 𝐀 
+
+> Semantics
+> Encoder
+> Sem-Int
+> Decoder
+> Monologic Motion 1 & 2
+
+𝐀 𝐀 
+
+> (b) Prior Dyadic Audio-driven Method
+
+Fig. 1: Comparison of existing audio-driven head motion generation paradigms. Monologic methods (a) ignore interaction dynamics, while existing dyadic approaches (b) either require auxiliary motion inputs or entangle speech and interaction signals through holistic learning. In contrast, Learn2Chat reformulates dyadic generation as interaction modulation over canonical monologic motion, enabling realistic and temporally coherent synthesis. The framework is plug-and-play and converts pretrained monologic backbones to the dyadic setting. framework that extends pretrained monologic audio-driven models to dyadic conversations through interaction modula-tion. Specifically, we propose a Monologic-Anchored Motion Factorization scheme that distills interaction representations while preserving reusable speech-driven motion priors. To in-fer interaction directly from paired speech streams, we further introduce a Cross-Attentive Interaction Latent Predictor, which predicts interaction latents through cross-branch attention and interaction alignment. During inference, the predicted inter-action latents modulate canonical monologic motion trajec-tories, enabling synchronized dyadic motion generation from paired audio alone. Extensive experiments on the DualTalk benchmark demonstrate that Learn2Chat achieves state-of-the-art performance across both quantitative metrics and percep-tual evaluations. More importantly, our framework is model-agnostic and seamlessly compatible with diverse pretrained monologic motion backbones, highlighting a new paradigm for scalable conversational motion generation through prior reuse and interaction adaptation. In summary, our contributions are threefold:  
+
+> •
+
+We propose a new formulation of dyadic motion generation as interaction modulation over pretrained monologic speech-motion priors, shifting the focus from unified speak-listen generation to modeling the interaction-induced adaptation beyond the motion already explained by the speaker’s own speech. This encourages an explicit separation between in-trinsic speech-driven motion and interaction-induced social feedback, thereby reducing signal conflation and learning ambiguity in holistic modeling.  
+
+> •
+
+We introduce Learn2Chat, a unified framework for dyadic motion generation. It employs a Monologic-Anchored Mo-tion Factorization scheme to distill clean interaction rep-resentations from dyadic motion, together with a Cross-Attentive Interaction Latent Predictor that maps paired speech streams to interaction latents for modulating canon-ical monologic motions.  
+
+> •
+
+We demonstrate that Learn2Chat achieves state-of-the-art performance on the DualTalk dataset across quantitative and perceptual evaluations, while remaining model-agnostic and seamlessly compatible with existing monologic motion backbones. II. R ELATED WORK 
+
+Monologic Audio-driven 3D Head Generation. Audio-driven 3D talking head generation has advanced rapidly in recent years. Most existing approaches focus on monologic settings, where head motion is determined solely by the speaker’s own audio [9]–[21]. Early methods relied on explicit phoneme-to-viseme mappings constructed from handcrafted rules or graph-based matching [14]–[16]. With the rise of deep learning, data-driven audio-to-motion modeling has become dominant. For instance, VOCA [18] regresses 3D facial motion using CNNs, while FaceFormer [9] employs Transformers to capture long-range temporal dependencies. CodeTalker [10] further introduces discrete latent representations via VQ-VAE to learn coupled audio–motion structures. More recently, diffusion-based approaches such as FaceDiffuser [22] improve motion realism and diversity. Despite their success, these methods focus on single-speaker scenarios and do not explic-itly model conversational interaction. In contrast, our method leverages pretrained monologic motion priors while explicitly modeling interaction signals, enabling coherent dyadic gener-ation. 
+
+Dyadic Interaction Generation. Modeling dyadic interac-tion has recently gained increasing attention in conversa-tional avatar research [5]–[8], [23]. Early approaches often distinguish speaker and listener roles and train role-specific modules [5], [6], which typically require role annotations and IEEE TRANSACTIONS ON VISUALIZATION AND COMPUTER GRAPHICS 3
+
+limit generalization across conversational settings. More recent work seeks unified bidirectional modeling without explicit role supervision [7], [8]. For example, DualTalk [7] conditions generation on both participants’ audio along with the part-ner’s motion to capture conversational coordination. Related studies also explore contextual reaction modeling [24]–[26], though they often emphasize short-term responses and may struggle to maintain temporally coherent behaviors over longer interactions. Recent work UniLS [8] further advances this direction by removing dependence on partner motion and enabling fully audio-driven dyadic generation. Notably, UniLS adopts a two-stage training strategy, where the first stage learns an audio-independent motion prior from large-scale motion sequences, and the second stage aligns paired speech signals with this learned motion representation for dyadic synthesis. While this strategy improves optimization stability, the learned prior primarily captures general motion dynam-ics without explicitly encoding speech-conditioned semantic correspondence. As a result, interaction modeling and speech-driven motion generation are still learned jointly within a unified latent space during dyadic training, without an explicit factorization between intrinsic speech-motion mapping and interaction effects. Instead of learning dyadic behavior as a unified generative model, we directly reuse a pretrained speech-conditioned mo-tion model and keep its speech-motion mapping fixed. Dyadic interaction is then modeled as a separate module that modifies the generated motion conditioned on conversational context, rather than being entangled with motion generation itself. This leads to a clean separation between speech-driven motion generation and interaction modeling, enabling interaction to be learned independently as a lightweight add-on over a frozen monologic generator, rather than being absorbed into a jointly trained dyadic model. 
+
+Content-Style Disentanglement in Motion Modeling. Dis-entangling content and style has been widely studied in motion generation to improve controllability and transferability. A common formulation separates motion into content factors that capture structural or semantic information and style factors that encode performer-specific or affective variations. In audio-driven head animation, prior work disentangles speech content from speaker identity [27]–[32] or emotional expression [20], [33]–[35]. In full-body motion synthesis, content typically rep-resents action semantics while style models identity or emo-tional characteristics [36]–[42]. Some work further integrates multimodal cues such as speech to generate stylized co-speech gestures and expressive body motion [43]–[46]. Unlike these approaches, which focus on stylistic variation, we introduce a monologic-anchored factorization scheme that leverages pretrained monologic motion priors to separate speech-driven motion semantics from partner-conditioned interaction signals, enabling accurate modeling of conversational interaction for dyadic motion generation. III. M ETHOD 
+
+A. Problem Formulation and Overview 
+
+Let (A1, A2) ∈ RT ×Da denote the audio streams of two interlocutors in a dyadic conversation. Our goal is to synthesize temporally coherent and realistic dyadic 3D head-motion sequences (x1
+
+> d
+
+, x2
+
+> d
+
+) ∈ RT ×Dx . We assume access to a pretrained monologic audio-driven head-motion generator 
+
+Gmono : A 7 → xm that produces speech-driven motion for a single speaker. Applying Gmono independently to each audio stream yields speech-aligned base motions: 
+
+x1 
+
+> m
+
+= Gmono (A1), x2 
+
+> m
+
+= Gmono (A2). (1) Rather than learning a new end-to-end mapping from dual-speaker audio to dyadic motion from scratch, we reformu-late dyadic generation as interaction modulation over these monologic bases. Specifically, a Monologic-Anchored Motion Factorization learning scheme learns a disentangled represen-tation in which speech-driven semantics are decoupled from interaction patterns, while a Cross-Attentive Interaction Latent Prediction module predicts the interaction latent directly from 
+
+(A1, A2). As illustrated in Fig. 2, we infer an interaction latent 
+
+z from (A1, A2) and generate the final motions via: 
+
+ˆxid = D ES (xim), zi, Ai
+
+, i ∈ { 1, 2}, (2) where ES (·) encodes speech-driven motion semantics and 
+
+D(·, ·, ·) is an audio-conditioned decoder that injects interac-tion patterns over canonical monologic priors via z, modu-lating semantic dynamics to produce coherent interpersonal coordination while preserving speech alignment. 
+
+B. Monologic-Anchored Motion Factorization 
+
+We learn a monologic-anchored factorization that decom-poses motion into (i) a shared semantic component capturing speech-driven dynamics and (ii) an interaction component capturing partner-conditioned modulation. Concretely, both monologic and dyadic motion sequences are mapped into a common semantic space by a shared encoder ES . Interaction is modeled asymmetrically: dyadic motions use a dedicated inter-action encoder EI to infer partner-induced deviations, whereas monologic motions are associated with a learnable “neutral-interaction” prior. This design anchors interaction learning to the robust semantic manifold provided by monologic priors and explicitly isolates partner-induced variation. 
+
+Semantics Encoder. Given monologic motion xm and dyadic motion xd, we construct a shared semantics encoder ES (·)
+
+that maps both inputs into a common latent space: 
+
+sm = ES (xm), sd = ES (xd), (3) where s ∈ RT ×Ds represents speech-driven motion semantics. To reduce interaction-induced leakage at the input level, we first apply layer normalization to the motion sequence before feeding it into the temporal encoder. This normalization miti-gates scale and amplitude variations that are often associated with interaction intensity, thereby encouraging the encoder to focus on temporally structured motion semantics rather than magnitude-based stylistic cues. The semantics encoder is implemented as a Transformer-based temporal model that captures long-range dependencies in motion trajectories. Pa-rameter sharing across monologic and dyadic inputs enforces domain invariance and prevents the encoder from specializing to a specific interaction regime. Consequently, the learned IEEE TRANSACTIONS ON VISUALIZATION AND COMPUTER GRAPHICS 4𝐀 𝐀   
+
+> Dyadic Motion 𝐀 𝐀
+> Monologic Motion 𝐀 𝐀
+
+𝐀 𝐀 
+
+𝐀 𝐀 
+
+𝐀 𝐀 
+
+> 𝐀 𝐀
+
+Sem-Int 
+
+Decoder 
+
+Sem-Int 
+
+Decoder 
+
+Sem-Int 
+
+Decoder 
+
+Sem-Int 
+
+Decoder 
+
+𝐀 𝐀 𝐀 𝐀 
+
+𝐀 𝐀 𝐀 𝐀 
+
+𝐀 𝐀 𝐀 𝐀 
+
+𝐀 𝐀 𝐀 𝐀 
+
+> ...
+> 𝐀 𝐀
+> ...
+> 𝐀 𝐀
+> ... 𝐀 𝐀 𝐀 𝐀 𝐀 𝐀
+> 𝐀 𝐀
+> 𝐀 𝐀 𝐀 𝐀
+> ... 𝐀 𝐀 𝐀 𝐀
+> 𝐀
+> ... 𝐀
+> CA
+> ...
+> 𝐀
+
++ ×N  
+
+> Semantics-Interaction
+> Decoder
+> SA
+> FF
+> +
+> LN
+> +
+> Semantics
+> Encoder Interaction
+> Encoder
+> SA
+> FF
+> +
+> +
+> 𝐀𪠀𝐀
+> 𝐀 𝐀
+
+(a) Motion Factorization Learning  
+
+> ×N
+> ×N
+> 𝐀 𝐀
+> &𝐀 𝐀
+> Wav2Vec2
+> CA
+> FF
+
+# + + +
+
+> CA
+> FF  +++
+> SA
+> MLP  𝐀 𝐀
+> 𝐀 𝐀
+
+~
+
+> 𝐀 𝐀
+
+Sem-Int 
+
+Decoder ... 𝐀 𝐀 
+
+> 𝐀 𝐀
+> 𝐀 𝐀𬀀𝐀𳰀𝐀𝐀𝐀
+> 𝐀 𝐀𳰀𝐀𴀀𳰀𬀀
+
+(b) I nteraction Latent Prediction   
+
+> Shared
+> Weight
+> Audio2Int Encoder ×N
+> Pred Motion 𝐀 𝐀 𝐀 𝐀
+
+𝐀 𝐀 
+
+& 𝐀 𝐀 
+
+> +
+> Frozen
+> Learnable
+> Elementwise Add
+> SA
+> FF
+> CA
+> Self Attention
+> FeedForward
+> Cross Attention
+
+~    
+
+> 𝐀 𝐀
+> 𝐀 𝐀
+> MLP
+> [𝐀𪠀𝐀 ,𝐀 ]
+> 𝐀 𝐀
+> 𝐀
+> Shift &
+> Scale
+> ... 𝐀 𝐀 𝐀 𝐀
+> 𝐀 𝐀 𝐀 𝐀
+> ... 𝐀 𝐀 𝐀 𝐀
+> SA
+> ...
+> 𝐀 𝐀
+> 𝐀𪠀𝐀 ...
+> 𝐀 𝐀
+> 𝐀𪠀𝐀
+> 𝐀 𝐀
+> &𝐀 𝐀
+
+Swap & Recon Disentangle Cycle & Consistency 
+
+> +
+> Frozen
+> Learnable
+> Elementwise Add
+> SA
+> FF
+> CA
+> Self Attention
+> FeedForward
+> Rreparam Cross Attention
+
+Fig. 2: Overview of Learn2Chat. Learn2Chat reformulates dyadic head motion generation as interaction modulation of pretrained monologic motion priors. (a) The Monologic-Anchored Motion Factorization Learning explicitly disentangles speech-driven semantics from interaction. (b) The Cross-Attentive Interaction Latent Prediction module infers interaction latent from dual-speaker audio via a dual-stream encoder, enabling plug-and-play dyadic synthesis without retraining the monologic generator. semantics embedding captures motion patterns that are con-sistent across both settings, aligning with our interpretation of speech-driven base motion. 
+
+Interaction Encoder. We model interaction as a stochastic latent variable. For dyadic motion, a Transformer encoder 
+
+EI (·) predicts the parameters of a Gaussian distribution: 
+
+(μd, σd) = EI (xd), (4) and samples the dyadic interaction latent via reparameteriza-tion: 
+
+zd = μd + σd ⊙ ϵ, ϵ ∼ N (0, I). (5) A KL regularizer encourages the posterior toward a standard normal prior: 
+
+LKL = DKL 
+
+ N  μd, (σd)2 N (0, I) . (6) Monologic motion does not employ a data-driven interaction encoder. Instead, we introduce a learnable Gaussian prior 
+
+zm ∼ N (μm, (σm)2), where μm and σm are trainable parameters. This asymmetry reflects the modeling assumption that dyadic motion contains interaction-induced modulation, whereas monologic motion represents an interaction-neutral baseline. By parameterizing the monologic interaction state as a compact learnable distribution, interaction variation is explicitly anchored to cross-domain discrepancy rather than arbitrary intra-domain decomposition. 
+
+Semantics-Interaction Decoder. Given a semantics embed-ding s ∈ RT ×Ds , corresponding audio A, and an inter-action latent z ∈ RDz , the decoder reconstructs motion 
+
+ˆx = D(s, z, A), where ˆx ∈ RT ×Dx . The decoder comprises stacked Transformer blocks equipped with Adaptive Layer Normalization (AdaLN). In each block, the hidden state at-tends to pretrained Wav2Vec2 features a ∈ RT ×Da through cross-attention, while AdaLN conditions the normalization affine parameters on z:
+
+s′ = h + AdaLN 
+
+
+
+CA  Q = h, K = a, V = a, z
+
+
+
+. (7) Conditioning normalization on z enables global modulation of motion dynamics without altering the attention operator, thereby preserving speech-driven structure while injecting interaction-specific adjustments. 
+
+Training Objective for Motion Factorization. To explicitly disentangle speech-driven semantics from interaction-induced modulation, we design a unified factorization loss based on cross-domain recombination and cycle-consistent re-encoding. Specifically, we construct four recombinations with different semantics-interaction pairings to explicitly supervise the fac-torization of semantics and interaction: 
+
+ˆxm2m = D(sm, zm), ˆxm2d = D(sm, zd),
+
+ˆxd2m = D(sd, zm), ˆxd2d = D(sd, zd). (8) IEEE TRANSACTIONS ON VISUALIZATION AND COMPUTER GRAPHICS 5
+
+Reconstruction Loss. Domain-consistent reconstructions en-force fidelity to the original motion: 
+
+Lrec = ∥ˆxm2m − xm∥2 + ∥ˆxd2d − xd∥2. (9) This term ensures that semantics and interaction jointly pre-serve complete motion information. 
+
+Swap Loss. To explicitly attribute cross-domain discrepancy to the interaction latent, we supervise swapped combinations: 
+
+Lswap = ∥ˆxm2d − xd∥2 + ∥ˆxd2m − xm∥2. (10) This objective compels the interaction latent to encode interaction-dependent modulation sufficient to transform monologic motion into dyadic motion and vice versa. 
+
+Cycle Consistency. We further enforce factorization consis-tency by re-encoding synthesized motions. Semantics consis-tency is imposed on all four outputs: 
+
+Lsem-cyc = X
+
+> i∈{ m2m,m 2d,d 2m,d 2d}
+
+∥ES (ˆ xi) − ssrc (i)∥2, (11) where src (i) denotes the original semantics source. Since the interaction encoder is trained only on dyadic motion, interaction cycle consistency is enforced for dyadic-interaction outputs: 
+
+Lint-cyc = ∥EI (ˆ xm2d) − zd∥2 + ∥EI (ˆ xd2d) − zd∥2. (12) These constraints prevent information leakage between seman-tics and interaction representations. 
+
+Overall objective. The final factorization loss is therefore defined as: 
+
+Lfact = Lrec +λswap Lswap +λsem Lsem-cyc +λint Lint-cyc +λKL LKL .
+
+(13) This unified factorization objective yields a latent space in which dyadic interaction is represented by latents that are decoupled from speech-driven semantics. 
+
+C. Cross-Attentive Dual-Audio Interaction Latent Prediction 
+
+With the factorized motion representation learned above, we further learn a variational mapping from dual-speaker audio to the interaction manifold via a Cross-Attentive Dual-Audio Interaction Latent Prediction module. 
+
+Audio-to-Interaction Encoder. Let a1, a2 ∈ RT ×Da denote Wav2Vec2 features extracted from the two audio streams. In dyadic conversations, interaction is not a unary property attributable to either speaker alone; instead, it emerges from their mutual coordination and feedback. To capture such bidirectional dependency, we adopt a symmetric dual-stream Transformer with shared weights, in which intra-stream tem-poral modeling and inter-stream coupling are disentangled by design. Concretely, at each Transformer block, the two streams are updated in parallel as 
+
+h′ 
+
+> 1
+
+= h1 + SA (h1) + CA (Q = h1, K = h2, V = h2),
+
+h′ 
+
+> 2
+
+= h2 + SA (h2) + CA (Q = h2, K = h1, V = h1). (14) Here, SA captures the temporal evolution within each speaker (e.g., prosodic dynamics and long-range acoustic structure), while CA explicitly conditions each stream on its interlocutor, encoding reciprocal coupling. This architectural separation prevents holistic entanglement of within-speaker dynamics and cross-speaker interaction cues, and encourages the model to represent interaction as relational modulation rather than independent temporal patterns. We prepend a learnable [CLS] 
+
+token to each stream to aggregate global conversational con-text. After L layers, the [CLS] embeddings are projected to Gaussian parameters, from which the audio-conditioned interaction latent za is sampled via reparameterization to match the stochastic interaction formulation learned in the motion space. 
+
+Training Objective for Interaction Latent Prediction. Dur-ing training, we freeze the motion factorization model (i.e., 
+
+ES , EI , and D) learned in the previous step. Given amonologic semantics embedding sm and the predicted audio interaction latent za, we generate dyadic motion as 
+
+ˆxa→d = D(sm, za). (15) 
+
+Motion Reconstruction Loss. We supervise the generated mo-tion against the ground-truth dyadic motion: 
+
+Lmotion = ∥ˆxa→d − xd∥2. (16) This term ensures that the predicted interaction latent induces motion modulation consistent with the dyadic interaction dy-namics observed in data. 
+
+Cross-modal Interaction Alignment Loss. To avoid degenerate solutions where the audio encoder explains dyadic motion solely through reconstruction while drifting away from the in-tended interaction manifold, we explicitly align audio-derived interaction embeddings with motion-derived dyadic interaction embeddings using a contrastive InfoNCE loss: 
+
+LInfoNCE = − log exp( sim (zia, zid)/τ )
+
+P 
+
+> j
+
+exp( sim (zia, zjd)/τ ) , (17) where sim (·, ·) denotes cosine similarity and τ is a temper-ature parameter. This contrastive objective aligns the audio-conditioned interaction distribution with the interaction mani-fold distilled from dyadic motions, enforcing latent-level con-sistency such that interaction inferred from audio corresponds to the same modulation variable used to transform canonical monologic motions. 
+
+Overall objective. The final objective of interaction latent prediction is as: 
+
+Lpred = Lmotion + λInfoNCE LInfoNCE . (18) During inference, the inferred interaction latent za is combined with monologic semantics sm to generate dyadic motion via the decoder, enabling fully audio-driven dyadic genera-tion while remaining plug-and-play compatible with different monologic models. IV. E XPERIMENT 
+
+A. Settings 
+
+Dataset. We evaluate Learn2Chat on the DualTalk dataset [7], a benchmark tailored for audio-driven dyadic head motion gen-eration. DualTalk contains over 50 hours of multi-round con-versations spanning more than 1,000 identities, with isolated IEEE TRANSACTIONS ON VISUALIZATION AND COMPUTER GRAPHICS 6
+
+audio streams and corresponding FLAME parameters [17]. It covers diverse interaction scenarios where speaker–listener roles naturally alternate over time. We follow the official data split and report results on both the standard test set and the out-of-distribution (OOD) set to assess generalization. 
+
+Metrics. Following prior protocols [5]–[7], we adopt a com-prehensive suite of quantitative metrics that measure mo-tion fidelity, prediction accuracy, diversity, and interpersonal temporal coherence. Specifically, motion fidelity is measured by Fréchet Distance (FD) and Paired Fréchet Distance (P-FD). Prediction accuracy is evaluated by Mean Squared Error (MSE) between generated and ground-truth motion parame-ters. Motion diversity is quantified by SI for Diversity (SID). Inter-speaker temporal coordination is assessed using the resid-ual Pearson Correlation Coefficient (rPCC). For more imple-mentation details, we kindly refer readers to the supplementary material. 
+
+B. Comparison with State-of-the-art Methods 
+
+We compare Learn2Chat with representative state-of-the-art approaches for audio-driven head motion generation in conversational settings. The baselines can be grouped into two categories: 
+
+Monologic audio-driven methods. The first group consists of monologic generators that synthesize head motion from a sin-gle audio stream, including FaceFormer [9], CodeTalker [10], SelfTalk [11], DEEPTalk [12], and UniTalker [13]. These methods are designed for single-speaker settings and do not explicitly model interpersonal interaction. For a fair compar-ison, we retrain these models on DualTalk using the same data split and training protocol. At inference, each partic-ipant is synthesized independently from its corresponding audio stream. For methods whose results are directly re-ported under the DualTalk evaluation setup (FaceFormer [9], CodeTalker [10], and SelfTalk [11]), we additionally include the published numbers when directly comparable. 
+
+Dyadic interaction methods. The second group consists of dyadic interaction models, including L2L [5], DIM [6], DualTalk [7], and the recent audio-only framework UniLS [8]. These methods differ in their inference protocols. L2L, DIM, and DualTalk require the partner’s motion as an auxiliary condition during inference, whereas UniLS directly generates both participants’ motions from paired audio streams without requiring motion inputs. To ensure a fair comparison under the audio-only de-ployment setting considered in this work, we adapt only the motion-conditioned methods by replacing the required partner motion with monologic base motions generated by a pretrained monologic model Gmono . Specifically, we em-ploy two representative monologic generators, DEEPTalk [12] and UniTalker [13], using their publicly released pretrained checkpoints to generate the motion conditions. This protocol removes the dependency on unavailable ground-truth partner motions while preserving the original inference pipeline of these methods as closely as possible. In contrast, UniLS is evaluated using its original audio-only inference protocol with-out modification. All baselines are retrained on the DualTalk dataset using the same training split, preprocessing pipeline, and evaluation protocol for a consistent comparison. Table I and Table II summarize the quantitative results on the DualTalk test and OOD splits. Across both evaluation settings and under different monologic backbones, Learn2Chat consistently achieves the best overall performance. Notably, the gains are reflected in motion fidelity, interaction coherence, and temporal coordination, and remain stable under distribu-tion shifts, demonstrating the robustness of our interaction-modulation formulation. 
+
+1) Comparison with Monologic Methods: Monologic base-lines generate each participant independently and therefore lack explicit modeling of interpersonal feedback. Conse-quently, they underperform Learn2Chat across all metrics and motion components. In particular, FD and P-FD are consis-tently higher, indicating a clear distributional gap between independently generated motions and real dyadic behaviors. Inter-speaker coordination is especially weak, as evidenced by substantially worse rPCC. While MSE is relatively less degraded than distributional and coordination metrics, it re-mains consistently inferior to Learn2Chat, suggesting that independent synthesis does not reliably improve even frame-level parameter accuracy. Moreover, although some methods yield non-trivial SID, the absence of structured interaction modeling limits this variability from manifesting as meaning-ful conversational diversity. Overall, these results confirm that monologic generation alone is insufficient for realistic dyadic head motion synthesis. 
+
+2) Comparison with Dyadic Interaction Methods: We com-pare with representative dyadic interaction methods, which can be broadly categorized into motion-conditioned approaches and end-to-end audio-driven approaches. Motion-conditioned methods, including L2L [5], DIM [6], and DualTalk [7], generate conversational motion by explicitly conditioning on the partner’s motion signal. When adapted to the audio-only setting by replacing ground-truth partner motion with monologic base motions, these methods exhibit consistent degradation across FD, P-FD, MSE, and rPCC, indicating a strong reliance on high-fidelity motion supervision and limited robustness under realistic deployment conditions. Although SID can appear relatively higher in some cases, it is often accompanied by noticeable temporal jitter and inconsistent motion trajectories, suggesting that such gains are primarily driven by increased stochastic variation rather than improved interaction modeling. In contrast, UniLS [8] removes the dependency on partner motion and simultaneously learns dyadic motions from paired audio streams. However, this joint learning strategy entangles motion generation and interaction modeling within a unified latent space and requires large-scale dyadic training data, which can make optimization less stable under limited-data scenarios. In our experiments, this is also reflected in performance degradation compared to strong motion-conditioned baselines such as DualTalk [7], suggesting that coupling motion and interaction learning may not be optimal when training data is constrained. Our approach benefits from explicitly reusing pretrained monologic speech-motion priors, providing a more stable and transferable motion foundation, which leads to improved motion fidelity and more IEEE TRANSACTIONS ON VISUALIZATION AND COMPUTER GRAPHICS 7
+
+TABLE I: Comparison of our method with existing approaches on the DualTalk dataset test set. Bold indicates best result. ↓ means lower is better, ↑ means higher is better. 
+
+Methods FD ↓ P-FD ↓ MSE ↓ SID ↑ rPCC ↓
+
+exp jaw 
+
+×10 −3
+
+pose 
+
+×10 −2 exp jaw 
+
+×10 −3
+
+pose 
+
+×10 −2
+
+exp 
+
+×10 −1
+
+jaw 
+
+×10 −3
+
+pose 
+
+×10 −2 exp jaw pose exp 
+
+×10 −2
+
+jaw 
+
+×10 −1
+
+pose 
+
+×10 −1
+
+FaceFormer [9] 34.90 5.40 8.00 34.90 5.40 8.00 6.97 1.80 2.67 0.54 0.36 0.50 13.05 2.41 5.27 CodeTalker [10] 48.57 6.89 10.74 48.57 6.89 10.74 9.71 2.29 3.58 0.00 0.00 0.00 11.06 2.33 5.11 SelfTalk [11] 35.77 5.49 8.14 35.77 5.49 8.14 7.15 1.83 2.71 2.49 1.30 1.28 12.25 2.39 4.70 DEEPTalk [12] 28.24 4.04 7.70 28.85 4.09 7.78 6.32 1.59 2.73 2.58 1.42 1.27 11.57 2.26 4.36 UniTalker [13] 28.04 3.71 7.75 28.67 3.76 7.83 6.34 1.48 2.72 2.35 1.89 1.24 11.44 2.18 4.33 L2L [5](DEEPTalk) 26.10 42.95 0.99 27.03 43.02 1.93 17.14 24.25 5.83 4.06 2.54 3.11 12.78 6.05 3.17 L2L [5](UniTalker) 23.63 36.35 1.66 24.61 36.41 2.65 15.78 21.80 6.30 4.17 2.63 3.05 11.29 5.32 3.23 DIM [6](DEEPTalk) 35.31 5.00 7.90 36.03 5.00 7.90 7.84 2.00 2.70 4.59 1.92 1.02 12.50 2.59 5.40 DIM [6](UniTalker) 38.16 4.98 8.32 38.79 5.04 8.37 8.13 1.79 2.84 4.50 1.93 1.12 13.20 2.74 5.96 DualTalk [7](DEEPTalk) 20.32 3.24 6.42 20.64 3.28 6.47 4.64 1.30 2.25 3.01 1.90 1.22 7.86 1.93 3.87 DualTalk [7](UniTalker) 21.16 3.25 6.37 21.46 3.29 6.42 4.78 1.35 2.24 3.02 2.02 1.22 7.65 1.89 3.94 UniLS [8] 25.48 3.14 7.96 26.45 3.20 8.20 6.22 1.48 3.38 2.79 2.61 1.08 7.33 2.26 4.41 Ours(DEEPTalk) 14.95 1.83 5.78 15.96 1.93 5.97 4.60 1.16 2.19 3.12 2.25 1.38 6.59 1.34 2.58 Ours(UniTalker) 15.58 1.84 5.46 16.58 1.95 5.62 4.62 1.16 2.18 3.10 2.25 1.49 6.99 1.38 2.49 
+
+TABLE II: Comparison of our method with existing approaches on the DualTalk dataset OOD set. Bold indicates best result. ↓ means lower is better, ↑ means higher is better. 
+
+Methods FD ↓ P-FD ↓ MSE ↓ SID ↑ rPCC ↓
+
+exp jaw 
+
+×10 −3
+
+pose 
+
+×10 −2 exp jaw 
+
+×10 −3
+
+pose 
+
+×10 −2
+
+exp 
+
+×10 −1
+
+jaw 
+
+×10 −3
+
+pose 
+
+×10 −2 exp jaw pose exp 
+
+×10 −2
+
+jaw 
+
+×10 −1
+
+pose 
+
+×10 −1
+
+FaceFormer [9] 35.92 5.39 8.60 35.92 5.39 8.60 7.18 1.80 2.87 0.54 0.40 0.51 11.71 2.16 5.73 CodeTalker [10] 50.05 6.95 11.66 50.05 6.95 11.66 10.01 2.32 3.88 0.00 0.00 0.00 10.24 2.18 5.76 SelfTalk [11] 36.23 5.36 8.89 36.23 5.36 8.89 7.24 1.79 2.96 2.61 1.36 1.08 11.26 2.13 5.67 DEEPTalk [12] 29.87 3.63 8.04 30.47 3.68 8.12 6.70 1.50 2.88 2.36 1.96 1.15 10.17 1.89 5.61 UniTalker [13] 30.08 3.98 8.18 30.69 4.04 8.26 6.73 1.58 2.89 2.35 1.76 1.12 10.53 1.98 5.58 L2L [5](DEEPTalk) 27.13 42.76 1.30 29.53 42.81 2.16 17.40 24.14 6.06 3.91 2.61 3.12 15.50 6.00 3.52 L2L [5](UniTalker) 24.63 36.26 2.14 26.99 36.32 3.02 15.99 21.69 6.50 4.09 2.68 3.05 13.90 5.36 3.56 DIM [6](DEEPTalk) 36.59 5.00 8.20 37.29 5.00 8.30 8.12 2.00 2.80 4.27 2.00 1.45 13.10 2.50 5.80 DIM [6](UniTalker) 41.37 4.86 8.76 42.03 4.91 8.81 8.79 1.75 2.98 3.59 1.93 0.77 13.30 2.54 6.32 DualTalk [7](DEEPTalk) 27.58 3.69 7.91 27.92 3.73 7.95 6.16 1.47 2.74 2.77 1.88 1.56 9.04 1.85 5.12 DualTalk [7](UniTalker) 28.17 3.93 7.90 31.11 3.97 7.94 6.78 1.60 2.75 2.65 1.91 1.34 9.22 1.82 4.95 UniLS [8] 26.18 2.92 7.79 27.11 2.98 8.02 6.40 1.42 3.38 2.84 2.62 1.05 7.68 1.92 5.03 Ours(DEEPTalk) 22.34 2.51 6.00 23.41 2.61 6.20 6.24 1.42 2.42 2.79 2.09 1.36 7.72 1.46 2.31 Ours(UniTalker) 22.55 2.50 5.62 23.60 2.59 5.79 6.16 1.40 2.22 2.79 2.07 1.48 7.88 1.46 2.22 
+
+TABLE III: Number of trainable parameters with dyadic methods. Our model strides for a favorable balance between performance and efficiency.           
+
+> Methods Ours L2L [5] DIM [6] DualTalk [7] UniLS [8]
+> # Params/M 48.13 18.47 114.93 638.82 421.3
+
+reliable cross-speaker coordination, especially under OOD evaluation. Overall, motion-conditioned methods struggle with missing motion supervision, while end-to-end dyadic models are data-hungry and tend to entangle motion and interaction learning. In comparison, Learn2Chat achieves more robust performance by leveraging prior reuse and decoupling inter-action modeling from motion generation through structured adaptation over a pretrained monologic motion space. We further compare the number of trainable parameters among dif-ferent dyadic methods, as summarized in Table III. Although our model contains slightly more parameters than L2L [5], it achieves substantially better performance. In contrast to DIM [6], DualTalk [7] and UniLS [8], our approach is sig-nificantly more parameter-efficient, requiring less than 42%, 8% and 11% of their trainable parameters, respectively. These results demonstrate a favorable balance between effectiveness and efficiency. 
+
+3) Qualitative Comparison: Fig. 3 provides a qualitative comparison. Compared with existing methods, Learn2Chat produces more natural motions with improved interaction coherence, better reflecting realistic conversational dynamics and cross-speaker temporal coordination. More visual results are available on the project page. To assess the perceptual quality of the generated head motions, we conduct a user study comparing our method with several baseline approaches. The evaluation focuses on three aspects of conversational animation: lip synchronization, interaction naturalness, and overall motion quality. We ran-domly select a set of 20 conversational audio clips from the Test / OOD split of the DualTalk dataset [7] and generate the corresponding head motion sequences using our method and the baseline models. All sequences are rendered with the same 3D head model, lighting, and camera configuration to ensure consistent visual conditions. Each clip contains the IEEE TRANSACTIONS ON VISUALIZATION AND COMPUTER GRAPHICS 8DeepTalk GT  L2L UniTalker  DualTalk DIM  Ours UniLS 
+
+Fig. 3: Qualitative comparison of generated dyadic head motion sequences across different methods. Our approach produces more natural and interaction-coherent behaviors that better align with real conversational dynamics. TABLE IV: Ablation study on motion factorization and interaction latent prediction design. The results demonstrate the effectiveness of the proposed monologic-anchored motion factorization and cross-attentive Interaction latent prediction module.                                                                                                                   
+
+> FD ↓P-FD ↓MSE ↓SID ↑rPCC ↓
+> Methods exp jaw pose exp jaw pose exp jaw pose exp jaw pose exp jaw pose
+> Ours 14.95 1.83 5.78 15.96 1.93 5.97 4.60 1.16 2.19 3.12 2.25 1.38 6.59 1.34 2.58
+> w/o Motion Factorization 24.53 3.20 6.47 25.27 3.27 6.55 6.01 1.51 2.63 2.63 2.56 1.12 10.28 1.99 4.00 Test
+> w Single-Stream Encoder 19.42 2.11 6.70 18.51 2.23 6.79 5.34 1.31 2.37 2.74 2.56 1.01 8.07 1.69 3.14 Ours 22.34 2.51 6.00 23.41 2.61 6.20 6.24 0.60 2.42 2.79 2.09 1.36 7.72 1.46 2.31
+> w/o Motion Factorization 26.57 3.12 8.15 27.30 3.19 8.03 6.98 1.61 2.93 2.43 1.74 0.89 9.42 1.73 4.83 OOD
+> w Single-Stream Encoder 24.91 2.93 6.88 27.15 3.05 7.02 6.48 1.50 2.76 2.58 1.93 1.20 9.06 1.78 3.01
+
+full interaction between two speakers and lasts around 20 
+
+∼ 30 seconds to ensure sufficient context for evaluation. For each trial, participants watch video clips generated by different methods for the same conversation segment. The presentation order is randomized to avoid ordering bias. Participants independently rate each clip according to three criteria. Lip synchronization measures how well the head motion aligns with the rhythm and articulation of speech. Interaction naturalness evaluates whether the two speakers exhibit realistic conversational coordination. Overall quality reflects the general realism and visual plausibility of the animation. All ratings are collected using a five point Likert scale, where 1 indicates poor quality and 5 indicates excellent quality. A total of 25 participants with normal or corrected to normal vision took part in the study. The results in Fig. 4 show that our method consistently receives higher scores across all evaluation criteria, with the most noticeable improvement in interaction naturalness and overall quality. Compared with monologic methods (DEEPTalk [12], UniTalker [13]), our method shows significant improvements in interaction natural-ness while preserving decent lip synchronization, which can be attributed to our explicit modeling of interaction dynamics and the disentangled representation learning that captures the underlying semantics of speech and interaction. For some dyadic methods like L2L [5] and DIM [6], without extra input of interlocutor’s motion as an anchor, the generated head motions struggle to capture interaction dynamics and shows significant degradation across all criteria. DualTalk [7] performs better than other non-end-to-end dyadic baselines, but still falls short of our method in both motion fidelity and coordination quality. UniLS [8] provides a strong end-to-end audio-driven baseline. However, with limited dyadic training data, its joint modeling of motion generation and interaction within a unified latent space tends to entangle speech-driven motion semantics with interaction cues, which may limit explicit modeling of interaction structure and lead to less precise coordination compared to our approach. This outcome indicates that the proposed framework produces more realistic and coordinated conversational head motions than the compared methods. IEEE TRANSACTIONS ON VISUALIZATION AND COMPUTER GRAPHICS 9
+
+TABLE V: Ablations on the monologic-anchored motion factorization learning scheme. Reconstruction performance under different loss configurations, validating the necessity of each component for effective semantics-interaction disentanglement and demonstrating their complementary contributions to stable representation learning. 
+
+FD ↓ P-FD ↓ MSE ↓ SID ↑ rPCC ↓
+
+Methods exp jaw pose exp jaw pose exp jaw pose exp jaw pose exp jaw pose 
+
+Ours(Recon) 7.44 0.40 2.51 8.16 0.45 2.48 2.80 0.56 0.86 3.66 2.75 2.21 3.31 0.57 1.84 
+
+w/o Lrec 8.92 0.58 2.97 9.61 0.62 2.95 3.64 0.72 1.09 3.21 2.40 1.88 4.12 0.73 2.21 w/o Lswap 8.37 0.49 2.83 9.25 0.54 2.79 3.18 0.63 0.98 3.48 2.61 2.02 3.78 0.69 2.05 w/o Lsem-cyc 8.17 0.47 2.72 8.93 0.51 2.70 3.09 0.60 0.92 3.42 2.64 2.05 3.59 0.65 1.98 w/o Lint-cyc 8.26 0.47 2.79 9.04 0.53 2.75 3.12 0.62 0.95 3.30 2.56 1.99 3.60 0.70 2.07 
+
+Test 
+
+w/o LKL 7.68 0.41 2.56 8.36 0.46 2.53 2.88 0.58 0.88 3.74 2.81 2.29 3.44 0.60 1.91 Ours(Recon) 8.01 0.46 3.07 8.71 0.51 3.12 3.00 0.60 1.11 3.68 2.74 2.10 3.75 0.63 2.04 
+
+w/o Lrec 9.84 0.61 3.64 10.66 0.64 3.58 3.92 0.79 1.34 3.18 2.28 1.79 4.63 0.81 2.47 w/o Lswap 9.22 0.55 3.41 10.10 0.60 3.35 3.58 0.72 1.22 3.39 2.42 1.86 4.24 0.75 2.32 w/o Lsem-cyc 8.94 0.52 3.29 9.78 0.57 3.22 3.41 0.68 1.15 3.44 2.45 1.93 4.02 0.72 2.24 w/o Lint-cyc 9.05 0.53 3.35 9.92 0.59 3.28 3.47 0.70 1.18 3.29 2.38 1.90 4.10 0.76 2.30 
+
+OOD 
+
+w/o LKL 8.24 0.47 3.13 8.94 0.52 3.18 3.09 0.62 1.14 3.78 2.85 2.23 3.88 0.67 2.12 5%  
+
+> 4%
+> 23%
+> 25%
+> 6%
+> 5%
+> 2%
+> 14%
+> 10%
+> 36%
+> 38%
+> 16%
+> 14%
+> 6%
+> 26%
+> 23%
+> 27%
+> 25%
+> 33%
+> 30%
+> 16%
+> 37%
+> 39%
+> 11%
+> 9%
+> 31%
+> 35%
+> 40%
+> 18%
+> 24%
+> 3%
+> 3%
+> 14%
+> 16%
+> 36%
+> UniLS
+> DualTalk
+> DIM
+> L2L
+> UniTalker
+> DEEPTalk
+> Ours
+> Interaction Naturalness
+> 3%
+> 4%
+> 34%
+> 38%
+> 11%
+> 10%
+> 2%
+> 7%
+> 11%
+> 39%
+> 40%
+> 25%
+> 24%
+> 5%
+> 27%
+> 24%
+> 18%
+> 15%
+> 35%
+> 36%
+> 14%
+> 36%
+> 37%
+> 7%
+> 5%
+> 21%
+> 22%
+> 38%
+> 27%
+> 24%
+> 2%
+> 2%
+> 8%
+> 8%
+> 41%
+> UniLS
+> DualTalk
+> DIM
+> L2L
+> UniTalker
+> DEEPTalk
+> Ours
+> Lip Synchronization
+> 3%
+> 5%
+> 34%
+> 38%
+> 11%
+> 10%
+> 1%
+> 11%
+> 12%
+> 39%
+> 40%
+> 25%
+> 24%
+> 5%
+> 24%
+> 22%
+> 18%
+> 15%
+> 35%
+> 36%
+> 15%
+> 40%
+> 36%
+> 7%
+> 5%
+> 21%
+> 22%
+> 38%
+> 22%
+> 25%
+> 2%
+> 2%
+> 8%
+> 8%
+> 41%
+> UniLS
+> DualTalk
+> DIM
+> L2L
+> UniTalker
+> DEEPTalk
+> Ours
+> Overall Quality
+
+Fig. 4: User study on lip synchronization, interaction naturalness, and overall quality. Our method consistently outperforms the compared methods across all evaluation cri-teria. 
+
+C. Ablation Study 
+
+In this section, we conduct in-depth ablations to validate the contribution of our key design choices. 
+
+Effectiveness of the Interaction-Modulated Framework. 
+
+We examine the necessity of interaction modulation by remov-ing the motion factorization stage (w/o Motion Factorization) and learning the audio-to-interaction mapping directly. As shown in Table IV, this variant consistently degrades motion fidelity and inter-speaker coordination. This indicates that, without an explicit factorized interaction space anchored by monologic priors, the model is prone to conflating speech-driven dynamics with partner-conditioned modulation, leading to unstable and less coherent conversational behaviors. In contrast, learning an interaction latent that modulates canonical monologic motions provides a structured pathway to encode interpersonal cues while preserving speech alignment. 
+
+Effectiveness of Monologic-Anchored Motion Factorization Learning Scheme. We next ablate the objectives used to learn the proposed monologic-anchored factorization, isolating the contribution of each loss term. Since this factorization defines the disentangled semantics-interaction space used for interaction modulation, its reconstruction quality directly re-flects how well interaction is separated from speech-driven motion. As shown in Table V, removing Lrec causes the most severe degradation, confirming that domain-consistent reconstruction is essential to preserve motion information while stabilizing the decomposition. Excluding Lswap mainly worsens FD/P-FD, validating its role in enforcing cross-domain recombination and attributing domain discrepancy to the interaction latent. Removing Lsem -cyc or Lint -cyc yields moderate drops, indicating that cycle-consistency constraints help suppress information leakage and improve robustness. Finally, ablating LKL slightly degrades FD/P-FD and rPCC while inflating SID, suggesting that distribution regularization encourages a compact interaction manifold and reduces noise-induced variability. 
+
+Effectiveness of Cross-Attentive Interaction Latent Predic-tion Module. We further validate the cross-attentive interac-tion latent prediction module by replacing the proposed dual-stream encoder with a single-stream variant (w Single-Stream Encoder) that concatenates the two speakers’ audio features and feeds them into a shared encoder. As shown in Table IV, this replacement leads to a pronounced performance drop, particularly on coordination-related metrics. This supports our design choice that dual-stream cross-attention is critical for capturing bidirectional acoustic dependencies and predicting interaction as relational coupling, rather than conflating within-speaker temporal dynamics with cross-speaker cues in a single entangled stream. V. L IMITATIONS AND FUTURE WORK 
+
+A current limitation is that the framework focuses on head motion and models interaction primarily through audio signals. Future work will explore extending the approach to richer conversational behaviors, such as full-body gestures, gaze dynamics, and multimodal conversational cues, toward more comprehensive and socially aware interactive avatars. IEEE TRANSACTIONS ON VISUALIZATION AND COMPUTER GRAPHICS 10 
+
+VI. C ONCLUSION 
+
+We present Learn2Chat, a unified framework for audio-driven dyadic head motion generation that models conver-sational behavior as interaction modulation over pretrained monologic motion priors. By explicitly separating speech-driven motion dynamics from partner-conditioned interaction signals, Learn2Chat alleviates the signal conflation inherent in holistic dyadic learning and produces temporally stable, synchronized conversational motions. The framework distills clean interaction representations from dyadic motion via a monologic-anchored factorization scheme and predicts in-teraction latents directly from paired audio through cross-attentive coupling. Experiments on the DualTalk benchmark demonstrate consistent improvements over prior methods in motion fidelity, diversity, and inter-speaker coordination. REFERENCES [1] S. Orts-Escolano, C. Rhemann, S. Fanello, W. Chang, A. Kowdle, Y. Degtyarev, D. Kim, P. L. Davidson, S. Khamis, M. Dou et al. ,“Holoportation: Virtual 3d teleportation in real-time,” in Proceedings of the 29th annual symposium on user interface software and technology ,2016, pp. 741–754. [2] S. Lombardi, J. Saragih, T. Simon, and Y. Sheikh, “Deep appearance models for face rendering,” ACM Transactions on Graphics (ToG) ,vol. 37, no. 4, pp. 1–13, 2018. [3] J. Cassell, “Embodied conversational agents: representation and intelli-gence in user interfaces,” AI magazine , vol. 22, no. 4, pp. 67–67, 2001. [4] H. Hasenfuss, “Reshaping thinking for shape-shifting technology: Adapting a mas agent design to encourage user engagement,” in In-ternational Conference on Computer-Human Interaction Research and Applications . Springer, 2020, pp. 32–53. [5] E. Ng, H. Joo, L. Hu, H. Li, T. Darrell, A. Kanazawa, and S. Ginosar, “Learning to listen: Modeling non-deterministic dyadic facial motion,” in Proceedings of the IEEE/CVF conference on computer vision and pattern recognition , 2022, pp. 20 395–20 405. [6] M. Tran, D. Chang, M. Siniukov, and M. Soleymani, “Dim: Dyadic interaction modeling for social behavior generation,” in European Con-ference on Computer Vision . Springer, 2024, pp. 484–503. [7] Z. Peng, Y. Fan, H. Wu, X. Wang, H. Liu, J. He, and Z. Fan, “Dualtalk: Dual-speaker interaction for 3d talking head conversations,” in Proceed-ings of the Computer Vision and Pattern Recognition Conference , 2025, pp. 21 055–21 064. [8] X. Chu, R. Liu, Y. Huang, Y. Liu, Y. Peng, and B. Zheng, “Unils: End-to-end audio-driven avatars for unified listening and speaking,” arXiv preprint arXiv:2512.09327 , 2025. [9] Y. Fan, Z. Lin, J. Saito, W. Wang, and T. Komura, “Faceformer: Speech-driven 3d facial animation with transformers,” in Proceedings of the IEEE/CVF conference on computer vision and pattern recognition , 2022, pp. 18 770–18 780. [10] J. Xing, M. Xia, Y. Zhang, X. Cun, J. Wang, and T.-T. Wong, “Codetalker: Speech-driven 3d facial animation with discrete motion prior,” in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , 2023, pp. 12 780–12 790. [11] Z. Peng, Y. Luo, Y. Shi, H. Xu, X. Zhu, H. Liu, J. He, and Z. Fan, “Selftalk: A self-supervised commutative training diagram to compre-hend 3d talking faces,” in Proceedings of the 31st ACM International Conference on Multimedia , 2023, pp. 5292–5301. [12] J. Kim, J. Cho, J. Park, S. Hwang, D. E. Kim, G. Kim, and Y. Yu, “Deeptalk: Dynamic emotion embedding for probabilistic speech-driven 3d face animation,” in Proceedings of the AAAI conference on artificial intelligence , vol. 39, no. 4, 2025, pp. 4275–4283. [13] X. Fan, J. Li, Z. Lin, W. Xiao, and L. Yang, “Unitalker: Scaling up audio-driven 3d facial animation through a unified model,” in European Conference on Computer Vision . Springer, 2024, pp. 204–221. [14] P. Edwards, C. Landreth, E. Fiume, and K. Singh, “Jali: an animator-centric viseme model for expressive lip synchronization,” ACM Trans-actions on graphics (TOG) , vol. 35, no. 4, pp. 1–11, 2016. [15] S. L. Taylor, M. Mahler, B.-J. Theobald, and I. Matthews, “Dy-namic units of visual speech,” in Proceedings of the 11th ACM SIG-GRAPH/Eurographics conference on Computer Animation , 2012, pp. 275–284. [16] Y. Xu, A. W. Feng, S. Marsella, and A. Shapiro, “A practical and configurable lip sync method for games,” in Proceedings of Motion on Games , 2013, pp. 131–140. [17] T. Li, T. Bolkart, M. J. Black, H. Li, and J. Romero, “Learning a model of facial shape and expression from 4d scans.” ACM Trans. Graph. ,vol. 36, no. 6, pp. 194–1, 2017. [18] D. Cudeiro, T. Bolkart, C. Laidlaw, A. Ranjan, and M. J. Black, “Capture, learning, and synthesis of 3d speaking styles,” in Proceedings of the IEEE/CVF conference on computer vision and pattern recognition ,2019, pp. 10 101–10 111. [19] P. Chen, X. Wei, M. Lu, Y. Zhu, N. Yao, X. Xiao, and H. Chen, “Diffusiontalker: Personalization and acceleration for speech-driven 3d face diffuser,” arXiv preprint arXiv:2311.16565 , 2023. [20] Z. Peng, H. Wu, Z. Song, H. Xu, X. Zhu, J. He, H. Liu, and Z. Fan, “Emotalk: Speech-driven emotional disentanglement for 3d face animation,” in Proceedings of the IEEE/CVF international conference on computer vision , 2023, pp. 20 687–20 697. [21] K. Shen, H. Xia, G. Geng, G. Geng, S. Xia, and Z. Ding, “Deitalk: Speech-driven 3d facial animation with dynamic emotional intensity modeling,” in Proceedings of the 32nd ACM international conference on multimedia , 2024, pp. 10 506–10 514. [22] S. Stan, K. I. Haque, and Z. Yumak, “Facediffuser: Speech-driven 3d facial animation synthesis using diffusion,” in Proceedings of the 16th ACM SIGGRAPH Conference on Motion, Interaction and Games , 2023, pp. 1–11. [23] E. Ng, J. Romero, T. Bagautdinov, S. Bai, T. Darrell, A. Kanazawa, and A. Richard, “From audio to photoreal embodiment: Synthesizing humans in conversations,” in Proceedings of the IEEE/CVF conference on computer vision and pattern recognition , 2024, pp. 1001–1010. [24] E. Ng, S. Subramanian, D. Klein, A. Kanazawa, T. Darrell, and S. Ginosar, “Can language models learn to listen?” in Proceedings of the IEEE/CVF International Conference on Computer Vision , 2023, pp. 10 083–10 093. [25] H. Wu, Z. Peng, X. Zhou, Y. Cheng, J. He, H. Liu, and Z. Fan, “Vgg-tex: A vivid geometry-guided facial texture estimation model for high fidelity monocular 3d face reconstruction,” arXiv preprint arXiv:2409.09740 ,2024. [26] M. Zhou, Y. Bai, W. Zhang, T. Yao, T. Zhao, and T. Mei, “Responsive listening head generation: a benchmark dataset and baseline,” in Euro-pean conference on computer vision . Springer, 2022, pp. 124–142. [27] Y. Chai, T. Shao, Y. Weng, and K. Zhou, “Personalized audio-driven 3d facial animation via style-content disentanglement,” IEEE Transactions on Visualization and Computer Graphics , vol. 30, no. 3, pp. 1803–1820, 2022. [28] W. Song, X. Wang, S. Zheng, S. Li, A. Hao, and X. Hou, “Talkingstyle: personalized speech-driven 3d facial animation with style preservation,” 
+
+IEEE Transactions on Visualization and Computer Graphics , 2024. [29] D. Wang, Y. Deng, Z. Yin, H.-Y. Shum, and B. Wang, “Progressive disentangled representation learning for fine-grained controllable talk-ing head synthesis,” in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , 2023, pp. 17 979–17 989. [30] H. Fu, Z. Wang, K. Gong, K. Wang, T. Chen, H. Li, H. Zeng, and W. Kang, “Mimic: Speaking style disentanglement for speech-driven 3d facial animation,” in Proceedings of the AAAI conference on artificial intelligence , vol. 38, no. 2, 2024, pp. 1770–1777. [31] X. Liang, Y. Fan, Q. Yang, X. Wang, W. Gao, and G. Li, “Dgtalker: Disentangled generative latent space learning for audio-driven gaussian talking heads,” in Proceedings of the IEEE/CVF International Confer-ence on Computer Vision , 2025, pp. 11 079–11 088. [32] B. Wang, Y. Xu, H. Zhao, H. Zhang, and Z. Zhang, “Ptalker: Personal-ized speech-driven 3d talking head animation via style disentanglement and modality alignment,” in Proceedings of the 33rd ACM International Conference on Multimedia , 2025, pp. 10 334–10 342. [33] S. Tan, B. Ji, M. Bi, and Y. Pan, “Edtalk: Efficient disentanglement for emotional talking head synthesis,” in European Conference on Computer Vision . Springer, 2024, pp. 398–416. [34] C. Liu, Q. Lin, Z. Zeng, and Y. Pan, “Emoface: Audio-driven emotional 3d face animation,” in 2024 IEEE Conference Virtual Reality and 3D User Interfaces (VR) . IEEE, 2024, pp. 387–397. [35] Q. Liu, H. Kim, and G. Bharaj, “Content and style aware audio-driven facial animation,” arXiv preprint arXiv:2408.07005 , 2024. [36] K. Aberman, Y. Weng, D. Lischinski, D. Cohen-Or, and B. Chen, “Un-paired motion style transfer from video to animation,” ACM Transactions On Graphics (TOG) , vol. 39, no. 4, pp. 64–1, 2020. [37] W. Song, X. Jin, S. Li, C. Chen, A. Hao, X. Hou, N. Li, and H. Qin, “Arbitrary motion style transfer with multi-condition motion IEEE TRANSACTIONS ON VISUALIZATION AND COMPUTER GRAPHICS 11 
+
+latent diffusion model,” in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , 2024, pp. 821–830. [38] Z. Wu, S. Mao, C. Zhang, Y. Wang, and M. Zeng, “Contrastive disentanglement for self-supervised motion style transfer,” Multimedia Tools and Applications , vol. 83, no. 27, pp. 70 523–70 544, 2024. [39] L. Zhong, Y. Xie, V. Jampani, D. Sun, and H. Jiang, “Smoodi: Stylized motion diffusion model,” in European conference on computer vision .Springer, 2024, pp. 405–421. [40] B. Kim, J. Kim, H. J. Chang, and J. Y. Choi, “Most: Motion style transformer between diverse action contents,” in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition ,2024, pp. 1705–1714. [41] Y. Wang, H. Mo, and C. Gao, “Difusion: Flexible stylized motion generation using digest-and-fusion scheme,” IEEE Transactions on Vi-sualization and Computer Graphics , 2025. [42] M. Petrovich, O. Litany, U. Iqbal, M. J. Black, G. Varol, X. Bin Peng, and D. Rempe, “Multi-track timeline control for text-driven 3d human motion generation,” in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , 2024, pp. 1911–1921. [43] S. Ghorbani, Y. Ferstl, D. Holden, N. F. Troje, and M.-A. Carbonneau, “Zeroeggs: Zero-shot example-based gesture generation from speech,” in Computer Graphics Forum , vol. 42, no. 1. Wiley Online Library, 2023, pp. 206–216. [44] T. Ao, Q. Gao, Y. Lou, B. Chen, and L. Liu, “Rhythmic gesticulator: Rhythm-aware co-speech gesture synthesis with hierarchical neural embeddings,” ACM Transactions on Graphics (TOG) , vol. 41, no. 6, pp. 1–19, 2022. [45] H. Liu, N. Iwamoto, Z. Zhu, Z. Li, Y. Zhou, E. Bozkurt, and B. Zheng, “Disco: Disentangled implicit content and rhythm learning for diverse co-speech gestures synthesis,” in Proceedings of the 30th ACM interna-tional conference on multimedia , 2022, pp. 3764–3773. [46] C. Fu, Y. Wang, J. Zhang, Z. Jiang, X. Mao, J. Wu, W. Cao, C. Wang, Y. Ge, and Y. Liu, “Mambagesture: Enhancing co-speech gesture generation with mamba and disentangled multi-modality fusion,” in 
+
+Proceedings of the 32nd ACM International Conference on Multimedia ,2024, pp. 10 794–10 803. 
+
+Zikai Huang is currently pursuing a Ph.D. degree in the School of Computer Science and Engineering, South China University of Technology. His research interests include computer vision, computer graphics and multimodal learning. 
+
+Siyue Chen is currently an undergraduate student in the School of Design, South China University of Technology. Her research interests include 3D vision, mechanistic interpretability, and language models. 
+
+Xuemiao Xu received the BS and MS degrees in computer science and engineering from South China University of Technology, in 2002 and 2005, respec-tively, and the PhD degree in computer science and engineering from The Chinese University of Hong Kong in 2009. She is currently a professor with the School of Computer Science and Engineering, South China University of Technology. Her research interests include object detection, tracking, recogni-tion, and image, video understanding and synthesis, particularly their applications in the intelligent trans-portation. 
+
+Haoxin Yang received his Ph.D. degree from the School of Computer Science & Engineering, South China University of Technology. He obtained his B.Sc. and M.Sc. degrees from South China Agri-cultural University and Shenzhen University in 2019 and 2022, respectively. 
+
+Cheng Xu received his Ph.D. degree in computer science and technology from South China University of Technology, China, in 2023. He is currently a Research Scientist at Singapore Management Uni-versity. Prior to this, he was a Post-Doctoral Fellow at The Hong Kong Polytechnic University from 2023 to 2026. His research interests primarily include human-centric visual representation, understanding, and generation. 
+
+Yihong Lin received the B.Sc. and M.Sc. degrees from South China University of Technology in 2022 and 2025, respectively. He is currently pursuing the Ph.D. degree with the School of Computer Science and Engineering at the same university. His research interests include 3D reconstruction and generative modeling. 
+
+Shengfeng He (Senior Member, IEEE) is an as-sociate professor in the School of Computing and Information Systems at Singapore Management Uni-versity. He earned his B.Sc. and M.Sc. from Macau University of Science and Technology (2009, 2011) and a Ph.D. from City University of Hong Kong (2015). His research focuses on computer vision and generative models. He has received awards including the Google Research Award (2024), PerCom 2024 Best Paper Award, and the Lee Kong Chian Fellow-ship (2024, 2026). He is a senior IEEE member and a distinguished CCF member. He serves as the Associate Editor-in-Chief of Neurocomputing, lead guest editor for IJCV, and associate editor for IEEE TPAMI. He is a senior area chair for NeurIPS, an area chair for CVPR, NeurIPS, ICLR, ICML, AAAI, IJCAI, and the Conference Chair of Pacific Graphics 2026. IEEE TRANSACTIONS ON VISUALIZATION AND COMPUTER GRAPHICS 1
+
+# Learn2Chat: Rethinking Dyadic Talking Heads via Interaction-Modulated Monologic Priors - Supplementary Materials -
+
+Zikai Huang, Siyue Chen, Xuemiao Xu, Haoxin Yang, Cheng Xu, Yihong Lin, and Shengfeng He, Senior Member, IEEE 
+
+In this supplementary material, we provide additional imple-mentation details of Learn2Chat in Section I, including motion and audio representations as well as training configurations. We further present additional analyses of role-specific interac-tion behaviors in Section II and evaluate the cross-backbone generalization capability of Learn2Chat in Section III, demon-strating the effectiveness of the learned interaction modulation across different pretrained monologic motion models. I. I MPLEMENTATION DETAILS 
+
+A. Motion and Audio Representation 
+
+Following prior works [5], [9], [10], [13], we represent 3D head motion using the FLAME model [6], which provides a widely adopted parametric representation for facial and head dynamics. To better model the dynamics of neck pose movements, we predict the relative rotation of the neck pose with respect to the first frame of the sequence, rather than the absolute rotation. When inferencing the head motion, we can reconstruct the absolute neck pose by accumulating the predicted relative rotations over time base on the initial neck pose. This formulation enables consistent modeling of head motion trajectories across different sequences. For audio representation, we extract speech features using the pretrained Wav2Vec2.0 model [1]. These features capture high-level speech characteristics and have been demonstrated to be effec-tive for audio-driven motion generation in previous studies [3], [4], [10]–[12], [14]. 
+
+B. Training Details 
+
+All experiments are implemented in PyTorch 2.4.1 and trained on 4 NVIDIA 4090D GPUs. We adopt the AdamW optimizer [8] with a learning rate of 1e-4 and a batch size of 64. During training, motion sequences are sampled using a fixed non-overlap temporal window of 200 frames with a frame rate of 25 fps. The training process follows a two-stage strategy. We first pretrain the Semantics Encoder and Semantics-Interaction Decoder to establish a robust disentan-gled representation that effectively captures the underlying semantics of speech and interaction dynamics. This pretraining phase is crucial for ensuring that the subsequent interaction modeling can effectively leverage the learned representations and is trained for 3000 epochs. After the pretraining phase, we fix the parameters of the Semantics Encoder and Semantics-Interaction Decoder to preserve the learned disentangled rep-resentations. We then proceed to train the Audio-to-Interaction Encoder for an additional 1000 epochs. To balance the training of different loss components, we adopt an automatic weighted mechanism [2], [7]. The adaptive loss weight for each loss term is defined as follows: 
+
+λi = 12ω2
+
+> i
+
+Li + log(1 + ωi), (1) where ωi denotes a learnable weight parameter for each loss term Li. The adaptive loss weight strategy allows the model to automatically balance the contributions of different loss components during training, leading to improved convergence and better overall performance. II. A NALYSIS OF LISTENER BEHAVIOR 
+
+To further analyze the granularity of learned interaction behaviors, we utilize separate audio tracks to infer speaker and listener roles and report role-specific evaluation metrics. As shown in Table I, our method consistently improves per-formance on listener-role motion generation compared with monologic baselines. These improvements indicate that the model is able to generate responsive and context-aware listener motions rather than defaulting to static or purely speech-driven behaviors during non-speaking intervals. In particular, the gains in both motion fidelity and diversity suggest that listener-side motions are dynamically modulated by conversational context, reflecting more adaptive interaction-aware generation. III. G ENERALIZATION ACROSS MONOLOGIC BACKBONES 
+
+We further evaluate the generalization capability of Learn2Chat across different monologic motion predictors. As shown in Table II, we train Learn2Chat with one pretrained monologic generator and replace it with another at inference time. The results remain stable across different backbone combinations, demonstrating that the learned interaction mod-ulation is not tied to a specific monologic model. This suggests that Learn2Chat operates on a transferable speech-semantic motion space and can effectively adapt interaction modeling across different pretrained motion priors without retraining. IEEE TRANSACTIONS ON VISUALIZATION AND COMPUTER GRAPHICS 2
+
+TABLE I: Evaluation on listener motion generation. Learn2Chat consistently improves listener motion fidelity and diversity over monologic baselines on the Test/OOD set, demonstrating responsive and context-aware interaction behaviors. 
+
+Methods FD ↓ P-FD ↓ MSE ↓ SID ↑ rPCC ↓
+
+exp jaw 
+
+×10 −3
+
+pose 
+
+×10 −2 exp jaw 
+
+×10 −3
+
+pose 
+
+×10 −2
+
+exp 
+
+×10 −1
+
+jaw 
+
+×10 −3
+
+pose 
+
+×10 −2 exp jaw pose exp 
+
+×10 −2
+
+jaw 
+
+×10 −1
+
+pose 
+
+×10 −1
+
+DEEPTalk [5] 30.98/31.54 5.31/5.26 3.00/2.85 31.02/31.82 5.31/5.27 3.24/3.07 6.72/6.81 1.76/1.75 2.05/2.04 1.42/1.46 1.44/1.32 1.67/1.68 15.88/15.35 2.48/2.16 2.09/1.85 UniTalker [3] 30.79/31.08 5.30/5.28 2.91/2.79 30.79/31.07 5.30/5.26 3.14/3.01 6.74/6.82 1.77/1.75 1.85/1.86 1.43/1.51 1.39/1.38 1.72/1.74 15.75/15.18 2.49/2.12 2.58/2.12 Ours(DEEPTalk [5]) 15.50/22.85 1.80/2.62 2.13/2.01 16.61/23.98 1.91/2.72 2.36/2.23 4.53/6.14 1.11/1.41 1.57/1.59 3.02/2.70 2.22/2.04 1.87/1.85 6.89/7.70 1.38/1.49 1.62/1.41 Ours(UniTalker [3]) 15.08/22.97 1.80/2.67 2.43/2.34 16.23/24.14 1.91/2.78 2.67/2.56 4.55/6.29 1.12/1.44 1.71/1.73 3.05/2.73 2.23/2.01 1.75/1.70 6.62/7.46 1.39/1.51 1.57/1.38 
+
+TABLE II: Cross-backbone generalization of Learn2Chat. Ours([A]@[B]) denotes training with backbone A and inference with backbone B on the Test/OOD set. The stable performance across different backbone combinations demonstrates that the learned interaction modulation is transferable and backbone-agnostic.                 
+
+> Methods FD ↓P-FD ↓MSE ↓SID ↑rPCC ↓
+> exp jaw
+> ×10 −3
+> pose
+> ×10 −2exp jaw
+> ×10 −3
+> pose
+> ×10 −2
+> exp
+> ×10 −1
+> jaw
+> ×10 −3
+> pose
+> ×10 −2exp jaw pose exp
+> ×10 −2
+> jaw
+> ×10 −1
+> pose
+> ×10 −1
+> Ours(DEEPTalk [5]@UniTalker [3]) 15.05/22.66 2.23/3.03 6.01/6.12 16.09/23.76 2.33/3.13 5.98/6.44 4.63/6.32 1.31/1.60 2.34/2.64 3.07/2.75 2.09/1.92 1.80/1.75 6.87/7.63 1.46/1.52 2.70/2.52 Ours(UniTalker [3]@DEEPTalk [5]) 15.78/23.00 1.86/2.54 5.46/5.65 16.80/24.07 1.96/2.64 5.82/5.82 4.68/6.27 1.18/1.42 2.27/2.53 3.07/2.76 2.24/2.05 1.39/1.36 6.96/7.91 1.39/1.50 2.59/2.49
+
+REFERENCES [1] Baevski, A., Zhou, Y., Mohamed, A., Auli, M.: wav2vec 2.0: A frame-work for self-supervised learning of speech representations. Advances in neural information processing systems 33 , 12449–12460 (2020) [2] Chen, Z., Shen, Y., Cao, L., Zhang, S., Ji, R.: Clip-driven transformer for weakly supervised object localization. IEEE Transactions on Pattern Analysis and Machine Intelligence (2025) [3] Fan, X., Li, J., Lin, Z., Xiao, W., Yang, L.: Unitalker: Scaling up audio-driven 3d facial animation through a unified model. In: European Conference on Computer Vision. pp. 204–221. Springer (2024) [4] He, Q., Ji, X., Gong, Y., Lu, Y., Diao, Z., Huang, L., Yao, Y., Zhu, S., Ma, Z., Xu, S., et al.: Emotalk3d: High-fidelity free-view synthesis of emotional 3d talking head. In: European Conference on Computer Vision. pp. 55–72. Springer (2024) [5] Kim, J., Cho, J., Park, J., Hwang, S., Kim, D.E., Kim, G., Yu, Y.: Deeptalk: Dynamic emotion embedding for probabilistic speech-driven 3d face animation. In: Proceedings of the AAAI conference on artificial intelligence. vol. 39, pp. 4275–4283 (2025) [6] Li, T., Bolkart, T., Black, M.J., Li, H., Romero, J.: Learning a model of facial shape and expression from 4d scans. ACM Trans. Graph. 36 (6), 194–1 (2017) [7] Liebel, L., Körner, M.: Auxiliary tasks in multi-task learning. arXiv preprint arXiv:1805.06334 (2018) [8] Loshchilov, I., Hutter, F.: Decoupled weight decay regularization. arXiv preprint arXiv:1711.05101 (2017) [9] Ng, E., Joo, H., Hu, L., Li, H., Darrell, T., Kanazawa, A., Ginosar, S.: Learning to listen: Modeling non-deterministic dyadic facial motion. In: Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. pp. 20395–20405 (2022) [10] Peng, Z., Fan, Y., Wu, H., Wang, X., Liu, H., He, J., Fan, Z.: Dualtalk: Dual-speaker interaction for 3d talking head conversations. In: Proceed-ings of the Computer Vision and Pattern Recognition Conference. pp. 21055–21064 (2025) [11] Peng, Z., Hu, W., Shi, Y., Zhu, X., Zhang, X., Zhao, H., He, J., Liu, H., Fan, Z.: Synctalk: The devil is in the synchronization for talking head synthesis. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 666–676 (2024) [12] Sun, X., Zhang, L., Zhu, H., Zhang, P., Zhang, B., Ji, X., Zhou, K., Gao, D., Bo, L., Cao, X.: Vividtalk: One-shot audio-driven talking head generation based on 3d hybrid prior. In: 2025 International Conference on 3D Vision (3DV). pp. 713–722. IEEE (2025) [13] Tran, M., Chang, D., Siniukov, M., Soleymani, M.: Dim: Dyadic interac-tion modeling for social behavior generation. In: European Conference on Computer Vision. pp. 484–503. Springer (2024) [14] Wang, H., Weng, Y., Li, Y., Guo, Z., Du, J., Niu, S., Ma, J., He, S., Wu, X., Hu, Q., et al.: Emotivetalk: Expressive talking head generation through audio information decoupling and emotional video diffusion. In: Proceedings of the Computer Vision and Pattern Recognition Con-ference. pp. 26212–26221 (2025)

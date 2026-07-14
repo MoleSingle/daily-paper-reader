@@ -1,0 +1,54 @@
+{
+  "label": "2026-07-14",
+  "date": "2026-07-14",
+  "generated_at": "2026-07-14T20:35:23",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202607/14/2607.10313v1-learn2chat-rethinking-dyadic-talking-heads-via-interaction-modulated-monologic-priors",
+      "section": "deep",
+      "title_en": "Learn2Chat: Rethinking Dyadic Talking Heads via Interaction-Modulated Monologic Priors",
+      "authors": "Zikai Huang, Siyue Chen, Xuemiao Xu, Haoxin Yang, Cheng Xu, Yihong Lin, Shengfeng He",
+      "date": "2026-07-11",
+      "pdf": "https://arxiv.org/pdf/2607.10313v1",
+      "score": "9.0",
+      "evidence": "对话式数字人头部生成，结合语音驱动运动",
+      "tldr": "双人对话头部生成中，统一模型易将自我语音驱动与社交反馈耦合，未充分利用预训练独白模型能力。Learn2Chat将对话运动建模为对预训练独白先验的交互调制，通过单锚定运动分解分离音频驱动与交互效应，再以跨注意力机制预测交互潜变量。在DualTalk基准上定量与感知评估均达SOTA，且框架与多种独白骨干兼容。该工作凸显先验重用与交互适配对可扩展对话运动生成的价值。",
+      "tags": "query:talking-head",
+      "abstract_en": "Dyadic conversational motion generation is essential for realistic interactive digital humans. Existing approaches typically model conversational behaviors within unified dyadic generators. However, such holistic formulations tend to couple self-speech-driven motion with partner-responsive social feedback, leaving the interaction-specific component implicit and underutilizing the speech-motion correspondence already learned by pretrained monologic motion models. We propose Learn2Chat, a unified framework that models dyadic motion as interaction modulation over pretrained monologic motion priors. This design separates intrinsic speech-driven motion from social interaction effects and enables more structured interaction modeling. Specifically, we introduce a Monologic-Anchored Motion Factorization scheme that leverages the semantic motion manifold learned from monologic data to disentangle audio-driven motion dynamics from interaction-induced modulation, yielding clean interaction representations from dyadic sequences. On top of this representation space, a Cross-Attentive Interaction Latent Prediction module maps paired speech signals to interaction latents through cross-branch attention and interaction alignment. During inference, the predicted interaction latents modulate canonical monologic motion to generate coherent and synchronized dyadic behaviors in a data-efficient manner. Extensive experiments on the DualTalk benchmark demonstrate that Learn2Chat achieves state-of-the-art performance across both quantitative metrics and perceptual evaluations. Moreover, the framework is model-agnostic and seamlessly integrates with diverse pretrained monologic motion backbones, highlighting the effectiveness of prior reuse and interaction adaptation for scalable conversational motion generation. More visual results are available on the project page.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/14/2607.10370v1-neural-motion-blending-across-arbitrary-character-topologies",
+      "section": "quick",
+      "title_en": "Neural Motion Blending Across Arbitrary Character Topologies",
+      "authors": "Luca Cazzola, Giulia Martinelli, Nicola Conci",
+      "date": "2026-07-11",
+      "pdf": "https://arxiv.org/pdf/2607.10370v1",
+      "score": "7.0",
+      "evidence": "面向任意角色拓扑的运动混合方法，可用于虚拟角色动画",
+      "tldr": "当前运动混合方法受限于相同或相似的骨架结构，无法处理异构骨架。本文提出结合语义编码器与扩散解码器的框架，通过插值帧级潜变量实现异构骨架运动混合。在Truebones Zoo数据集上，该方法在不同拓扑结构间生成了平滑合理的混合运动。该工作拓展了运动混合的通用性，支持跨任意角色拓扑的动画合成。",
+      "tags": "query:talking-head",
+      "abstract_en": "Motion blending in character animation enables the synthesis of new motions by interpolating between existing examples. Current methods are typically restricted to fixed skeleton topologies, requiring identical or near-identical skeletal structures across characters. We present a novel framework for motion blending across heterogeneous skeletons. The proposed architecture combines a semantic encoder, which extracts per-frame latent representations of the motion state, with a diffusion-based decoder, which reconstructs character-specific motion conditioned on this latent code. At inference, blended motions are obtained by interpolating the latent representations of two input motions. We train and evaluate the method on the Truebones Zoo dataset using motions defined on both same and distinct skeleton topologies, demonstrating the ability to achieve smooth and plausible blending in a variety of scenarios.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/14/2607.11688v1-automated-synthesis-of-facial-mechanisms-for-conversational-animatronic-robots",
+      "section": "quick",
+      "title_en": "Automated Synthesis of Facial Mechanisms for Conversational Animatronic Robots",
+      "authors": "Zongzheng Zhang, Zi Lin, Jiawen Yang, Ziqiao Peng, Junyan Lao, Lin Cheng, Huazhe Xu, Hang Zhao, Hao Zhao",
+      "date": "2026-07-13",
+      "pdf": "https://arxiv.org/pdf/2607.11688v1",
+      "score": "6.0",
+      "evidence": "自动合成动画机器人面部机构，与数字人头像创建相关",
+      "tldr": "现有拟人机器人脸需针对每个面部几何手动机械设计，成本高、速度慢。本文提出参数化连杆驱动机械脸模板，支持系统化缩放与重定向；并设计分层自动合成算法，从单张2D肖像重建3D脸，生成无碰撞可制造机构。同时开发双身份对话面部运动合成框架，联合建模说话与倾听行为。实验验证了自动机制合成在不同面部几何上的有效性，对比人工设计表现更优，且对话运动合成可实时部署，用户研究认可其表现力。",
+      "tags": "query:talking-head",
+      "abstract_en": "Animatronic faces are a central component of socially interactive robots, enabling rich nonverbal communication through facial articulation. However, state-of-the-art animatronic faces are typically tailored systems: each new facial geometry requires extensive manual mechanical redesign, making large-scale personalization prohibitively slow and costly. In this work, we pursue automated and scalable mechanical face synthesis, aiming to rapidly generate a physically realizable facial mechanism for a wide range of facial geometries. We introduce a parametric, linkage-driven mechanical face template whose topology and actuator layout are explicitly parameterized to support systematic scaling and retargeting across diverse facial morphologies. Building on this template, we propose a hierarchical automatic design algorithm that takes a single 2D portrait as input, reconstructs a target 3D face, and synthesizes a collision-free, manufacturable internal mechanism. The algorithm combines anatomy-guided feasible motion volumes, Action Unit (AU)-derived trajectory-based expressiveness objectives, and a collision-driven outer-loop refinement strategy. Beyond hardware synthesis, we argue that future mechanical faces deployed at scale must engage in bidirectional, multi-turn conversation rather than functioning solely as speaking or listening heads. To this end, we develop a dual-identity conversational facial motion synthesis framework that jointly models speaking and listening behaviors from audio, producing temporally coherent 3D facial motion suitable for physical execution. We validate our system through extensive experiments, including (i) quantitative evaluation of automatic mechanism synthesis across diverse facial geometries, (ii) comparisons against manual mechanical design, (iii) benchmarks on conversational facial motion synthesis and real-time deployment, and (iv) perceptual user studies.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

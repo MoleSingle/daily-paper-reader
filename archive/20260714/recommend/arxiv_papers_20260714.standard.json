@@ -1,0 +1,139 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-14T20:31:53.216895+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2607.10313v1",
+      "source": "arxiv",
+      "title": "Learn2Chat: Rethinking Dyadic Talking Heads via Interaction-Modulated Monologic Priors",
+      "abstract": "Dyadic conversational motion generation is essential for realistic interactive digital humans. Existing approaches typically model conversational behaviors within unified dyadic generators. However, such holistic formulations tend to couple self-speech-driven motion with partner-responsive social feedback, leaving the interaction-specific component implicit and underutilizing the speech-motion correspondence already learned by pretrained monologic motion models. We propose Learn2Chat, a unified framework that models dyadic motion as interaction modulation over pretrained monologic motion priors. This design separates intrinsic speech-driven motion from social interaction effects and enables more structured interaction modeling. Specifically, we introduce a Monologic-Anchored Motion Factorization scheme that leverages the semantic motion manifold learned from monologic data to disentangle audio-driven motion dynamics from interaction-induced modulation, yielding clean interaction representations from dyadic sequences. On top of this representation space, a Cross-Attentive Interaction Latent Prediction module maps paired speech signals to interaction latents through cross-branch attention and interaction alignment. During inference, the predicted interaction latents modulate canonical monologic motion to generate coherent and synchronized dyadic behaviors in a data-efficient manner. Extensive experiments on the DualTalk benchmark demonstrate that Learn2Chat achieves state-of-the-art performance across both quantitative metrics and perceptual evaluations. Moreover, the framework is model-agnostic and seamlessly integrates with diverse pretrained monologic motion backbones, highlighting the effectiveness of prior reuse and interaction adaptation for scalable conversational motion generation. More visual results are available on the project page.",
+      "authors": [
+        "Zikai Huang",
+        "Siyue Chen",
+        "Xuemiao Xu",
+        "Haoxin Yang",
+        "Cheng Xu",
+        "Yihong Lin",
+        "Shengfeng He"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.SD"
+      ],
+      "published": "2026-07-11T13:38:20+00:00",
+      "link": "https://arxiv.org/pdf/2607.10313v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "dyadic talking heads generation with speech-driven motion",
+      "llm_evidence_cn": "对话式数字人头部生成，结合语音驱动运动",
+      "llm_evidence": "对话式数字人头部生成，结合语音驱动运动",
+      "canonical_evidence": "对话式数字人头部生成，结合语音驱动运动",
+      "llm_tldr_en": "Learn2Chat rethinks dyadic talking head generation by separating speech-driven motion from social interaction using pretrained monologic priors, enabling more structured and realistic digital human avatars.",
+      "llm_tldr_cn": "现有对话式数字人头部生成方法将自我语音驱动动作与社交互动响应耦合在一起，导致交互特定隐含且未充分利用预训练的单人运动模型。为此，本文提出Learn2Chat框架，通过将对话运动建模为对预训练单人运动先验的交互调制，分离了固有语音驱动运动与社会交互影响。实验表明该方法能够生成更自然、更具交互感的对话式数字人头部动画，为音频驱动面部动画领域提供了新范式。",
+      "llm_tldr": "现有对话式数字人头部生成方法将自我语音驱动动作与社交互动响应耦合在一起，导致交互特定隐含且未充分利用预训练的单人运动模型。为此，本文提出Learn2Chat框架，通过将对话运动建模为对预训练单人运动先验的交互调制，分离了固有语音驱动运动与社会交互影响。实验表明该方法能够生成更自然、更具交互感的对话式数字人头部动画，为音频驱动面部动画领域提供了新范式。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.10370v1",
+      "source": "arxiv",
+      "title": "Neural Motion Blending Across Arbitrary Character Topologies",
+      "abstract": "Motion blending in character animation enables the synthesis of new motions by interpolating between existing examples. Current methods are typically restricted to fixed skeleton topologies, requiring identical or near-identical skeletal structures across characters. We present a novel framework for motion blending across heterogeneous skeletons. The proposed architecture combines a semantic encoder, which extracts per-frame latent representations of the motion state, with a diffusion-based decoder, which reconstructs character-specific motion conditioned on this latent code. At inference, blended motions are obtained by interpolating the latent representations of two input motions. We train and evaluate the method on the Truebones Zoo dataset using motions defined on both same and distinct skeleton topologies, demonstrating the ability to achieve smooth and plausible blending in a variety of scenarios.",
+      "authors": [
+        "Luca Cazzola",
+        "Giulia Martinelli",
+        "Nicola Conci"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-07-11T15:46:13+00:00",
+      "link": "https://arxiv.org/pdf/2607.10370v1",
+      "tags": [
+        "keyword:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "motion blending method for arbitrary character topologies useful for avatar animation",
+      "llm_evidence_cn": "面向任意角色拓扑的运动混合方法，可用于虚拟角色动画",
+      "llm_evidence": "面向任意角色拓扑的运动混合方法，可用于虚拟角色动画",
+      "canonical_evidence": "面向任意角色拓扑的运动混合方法，可用于虚拟角色动画",
+      "llm_tldr_en": "Proposes a neural motion blending framework that works across heterogeneous skeletons using a semantic encoder and diffusion decoder, enabling latent-space interpolation for character animation.",
+      "llm_tldr_cn": "现有运动混合方法通常要求骨架拓扑一致，限制了不同角色间的动画迁移。本文提出一种跨异构骨架的运动混合框架，通过语义编码器提取运动潜表示，并利用扩散解码器重构特定角色运动，在潜空间插值实现混合。在Truebones Zoo数据集上的实验验证了该方法能有效融合不同角色的运动，为数字人动画生成提供了通用工具。",
+      "llm_tldr": "现有运动混合方法通常要求骨架拓扑一致，限制了不同角色间的动画迁移。本文提出一种跨异构骨架的运动混合框架，通过语义编码器提取运动潜表示，并利用扩散解码器重构特定角色运动，在潜空间插值实现混合。在Truebones Zoo数据集上的实验验证了该方法能有效融合不同角色的运动，为数字人动画生成提供了通用工具。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.11688v1",
+      "source": "arxiv",
+      "title": "Automated Synthesis of Facial Mechanisms for Conversational Animatronic Robots",
+      "abstract": "Animatronic faces are a central component of socially interactive robots, enabling rich nonverbal communication through facial articulation. However, state-of-the-art animatronic faces are typically tailored systems: each new facial geometry requires extensive manual mechanical redesign, making large-scale personalization prohibitively slow and costly. In this work, we pursue automated and scalable mechanical face synthesis, aiming to rapidly generate a physically realizable facial mechanism for a wide range of facial geometries. We introduce a parametric, linkage-driven mechanical face template whose topology and actuator layout are explicitly parameterized to support systematic scaling and retargeting across diverse facial morphologies. Building on this template, we propose a hierarchical automatic design algorithm that takes a single 2D portrait as input, reconstructs a target 3D face, and synthesizes a collision-free, manufacturable internal mechanism. The algorithm combines anatomy-guided feasible motion volumes, Action Unit (AU)-derived trajectory-based expressiveness objectives, and a collision-driven outer-loop refinement strategy. Beyond hardware synthesis, we argue that future mechanical faces deployed at scale must engage in bidirectional, multi-turn conversation rather than functioning solely as speaking or listening heads. To this end, we develop a dual-identity conversational facial motion synthesis framework that jointly models speaking and listening behaviors from audio, producing temporally coherent 3D facial motion suitable for physical execution. We validate our system through extensive experiments, including (i) quantitative evaluation of automatic mechanism synthesis across diverse facial geometries, (ii) comparisons against manual mechanical design, (iii) benchmarks on conversational facial motion synthesis and real-time deployment, and (iv) perceptual user studies.",
+      "authors": [
+        "Zongzheng Zhang",
+        "Zi Lin",
+        "Jiawen Yang",
+        "Ziqiao Peng",
+        "Junyan Lao",
+        "Lin Cheng",
+        "Huazhe Xu",
+        "Hang Zhao",
+        "Hao Zhao"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-13T15:22:46+00:00",
+      "link": "https://arxiv.org/pdf/2607.11688v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "automated synthesis of facial mechanisms for animatronic robots, relevant to digital human avatar creation",
+      "llm_evidence_cn": "自动合成动画机器人面部机构，与数字人头像创建相关",
+      "llm_evidence": "自动合成动画机器人面部机构，与数字人头像创建相关",
+      "canonical_evidence": "自动合成动画机器人面部机构，与数字人头像创建相关",
+      "llm_tldr_en": "This paper introduces a parametric linkage-driven template for automated synthesis of facial mechanisms for animatronic robots, enabling rapid personalization of digital or physical avatars.",
+      "llm_tldr_cn": "现有的动画机器人面部需要大量手工机械设计，难以大规模个性化。本文提出一种参数化连杆驱动的机械面模板，能够根据不同的面部几何自动生成可制造的面部机构，支持快速重定向。该方法不仅适用于实体机器人，其设计原理也可推广至数字化身的面部动画合成，为数字人创建提供自动化思路。",
+      "llm_tldr": "现有的动画机器人面部需要大量手工机械设计，难以大规模个性化。本文提出一种参数化连杆驱动的机械面模板，能够根据不同的面部几何自动生成可制造的面部机构，支持快速重定向。该方法不仅适用于实体机器人，其设计原理也可推广至数字化身的面部动画合成，为数字人创建提供自动化思路。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
