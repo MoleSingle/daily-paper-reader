@@ -1,0 +1,54 @@
+{
+  "label": "2026-07-15",
+  "date": "2026-07-15",
+  "generated_at": "2026-07-15T20:41:48",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202607/15/2607.12329v1-real-time-generation-of-listener-nodding-via-prediction-of-kinematic-parameters-for-avatar-dialogue-systems",
+      "section": "deep",
+      "title_en": "Real-time Generation of Listener Nodding via Prediction of Kinematic Parameters for Avatar Dialogue Systems",
+      "authors": "Kazushi Kato, Koji Inoue, Taiga Mori, Divesh Lala, Tatsuya Kawahara",
+      "date": "2026-07-14",
+      "pdf": "https://arxiv.org/pdf/2607.12329v1",
+      "score": "8.0",
+      "evidence": "为头像对话系统实时生成听众点头，增强数字人交互自然性",
+      "tldr": "对话中点头等非语言信号对自然交互至关重要，但现有方法仅预测点头时机，缺乏运动特征。本文提出双模块模型，利用双通道注意力网络同时预测点头的时机和运动参数，其中运动参数预测模块通过微调时机预测模块初始化。集成到虚拟人系统后，主观评价表明该方法显著优于随机时机和固定动作的基准，实现了上下文相关的实时点头生成，且模型轻量可部署。",
+      "tags": "query:talking-head",
+      "abstract_en": "In human dialogue, we achieve smooth communication by expressing nonverbal cues such as eye contact, nodding, and facial expressions with precise timing. It is expected for conversational avatars to express these cues appropriately to realize natural and human-like interactions. This study focuses on nodding, which is crucial for demonstrating active listening and encouraging further user utterances. We propose a model that predicts both timing and kinematic parameters representing the motion features of listener nodding in real time. The proposed model consists of a timing prediction module and a kinematic parameter prediction module. Each implements a dyadic attention network over the speaker and listener channels based on the technique of Voice Activity Projection (VAP). Unlike conventional models, this approach enables real-time prediction of kinematic parameters based on the specific context of the dialogue rather than just predicting the timing. Furthermore, we demonstrate the effectiveness of fine-tuning the kinematic parameter prediction module initialized from the trained timing prediction module. The proposed model is lightweight and capable of real-time operation, and it has been integrated into an avatar dialogue system. Subjective evaluation experiments shows that our proposed method significantly outperforms both a baseline with stochastic timing and another with fixed-motion nodding. The code and trained models are available at https://github.com/MaAI-Kyoto/MaAI.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/15/2607.12206v1-reghead-non-humanoid-head-blendshapes-via-feed-forward-registration",
+      "section": "quick",
+      "title_en": "RegHead: Non-Humanoid Head Blendshapes via Feed-Forward Registration",
+      "authors": "Jiahao Luo, Hao Zhang, Jianqi Chen, Yijie He, Jiaxu Zou, Michael Vasilkovsky, Sergei Korolev, Sergey Tulyakov, Chaoyang Wang, Peter Wonka, James Davis, Jian Wang",
+      "date": "2026-07-13",
+      "pdf": "https://arxiv.org/pdf/2607.12206v1",
+      "score": "6.0",
+      "evidence": "非人形头部动画数据集与方法，可用于数字人研究",
+      "tldr": "针对非人形头部角色表情动画中构建语义blendshape集成本高昂的问题，RegHead框架提出大规模数据集、密集锚点运动表示和前馈配准模型，仅需中性形状即可快速生成对应点一致的blendshape基。该方法在保真度上超越基线，速度提升数个数量级，并支持从人类面部信号实时重定向至非人形角色，为跨身份表情重定向提供了高效解决方案。",
+      "tags": "query:talking-head",
+      "abstract_en": "We present RegHead, a framework for constructing semantic blendshape sets for animatable non-humanoid head avatars. With a fixed expression vocabulary, semantic blendshapes provide a low-dimensional and interpretable animation interface and support cross-identity retargeting. Building such blendshape sets remains expensive because (i) expression-consistent supervision is scarce, (ii) generated 4D assets typically lack correspondence, and (iii) facial motion is highly localized. We propose (1) a large-scale dataset of non-humanoid identities paired with a shared expression vocabulary, obtained by expanding a small artist-rigged library via fine-tuned image editing; (2) a dense stochastic anchor motion representation tailored to localized facial deformations; and (3) a fast feed-forward registration model that converts unregistered expression meshes into a corresponded blendshape basis by predicting anchor-based deformations from the neutral shape. Experiments show that our approach produces higher-fidelity expression meshes than baselines, while running orders of magnitude faster than optimization. We further demonstrate real-time retargeting from human face tracking signals to non-humanoid characters, capturing both head pose and localized facial motions. Our project page is available at https://snap-research.github.io/RegHead/.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/15/2607.12496v1-zipl-dialog-memory-efficient-long-form-spoken-dialog-synthesis-via-latent-flow-matching",
+      "section": "quick",
+      "title_en": "ZipL-Dialog: Memory-Efficient Long-Form Spoken Dialog Synthesis via Latent Flow Matching",
+      "authors": "Jihwan Kim, Nam Soo Kim",
+      "date": "2026-07-14",
+      "pdf": "https://arxiv.org/pdf/2607.12496v1",
+      "score": "6.0",
+      "evidence": "音频驱动的对话合成方法，可用于说话头音频生成",
+      "tldr": "长篇对话合成面临密集mel频谱图上的内存瓶颈。ZipL-Dialog将条件流匹配转移到4倍时间压缩的25Hz潜在空间，结合确定性mel自编码器和分层下采样优化。实验显示峰值GPU内存降低11.22倍，推理加速2.23倍，同时保持感知自然度。该方法实现了单遍多分钟对话的高效合成。",
+      "tags": "query:talking-head",
+      "abstract_en": "Zero-shot dialog TTS benefits from flow-matching, but minute-scale generation on dense mel-spectrograms causes severe memory bottlenecks, often forcing unnatural chunked synthesis. We propose ZipL-Dialog, which shifts conditional flow-matching into a 4x time-compressed (25 Hz) latent space. To preserve acoustic fidelity under compression, we employ a deterministic mel autoencoder with auxiliary mel-domain supervision and optimize the ZipFormer's hierarchical downsampling schedule. Experiments show that ZipL-Dialog reduces maximum peak GPU memory by 11.22x and accelerates inference by 2.23x over the baseline, substantially lowering the memory footprint of single-pass multi-minute dialog synthesis while maintaining perceptual naturalness.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
