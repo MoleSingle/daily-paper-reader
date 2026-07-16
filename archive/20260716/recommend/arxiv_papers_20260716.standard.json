@@ -1,0 +1,146 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-16T21:11:41.522615+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2607.12206v1",
+      "source": "arxiv",
+      "title": "RegHead: Non-Humanoid Head Blendshapes via Feed-Forward Registration",
+      "abstract": "We present RegHead, a framework for constructing semantic blendshape sets for animatable non-humanoid head avatars. With a fixed expression vocabulary, semantic blendshapes provide a low-dimensional and interpretable animation interface and support cross-identity retargeting. Building such blendshape sets remains expensive because (i) expression-consistent supervision is scarce, (ii) generated 4D assets typically lack correspondence, and (iii) facial motion is highly localized. We propose (1) a large-scale dataset of non-humanoid identities paired with a shared expression vocabulary, obtained by expanding a small artist-rigged library via fine-tuned image editing; (2) a dense stochastic anchor motion representation tailored to localized facial deformations; and (3) a fast feed-forward registration model that converts unregistered expression meshes into a corresponded blendshape basis by predicting anchor-based deformations from the neutral shape. Experiments show that our approach produces higher-fidelity expression meshes than baselines, while running orders of magnitude faster than optimization. We further demonstrate real-time retargeting from human face tracking signals to non-humanoid characters, capturing both head pose and localized facial motions. Our project page is available at https://snap-research.github.io/RegHead/.",
+      "authors": [
+        "Jiahao Luo",
+        "Hao Zhang",
+        "Jianqi Chen",
+        "Yijie He",
+        "Jiaxu Zou",
+        "Michael Vasilkovsky",
+        "Sergei Korolev",
+        "Sergey Tulyakov",
+        "Chaoyang Wang",
+        "Peter Wonka",
+        "James Davis",
+        "Jian Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-07-13T23:16:29+00:00",
+      "link": "https://arxiv.org/pdf/2607.12206v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "non-humanoid head avatar blendshapes dataset and animation",
+      "llm_evidence_cn": "非人形头部化身blendshape数据集与动画",
+      "llm_evidence": "非人形头部化身blendshape数据集与动画",
+      "canonical_evidence": "非人形头部化身blendshape数据集与动画",
+      "llm_tldr_en": "RegHead constructs semantic blendshapes for non-humanoid head avatars via feed-forward registration, using a large-scale dataset and dense anchor motion representation, enabling cross-identity retargeting.",
+      "llm_tldr_cn": "针对非人形头部化身动画中blendshape构建成本高昂的问题，RegHead提出前馈注册框架，通过扩展艺术家制作的表情库生成大规模配对数据集，并采用密集随机锚点运动表示捕捉局部形变。实验表明该方法能高效构建语义blendshape集，支持跨身份重定向和可解释动画，为数字人化身创建提供了实用工具。",
+      "llm_tldr": "针对非人形头部化身动画中blendshape构建成本高昂的问题，RegHead提出前馈注册框架，通过扩展艺术家制作的表情库生成大规模配对数据集，并采用密集随机锚点运动表示捕捉局部形变。实验表明该方法能高效构建语义blendshape集，支持跨身份重定向和可解释动画，为数字人化身创建提供了实用工具。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.13357v1",
+      "source": "arxiv",
+      "title": "TANDE: Disentangling Verbal and Nonverbal Backchannels in Emotional AI-Avatar Conversations with Young Adults",
+      "abstract": "Embodied conversational agents (ECAs) need effective empathic grounding to foster social support and engagement. Expanding into emotional domains, ECAs now use Large Language Models (LLMs) and multimodal human-agent interactions to enhance their capabilities. Yet, understanding the impact of backchanneling modalities on young adults and their gender remains limited. We introduce TANDE, an LLM-powered ECA designed for emotional conversations with young adults, a population experiencing mental, personal, and social issues with limited tools to address them. In a within-subjects study with N=36 young adults, we explore nonverbal and combined verbal-and-nonverbal backchanneling modalities on rapport, empathy, and engagement and isolate for gender differences. Our research shows the importance of nuanced backchanneling cues with emotional ECAs with young adults, showing a preference for nonverbal cues. We derive design implications for more effective ECAs for emotional support and well-being in young adults. The code is available at https://github.com/Cornell-Tech-AIRLab/TANDE.",
+      "authors": [
+        "Ann-Kareen Gedeus",
+        "Jack Good",
+        "Nadine Wagener",
+        "Angelique Taylor"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-07-15T00:45:51+00:00",
+      "link": "https://arxiv.org/pdf/2607.13357v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI avatar with verbal/nonverbal backchannels in emotional conversations",
+      "llm_evidence_cn": "情感对话中的AI化身带有言语和非言语反馈",
+      "llm_evidence": "情感对话中的AI化身带有言语和非言语反馈",
+      "canonical_evidence": "情感对话中的AI化身带有言语和非言语反馈",
+      "llm_tldr_en": "TANDE studies backchannel effects in emotional AI-avatar conversations with young adults, showing combined verbal+nonverbal modalities improve rapport and engagement.",
+      "llm_tldr_cn": "针对年轻用户的情感AI化身对话中，言语和非言语反馈的影响尚不明确。TANDE提出大语言模型驱动的ECA系统，通过分离言语和非言语反馈模态进行实验。在36名年轻人中研究发现，结合言语和非言语的反馈能显著提升亲近感和参与度，为情感化数字化身设计提供了实证依据。",
+      "llm_tldr": "针对年轻用户的情感AI化身对话中，言语和非言语反馈的影响尚不明确。TANDE提出大语言模型驱动的ECA系统，通过分离言语和非言语反馈模态进行实验。在36名年轻人中研究发现，结合言语和非言语的反馈能显著提升亲近感和参与度，为情感化数字化身设计提供了实证依据。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.13614v1",
+      "source": "arxiv",
+      "title": "VIP-MINGLE: A Corpus for Videoconference and In-Person Multimodal Interaction in Group Language Engagement",
+      "abstract": "Group conversations are a fundamental yet complex form of social interaction central to human cognition and telecommunication technology. While understanding and facilitating these interactions has been a long-standing goal, findings are often isolated within specific in-person or videoconferencing settings due to a scarcity of datasets that bridge the two. We introduce VIP-MINGLE, a multimodal dataset comprising 59 hours of recordings (32 groups, 105 participants), featuring paired within-subject sessions in both settings. The dataset includes raw audio/video, psychometric data, processed multimodal features (e.g., diarized speech, facial expressions, transcriptions), and time-resolved human annotations. Our analysis reveals significant behavioral distribution shifts across multiple modalities between settings, reinforcing the need for a cross-setting corpus. VIP-MINGLE serves as a critical resource for developing robust models of group conversations across settings.",
+      "authors": [
+        "Andrew Chang",
+        "Abhinay K Bodi",
+        "Wenxin Deng",
+        "Junrui Huang",
+        "Venu G Kadamba",
+        "Sumanth B H Karanam",
+        "Dhiwahar A Kennady",
+        "David Poeppel",
+        "Dustin Freeman"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC",
+        "cs.MM"
+      ],
+      "published": "2026-07-15T09:04:21+00:00",
+      "link": "https://arxiv.org/pdf/2607.13614v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Multimodal dataset of group conversations with video, audio, facial expressions",
+      "llm_evidence_cn": "包含视频、音频和面部表情的多模态小组对话数据集",
+      "llm_evidence": "包含视频、音频和面部表情的多模态小组对话数据集",
+      "canonical_evidence": "包含视频、音频和面部表情的多模态小组对话数据集",
+      "llm_tldr_en": "VIP-MINGLE provides 59 hours of paired videoconference and in-person group conversation data with raw audio/video, diarized speech, facial expressions, and annotations.",
+      "llm_tldr_cn": "现有小组对话数据集通常局限于单一会议模式。VIP-MINGLE包含105名参与者共59小时的面对面和视频会议配对录音，并提供音频、视频、面部表情等特征及人工标注。分析显示两种场景在说话重叠和注视方面存在差异，为多模态对话研究及远程互动设计提供了宝贵资源。",
+      "llm_tldr": "现有小组对话数据集通常局限于单一会议模式。VIP-MINGLE包含105名参与者共59小时的面对面和视频会议配对录音，并提供音频、视频、面部表情等特征及人工标注。分析显示两种场景在说话重叠和注视方面存在差异，为多模态对话研究及远程互动设计提供了宝贵资源。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "dataset for talking head animation",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

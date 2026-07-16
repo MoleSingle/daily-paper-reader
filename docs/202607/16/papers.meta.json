@@ -1,0 +1,54 @@
+{
+  "label": "2026-07-16",
+  "date": "2026-07-16",
+  "generated_at": "2026-07-16T21:14:09",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202607/16/2607.12206v1-reghead-non-humanoid-head-blendshapes-via-feed-forward-registration",
+      "section": "deep",
+      "title_en": "RegHead: Non-Humanoid Head Blendshapes via Feed-Forward Registration",
+      "authors": "Jiahao Luo, Hao Zhang, Jianqi Chen, Yijie He, Jiaxu Zou, Michael Vasilkovsky, Sergei Korolev, Sergey Tulyakov, Chaoyang Wang, Peter Wonka, James Davis, Jian Wang",
+      "date": "2026-07-13",
+      "pdf": "https://arxiv.org/pdf/2607.12206v1",
+      "score": "9.0",
+      "evidence": "非人形头部化身blendshape数据集与动画",
+      "tldr": "非人形头部表情动画因缺乏标注数据和跨身份对应关系而困难。本文提出RegHead框架，通过扩充小型艺术家绑定库生成大规模非人形身份与共享表情词汇配对数据集，设计密集随机锚点运动表示以适应局部面部变形，并训练快速前馈注册模型，从中性形状预测锚点变形，将未注册的表情网格转化为对应的混合形状基。实验表明该方法比基线生成更高质量表情网格，且速度比优化方法快数个数量级，实现从人脸跟踪信号到非人形角色的实时重定向。",
+      "tags": "query:talking-head",
+      "abstract_en": "We present RegHead, a framework for constructing semantic blendshape sets for animatable non-humanoid head avatars. With a fixed expression vocabulary, semantic blendshapes provide a low-dimensional and interpretable animation interface and support cross-identity retargeting. Building such blendshape sets remains expensive because (i) expression-consistent supervision is scarce, (ii) generated 4D assets typically lack correspondence, and (iii) facial motion is highly localized. We propose (1) a large-scale dataset of non-humanoid identities paired with a shared expression vocabulary, obtained by expanding a small artist-rigged library via fine-tuned image editing; (2) a dense stochastic anchor motion representation tailored to localized facial deformations; and (3) a fast feed-forward registration model that converts unregistered expression meshes into a corresponded blendshape basis by predicting anchor-based deformations from the neutral shape. Experiments show that our approach produces higher-fidelity expression meshes than baselines, while running orders of magnitude faster than optimization. We further demonstrate real-time retargeting from human face tracking signals to non-humanoid characters, capturing both head pose and localized facial motions. Our project page is available at https://snap-research.github.io/RegHead/.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/16/2607.13357v1-tande-disentangling-verbal-and-nonverbal-backchannels-in-emotional-ai-avatar-conversations-with-young-adults",
+      "section": "quick",
+      "title_en": "TANDE: Disentangling Verbal and Nonverbal Backchannels in Emotional AI-Avatar Conversations with Young Adults",
+      "authors": "Ann-Kareen Gedeus, Jack Good, Nadine Wagener, Angelique Taylor",
+      "date": "2026-07-15",
+      "pdf": "https://arxiv.org/pdf/2607.13357v1",
+      "score": "6.0",
+      "evidence": "情感对话中的AI化身带有言语和非言语反馈",
+      "tldr": "处于成长关键期的年轻人常面临心理、社交等多重挑战但缺乏有效工具，情感对话代理需有效共情。然而，关于反向通道模态（非语言 vs. 联合语言-非语言）对年轻人情感对话体验的影响尚不明确，且性别差异亟待探索。本文提出TANDE，一个基于LLM的多模态ECA，通过36名年轻人组内实验，比较非语言（如点头、微笑）与联合反向通道对融洽、共情和参与度的影响。结果发现年轻人更偏好非语言反向通道，且非语言模态在共鸣感知上显著优于联合模态，同时表现出性别差异。本研究为设计面向年轻人的情感支持ECA提供了具体设计建议，强调精细化非语言反向通道的重要性。",
+      "tags": "query:talking-head",
+      "abstract_en": "Embodied conversational agents (ECAs) need effective empathic grounding to foster social support and engagement. Expanding into emotional domains, ECAs now use Large Language Models (LLMs) and multimodal human-agent interactions to enhance their capabilities. Yet, understanding the impact of backchanneling modalities on young adults and their gender remains limited. We introduce TANDE, an LLM-powered ECA designed for emotional conversations with young adults, a population experiencing mental, personal, and social issues with limited tools to address them. In a within-subjects study with N=36 young adults, we explore nonverbal and combined verbal-and-nonverbal backchanneling modalities on rapport, empathy, and engagement and isolate for gender differences. Our research shows the importance of nuanced backchanneling cues with emotional ECAs with young adults, showing a preference for nonverbal cues. We derive design implications for more effective ECAs for emotional support and well-being in young adults. The code is available at https://github.com/Cornell-Tech-AIRLab/TANDE.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/16/2607.13614v1-vip-mingle-a-corpus-for-videoconference-and-in-person-multimodal-interaction-in-group-language-engagement",
+      "section": "quick",
+      "title_en": "VIP-MINGLE: A Corpus for Videoconference and In-Person Multimodal Interaction in Group Language Engagement",
+      "authors": "Andrew Chang, Abhinay K Bodi, Wenxin Deng, Junrui Huang, Venu G Kadamba, Sumanth B H Karanam, Dhiwahar A Kennady, David Poeppel, Dustin Freeman",
+      "date": "2026-07-15",
+      "pdf": "https://arxiv.org/pdf/2607.13614v1",
+      "score": "6.0",
+      "evidence": "包含视频、音频和面部表情的多模态小组对话数据集",
+      "tldr": "群聊互动研究常因数据局限于单一场景而受阻。VIP-MINGLE构建了首个配对受试者在面对面与视频会议两种场景下的多模态数据集，涵盖59小时音视频、心理测量及人工标注。分析发现两种场景间语音、表情等多模态行为存在显著分布偏移，凸显跨场景数据的必要性。该数据集为开发鲁棒的跨场景群聊模型提供了关键资源。",
+      "tags": "query:talking-head",
+      "abstract_en": "Group conversations are a fundamental yet complex form of social interaction central to human cognition and telecommunication technology. While understanding and facilitating these interactions has been a long-standing goal, findings are often isolated within specific in-person or videoconferencing settings due to a scarcity of datasets that bridge the two. We introduce VIP-MINGLE, a multimodal dataset comprising 59 hours of recordings (32 groups, 105 participants), featuring paired within-subject sessions in both settings. The dataset includes raw audio/video, psychometric data, processed multimodal features (e.g., diarized speech, facial expressions, transcriptions), and time-resolved human annotations. Our analysis reveals significant behavioral distribution shifts across multiple modalities between settings, reinforcing the need for a cross-setting corpus. VIP-MINGLE serves as a critical resource for developing robust models of group conversations across settings.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
