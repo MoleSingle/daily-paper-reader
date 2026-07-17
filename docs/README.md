@@ -6,29 +6,33 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-16
-- 运行时间：2026-07-16 21:14:02 UTC
+- 最新运行日期：2026-07-17
+- 运行时间：2026-07-17 20:27:04 UTC
 - 运行状态：成功
-- 本次总论文数：3
-- 精读区：1
-- 速读区：2
+- 本次总论文数：4
+- 精读区：0
+- 速读区：4
 
 ### 今日简报（AI）
-今日共精读1篇高影响力论文、速读2篇，核心聚焦非人形头部Blendshape注册与多模态交互语料。最值得关注《RegHead》提出的前馈式非人形面部注册方法（9.0/10），以及《VIP-MINGLE》构建的混合场景多模态互动语料。建议普通读者优先了解《VIP-MINGLE》语料库，未来可应用于AI对话系统或会议分析。
-- 详情：[/202607/16/README](/202607/16/README)
+今日速读4篇论文，聚焦人脸视觉基础模型、视觉语音识别与微表情生成。最值得关注的是《Emergent Region-Level Facial Correspondence》中冻结视觉基础模型的区域级人脸对应发现，以及《VSRo-200》提供的罗马尼亚语视觉语音数据集。建议普通读者优先阅读微表情合成方向，便于理解数据增强创新。
+- 详情：[/202607/17/README](/202607/17/README)
 
 ### 精读区论文标签
-1. [RegHead: Non-Humanoid Head Blendshapes via Feed-Forward Registration](/202607/16/2607.12206v1-reghead-non-humanoid-head-blendshapes-via-feed-forward-registration)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：非人形头部化身blendshape数据集与动画
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [TANDE: Disentangling Verbal and Nonverbal Backchannels in Emotional AI-Avatar Conversations with Young Adults](/202607/16/2607.13357v1-tande-disentangling-verbal-and-nonverbal-backchannels-in-emotional-ai-avatar-conversations-with-young-adults)  
+1. [Emergent Region-Level Facial Correspondence in Frozen Vision Foundation Models](/202607/17/2607.14423v1-emergent-region-level-facial-correspondence-in-frozen-vision-foundation-models)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：人脸区域对应关系，可用于数字人创建
+2. [VSRo-200: A Romanian Visual Speech Recognition Dataset for Studying Supervision and Multimodal Robustness](/202607/17/2607.08112v1-vsro-200-a-romanian-visual-speech-recognition-dataset-for-studying-supervision-and-multimodal-robustness)  
    标签：评分：6.0/10、query:talking-head
-   evidence：情感对话中的AI化身带有言语和非言语反馈
-2. [VIP-MINGLE: A Corpus for Videoconference and In-Person Multimodal Interaction in Group Language Engagement](/202607/16/2607.13614v1-vip-mingle-a-corpus-for-videoconference-and-in-person-multimodal-interaction-in-group-language-engagement)  
+   evidence：大规模视觉语音数据集与基准，可用于交流头研究
+3. [AU-Guided Synthetic Video Generation for Micro-Expression Recognition](/202607/17/2607.10860v1-au-guided-synthetic-video-generation-for-micro-expression-recognition)  
    标签：评分：6.0/10、query:talking-head
-   evidence：包含视频、音频和面部表情的多模态小组对话数据集
+   evidence：基于动作单元引导的微表情合成视频生成
+4. [KeyFrame-Compass: Towards Comprehensive Evaluation of Keyframe-Conditioned Video Generation](/202607/17/2607.14202v1-keyframe-compass-towards-comprehensive-evaluation-of-keyframe-conditioned-video-generation)  
+   标签：评分：6.0/10、query:talking-head
+   evidence：视频生成基准包括talking head相关
 
 
 <div class="dpr-home-promo-card">
