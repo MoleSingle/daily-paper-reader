@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-18",
+  "date": "2026-07-18",
+  "generated_at": "2026-07-18T19:48:50",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/18/2607.09001v1-optimal-transport-based-semantic-alignment-for-llm-based-audio-visual-speech-recognition",
+      "section": "quick",
+      "title_en": "Optimal Transport-based Semantic Alignment for LLM-based Audio-Visual Speech Recognition",
+      "authors": "Xugang Lu, Peng Shen, Yu Tsao, Hisashi Kawai",
+      "date": "2026-07-10",
+      "pdf": "https://arxiv.org/pdf/2607.09001v1",
+      "score": "7.0",
+      "evidence": "音视频语音识别中的语义对齐方法可用于音频驱动面部动画",
+      "tldr": "现有基于大语言模型的视听语音识别（LLM-AVSR）方法通常未显式对齐音频、视觉与文本模态的表示，限制了多模态融合效果。本文提出基于最优传输（OT）的语义对齐框架，通过OT计算模态特征与语言嵌入的耦合矩阵，并用作软伪标签监督对比学习，使提取的特征具有语义一致性和跨模态对齐性。在LRS3-TED基准上，该方法在干净及不同信噪比的噪声条件下均超越强基线，达到当前最优性能。该工作显式弥合了模态表征鸿沟，显著增强了LLM-AVSR的鲁棒性。",
+      "tags": "query:talking-head",
+      "abstract_en": "Large language model (LLM)-based audio-visual speech recognition (LLM-AVSR) has recently demonstrated strong robustness in adverse acoustic environments by leveraging complementary audio and visual information. Existing approaches typically employ independently pretrained acoustic and visual encoders, whose outputs are projected and fused as soft prompts to condition an LLM for speech recognition. However, most methods perform multimodal fusion without explicitly addressing the representational discrepancy between audio, visual and text modalities, potentially limiting the effectiveness of cross-modal integration. In this paper, we propose an optimal transport (OT)-based semantic alignment framework for LLM-AVSR. The proposed method explicitly bridges the modality gap by aligning the acoustic and visual representations with reference to the linguistic embedding space of the LLM before multimodal fusion. Specifically, OT is used to estimate probabilistic coupling matrices that characterize structured correspondences between modality-specific features and linguistic embeddings. The resulting OT couplings are further utilized as soft pseudo-labels to supervise contrastive learning, encouraging the extraction of semantically coherent and cross-modal consistent audio-visual representations. By anchoring multimodal features to the linguistic space of the LLM, the proposed framework facilitates more effective multimodal fusion and decoding. We implement the proposed framework using a Whisper-based acoustic encoder, an AV-HuBERT-based visual encoder, and a LLaMA3.2-3B decoder. Experiments conducted on the LRS3-TED benchmark demonstrate consistent improvements over strong baselines and achieve state-of-the-art performance under both clean and noisy evaluation conditions across a wide range of signal-to-noise ratios (SNRs).",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/18/2607.14189v1-multiref-compass-towards-comprehensive-evaluation-of-multi-reference-to-audio-video-generation",
+      "section": "quick",
+      "title_en": "MultiRef-Compass: Towards Comprehensive Evaluation of Multi-Reference-to-Audio-Video Generation",
+      "authors": "Xiaohan Zhang, Yuqing Wen, Junlin Chen, Yuqi Tang, Yiting He, Lizhuo Shao, Weiming Zhu, Tengfei Liu, Yang Shi, Jialu Chen, Yuanxing Zhang, Huaxiong Li",
+      "date": "2026-07-15",
+      "pdf": "https://arxiv.org/pdf/2607.14189v1",
+      "score": "7.0",
+      "evidence": "多参考音视频生成基准",
+      "tldr": "现有多参考音频视频生成缺乏统一评估基准。本文提出MultiRef-Compass，含350个样本和4维14项指标评估系统。实验表明现有模型在多个维度仍有较大提升空间。该基准为MR2AV研究奠定基础，推动多参考条件生成发展。",
+      "tags": "query:talking-head",
+      "abstract_en": "Multi-reference-to-audio-video (MR2AV) generation aims to generate coherent audio-video content conditioned on multiple references and textual instructions. Existing benchmarks mainly focus on text-driven generation, single-reference subject preservation, or isolated audio-video alignment, leaving the emerging MR2AV setting largely unexplored. Compared with these settings, MR2AV requires models to jointly reason over multiple references while generating synchronized visual and audio content. Models must not only preserve each reference faithfully but also correctly bind and compose multiple referenced entities into coherent audio-visual events. To address this gap, we introduce MultiRef-Compass, a unified benchmark for MR2AV generation. It comprises $350$ carefully curated samples constructed through a scalable and controllable asset-composition pipeline, covering multi-view subject preservation, multi-entity binding, and human-object-scene composition. To provide interpretable assessment, MultiRef-Compass defines an evaluation protocol with four dimensions: Basic Quality, Reference Consistency, Audio-Visual Consistency, and Instruction Following, using 14 sub-metrics. MultiRef-Compass integrates automatic metrics with a rejudging-enhanced MLLM-as-a-Judge framework, enabling scalable and auditable evaluation of both perceptual fidelity and reference-conditioned composition. Extensive experiments on eight representative MR2AV systems reveal substantial room for improvement across multiple evaluation dimensions, underscoring the need for a comprehensive benchmark and positioning MultiRef-Compass as a foundation for future MR2AV research.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

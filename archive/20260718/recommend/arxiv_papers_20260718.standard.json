@@ -1,0 +1,103 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-18T19:47:07.642726+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.09001v1",
+      "source": "arxiv",
+      "title": "Optimal Transport-based Semantic Alignment for LLM-based Audio-Visual Speech Recognition",
+      "abstract": "Large language model (LLM)-based audio-visual speech recognition (LLM-AVSR) has recently demonstrated strong robustness in adverse acoustic environments by leveraging complementary audio and visual information. Existing approaches typically employ independently pretrained acoustic and visual encoders, whose outputs are projected and fused as soft prompts to condition an LLM for speech recognition. However, most methods perform multimodal fusion without explicitly addressing the representational discrepancy between audio, visual and text modalities, potentially limiting the effectiveness of cross-modal integration. In this paper, we propose an optimal transport (OT)-based semantic alignment framework for LLM-AVSR. The proposed method explicitly bridges the modality gap by aligning the acoustic and visual representations with reference to the linguistic embedding space of the LLM before multimodal fusion. Specifically, OT is used to estimate probabilistic coupling matrices that characterize structured correspondences between modality-specific features and linguistic embeddings. The resulting OT couplings are further utilized as soft pseudo-labels to supervise contrastive learning, encouraging the extraction of semantically coherent and cross-modal consistent audio-visual representations. By anchoring multimodal features to the linguistic space of the LLM, the proposed framework facilitates more effective multimodal fusion and decoding. We implement the proposed framework using a Whisper-based acoustic encoder, an AV-HuBERT-based visual encoder, and a LLaMA3.2-3B decoder. Experiments conducted on the LRS3-TED benchmark demonstrate consistent improvements over strong baselines and achieve state-of-the-art performance under both clean and noisy evaluation conditions across a wide range of signal-to-noise ratios (SNRs).",
+      "authors": [
+        "Xugang Lu",
+        "Peng Shen",
+        "Yu Tsao",
+        "Hisashi Kawai"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "eess.AS"
+      ],
+      "published": "2026-07-10T00:07:25+00:00",
+      "link": "https://arxiv.org/pdf/2607.09001v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "audio-visual speech recognition with semantic alignment applicable to audio-driven facial animation",
+      "llm_evidence_cn": "音视频语音识别中的语义对齐方法可用于音频驱动面部动画",
+      "llm_evidence": "音视频语音识别中的语义对齐方法可用于音频驱动面部动画",
+      "canonical_evidence": "音视频语音识别中的语义对齐方法可用于音频驱动面部动画",
+      "llm_tldr_en": "Proposes optimal transport-based semantic alignment for LLM-based audio-visual speech recognition, explicitly addressing representational discrepancy between modalities, which is transferable to audio-driven facial animation for talking heads.",
+      "llm_tldr_cn": "针对现有音视频语音识别方法未显式对齐音频与视觉模态表示的问题，提出基于最优传输的语义对齐框架，通过最小化跨模态特征分布差异来增强融合效果。该方法在鲁棒语音识别任务上取得提升，其核心思想可直接迁移至音频驱动的说话人脸动画生成，为多模态对齐提供通用解决方案。",
+      "llm_tldr": "针对现有音视频语音识别方法未显式对齐音频与视觉模态表示的问题，提出基于最优传输的语义对齐框架，通过最小化跨模态特征分布差异来增强融合效果。该方法在鲁棒语音识别任务上取得提升，其核心思想可直接迁移至音频驱动的说话人脸动画生成，为多模态对齐提供通用解决方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.14189v1",
+      "source": "arxiv",
+      "title": "MultiRef-Compass: Towards Comprehensive Evaluation of Multi-Reference-to-Audio-Video Generation",
+      "abstract": "Multi-reference-to-audio-video (MR2AV) generation aims to generate coherent audio-video content conditioned on multiple references and textual instructions. Existing benchmarks mainly focus on text-driven generation, single-reference subject preservation, or isolated audio-video alignment, leaving the emerging MR2AV setting largely unexplored. Compared with these settings, MR2AV requires models to jointly reason over multiple references while generating synchronized visual and audio content. Models must not only preserve each reference faithfully but also correctly bind and compose multiple referenced entities into coherent audio-visual events. To address this gap, we introduce MultiRef-Compass, a unified benchmark for MR2AV generation. It comprises $350$ carefully curated samples constructed through a scalable and controllable asset-composition pipeline, covering multi-view subject preservation, multi-entity binding, and human-object-scene composition. To provide interpretable assessment, MultiRef-Compass defines an evaluation protocol with four dimensions: Basic Quality, Reference Consistency, Audio-Visual Consistency, and Instruction Following, using 14 sub-metrics. MultiRef-Compass integrates automatic metrics with a rejudging-enhanced MLLM-as-a-Judge framework, enabling scalable and auditable evaluation of both perceptual fidelity and reference-conditioned composition. Extensive experiments on eight representative MR2AV systems reveal substantial room for improvement across multiple evaluation dimensions, underscoring the need for a comprehensive benchmark and positioning MultiRef-Compass as a foundation for future MR2AV research.",
+      "authors": [
+        "Xiaohan Zhang",
+        "Yuqing Wen",
+        "Junlin Chen",
+        "Yuqi Tang",
+        "Yiting He",
+        "Lizhuo Shao",
+        "Weiming Zhu",
+        "Tengfei Liu",
+        "Yang Shi",
+        "Jialu Chen",
+        "Yuanxing Zhang",
+        "Huaxiong Li"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.SD"
+      ],
+      "published": "2026-07-15T16:02:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.14189v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "benchmark for multi-reference audio-video generation",
+      "llm_evidence_cn": "多参考音视频生成基准",
+      "llm_evidence": "多参考音视频生成基准",
+      "canonical_evidence": "多参考音视频生成基准",
+      "llm_tldr_en": "MultiRef-Compass provides a unified benchmark for multi-reference-to-audio-video generation, evaluating models on joint reasoning over multiple references and synchronized audio-visual content.",
+      "llm_tldr_cn": "现有基准主要关注文本驱动生成或单参考主题保持，缺乏多参考到音视频（MR2AV）生成评估。本文提出MultiRef-Compass，一个统一的MR2AV基准，要求模型同时推理多个参考并生成同步音视频内容。该基准能全面评估模型在参考保持和实体绑定方面的能力，填补了该领域评估空白。",
+      "llm_tldr": "现有基准主要关注文本驱动生成或单参考主题保持，缺乏多参考到音视频（MR2AV）生成评估。本文提出MultiRef-Compass，一个统一的MR2AV基准，要求模型同时推理多个参考并生成同步音视频内容。该基准能全面评估模型在参考保持和实体绑定方面的能力，填补了该领域评估空白。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "benchmark for talking head synthesis",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

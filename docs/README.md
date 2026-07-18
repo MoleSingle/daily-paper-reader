@@ -6,33 +6,27 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-17
-- 运行时间：2026-07-17 20:27:04 UTC
+- 最新运行日期：2026-07-18
+- 运行时间：2026-07-18 19:48:44 UTC
 - 运行状态：成功
-- 本次总论文数：4
+- 本次总论文数：2
 - 精读区：0
-- 速读区：4
+- 速读区：2
 
 ### 今日简报（AI）
-今日速读4篇论文，聚焦人脸视觉基础模型、视觉语音识别与微表情生成。最值得关注的是《Emergent Region-Level Facial Correspondence》中冻结视觉基础模型的区域级人脸对应发现，以及《VSRo-200》提供的罗马尼亚语视觉语音数据集。建议普通读者优先阅读微表情合成方向，便于理解数据增强创新。
-- 详情：[/202607/17/README](/202607/17/README)
+今日速读2篇7分论文，涵盖视听语音识别中的语义对齐与多参考音视频生成评估。关注最优传输（Optimal Transport）在LLM驱动的音视频语音识别中的跨模态对齐效果，以及MultiRef-Compass提出的多参考视频生成评估基准。建议对多模态对齐与生成质量评估感兴趣的读者优先阅读这两篇。
+- 详情：[/202607/18/README](/202607/18/README)
 
 ### 精读区论文标签
 - 本次无精读推荐。
 
 ### 速读区论文标签
-1. [Emergent Region-Level Facial Correspondence in Frozen Vision Foundation Models](/202607/17/2607.14423v1-emergent-region-level-facial-correspondence-in-frozen-vision-foundation-models)  
+1. [Optimal Transport-based Semantic Alignment for LLM-based Audio-Visual Speech Recognition](/202607/18/2607.09001v1-optimal-transport-based-semantic-alignment-for-llm-based-audio-visual-speech-recognition)  
    标签：评分：7.0/10、query:talking-head
-   evidence：人脸区域对应关系，可用于数字人创建
-2. [VSRo-200: A Romanian Visual Speech Recognition Dataset for Studying Supervision and Multimodal Robustness](/202607/17/2607.08112v1-vsro-200-a-romanian-visual-speech-recognition-dataset-for-studying-supervision-and-multimodal-robustness)  
-   标签：评分：6.0/10、query:talking-head
-   evidence：大规模视觉语音数据集与基准，可用于交流头研究
-3. [AU-Guided Synthetic Video Generation for Micro-Expression Recognition](/202607/17/2607.10860v1-au-guided-synthetic-video-generation-for-micro-expression-recognition)  
-   标签：评分：6.0/10、query:talking-head
-   evidence：基于动作单元引导的微表情合成视频生成
-4. [KeyFrame-Compass: Towards Comprehensive Evaluation of Keyframe-Conditioned Video Generation](/202607/17/2607.14202v1-keyframe-compass-towards-comprehensive-evaluation-of-keyframe-conditioned-video-generation)  
-   标签：评分：6.0/10、query:talking-head
-   evidence：视频生成基准包括talking head相关
+   evidence：音视频语音识别中的语义对齐方法可用于音频驱动面部动画
+2. [MultiRef-Compass: Towards Comprehensive Evaluation of Multi-Reference-to-Audio-Video Generation](/202607/18/2607.14189v1-multiref-compass-towards-comprehensive-evaluation-of-multi-reference-to-audio-video-generation)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：多参考音视频生成基准
 
 
 <div class="dpr-home-promo-card">
