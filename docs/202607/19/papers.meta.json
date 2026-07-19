@@ -1,0 +1,24 @@
+{
+  "label": "2026-07-19",
+  "date": "2026-07-19",
+  "generated_at": "2026-07-19T20:57:02",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202607/19/2607.10408v1-gnochi-generative-neural-model-for-close-human-human-interactions",
+      "section": "quick",
+      "title_en": "GNOCHI: Generative Neural mOdel for Close Human-Human Interactions",
+      "authors": "Gonzalo Gómez-Nogales, Marc Comino-Trinidad, Andrés Casado-Elvira, Dan Casas",
+      "date": "2026-07-11",
+      "pdf": "https://arxiv.org/pdf/2607.10408v1",
+      "score": "6.0",
+      "evidence": "用于紧密三维人体交互的生成模型；可应用于数字人化身交互合成",
+      "tldr": "生成紧密3D人-人交互因人体自由度大和碰撞避免而困难。现有方法缺乏生成能力或无法处理紧密场景。本文提出条件变分自编码器模型，通过自动数据增强生成合成交互数据，并引入基于体积代理的自监督碰撞损失。实验表明该方法能生成多样且物理正确的紧密交互，优于现有技术。",
+      "tags": "query:talking-head",
+      "abstract_en": "Creating realistic 3D human-human interactions in virtual environments is challenging due to the high degrees of freedom in the human body and the need for physically accurate poses that do not collide with each other. Traditional methods for human-human interaction are based on motion tracking or 3D body reconstruction, but lack generative capabilities. Recent generative methods enable the synthesis of individual or interacting motions via text or image input, but generally fall short in modeling close interactions. This paper introduces a novel generative model for close 3D human-human interactions using a conditional variational autoencoder (cVAE), which generates poses for one human conditioned on the pose of another, allowing for controlled and diverse interaction synthesis. To train our model, we address two underlying long-standing challenges in the field of human-human interaction: data scarcity, for which we propose an automated supervised data augmentation strategy that generates synthetic yet realistic interaction poses; and collision awareness in generative approaches, for which we propose a self-supervised loss based on a collision resolution technique using volumetric proxies to ensure physically correct interactions. We extensively evaluate the capabilities of our model, and demonstrate a wide variety of plausible and physically correct interactions, not possible to generate with current state-of-the-art methods.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

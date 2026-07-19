@@ -1,0 +1,55 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-19T20:56:08.521847+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.10408v1",
+      "source": "arxiv",
+      "title": "GNOCHI: Generative Neural mOdel for Close Human-Human Interactions",
+      "abstract": "Creating realistic 3D human-human interactions in virtual environments is challenging due to the high degrees of freedom in the human body and the need for physically accurate poses that do not collide with each other. Traditional methods for human-human interaction are based on motion tracking or 3D body reconstruction, but lack generative capabilities. Recent generative methods enable the synthesis of individual or interacting motions via text or image input, but generally fall short in modeling close interactions. This paper introduces a novel generative model for close 3D human-human interactions using a conditional variational autoencoder (cVAE), which generates poses for one human conditioned on the pose of another, allowing for controlled and diverse interaction synthesis. To train our model, we address two underlying long-standing challenges in the field of human-human interaction: data scarcity, for which we propose an automated supervised data augmentation strategy that generates synthetic yet realistic interaction poses; and collision awareness in generative approaches, for which we propose a self-supervised loss based on a collision resolution technique using volumetric proxies to ensure physically correct interactions. We extensively evaluate the capabilities of our model, and demonstrate a wide variety of plausible and physically correct interactions, not possible to generate with current state-of-the-art methods.",
+      "authors": [
+        "Gonzalo Gómez-Nogales",
+        "Marc Comino-Trinidad",
+        "Andrés Casado-Elvira",
+        "Dan Casas"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-11T17:19:32+00:00",
+      "link": "https://arxiv.org/pdf/2607.10408v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "generative model for close 3D human-human interactions; applicable to digital human avatar interaction synthesis",
+      "llm_evidence_cn": "用于紧密三维人体交互的生成模型；可应用于数字人化身交互合成",
+      "llm_evidence": "用于紧密三维人体交互的生成模型；可应用于数字人化身交互合成",
+      "canonical_evidence": "用于紧密三维人体交互的生成模型；可应用于数字人化身交互合成",
+      "llm_tldr_en": "Introduces GNOCHI, a cVAE-based generative model for close 3D human-human interactions; relevant to digital human avatar creation for generating realistic interaction poses.",
+      "llm_tldr_cn": "该论文提出GNOCHI，一种基于条件变分自编码器（cVAE）的生成模型，用于生成近距离三维人体交互姿势。该模型以一人姿势为条件生成另一人的姿势，支持可控和多样化的交互生成。虽然面向全身交互，但其方法论可迁移至数字人化身的交互生成，包括头部和肢体运动。",
+      "llm_tldr": "该论文提出GNOCHI，一种基于条件变分自编码器（cVAE）的生成模型，用于生成近距离三维人体交互姿势。该模型以一人姿势为条件生成另一人的姿势，支持可控和多样化的交互生成。虽然面向全身交互，但其方法论可迁移至数字人化身的交互生成，包括头部和肢体运动。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

@@ -6,27 +6,26 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-18
-- 运行时间：2026-07-18 19:48:44 UTC
+- 最新运行日期：2026-07-19
+- 运行时间：2026-07-19 20:56:53 UTC
 - 运行状态：成功
-- 本次总论文数：2
+- 本次总论文数：1
 - 精读区：0
-- 速读区：2
+- 速读区：1
 
 ### 今日简报（AI）
-今日速读2篇7分论文，涵盖视听语音识别中的语义对齐与多参考音视频生成评估。关注最优传输（Optimal Transport）在LLM驱动的音视频语音识别中的跨模态对齐效果，以及MultiRef-Compass提出的多参考视频生成评估基准。建议对多模态对齐与生成质量评估感兴趣的读者优先阅读这两篇。
-- 详情：[/202607/18/README](/202607/18/README)
+今日仅速读1篇论文，聚焦于用生成式神经网络（GNOCHI）模拟人与人近距离交互（如拥抱、握手），但综合评分6.0表现中规中矩。  
+最值得关注的是该模型首次尝试从少量数据生成双人连续动作，但交互细节的平滑度和逼真度仍有提升空间。  
+推荐对VR/动画中自然双人互动感兴趣的读者浅尝，若追求高质量结果建议等待后续优化版本。
+- 详情：[/202607/19/README](/202607/19/README)
 
 ### 精读区论文标签
 - 本次无精读推荐。
 
 ### 速读区论文标签
-1. [Optimal Transport-based Semantic Alignment for LLM-based Audio-Visual Speech Recognition](/202607/18/2607.09001v1-optimal-transport-based-semantic-alignment-for-llm-based-audio-visual-speech-recognition)  
-   标签：评分：7.0/10、query:talking-head
-   evidence：音视频语音识别中的语义对齐方法可用于音频驱动面部动画
-2. [MultiRef-Compass: Towards Comprehensive Evaluation of Multi-Reference-to-Audio-Video Generation](/202607/18/2607.14189v1-multiref-compass-towards-comprehensive-evaluation-of-multi-reference-to-audio-video-generation)  
-   标签：评分：7.0/10、query:talking-head
-   evidence：多参考音视频生成基准
+1. [GNOCHI: Generative Neural mOdel for Close Human-Human Interactions](/202607/19/2607.10408v1-gnochi-generative-neural-model-for-close-human-human-interactions)  
+   标签：评分：6.0/10、query:talking-head
+   evidence：用于紧密三维人体交互的生成模型；可应用于数字人化身交互合成
 
 
 <div class="dpr-home-promo-card">
