@@ -1,0 +1,69 @@
+{
+  "label": "2026-07-20",
+  "date": "2026-07-20",
+  "generated_at": "2026-07-20T20:15:34",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202607/20/2607.11772v1-synchronized-three-dimensional-vocal-tract-motion-for-speech-synchronization-via-joint-embedding-predictive-architecture-alignment",
+      "section": "deep",
+      "title_en": "Synchronized Three-Dimensional Vocal-Tract Motion for Speech Synchronization via Joint-Embedding Predictive Architecture Alignment",
+      "authors": "Sheng Li, Takahiro Shinozaki",
+      "date": "2026-07-13",
+      "pdf": "https://arxiv.org/pdf/2607.11772v1",
+      "score": "9.0",
+      "evidence": "语音同步的三维声道运动",
+      "tldr": "现代神经语音系统虽能合成高质量波形，但隐藏了发声物理状态；生物力学声道模型虽提供发音结构，但合成音频不够鲁棒。本文提出通过联合嵌入预测架构（JEPA）表示和强化学习/交叉熵方法（RL/CEM）轨迹选择，将时长保持的声学载体与修正的三维声道模型对齐，生成同步的下颌、舌、唇等运动。在24词测试集上，自动语音识别词错误率8.33%、字符错误率4.17%，语音自然度UTMOS 3.174，JEPA评分0.864，音色守卫评分0.947。该方法实现了可解释、物理合理的同步发音运动生成，为语音交互提供了可视化发音状态。",
+      "tags": "query:talking-head",
+      "abstract_en": "Modern neural speech systems can generate intelligible waveforms, but they usually hide the physical speech-production state that produced the sound. Conversely, biomechanical vocal-tract models expose articulatory structure, contact behavior, airflow routing, and geometric constraints, but direct physical waveform synthesis remains less robust than modern neural vocoders. A duration-preserving acoustic carrier supplies the listening waveform, while a corrected three-dimensional vocal-tract model supplies synchronized jaw, lip, tongue, velum, laryngeal, oral-airflow, and nasal-airflow motion. A joint-embedding predictive architecture (JEPA)-style representation and a reinforcement learning/cross-entropy method (RL/CEM) trajectory-selection loop align articulatory actions to the acoustic carrier and to physical-plausibility constraints. The evaluation contains 12 3D recordings covering 24 minimal-pair stimuli. On the 24-word set, the carrier obtains good automatic speech recognition (ASR) results (an 8.33\\% WER, a 4.17\\% CER), a UTMOS score of 3.174, a mean JEPA score of 0.864, and a mean timbre-guard score of 0.947.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/20/2607.11644v1-motion4motion-motion-transfer-across-subjects-at-inference",
+      "section": "deep",
+      "title_en": "Motion4Motion: Motion Transfer Across Subjects at Inference",
+      "authors": "Ling-Hao Chen, Zixin Yin, Duomin Wang, Xianfang Zeng, Gang Yu",
+      "date": "2026-07-13",
+      "pdf": "https://arxiv.org/pdf/2607.11644v1",
+      "score": "8.0",
+      "evidence": "跨主体运动迁移，适用于包括数字人形象在内的多样化角色动画",
+      "tldr": "传统视频运动迁移依赖预定义骨架结构和骨架条件训练，难以泛化到不同物种。本文跳出骨架框架，提出无需训练的运动迁移框架Motion4Motion，通过建模视频中角色的运动流而非骨架，实现跨物种的运动迁移。实验表明该方法显著优于基线，并展示了新颖应用。",
+      "tags": "query:talking-head",
+      "abstract_en": "This work explores the motion transfer from one video to another, which is crucial in animation for diverse characters. Previously, video motion transfer has been largely explored between human and human-like characters, enabling a lot of applications in digital creation. However, these approaches encounter a main limitation. Specifically, related technical pipelines heavily rely on a predefined human skeleton structure and accordingly require skeleton-conditional model training. On the one hand, these methods are difficult to generalize to diverse characters, such as animals from different species, while preserving their unique motion styles. On the other hand, labeled data in diverse skeletons is limited, which additionally restricts the large-scale training for the task. In this paper, we jump out of the skeleton-based motion transfer framework and propose a training-free motion transfer framework, named Motion4Motion. Motion4Motionmodels the motion flow of the character in a video instead of skeletons, which makes motion transfer across species easier. Extensive experimental results and novel applications show our methods outperform baselines impressively. Project page is available at https://lhchen.top/Motion4Motion.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/20/2607.10826v1-3d-defectbench-a-controlled-factorial-study-of-vision-language-model-evaluation-pipelines-for-fine-grained-3d-generation-defects",
+      "section": "quick",
+      "title_en": "3D-DefectBench: A Controlled Factorial Study of Vision-Language Model Evaluation Pipelines for Fine-Grained 3D Generation Defects",
+      "authors": "Zhenyu Zhao, Nanshan Jia, Jihyeon Je, Yifu Tang, Alvin Chan, Michael Spedden, Michael V. Palleschi, Sui Huang, Jingshen Wang, Zeyu Zheng",
+      "date": "2026-07-12",
+      "pdf": "https://arxiv.org/pdf/2607.10826v1",
+      "score": "6.0",
+      "evidence": "用于评估3D生成缺陷的基准，可应用于对话头资产质量评估",
+      "tldr": "自动化评估对3D生成系统至关重要，但整个评估管道的可靠性受多个因素影响。本文提出3D-DefectBench，涵盖9类细粒度缺陷，通过84种推理设计约320万次缺陷判断，系统分析VLM、相机协议、视觉输入和提示模式四类管道因素。发现模型选择是最大决定因素，但其他因素也显著影响性能，6视图RGB协议成为高性价比默认方案。最佳VLM仍不及人类标注者，且纹理缺陷标注在替换为弱标签后准确率骤降，表明应作为完整管道评估。",
+      "tags": "query:talking-head",
+      "abstract_en": "Automated evaluation is essential for scaling generative 3D systems, where exhaustive human review is costly and slow. However, the reliability of an automated judge depends on the entire evaluation pipeline, not only the underlying vision-language model (VLM), but also how assets are rendered, what visual evidence is provided, how the task is specified, and how human reference labels are constructed. We introduce 3D-DefectBench, a benchmark and framework for systematic analysis of VLM-based 3D defect detection pipelines. It complements holistic ratings and pairwise preferences with nine fine-grained binary defects spanning geometry, texture, and prompt adherence, providing actionable diagnostics for generator development and judge evaluation. Using a balanced factorial design, we vary four pipeline factors, VLM, camera protocol, visual input, and prompt schema, across 84 inference designs and approximately 3.2 million scored defect decisions, followed by staged validation on a broader set of frontier models. Model choice is the largest determinant of agreement with human labels, but the remaining factors also affect performance, interact with model selection, and can change the best configuration. Within the evaluated design space, a compact six-view RGB protocol performs comparably to denser multi-view settings and inputs augmented with depth or surface normals, making it a strong cost-effective default. Under this standardized pipeline, the best of 12 VLM judges still lag behind trained human labelers, while texture agreement drops sharply when expert-consensus labels are replaced by noisier silver labels. These findings show that automated judges should be evaluated as complete pipelines and calibrated across human reference regimes, rather than benchmarked only as standalone models. We release labels, prompts, predictions, and Croissant metadata on Hugging Face.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/20/2607.11512v1-toward-inclusive-avatar-design-with-limb-differences-through-artificial-intelligence",
+      "section": "quick",
+      "title_en": "Toward Inclusive Avatar Design with Limb Differences Through Artificial Intelligence",
+      "authors": "Fernanda Miyuki Yamada, João Paulo Gois, Hiroki Takahashi",
+      "date": "2026-07-13",
+      "pdf": "https://arxiv.org/pdf/2607.11512v1",
+      "score": "6.0",
+      "evidence": "包容性头像设计涉及数字人创建",
+      "tldr": "随着扩展现实在社交和娱乐中普及，3D虚拟形象必须反映身体多样性。当前多数系统仅支持标准体型，无法准确呈现肢体差异或截肢者。本文综述了包容性虚拟形象定制的技术方法和指导原则，指出数据集稀缺和非规范解剖动画是主要挑战。该文将人工智能视为克服这些限制、推动包容性虚拟形象生成的有希望途径。",
+      "tags": "query:talking-head",
+      "abstract_en": "As extended reality becomes more popular for social interaction and entertainment, 3D avatars must represent the full diversity of body types. Most 3D avatar systems only support normative bodies and do not accurately depict people with limb differences, amputations, or other morphological variations. This paper reviews emerging technical approaches for inclusive 3D avatar customization for this group and current guidelines that promote respectful and accurate representation. We highlight persistent challenges, including the scarcity of diverse datasets and the limitations in animation for non-normative anatomies. This paper positions artificial intelligence as a promising path to overcoming these limitations and advancing inclusive 3D avatar generation.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

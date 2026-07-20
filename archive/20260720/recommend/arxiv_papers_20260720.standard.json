@@ -1,0 +1,175 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-20T20:12:06.331301+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2607.11772v1",
+      "source": "arxiv",
+      "title": "Synchronized Three-Dimensional Vocal-Tract Motion for Speech Synchronization via Joint-Embedding Predictive Architecture Alignment",
+      "abstract": "Modern neural speech systems can generate intelligible waveforms, but they usually hide the physical speech-production state that produced the sound. Conversely, biomechanical vocal-tract models expose articulatory structure, contact behavior, airflow routing, and geometric constraints, but direct physical waveform synthesis remains less robust than modern neural vocoders. A duration-preserving acoustic carrier supplies the listening waveform, while a corrected three-dimensional vocal-tract model supplies synchronized jaw, lip, tongue, velum, laryngeal, oral-airflow, and nasal-airflow motion. A joint-embedding predictive architecture (JEPA)-style representation and a reinforcement learning/cross-entropy method (RL/CEM) trajectory-selection loop align articulatory actions to the acoustic carrier and to physical-plausibility constraints. The evaluation contains 12 3D recordings covering 24 minimal-pair stimuli. On the 24-word set, the carrier obtains good automatic speech recognition (ASR) results (an 8.33\\% WER, a 4.17\\% CER), a UTMOS score of 3.174, a mean JEPA score of 0.864, and a mean timbre-guard score of 0.947.",
+      "authors": [
+        "Sheng Li",
+        "Takahiro Shinozaki"
+      ],
+      "primary_category": "eess.AS",
+      "categories": [
+        "eess.AS"
+      ],
+      "published": "2026-07-13T16:31:18+00:00",
+      "link": "https://arxiv.org/pdf/2607.11772v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "synchronized vocal-tract motion for speech synchronization",
+      "llm_evidence_cn": "语音同步的三维声道运动",
+      "llm_evidence": "语音同步的三维声道运动",
+      "canonical_evidence": "语音同步的三维声道运动",
+      "llm_tldr_en": "Proposes synchronized 3D vocal-tract motion from biomechanical models aligned via JEPA for speech synchronization, enabling accurate lip and articulator motion.",
+      "llm_tldr_cn": "针对神经语音系统隐藏物理发音状态的问题，提出通过联合嵌入预测架构对齐生物力学声道模型，生成与语音同步的三维声道运动（包括唇、舌、下颌等），实现高精度的语音-面部同步。",
+      "llm_tldr": "针对神经语音系统隐藏物理发音状态的问题，提出通过联合嵌入预测架构对齐生物力学声道模型，生成与语音同步的三维声道运动（包括唇、舌、下颌等），实现高精度的语音-面部同步。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.11644v1",
+      "source": "arxiv",
+      "title": "Motion4Motion: Motion Transfer Across Subjects at Inference",
+      "abstract": "This work explores the motion transfer from one video to another, which is crucial in animation for diverse characters. Previously, video motion transfer has been largely explored between human and human-like characters, enabling a lot of applications in digital creation. However, these approaches encounter a main limitation. Specifically, related technical pipelines heavily rely on a predefined human skeleton structure and accordingly require skeleton-conditional model training. On the one hand, these methods are difficult to generalize to diverse characters, such as animals from different species, while preserving their unique motion styles. On the other hand, labeled data in diverse skeletons is limited, which additionally restricts the large-scale training for the task. In this paper, we jump out of the skeleton-based motion transfer framework and propose a training-free motion transfer framework, named Motion4Motion. Motion4Motionmodels the motion flow of the character in a video instead of skeletons, which makes motion transfer across species easier. Extensive experimental results and novel applications show our methods outperform baselines impressively. Project page is available at https://lhchen.top/Motion4Motion.",
+      "authors": [
+        "Ling-Hao Chen",
+        "Zixin Yin",
+        "Duomin Wang",
+        "Xianfang Zeng",
+        "Gang Yu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T14:58:57+00:00",
+      "link": "https://arxiv.org/pdf/2607.11644v1",
+      "tags": [
+        "keyword:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "motion transfer across subjects for animation of diverse characters including digital avatars",
+      "llm_evidence_cn": "跨主体运动迁移，适用于包括数字人形象在内的多样化角色动画",
+      "llm_evidence": "跨主体运动迁移，适用于包括数字人形象在内的多样化角色动画",
+      "canonical_evidence": "跨主体运动迁移，适用于包括数字人形象在内的多样化角色动画",
+      "llm_tldr_en": "Motion4Motion enables motion transfer between videos of different subjects without skeleton conditioning, supporting diverse characters like humans and animals for animation.",
+      "llm_tldr_cn": "该论文提出Motion4Motion方法，在推理时实现跨主体运动迁移，无需预定义骨骼结构或条件训练。它适用于人类、动物等多种角色的动作迁移，保留原有运动风格。该方法在多个数据集上验证了有效性，为数字人动画和个性化虚拟形象生成提供了灵活的工具。",
+      "llm_tldr": "该论文提出Motion4Motion方法，在推理时实现跨主体运动迁移，无需预定义骨骼结构或条件训练。它适用于人类、动物等多种角色的动作迁移，保留原有运动风格。该方法在多个数据集上验证了有效性，为数字人动画和个性化虚拟形象生成提供了灵活的工具。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.10826v1",
+      "source": "arxiv",
+      "title": "3D-DefectBench: A Controlled Factorial Study of Vision-Language Model Evaluation Pipelines for Fine-Grained 3D Generation Defects",
+      "abstract": "Automated evaluation is essential for scaling generative 3D systems, where exhaustive human review is costly and slow. However, the reliability of an automated judge depends on the entire evaluation pipeline, not only the underlying vision-language model (VLM), but also how assets are rendered, what visual evidence is provided, how the task is specified, and how human reference labels are constructed. We introduce 3D-DefectBench, a benchmark and framework for systematic analysis of VLM-based 3D defect detection pipelines. It complements holistic ratings and pairwise preferences with nine fine-grained binary defects spanning geometry, texture, and prompt adherence, providing actionable diagnostics for generator development and judge evaluation. Using a balanced factorial design, we vary four pipeline factors, VLM, camera protocol, visual input, and prompt schema, across 84 inference designs and approximately 3.2 million scored defect decisions, followed by staged validation on a broader set of frontier models. Model choice is the largest determinant of agreement with human labels, but the remaining factors also affect performance, interact with model selection, and can change the best configuration. Within the evaluated design space, a compact six-view RGB protocol performs comparably to denser multi-view settings and inputs augmented with depth or surface normals, making it a strong cost-effective default. Under this standardized pipeline, the best of 12 VLM judges still lag behind trained human labelers, while texture agreement drops sharply when expert-consensus labels are replaced by noisier silver labels. These findings show that automated judges should be evaluated as complete pipelines and calibrated across human reference regimes, rather than benchmarked only as standalone models. We release labels, prompts, predictions, and Croissant metadata on Hugging Face.",
+      "authors": [
+        "Zhenyu Zhao",
+        "Nanshan Jia",
+        "Jihyeon Je",
+        "Yifu Tang",
+        "Alvin Chan",
+        "Michael Spedden",
+        "Michael V. Palleschi",
+        "Sui Huang",
+        "Jingshen Wang",
+        "Zeyu Zheng"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.GR"
+      ],
+      "published": "2026-07-12T16:41:24+00:00",
+      "link": "https://arxiv.org/pdf/2607.10826v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "benchmark for evaluating 3D generation defects, applicable to talking head asset quality assessment",
+      "llm_evidence_cn": "用于评估3D生成缺陷的基准，可应用于对话头资产质量评估",
+      "llm_evidence": "用于评估3D生成缺陷的基准，可应用于对话头资产质量评估",
+      "canonical_evidence": "用于评估3D生成缺陷的基准，可应用于对话头资产质量评估",
+      "llm_tldr_en": "3D-DefectBench provides a systematic benchmark for VLM-based 3D defect detection in generated assets, including geometry and texture defects; transferable to talking head quality evaluation.",
+      "llm_tldr_cn": "自动化评估对于大规模3D生成系统至关重要，但现有评估管道的可靠性受多种因素影响。本文提出3D-DefectBench基准，系统分析基于视觉语言模型的3D缺陷检测管道，涵盖几何、纹理和提示一致性等九个细粒度二分类缺陷。该基准为评估对话头等生成3D资产的质量提供了可迁移的方法论和工具，有助于推动该领域的标准化评估。",
+      "llm_tldr": "自动化评估对于大规模3D生成系统至关重要，但现有评估管道的可靠性受多种因素影响。本文提出3D-DefectBench基准，系统分析基于视觉语言模型的3D缺陷检测管道，涵盖几何、纹理和提示一致性等九个细粒度二分类缺陷。该基准为评估对话头等生成3D资产的质量提供了可迁移的方法论和工具，有助于推动该领域的标准化评估。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "benchmark for talking head synthesis",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.11512v1",
+      "source": "arxiv",
+      "title": "Toward Inclusive Avatar Design with Limb Differences Through Artificial Intelligence",
+      "abstract": "As extended reality becomes more popular for social interaction and entertainment, 3D avatars must represent the full diversity of body types. Most 3D avatar systems only support normative bodies and do not accurately depict people with limb differences, amputations, or other morphological variations. This paper reviews emerging technical approaches for inclusive 3D avatar customization for this group and current guidelines that promote respectful and accurate representation. We highlight persistent challenges, including the scarcity of diverse datasets and the limitations in animation for non-normative anatomies. This paper positions artificial intelligence as a promising path to overcoming these limitations and advancing inclusive 3D avatar generation.",
+      "authors": [
+        "Fernanda Miyuki Yamada",
+        "João Paulo Gois",
+        "Hiroki Takahashi"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC",
+        "cs.AI",
+        "cs.GR"
+      ],
+      "published": "2026-07-13T13:00:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.11512v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "inclusive avatar design for limb differences",
+      "llm_evidence_cn": "包容性头像设计涉及数字人创建",
+      "llm_evidence": "包容性头像设计涉及数字人创建",
+      "canonical_evidence": "包容性头像设计涉及数字人创建",
+      "llm_tldr_en": "Reviews emerging approaches for inclusive 3D avatar customization for people with limb differences, highlighting dataset scarcity and animation limitations.",
+      "llm_tldr_cn": "针对现有3D头像系统不支持肢体差异人群的问题，综述了包容性头像定制的技术途径和指南，指出现有数据集稀缺和动画限制，并提出人工智能可作为解决路径。",
+      "llm_tldr": "针对现有3D头像系统不支持肢体差异人群的问题，综述了包容性头像定制的技术途径和指南，指出现有数据集稀缺和动画限制，并提出人工智能可作为解决路径。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
