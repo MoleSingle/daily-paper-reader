@@ -6,22 +6,28 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-21
-- 运行时间：2026-07-21 20:13:55 UTC
+- 最新运行日期：2026-07-22
+- 运行时间：2026-07-22 21:20:32 UTC
 - 运行状态：成功
-- 本次总论文数：0
-- 精读区：0
-- 速读区：0
+- 本次总论文数：2
+- 精读区：1
+- 速读区：1
 
 ### 今日简报（AI）
-> 今日无新推荐，系统未产出可展示论文。
-- 详情：[/202607/21/README](/202607/21/README)
+今天精读了一篇高分论文《FlexiAvatar》，速读了一篇AI生成人体视频质量评估论文。
+最值得关注的是FlexiAvatar提出的统一3D高斯人体模型，解决了任意身体可见性下的渲染问题。
+建议普通读者关注3D高斯溅射技术在数字人领域的落地应用。
+- 详情：[/202607/22/README](/202607/22/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [FlexiAvatar: Unified 3D Gaussian Human Avatars Under Arbitrary Body Visibility](/202607/22/2607.19100v1-flexiavatar-unified-3d-gaussian-human-avatars-under-arbitrary-body-visibility)  
+   标签：评分：8.0/10、query:talking-head
+   evidence：从单目视频重建统一3D高斯人体化身
 
 ### 速读区论文标签
-- 本次无速读推荐。
+1. [Multi-Dimensional Quality Assessment for AI-Generated Human-Centric Videos: Dataset and Model](/202607/22/2607.16742v1-multi-dimensional-quality-assessment-for-ai-generated-human-centric-videos-dataset-and-model)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：人类中心视频质量评估基准数据集，可用于说话头评估
 
 
 <div class="dpr-home-promo-card">
