@@ -1,0 +1,98 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-23T21:23:54.655674+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2607.20247v1",
+      "source": "arxiv",
+      "title": "Vera: Identity-Faithful Human Subject-to-Video Generation",
+      "abstract": "Subject-to-video (S2V) generation has made substantial progress in preserving reference subjects across diverse categories, yet generic subject consistency remains insufficient for human-centric generation. A video may appear globally consistent while identity-critical human details still drift across frames, poses, and interactions. This issue becomes more severe in multi-person scenarios, where incorrect identity-role binding leads to subject confusion, attribute swapping, and excessive copying of reference-specific appearance cues. We propose Vera, a unified human-centric S2V framework for single- and multi-person generation. We first construct a million-pair identity-aligned human image-video dataset through person-level cross-clip retrieval, providing explicit identity correspondence and diverse references. Built on this dataset, Vera introduces two complementary designs. Identity-Focal Masked Supervision (IFMS) strengthens identity-aware learning with spatially focused supervision while reducing interference from irrelevant artifacts. Reference-Aware Layer-wise Attention (RALA) regulates how video tokens interact with reference identity cues in the DiT backbone, preserving stable identity anchors and enhancing layer-aware identity readout. Extensive experiments demonstrate that Vera improves human identity consistency, multi-person subject binding, and motion naturalness, while reducing identity confusion and excessive reference-image copying.",
+      "authors": [
+        "Yulong Xu",
+        "Xinyue Liu",
+        "Shujuan Li",
+        "huafeng shi",
+        "Yan Zhou",
+        "Jiwen Liu",
+        "Xintao Wang",
+        "Yu Shen Liu",
+        "Huaibo Huang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-22T15:08:30+00:00",
+      "link": "https://arxiv.org/pdf/2607.20247v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "human subject-to-video generation with identity preservation, directly applicable to talking head synthesis",
+      "llm_evidence_cn": "身份保持的人体到视频生成，直接适用于说话头合成",
+      "llm_evidence": "身份保持的人体到视频生成，直接适用于说话头合成",
+      "canonical_evidence": "身份保持的人体到视频生成，直接适用于说话头合成",
+      "llm_tldr_en": "Vera proposes a unified human-centric subject-to-video framework that preserves identity across frames, poses, and interactions, using a million-pair identity-aligned dataset and achieving state-of-the-art fidelity in single and multi-person video generation.",
+      "llm_tldr_cn": "该论文提出Vera框架，针对人体到视频生成中身份细节漂移问题，通过构建百万对身份对齐的人体图像-视频数据集，实现单人和多人场景下的身份忠实视频生成。框架采用统一架构，在跨帧、姿态和交互中保持身份一致性，解决了角色混淆和属性交换问题。实验表明Vera在主观和客观指标上均达到最优，为数字人头像合成和虚拟化身创建提供了高效解决方案。",
+      "llm_tldr": "该论文提出Vera框架，针对人体到视频生成中身份细节漂移问题，通过构建百万对身份对齐的人体图像-视频数据集，实现单人和多人场景下的身份忠实视频生成。框架采用统一架构，在跨帧、姿态和交互中保持身份一致性，解决了角色混淆和属性交换问题。实验表明Vera在主观和客观指标上均达到最优，为数字人头像合成和虚拟化身创建提供了高效解决方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.19033v1",
+      "source": "arxiv",
+      "title": "Content is What Remains: Invariant Speech Tokenization from Parallel Utterances",
+      "abstract": "Discrete speech tokenizers aim to disentangle semantic from acoustic information, yet targets from self-supervised learning (SSL) models like HuBERT retain non-linguistic variation: speaker identity, prosody, and channel conditions leak into the tokens, inflating entropy. Our key insight is that when enough speakers utter the same words under varying conditions, linguistic content is the only shared factor. We propose PINT (Parallel INvariant Tokenization), which fine-tunes an SSL encoder with alignment losses across parallel utterances and augmentations to distill this shared residual. PINT collapses identical words onto consistent token sequences, drastically reducing conditional entropy. Unlike ASR text, PINT tokens preserve frame-level temporal grounding and serve as drop-in semantic targets for audio codecs. Experiments show a 98.7% relative reduction in speaker probe accuracy (93.1% to 1.2%), a 42% lower ABX error rate, and 27-30% lower LM perplexity versus baselines, confirming that the right invariance is key to efficient learning.",
+      "authors": [
+        "Laurin Wagner",
+        "Bernhard Thallinger",
+        "Miroslav Stankovic",
+        "Mario Zusag"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-21T12:19:38+00:00",
+      "link": "https://arxiv.org/pdf/2607.19033v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "invariant speech tokenization useful for audio-driven facial animation",
+      "llm_evidence_cn": "不变语音分词可用于音频驱动的面部动画",
+      "llm_evidence": "不变语音分词可用于音频驱动的面部动画",
+      "canonical_evidence": "不变语音分词可用于音频驱动的面部动画",
+      "llm_tldr_en": "PINT learns speaker-invariant speech tokens from parallel utterances, drastically reducing conditional entropy while preserving frame-level tempo; directly applicable to improving audio features for talking head animation.",
+      "llm_tldr_cn": "PINT通过并行话语和增强对齐损失，从自监督语音模型蒸馏出与说话人无关的语音token，大幅减少条件熵。该不变token序列保留了帧级节奏信息，可直接作为音频驱动面部动画的鲁棒特征，提升跨说话人泛化能力。",
+      "llm_tldr": "PINT通过并行话语和增强对齐损失，从自监督语音模型蒸馏出与说话人无关的语音token，大幅减少条件熵。该不变token序列保留了帧级节奏信息，可直接作为音频驱动面部动画的鲁棒特征，提升跨说话人泛化能力。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
