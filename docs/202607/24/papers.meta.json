@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-24",
+  "date": "2026-07-24",
+  "generated_at": "2026-07-24T20:22:40",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/24/2607.20922v1-fa-lam-focus-aware-large-avatar-model-for-one-shot-4d-animatable-gaussian-head",
+      "section": "deep",
+      "title_en": "FA-LAM: Focus-Aware Large Avatar Model for One-Shot 4D Animatable Gaussian Head",
+      "authors": "Yingdong Hu, Yisheng He, Yiming Jiang, Zehong Lin, Steven Hoi, Jun Zhang",
+      "date": "2026-07-23",
+      "pdf": "https://arxiv.org/pdf/2607.20922v1",
+      "score": "9.0",
+      "evidence": "一次性可动画高斯头部创建，全头部重建",
+      "tldr": "针对一次性可动画高斯头部创建中注意力激活错误和重建-动画任务冲突的问题，提出FA-LAM模型。采用对称语义注意力正则化纠正注意力，双阶段训练分离大视角幻觉与动画模块，并通过自回归与可见性感知token融合支持多视角流式4D重建。该方法在精细面部区域和大视角下生成更高质量的可动画高斯全头，实现静态3D和动态4D的一体化恢复。",
+      "tags": "query:talking-head",
+      "abstract_en": "We propose FA-LAM, a Focus-Aware Large Avatar Model for one-shot animatable Gaussian head creation, while simultaneously enabling static 3D and dynamic 4D full-head recovery. The core of our method lies in a thorough analysis of the attention mechanisms and the entangled reconstruction and animation training pipeline adopted by prior state-of-the-art approaches. Our analysis identifies two main factors that compromise the quality of 3D full-head generation: (1) incorrect and noisy attention activations, and (2) conflicts between the tasks of reconstruction and animation. To address the first issue, we introduce a symmetric and semantic attention regularization strategy that leverages the inherent semantics and structural symmetry of human heads. To disentangle the objectives of reconstruction and animation, we develop a novel dual-phase training pipeline that separates the model's capabilities for large-view hallucination and animation into distinct modules. Moreover, we enhance our model to support multi-view and streaming 4D reconstruction in an efficient and memory-friendly manner through a core autoregressive modification with tailored visibility-aware token fusion. Collectively, these innovations enable FA-LAM to reconstruct animatable Gaussian full heads with superior quality, particularly in fine facial regions and large viewing angles.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/24/2607.17900v1-harness-tts-towards-context-aware-expressive-speech-synthesis-with-harness-layer",
+      "section": "quick",
+      "title_en": "Harness TTS: Towards Context-Aware Expressive Speech Synthesis with Harness Layer",
+      "authors": "Shengfan Shen, Di Wu, Xingchen Song, Dinghao Zhou, Pengyu Cheng, Sixiang Lyu, Jian Luan, Shuai Wang",
+      "date": "2026-07-20",
+      "pdf": "https://arxiv.org/pdf/2607.17900v1",
+      "score": "6.0",
+      "evidence": "用于音频驱动说话头动画的表达性语音合成方法",
+      "tldr": "语音助手需要上下文感知的表达性语音合成，现有方法缺乏灵活控制。提出Harness TTS，通过轻量控制层将风格控制转化为闭集提示工具路由，LLM规划器选择工具，TTS执行器合成语音。路由任务中Qwen3-4B准确率达74.3%，合成任务在CosyVoice3和VoxCPM2上指令跟随胜率提升23.1-35.6点，自然度提升0.11-0.38，首次推荐延迟低于50ms。该方案提供实用、可审计、上下文感知的解决方案。",
+      "tags": "query:talking-head",
+      "abstract_en": "Expressive speech synthesis for voice assistants requires flexible style control that adapts to explicit requests and broader interaction context. We propose Harness TTS, a lightweight control layer that wraps around a TTS engine to externalize and govern its expressive behavior. It reformulates style control as closed-set prompt-tool routing: offline, a compact registry of stylistic prompt tools is constructed with structured metadata; online, an LLM planner selects the appropriate tool based on a priority-aware observation schema, and the TTS executor synthesizes speech using the corresponding prompt audio. We evaluate Harness TTS on both routing and synthesis tasks. In routing, Qwen3-4B achieves Top-1 accuracies of 74.3%, 43.0%, and 64.6% on explicit, implicit, and conflict subsets. For synthesis, experiments on CosyVoice3 and VoxCPM2 show that Harness TTS outperforms instruction-only control, achieving higher instruction-following win rates (margins of 23.1-35.6 points on CosyVoice3 and 13.8-20.0 points on VoxCPM2) and improving UTMOSv2 scores by 0.11-0.38. Moreover, the 4B planner delivers its first tool recommendation in under 50 ms in standard mode, introducing negligible latency for real-time interaction. These results demonstrate that equipping TTS engines with a dedicated Harness layer offers a practical, auditable, and context-aware solution for voice assistant expression control.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

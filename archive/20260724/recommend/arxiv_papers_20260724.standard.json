@@ -1,0 +1,99 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-24T20:20:10.802739+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2607.20922v1",
+      "source": "arxiv",
+      "title": "FA-LAM: Focus-Aware Large Avatar Model for One-Shot 4D Animatable Gaussian Head",
+      "abstract": "We propose FA-LAM, a Focus-Aware Large Avatar Model for one-shot animatable Gaussian head creation, while simultaneously enabling static 3D and dynamic 4D full-head recovery. The core of our method lies in a thorough analysis of the attention mechanisms and the entangled reconstruction and animation training pipeline adopted by prior state-of-the-art approaches. Our analysis identifies two main factors that compromise the quality of 3D full-head generation: (1) incorrect and noisy attention activations, and (2) conflicts between the tasks of reconstruction and animation. To address the first issue, we introduce a symmetric and semantic attention regularization strategy that leverages the inherent semantics and structural symmetry of human heads. To disentangle the objectives of reconstruction and animation, we develop a novel dual-phase training pipeline that separates the model's capabilities for large-view hallucination and animation into distinct modules. Moreover, we enhance our model to support multi-view and streaming 4D reconstruction in an efficient and memory-friendly manner through a core autoregressive modification with tailored visibility-aware token fusion. Collectively, these innovations enable FA-LAM to reconstruct animatable Gaussian full heads with superior quality, particularly in fine facial regions and large viewing angles.",
+      "authors": [
+        "Yingdong Hu",
+        "Yisheng He",
+        "Yiming Jiang",
+        "Zehong Lin",
+        "Steven Hoi",
+        "Jun Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-23T04:57:22+00:00",
+      "link": "https://arxiv.org/pdf/2607.20922v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "one-shot animatable Gaussian head creation, full-head recovery",
+      "llm_evidence_cn": "一次性可动画高斯头部创建，全头部重建",
+      "llm_evidence": "一次性可动画高斯头部创建，全头部重建",
+      "canonical_evidence": "一次性可动画高斯头部创建，全头部重建",
+      "llm_tldr_en": "FA-LAM enables one-shot 4D animatable Gaussian head creation with focus-aware attention regularization, addressing reconstruction-animation conflicts, achieving high-quality static 3D and dynamic 4D full-head recovery.",
+      "llm_tldr_cn": "现有一次性可动画头像生成方法存在注意力激活噪声以及重建与动画任务冲突的问题。为此，本文提出FA-LAM，通过对称语义注意力正则化解码头部语义对称性，并解耦重建与动画训练流程，实现高质量的单次4D高斯头部创建。实验证明该方法在3D静态和4D动态全头恢复上均取得优异效果，为数字人头像创建提供了高效方案。",
+      "llm_tldr": "现有一次性可动画头像生成方法存在注意力激活噪声以及重建与动画任务冲突的问题。为此，本文提出FA-LAM，通过对称语义注意力正则化解码头部语义对称性，并解耦重建与动画训练流程，实现高质量的单次4D高斯头部创建。实验证明该方法在3D静态和4D动态全头恢复上均取得优异效果，为数字人头像创建提供了高效方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.17900v1",
+      "source": "arxiv",
+      "title": "Harness TTS: Towards Context-Aware Expressive Speech Synthesis with Harness Layer",
+      "abstract": "Expressive speech synthesis for voice assistants requires flexible style control that adapts to explicit requests and broader interaction context. We propose Harness TTS, a lightweight control layer that wraps around a TTS engine to externalize and govern its expressive behavior. It reformulates style control as closed-set prompt-tool routing: offline, a compact registry of stylistic prompt tools is constructed with structured metadata; online, an LLM planner selects the appropriate tool based on a priority-aware observation schema, and the TTS executor synthesizes speech using the corresponding prompt audio. We evaluate Harness TTS on both routing and synthesis tasks. In routing, Qwen3-4B achieves Top-1 accuracies of 74.3%, 43.0%, and 64.6% on explicit, implicit, and conflict subsets. For synthesis, experiments on CosyVoice3 and VoxCPM2 show that Harness TTS outperforms instruction-only control, achieving higher instruction-following win rates (margins of 23.1-35.6 points on CosyVoice3 and 13.8-20.0 points on VoxCPM2) and improving UTMOSv2 scores by 0.11-0.38. Moreover, the 4B planner delivers its first tool recommendation in under 50 ms in standard mode, introducing negligible latency for real-time interaction. These results demonstrate that equipping TTS engines with a dedicated Harness layer offers a practical, auditable, and context-aware solution for voice assistant expression control.",
+      "authors": [
+        "Shengfan Shen",
+        "Di Wu",
+        "Xingchen Song",
+        "Dinghao Zhou",
+        "Pengyu Cheng",
+        "Sixiang Lyu",
+        "Jian Luan",
+        "Shuai Wang"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD"
+      ],
+      "published": "2026-07-20T12:48:02+00:00",
+      "link": "https://arxiv.org/pdf/2607.17900v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "expressive TTS method for audio-driven talking head animation",
+      "llm_evidence_cn": "用于音频驱动说话头动画的表达性语音合成方法",
+      "llm_evidence": "用于音频驱动说话头动画的表达性语音合成方法",
+      "canonical_evidence": "用于音频驱动说话头动画的表达性语音合成方法",
+      "llm_tldr_en": "Harness TTS introduces a lightweight harness layer for expressive speech synthesis, using LLM-based prompt-tool routing to achieve context-aware style control, which can be used as audio input for talking head generation.",
+      "llm_tldr_cn": "针对语音助手等场景，Harness TTS提出了一种轻量级的调控层，通过将风格控制形式化为闭集提示-工具路由，由LLM规划器选择合适的风格提示音频，从而实现上下文感知的表达性语音合成。该方法在路由任务上达到了较高的Top-1准确率。该工作可被用作音频驱动说话头动画的音频生成模块，为说话头合成系统中的音频部分提供灵活的风格控制。",
+      "llm_tldr": "针对语音助手等场景，Harness TTS提出了一种轻量级的调控层，通过将风格控制形式化为闭集提示-工具路由，由LLM规划器选择合适的风格提示音频，从而实现上下文感知的表达性语音合成。该方法在路由任务上达到了较高的Top-1准确率。该工作可被用作音频驱动说话头动画的音频生成模块，为说话头合成系统中的音频部分提供灵活的风格控制。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
