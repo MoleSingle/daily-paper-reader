@@ -6,26 +6,26 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-24
-- 运行时间：2026-07-24 20:22:34 UTC
+- 最新运行日期：2026-07-25
+- 运行时间：2026-07-25 19:52:52 UTC
 - 运行状态：成功
 - 本次总论文数：2
 - 精读区：1
 - 速读区：1
 
 ### 今日简报（AI）
-今日精读1篇高分4D头像建模论文《FA-LAM》，速读1篇语音合成研究《Harness TTS》；最值得关注的方向是“一次性4D可动画化高斯头部模型”，评分9.0；建议优先精读《FA-LAM》以掌握其聚焦感知机制与动画生成技术。
-- 详情：[/202607/24/README](/202607/24/README)
+今日处理2篇论文，精读1篇，速读1篇。最值得关注的是精读论文《Adaptive Identity Anchoring: Closed-Loop Keyframe Placement for Synthetic Paired Supervision in Video Face Swapping》（8.0分），其闭环关键帧放置方法或成视频换脸新方向。建议普通读者重点关注视频人脸交换中身份锚定技术的改进。
+- 详情：[/202607/25/README](/202607/25/README)
 
 ### 精读区论文标签
-1. [FA-LAM: Focus-Aware Large Avatar Model for One-Shot 4D Animatable Gaussian Head](/202607/24/2607.20922v1-fa-lam-focus-aware-large-avatar-model-for-one-shot-4d-animatable-gaussian-head)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：一次性可动画高斯头部创建，全头部重建
+1. [Adaptive Identity Anchoring: Closed-Loop Keyframe Placement for Synthetic Paired Supervision in Video Face Swapping](/202607/25/2607.21434v1-adaptive-identity-anchoring-closed-loop-keyframe-placement-for-synthetic-paired-supervision-in-video-face-swapping)  
+   标签：评分：8.0/10、query:talking-head
+   evidence：视频换脸技术用于说话头生成
 
 ### 速读区论文标签
-1. [Harness TTS: Towards Context-Aware Expressive Speech Synthesis with Harness Layer](/202607/24/2607.17900v1-harness-tts-towards-context-aware-expressive-speech-synthesis-with-harness-layer)  
+1. [Harness TTS: Towards Context-Aware Expressive Speech Synthesis with Harness Layer](/202607/25/2607.17900v2-harness-tts-towards-context-aware-expressive-speech-synthesis-with-harness-layer)  
    标签：评分：6.0/10、query:talking-head
-   evidence：用于音频驱动说话头动画的表达性语音合成方法
+   evidence：用于语音助手的表达性语音合成，可用于音频驱动面部动画
 
 
 <div class="dpr-home-promo-card">

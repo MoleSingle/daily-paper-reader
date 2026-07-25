@@ -1,0 +1,94 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-25T19:51:00.070232+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2607.21434v1",
+      "source": "arxiv",
+      "title": "Adaptive Identity Anchoring: Closed-Loop Keyframe Placement for Synthetic Paired Supervision in Video Face Swapping",
+      "abstract": "Video face swapping has no natural paired supervision: no real footage exists of one person's face performing another person's video. The strongest current answer, DreamID-V's SyncID-Pipe, mints pairs by replacing the identity in exactly two frames of a real clip -- the first and the last -- and regenerating the rest from a pose sequence alone. Pose carries no appearance evidence of the swapped-in identity, so over long clips, occlusions, and extreme pose excursions the synthesized identity has a long unanchored span on which to drift; no published ablation examines anchor count or placement. We propose Adaptive Identity Anchoring (AIA): (i) generalize the synthesizer to arbitrary anchor sets, architecturally natural for diffusion-forcing-style transformers where conditioning on a frame is clamping its tokens to zero noise; (ii) place anchors by a closed feedback loop that scores every generated frame against the real reference identity and inserts an image-face-swapped anchor at the worst-scoring frame until the pair passes a threshold or exhausts a budget; (iii) reuse the loop's verdict as an automatic data filter. A second pathology, the beauty-filter look of over-smoothed skin, has the same root cause: micro-texture, like identity, is priced by none of the pipeline's objectives. We therefore pair AIA with Reality-Referenced Texture Restoration: matched re-graining from each real frame's non-face regions, band-split transfer of sub-identity micro-texture from the real footage, and a second, spectral acceptance channel refereed by the footage's own spectrum. Identity-anchor density, we argue, is a controllable quality dial, and we specify falsifiable experiments -- drift-versus-gap curves, uniform-versus-adaptive placement at matched budgets, student training on AIA-minted data, and texture ablations with a human beauty-filter study -- that would validate or refute the proposal.",
+      "authors": [
+        "Logan Robbins"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-23T15:37:55+00:00",
+      "link": "https://arxiv.org/pdf/2607.21434v1",
+      "tags": [
+        "keyword:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "video face swapping for talking head generation",
+      "llm_evidence_cn": "视频换脸技术用于说话头生成",
+      "llm_evidence": "视频换脸技术用于说话头生成",
+      "canonical_evidence": "视频换脸技术用于说话头生成",
+      "llm_tldr_en": "Proposes Adaptive Identity Anchoring for video face swapping, using closed-loop keyframe placement to maintain identity consistency, relevant to talking head synthesis.",
+      "llm_tldr_cn": "针对视频换脸中缺乏真实配对监督的问题，提出自适应身份锚定方法，通过闭环关键帧放置策略增强身份一致性。该方法能够泛化到任意锚点集，有效减少长视频中身份漂移。实验证明了锚点数量和位置的重要性。该工作为说话头生成中的身份保持提供了可迁移的思路。",
+      "llm_tldr": "针对视频换脸中缺乏真实配对监督的问题，提出自适应身份锚定方法，通过闭环关键帧放置策略增强身份一致性。该方法能够泛化到任意锚点集，有效减少长视频中身份漂移。实验证明了锚点数量和位置的重要性。该工作为说话头生成中的身份保持提供了可迁移的思路。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.17900v2",
+      "source": "arxiv",
+      "title": "Harness TTS: Towards Context-Aware Expressive Speech Synthesis with Harness Layer",
+      "abstract": "Expressive speech synthesis for voice assistants requires flexible style control that adapts to explicit requests and broader interaction context. We propose Harness TTS, a lightweight control layer that wraps around a TTS engine to externalize and govern its expressive behavior. It reformulates style control as closed-set prompt-tool routing: offline, a compact registry of stylistic prompt tools is constructed with structured metadata; online, an LLM planner selects the appropriate tool based on a priority-aware observation schema, and the TTS executor synthesizes speech using the corresponding prompt audio. We evaluate Harness TTS on both routing and synthesis tasks. In routing, Qwen3-4B achieves Top-1 accuracies of 74.3%, 43.0%, and 64.6% on explicit, implicit, and conflict subsets. For synthesis, experiments on CosyVoice3 and VoxCPM2 show that Harness TTS outperforms instruction-only control, achieving higher instruction-following win rates (margins of 23.1-35.6 points on CosyVoice3 and 13.8-20.0 points on VoxCPM2) and improving UTMOSv2 scores by 0.11-0.38. Moreover, the 4B planner delivers its first tool recommendation in under 50 ms in standard mode, introducing negligible latency for real-time interaction. These results demonstrate that equipping TTS engines with a dedicated Harness layer offers a practical, auditable, and context-aware solution for voice assistant expression control.",
+      "authors": [
+        "Shengfan Shen",
+        "Di Wu",
+        "Xingchen Song",
+        "Dinghao Zhou",
+        "Pengyu Cheng",
+        "Sixiang Lyu",
+        "Jian Luan",
+        "Shuai Wang"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD"
+      ],
+      "published": "2026-07-20T12:48:02+00:00",
+      "link": "https://arxiv.org/pdf/2607.17900v2",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "expressive speech synthesis for voice assistants, can be used in audio-driven facial animation",
+      "llm_evidence_cn": "用于语音助手的表达性语音合成，可用于音频驱动面部动画",
+      "llm_evidence": "用于语音助手的表达性语音合成，可用于音频驱动面部动画",
+      "canonical_evidence": "用于语音助手的表达性语音合成，可用于音频驱动面部动画",
+      "llm_tldr_en": "Harness TTS proposes a lightweight control layer for expressive speech synthesis, using LLM-planner to route style prompts, enabling context-aware audio generation that can drive talking head animation.",
+      "llm_tldr_cn": "针对语音助手表达性语音合成中灵活风格控制的需求，提出Harness TTS轻量控制层，将风格控制转化为封闭式提示工具路由：离线构建风格提示工具注册表，在线由LLM规划器根据优先级选择工具，TTS引擎合成对应音频。在路由和合成任务上验证有效性，Top-1准确率达74.3%。该方法可通过提供高质量、情境感知的语音输出，直接服务于音频驱动的说话头面部动画系统。",
+      "llm_tldr": "针对语音助手表达性语音合成中灵活风格控制的需求，提出Harness TTS轻量控制层，将风格控制转化为封闭式提示工具路由：离线构建风格提示工具注册表，在线由LLM规划器根据优先级选择工具，TTS引擎合成对应音频。在路由和合成任务上验证有效性，Top-1准确率达74.3%。该方法可通过提供高质量、情境感知的语音输出，直接服务于音频驱动的说话头面部动画系统。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-25",
+  "date": "2026-07-25",
+  "generated_at": "2026-07-25T19:52:58",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/25/2607.21434v1-adaptive-identity-anchoring-closed-loop-keyframe-placement-for-synthetic-paired-supervision-in-video-face-swapping",
+      "section": "deep",
+      "title_en": "Adaptive Identity Anchoring: Closed-Loop Keyframe Placement for Synthetic Paired Supervision in Video Face Swapping",
+      "authors": "Logan Robbins",
+      "date": "2026-07-23",
+      "pdf": "https://arxiv.org/pdf/2607.21434v1",
+      "score": "8.0",
+      "evidence": "视频换脸技术用于说话头生成",
+      "tldr": "视频人脸交换因缺乏自然配对监督而面临身份漂移问题。现有方法仅用首尾两帧作为锚点，在长视频或极端姿态下合成身份不稳定。本文提出自适应身份锚定（AIA），通过闭环反馈动态插入锚点，将合成器泛化到任意锚点集，并利用评分自动过滤数据。同时引入现实参考纹理恢复（RRTR），从真实帧非面部区域恢复微纹理，解决过度平滑的“美颜滤镜”问题。实验表明，锚点密度是可控制质量旋钮，该方法在身份保持和纹理真实性上优于基线。",
+      "tags": "query:talking-head",
+      "abstract_en": "Video face swapping has no natural paired supervision: no real footage exists of one person's face performing another person's video. The strongest current answer, DreamID-V's SyncID-Pipe, mints pairs by replacing the identity in exactly two frames of a real clip -- the first and the last -- and regenerating the rest from a pose sequence alone. Pose carries no appearance evidence of the swapped-in identity, so over long clips, occlusions, and extreme pose excursions the synthesized identity has a long unanchored span on which to drift; no published ablation examines anchor count or placement. We propose Adaptive Identity Anchoring (AIA): (i) generalize the synthesizer to arbitrary anchor sets, architecturally natural for diffusion-forcing-style transformers where conditioning on a frame is clamping its tokens to zero noise; (ii) place anchors by a closed feedback loop that scores every generated frame against the real reference identity and inserts an image-face-swapped anchor at the worst-scoring frame until the pair passes a threshold or exhausts a budget; (iii) reuse the loop's verdict as an automatic data filter. A second pathology, the beauty-filter look of over-smoothed skin, has the same root cause: micro-texture, like identity, is priced by none of the pipeline's objectives. We therefore pair AIA with Reality-Referenced Texture Restoration: matched re-graining from each real frame's non-face regions, band-split transfer of sub-identity micro-texture from the real footage, and a second, spectral acceptance channel refereed by the footage's own spectrum. Identity-anchor density, we argue, is a controllable quality dial, and we specify falsifiable experiments -- drift-versus-gap curves, uniform-versus-adaptive placement at matched budgets, student training on AIA-minted data, and texture ablations with a human beauty-filter study -- that would validate or refute the proposal.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/25/2607.17900v2-harness-tts-towards-context-aware-expressive-speech-synthesis-with-harness-layer",
+      "section": "quick",
+      "title_en": "Harness TTS: Towards Context-Aware Expressive Speech Synthesis with Harness Layer",
+      "authors": "Shengfan Shen, Di Wu, Xingchen Song, Dinghao Zhou, Pengyu Cheng, Sixiang Lyu, Jian Luan, Shuai Wang",
+      "date": "2026-07-20",
+      "pdf": "https://arxiv.org/pdf/2607.17900v2",
+      "score": "6.0",
+      "evidence": "用于语音助手的表达性语音合成，可用于音频驱动面部动画",
+      "tldr": "语音助手表达合成需灵活适应显式请求与交互上下文。本文提出Harness TTS，一个轻量控制层，将风格控制转化为闭集提示工具路由：离线注册带结构化元数据的提示工具，在线由LLM规划器基于优先级感知选择工具，再由TTS引擎合成语音。在路由中，Qwen3-4B在显式子集达74.3%Top-1准确率；合成上，Harness TTS在CosyVoice3和VoxCPM2上指令遵循胜率提升13.8-35.6点，UTMOSv2提高0.11-0.38。规划器首工具推荐延迟<50ms，为实时交互提供实用、可审计的上下文感知表达控制方案。",
+      "tags": "query:talking-head",
+      "abstract_en": "Expressive speech synthesis for voice assistants requires flexible style control that adapts to explicit requests and broader interaction context. We propose Harness TTS, a lightweight control layer that wraps around a TTS engine to externalize and govern its expressive behavior. It reformulates style control as closed-set prompt-tool routing: offline, a compact registry of stylistic prompt tools is constructed with structured metadata; online, an LLM planner selects the appropriate tool based on a priority-aware observation schema, and the TTS executor synthesizes speech using the corresponding prompt audio. We evaluate Harness TTS on both routing and synthesis tasks. In routing, Qwen3-4B achieves Top-1 accuracies of 74.3%, 43.0%, and 64.6% on explicit, implicit, and conflict subsets. For synthesis, experiments on CosyVoice3 and VoxCPM2 show that Harness TTS outperforms instruction-only control, achieving higher instruction-following win rates (margins of 23.1-35.6 points on CosyVoice3 and 13.8-20.0 points on VoxCPM2) and improving UTMOSv2 scores by 0.11-0.38. Moreover, the 4B planner delivers its first tool recommendation in under 50 ms in standard mode, introducing negligible latency for real-time interaction. These results demonstrate that equipping TTS engines with a dedicated Harness layer offers a practical, auditable, and context-aware solution for voice assistant expression control.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
