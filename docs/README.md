@@ -6,26 +6,26 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-25
-- 运行时间：2026-07-25 19:52:52 UTC
+- 最新运行日期：2026-07-26
+- 运行时间：2026-07-26 21:00:39 UTC
 - 运行状态：成功
-- 本次总论文数：2
+- 本次总论文数：1
 - 精读区：1
-- 速读区：1
+- 速读区：0
 
 ### 今日简报（AI）
-今日处理2篇论文，精读1篇，速读1篇。最值得关注的是精读论文《Adaptive Identity Anchoring: Closed-Loop Keyframe Placement for Synthetic Paired Supervision in Video Face Swapping》（8.0分），其闭环关键帧放置方法或成视频换脸新方向。建议普通读者重点关注视频人脸交换中身份锚定技术的改进。
-- 详情：[/202607/25/README](/202607/25/README)
+精读一篇机器人接待员的人形头部论文，关节式设计实现自然交互。
+核心亮点：通过仿生运动机制提升头部的表达力与互动自然度，值得关注。
+建议读者重点关注其中关节控制与人机交互的实用化路径。
+- 详情：[/202607/26/README](/202607/26/README)
 
 ### 精读区论文标签
-1. [Adaptive Identity Anchoring: Closed-Loop Keyframe Placement for Synthetic Paired Supervision in Video Face Swapping](/202607/25/2607.21434v1-adaptive-identity-anchoring-closed-loop-keyframe-placement-for-synthetic-paired-supervision-in-video-face-swapping)  
-   标签：评分：8.0/10、query:talking-head
-   evidence：视频换脸技术用于说话头生成
+1. [Articulated Humanoid Head for a Robot Receptionist Capable of Natural Human Interaction](/202607/26/2607.17042v1-articulated-humanoid-head-for-a-robot-receptionist-capable-of-natural-human-interaction)  
+   标签：评分：9.0/10、query:talking-head
+   evidence：具有21自由度和逼真皮肤的关节式人形头部，用于接待机器人
 
 ### 速读区论文标签
-1. [Harness TTS: Towards Context-Aware Expressive Speech Synthesis with Harness Layer](/202607/25/2607.17900v2-harness-tts-towards-context-aware-expressive-speech-synthesis-with-harness-layer)  
-   标签：评分：6.0/10、query:talking-head
-   evidence：用于语音助手的表达性语音合成，可用于音频驱动面部动画
+- 本次无速读推荐。
 
 
 <div class="dpr-home-promo-card">
