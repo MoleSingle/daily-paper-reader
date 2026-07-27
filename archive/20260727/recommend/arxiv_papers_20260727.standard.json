@@ -1,0 +1,98 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-27T21:09:19.584023+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2607.22302v1",
+      "source": "arxiv",
+      "title": "fMRI2Face: A Full-HD fMRI-Video Dataset and Geometry-Guided Neural Decoding Framework for Dynamic Human Face Reconstruction",
+      "abstract": "Reconstructing dynamic human faces from brain activity provides a powerful way to study how the mind perceives identity, expression, and facial motion. However, progress in fMRI-based face decoding has been limited by scarce controlled, high-resolution neural datasets and by methods that struggle to recover both identity-specific appearance and time-varying facial dynamics. We present fMRI-Face, the first fMRI dataset paired with controllable full-HD digital human facial videos rendered at 1920$\\times$1080 resolution. During scanning, participants watched photorealistic, background-free facial videos with controlled identity, expression, and head pose, while fMRI activity was recorded. The resulting dataset contains 62,856 paired fMRI-video samples, providing a structured resource for studying dynamic face perception and reconstruction. Building on this dataset, we propose fMRI2Face, a geometry-guided neural video decoding framework for reconstructing facial videos from fMRI signals. fMRI2Face derives two complementary neural controls from brain activity: Brain-derived Appearance Context, which captures global identity-related visual attributes, and Morphable 3D Facial Control, which provides explicit geometry-aware guidance for pose, expression, and non-rigid facial dynamics. These controls are integrated through Neural-Controlled Video Diffusion with auxiliary latent completion, enabling high-fidelity facial video reconstruction directly from brain activity. Experiments show that fMRI2Face consistently improves reconstruction fidelity, identity preservation, facial geometry, and motion consistency over representative neural decoding baselines. Together, fMRI-Face and fMRI2Face establish a controlled platform for studying dynamic face perception and provide a new benchmark for fMRI-based digital human reconstruction.",
+      "authors": [
+        "Jingyang Huo",
+        "Xiangru Huang",
+        "Chentao Shen",
+        "Yikai Wang",
+        "Yun Wang",
+        "Jianxiong Gao",
+        "Shihao Jin",
+        "Yanwei Fu",
+        "Jianfeng Feng"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-24T13:45:28+00:00",
+      "link": "https://arxiv.org/pdf/2607.22302v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "first fMRI dataset paired with controllable full-HD digital human facial videos",
+      "llm_evidence_cn": "首个与可控全高清数字人面部视频配对的fMRI数据集，直接提供说话头研究资源",
+      "llm_evidence": "首个与可控全高清数字人面部视频配对的fMRI数据集，直接提供说话头研究资源",
+      "canonical_evidence": "首个与可控全高清数字人面部视频配对的fMRI数据集，直接提供说话头研究资源",
+      "llm_tldr_en": "fMRI2Face introduces the first fMRI dataset with controllable full-HD digital human facial videos, enabling geometry-guided neural decoding for dynamic face reconstruction.",
+      "llm_tldr_cn": "基于fMRI的人脸解码研究受限于缺乏可控高分辨率神经数据集以及难以同时重建身份外观和时变动态。本文提出fMRI-Face数据集，首次将fMRI活动与可控全高清数字人面部视频配对，并提供几何引导的神经解码框架。实验证明该方法能有效重建面部身份和表情动态。该数据集和框架为数字人及说话头动画研究提供了重要基准资源和神经解码新范式。",
+      "llm_tldr": "基于fMRI的人脸解码研究受限于缺乏可控高分辨率神经数据集以及难以同时重建身份外观和时变动态。本文提出fMRI-Face数据集，首次将fMRI活动与可控全高清数字人面部视频配对，并提供几何引导的神经解码框架。实验证明该方法能有效重建面部身份和表情动态。该数据集和框架为数字人及说话头动画研究提供了重要基准资源和神经解码新范式。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "public datasets for digital human and talking head research",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.22118v1",
+      "source": "arxiv",
+      "title": "An AI-Driven Virtual Patient for Breaking Bad News: An Expert Formative Study on Facial Expression Intensity",
+      "abstract": "Interactive virtual patients driven by large language models (LLMs) offer scalable solutions for medical communication training, such as breaking bad news. However, designing their emotional expressiveness remains a challenge. This paper presents an AI-driven virtual patient framework combining LLM dialogue with real-time facial animation in virtual reality (VR). We conducted an exploratory, formative evaluation with seven medical experts to gather early feedback and elicit design requirements. The evaluation focused on how variations in facial expression intensity affect perceived realism and the virtual patient's emotion intelligibility. While descriptive quantitative ratings remained baseline across conditions, qualitative interviews provided deep insights into how experts perceive virtual emotional cues. The findings suggest that experts evaluate emotional realism holistically through multiple verbal and non-verbal channels; isolated facial adjustments are easily overshadowed by dialogue nuances and vocal prosody. Based on these insights, we present a roadmap for future medical training simulators, highlighting the need for synchronized, multi-modal pipelines incorporating body gestures, conversational pauses, and vocal dynamics.",
+      "authors": [
+        "Steffen Hauck",
+        "Theresa Schell",
+        "Sophie Jörg",
+        "Jens Grubert"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-07-24T09:12:19+00:00",
+      "link": "https://arxiv.org/pdf/2607.22118v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Real-time facial animation driven by LLM dialogue in VR",
+      "llm_evidence_cn": "由LLM对话驱动的实时面部动画在VR中",
+      "llm_evidence": "由LLM对话驱动的实时面部动画在VR中",
+      "canonical_evidence": "由LLM对话驱动的实时面部动画在VR中",
+      "llm_tldr_en": "This paper presents an AI-driven virtual patient framework that combines LLM dialogue with real-time facial animation in VR, with a formative study on expression intensity. It is directly relevant to audio-driven facial animation for talking heads.",
+      "llm_tldr_cn": "当前AI驱动的虚拟病人框架结合了大型语言模型对话和实时面部动画，但情感表达强度设计是个挑战。本文提出在VR中集成LLM与面部动画的框架，并通过专家形成性研究评估不同表情强度对真实感和情绪可理解性的影响。研究发现表情强度变化对主观评分影响不大，但为未来设计提供了需求。该工作直接映射到音频驱动的面部动画和数字人创建技术。",
+      "llm_tldr": "当前AI驱动的虚拟病人框架结合了大型语言模型对话和实时面部动画，但情感表达强度设计是个挑战。本文提出在VR中集成LLM与面部动画的框架，并通过专家形成性研究评估不同表情强度对真实感和情绪可理解性的影响。研究发现表情强度变化对主观评分影响不大，但为未来设计提供了需求。该工作直接映射到音频驱动的面部动画和数字人创建技术。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
