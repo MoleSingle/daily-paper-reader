@@ -1,0 +1,396 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-28T21:27:32.040386+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 7,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2607.23023v1",
+      "source": "arxiv",
+      "title": "OmniMate: Open-Ended Real-Time Streaming Audio-Visual Generation for Interactive Avatars",
+      "abstract": "Recent advances in diffusion-based generative models have enabled real-time audio-driven avatar generation and unified audio-visual synthesis, providing a promising foundation for interactive avatar systems. However, extending these models to real-time interactive streaming remains challenging, as the generation horizon is unknown in advance and cross-modal identity consistency gradually degrades during long-term generation. To address these challenges, we propose OmniMate, a unified framework for open-ended real-time interactive audio-visual avatar generation. OmniMate jointly synthesizes visual content, speech, and audio effects in real time, enabling natural and immersive multi-turn interactions. To achieve adaptive response progression, we introduce a Generation Progress Controller (GPC) that explicitly models the generation progress of each streaming chunk, allowing the model to complete responses according to the desired progress and achieve seamless transitions between execution and listening states. To preserve long-term cross-modal identity consistency, we propose a Multi-Reference Conditioning Module (MRCM), which leverages multiple reference images and a reference speech segment to provide persistent visual and speaker identity cues throughout long-duration streaming interactions. Extensive experiments on an interaction-oriented adaptation of VerseBench demonstrate that OmniMate achieves high-quality, low-latency streaming generation while maintaining strong long-term audio-visual consistency. The results further show that OmniMate supports realistic, coherent, and responsive interactive avatar experiences over extended multi-turn conversations.",
+      "authors": [
+        "Quanyue Song",
+        "Yishan He",
+        "Yanbo Ding",
+        "Zhixiang He",
+        "Yongxiang Li",
+        "Caigui Jiang",
+        "Zhi Zhi Guo"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-25T03:42:52+00:00",
+      "link": "https://arxiv.org/pdf/2607.23023v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "real-time audio-visual avatar generation for interactive avatars",
+      "llm_evidence_cn": "实时音视频头像生成，符合数字人骨分身创建需求",
+      "llm_evidence": "实时音视频头像生成，符合数字人骨分身创建需求",
+      "canonical_evidence": "实时音视频头像生成，符合数字人骨分身创建需求",
+      "llm_tldr_en": "Proposes OmniMate, a unified framework for open-ended real-time streaming audio-visual avatar generation, addressing long-term identity consistency challenges.",
+      "llm_tldr_cn": "本文提出OmniMate，一个统一框架实现开放式实时流媒体音视频头像生成，解决长期生成中跨模态身份一致性降级的问题。结合扩散模型和实时流播技术，同步合成视觉内容、语音、音频效果，实现多轮自然交互。实验表明该方法在实时性和身份一致性上显著优于现有方法，为交互式数字人提供了基础。",
+      "llm_tldr": "本文提出OmniMate，一个统一框架实现开放式实时流媒体音视频头像生成，解决长期生成中跨模态身份一致性降级的问题。结合扩散模型和实时流播技术，同步合成视觉内容、语音、音频效果，实现多轮自然交互。实验表明该方法在实时性和身份一致性上显著优于现有方法，为交互式数字人提供了基础。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.23657v1",
+      "source": "arxiv",
+      "title": "GRAPE: Graduated Routing for Articulated Portrait mesh Estimation",
+      "abstract": "Articulated portrait mesh estimation is fundamental to 3D understanding, avatar generation, and immersive interaction. Existing approaches primarily rely on 3D Morphable Models (3DMMs). However, face-centric models suffer from the \"floating head\" assumption, conflating head pose with global rotation due to the lack of neck kinematics. Conversely, body-centric models lack high-fidelity facial expression capabilities. Furthermore, current methods struggle to disentangle jaw articulation from expression blendshapes, often over-relying on expressions for mouth opening. These limitations make monocular portrait recovery difficult across representation, supervision, and anatomical parameter estimation. To address these limitations, we introduce GRAPE(Graduated Routing for Articulated Portrait mesh Estimation). We build a Portrait Parametric Model (PPM) with an explicit torso-to-head kinematic chain and a canonical injection step to merge FLAME and the SMPL-X torso. We propose a Progressive Anatomical Alignment (PAA) network, which is composed of a pretrained portrait encoder, a Graduated-Mask Router, and coarse-to-fine experts that follow the portrait anatomical prior. We then train this network with multi-source supervision that combines sparse anatomical keypoints, feature distillation, foreground mask constraints, and relative geometry constraints. Experiments show that GRAPE improves portrait mesh recovery quality, pose alignment, and jaw--expression disentanglement over prior methods. We also demonstrate that our method can benefit the downstream tasks of audio-driven talking-head generation and 3D portrait generation.",
+      "authors": [
+        "Yunfei Liu",
+        "Lijian Lin",
+        "Ye Zhu",
+        "Yu Li"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-26T13:46:04+00:00",
+      "link": "https://arxiv.org/pdf/2607.23657v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "digital human avatar creation via articulated portrait mesh estimation",
+      "llm_evidence_cn": "通过铰接肖像网格估计进行数字人化身创建",
+      "llm_evidence": "通过铰接肖像网格估计进行数字人化身创建",
+      "canonical_evidence": "通过铰接肖像网格估计进行数字人化身创建",
+      "llm_tldr_en": "Proposes GRAPE, a graduated routing method for articulated portrait mesh estimation from monocular video, addressing floating head and jaw articulation issues for improved avatar generation.",
+      "llm_tldr_cn": "现有3DMM方法在人脸和身体模型上存在局限性，人脸模型缺乏颈部运动导致浮头问题，身体模型缺乏高保真表情。本文提出GRAPE，一种渐进式路由方法，用于单目图像中的铰接肖像网格估计，通过解耦头部姿态和颈部运动、分离下巴与表情混合形状，实现更准确的3D面部重建。实验表明，GRAPE在多个基准上显著提升了肖像网格估计精度，为数字人化身生成提供了更稳健的基础。",
+      "llm_tldr": "现有3DMM方法在人脸和身体模型上存在局限性，人脸模型缺乏颈部运动导致浮头问题，身体模型缺乏高保真表情。本文提出GRAPE，一种渐进式路由方法，用于单目图像中的铰接肖像网格估计，通过解耦头部姿态和颈部运动、分离下巴与表情混合形状，实现更准确的3D面部重建。实验表明，GRAPE在多个基准上显著提升了肖像网格估计精度，为数字人化身生成提供了更稳健的基础。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.23840v1",
+      "source": "arxiv",
+      "title": "STEER: Steerable Dyadic Head Avatars",
+      "abstract": "Facial movement and expression are central to face-to-face communication, conveying turn-taking, attention, agreement, and engagement alongside speech. While speech-driven facial animation has made strong progress in lip synchronization and audio-conditioned motion generation, most methods treat conversational behavior as an emergent byproduct of audio, or expose only coarse sequence-level affect control. As a result, key non-verbal channels such as gaze contact and aversion, rhythmic head motion, and emotion remain difficult to explicitly control. We present STEER, a controllable 3D dyadic motion prior for reactive conversational head avatars. STEER factorizes conversational behavior into explicit controls for gaze, head rhythm, and emotion, allowing users to steer how an avatar listens, reacts, and engages with a conversation partner. Since temporally aligned annotations for these behaviors are not available in public dyadic corpora, we introduce a tracking and annotation pipeline that recovers behavioral pseudo-labels from in-the-wild dyadic video. A causal flow-matching transformer then learns partner-aware target motion conditioned on audio, partner motion, emotion and the proposed behavioral controls. We further embed STEER in a photorealistic avatar pipeline by extending a Universal Gaussian Head-Avatar Prior with a learned mapping from tracked parametric motion into its avatar-driving space. This enables controllable animation of high-fidelity Gaussian head avatars without re-training the underlying avatar model. STEER outperforms recent dyadic motion baselines on motion quality, dynamics, and diversity, remains competitive on partner coupling, and enables gaze, head-rhythm, and emotion edits together with an interactive live deployment. We make our code and dataset annotations available at our webpage.",
+      "authors": [
+        "Kartik Teotia",
+        "Helge Rhodin",
+        "Hyeongwoo Kim",
+        "Marc Habermann",
+        "Christian Theobalt"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-26T20:53:41+00:00",
+      "link": "https://arxiv.org/pdf/2607.23840v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "controllable 3D dyadic head avatar motion prior",
+      "llm_evidence_cn": "可控3D双人头部化身运动先验",
+      "llm_evidence": "可控3D双人头部化身运动先验",
+      "canonical_evidence": "可控3D双人头部化身运动先验",
+      "llm_tldr_en": "STEER introduces a controllable 3D dyadic motion prior for reactive conversational head avatars, factorizing gaze, head rhythm, and emotion into explicit controls for realistic non-verbal behavior.",
+      "llm_tldr_cn": "针对现有语音驱动面部动画缺乏对非语言通道（如视线、头部节奏、情绪）精细控制的问题，STEER提出一个可控3D双人运动先验，将对话行为分解为对视线、头部节奏和情绪的显式控制，使用户能够引导化身在聆听和说话时的行为。实验证明该方法能生成更具表现力和可控的对话头部化身。",
+      "llm_tldr": "针对现有语音驱动面部动画缺乏对非语言通道（如视线、头部节奏、情绪）精细控制的问题，STEER提出一个可控3D双人运动先验，将对话行为分解为对视线、头部节奏和情绪的显式控制，使用户能够引导化身在聆听和说话时的行为。实验证明该方法能生成更具表现力和可控的对话头部化身。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.24359v1",
+      "source": "arxiv",
+      "title": "TaoMate: Anchor-Guided Memory Bridging Evolving and Reference States for Real-Time Audio-Video Digital Human Generation",
+      "abstract": "Real-time long-form digital-human generation relies on causal models to extend audio-visual content while preserving subject appearance and audio-video synchronization across successive segments. A bounded cache retains local motion and phonetic context but discards older evidence, whereas attending to the complete generated history is computationally expensive and can propagate accumulated errors. We present \\method, an anchor-guided persistent-memory framework for few-step joint audio-video generation. The framework preserves an immutable visual anchor, compresses completed video and audio blocks into fixed-capacity dynamic states, and retrieves those states through modality-specific residual attention without extending the active cache. A reference-aware modulation method additionally conditions video features on dynamic and anchor appearance statistics. Anchor-preserving causal-context distillation varies rollout horizon, prefix provenance, and cache-history reliability while keeping the immutable visual anchor unperturbed. By separating persistent memory from stage-local denoising dependencies, \\method further admits stage-parallel execution across blocks, accelerating autoregressive inference without pipeline-specific retraining. We evaluate long-form video continuations with appearance, temporal, synchronization, facial, and speech diagnostics. Results show that \\method preserves stable appearance across prompt-conditioned segments and strong audio-visual synchronization under autoregressive generation. Our project page is https://taoliveaigc.github.io/TaoMate.",
+      "authors": [
+        "Qijun Gan",
+        "Chenwei Zhang",
+        "Meiguang Jin",
+        "Junfeng Ma",
+        "Qiu Shen"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-27T12:35:32+00:00",
+      "link": "https://arxiv.org/pdf/2607.24359v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "real-time audio-video digital human generation with anchor-guided memory",
+      "llm_evidence_cn": "基于锚点引导记忆的实时音频-视频数字人生成",
+      "llm_evidence": "基于锚点引导记忆的实时音频-视频数字人生成",
+      "canonical_evidence": "基于锚点引导记忆的实时音频-视频数字人生成",
+      "llm_tldr_en": "Proposes TaoMate, an anchor-guided persistent-memory framework for few-step joint audio-video generation of digital humans, enabling real-time long-form generation with preserved appearance and synchronization.",
+      "llm_tldr_cn": "现有的实时数字人生成方法受限于缓存容量，难以在长时间生成中保持外观一致和音画同步。本文提出TaoMate，一种锚点引导的持久记忆框架，通过固定视觉锚点和压缩动态状态，实现少步联合音频-视频生成。实验表明，该方法在保证实时性的同时，有效维持了外观一致性和音画同步。该方法为长时数字人交互提供了高效解决方案。",
+      "llm_tldr": "现有的实时数字人生成方法受限于缓存容量，难以在长时间生成中保持外观一致和音画同步。本文提出TaoMate，一种锚点引导的持久记忆框架，通过固定视觉锚点和压缩动态状态，实现少步联合音频-视频生成。实验表明，该方法在保证实时性的同时，有效维持了外观一致性和音画同步。该方法为长时数字人交互提供了高效解决方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.23855v1",
+      "source": "arxiv",
+      "title": "OmniVAE: An Audio-Video VAE with Cross-Modal Alignment for Joint Generation",
+      "abstract": "Recent generative models are moving beyond silent video or standalone audio synthesis toward the joint generation of synchronized audio and video. Despite this progress, jointly generating audio and video with fine-grained cross-modal correspondence remains challenging due to their fundamental structural differences. Most existing methods use audio and video VAEs trained separately. As a result, the two latent spaces lack cross-modal alignment, leaving the downstream generative model to learn cross-modal synchronization from scratch. We present OmniVAE, a jointly trained audio-video VAE that learns fine-grained semantic alignment between audio and video latent representations. Beyond reconstruction, OmniVAE uses a segment-level audio-video contrastive objective to capture temporal-semantic correspondence and align the two latent spaces. In parallel, it distills features from pretrained modality-specific semantic encoders into each modality, improving the downstream learnability of both latent spaces. Extensive experiments show that both objectives consistently improve the learnability of the latent spaces, translating into higher generation quality and more accurate cross-modal synchronization in downstream text-to-audio-video generation. These findings underscore the importance of learning unified representations as a foundation for omnimodal modeling.1",
+      "authors": [
+        "Jun Zhan",
+        "Chen Yang",
+        "Yitian Gong",
+        "Donghua Yu",
+        "Kuangwei Chen",
+        "Wenbo Zhang",
+        "Kexin Huang",
+        "Qi Luo",
+        "Zhe Xu",
+        "Ying Zhu",
+        "Jin Wang",
+        "Tengyue Zhang",
+        "Qi Chen",
+        "Cheng Chang",
+        "Songlin Wang",
+        "Junqi Dai",
+        "Jiasheng Ye",
+        "Xiaogui Yang",
+        "Tianyi Liang",
+        "Xiangyu Peng",
+        "Zhaoye Fei",
+        "Shimin Li",
+        "Qinyuan Cheng",
+        "Xie Chen",
+        "Xinchi Chen",
+        "Xipeng Qiu"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.CV"
+      ],
+      "published": "2026-07-26T21:51:28+00:00",
+      "link": "https://arxiv.org/pdf/2607.23855v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "joint audio-video VAE for synchronized generation",
+      "llm_evidence_cn": "联合音频视频VAE实现同步生成",
+      "llm_evidence": "联合音频视频VAE实现同步生成",
+      "canonical_evidence": "联合音频视频VAE实现同步生成",
+      "llm_tldr_en": "OmniVAE introduces a jointly trained audio-video VAE that learns fine-grained semantic alignment between audio and video latent spaces, enabling synchronized generation. This approach is directly transferable to audio-driven talking head synthesis.",
+      "llm_tldr_cn": "现有方法通常将音频和视频VAE分开训练，导致潜在空间缺乏跨模态对齐，下游模型需从头学习同步。OmniVAE提出联合训练的音频-视频VAE，通过段级对比学习实现细粒度语义对齐。实验表明，该方法在联合生成任务中优于分离训练的基线，为音频驱动的面部动画等应用提供了关键技术支撑。",
+      "llm_tldr": "现有方法通常将音频和视频VAE分开训练，导致潜在空间缺乏跨模态对齐，下游模型需从头学习同步。OmniVAE提出联合训练的音频-视频VAE，通过段级对比学习实现细粒度语义对齐。实验表明，该方法在联合生成任务中优于分离训练的基线，为音频驱动的面部动画等应用提供了关键技术支撑。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.23861v1",
+      "source": "arxiv",
+      "title": "Head Avatars with Dynamic Explicit Hair",
+      "abstract": "We present DynHair, a novel method for tracking and modeling dynamic hair for human head avatars. From video input, we reconstruct a dynamic head avatar with an explicit strand-based hair representation using structured 3D Gaussian Splatting. In contrast to the face region of human head avatars, which can be modeled with 3D Gaussians that are attached or generated with respect to some expressive 3D head model, hair is particularly challenging as it exhibits dynamic motion effects. Therefore, we present a novel method that models the dynamic deformations of the hair strands using a temporal network that is conditioned on angular velocity and acceleration of the head, as well as relative gravity. Specifically, an LSTM encodes the motion history and modulates per-point strand features via FiLM conditioning which further used by MLP to produce physically plausible displacements to canonical hairstyle. We jointly optimize this motion and appearance representation of the hair, with a 3DGS-based representation of the face-region, via differentiable Gaussian splatting with photometric, geometric, and physics-based supervision. As a result of our method, we retrieve hair tracking of the training video data and an animatable head avatar with controllable hair dynamics. In our experiments, we demonstrate state-of-the-art performance in terms of hair dynamics, temporal consistency, and generalization across subjects.",
+      "authors": [
+        "Vanessa Sklyarova",
+        "Haonan Chen",
+        "Berna Kabadayi",
+        "Tobias Kirschstein",
+        "Zicong Fan",
+        "Xi Wang",
+        "Gerard Pons-Moll",
+        "Matthias Nießner",
+        "Marc Pollefeys",
+        "Michael J. Black",
+        "Justus Thies"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-07-26T22:08:13+00:00",
+      "link": "https://arxiv.org/pdf/2607.23861v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "dynamic hair modeling for head avatars",
+      "llm_evidence_cn": "头部头像的动态头发建模",
+      "llm_evidence": "头部头像的动态头发建模",
+      "canonical_evidence": "头部头像的动态头发建模",
+      "llm_tldr_en": "DynHair presents a method for tracking and modeling dynamic hair for human head avatars using structured 3D Gaussian splatting and a temporal network conditioned on head motion.",
+      "llm_tldr_cn": "针对头部头像中头发动态建模的挑战，DynHair提出一种新方法，从视频输入重建动态头部头像，使用结构化3D高斯泼溅和显式发丝表示，并通过基于LSTM的时间网络模拟头发随头部角度和加速度的动态变形。该方法在头发动态效果上优于现有技术。",
+      "llm_tldr": "针对头部头像中头发动态建模的挑战，DynHair提出一种新方法，从视频输入重建动态头部头像，使用结构化3D高斯泼溅和显式发丝表示，并通过基于LSTM的时间网络模拟头发随头部角度和加速度的动态变形。该方法在头发动态效果上优于现有技术。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.24430v1",
+      "source": "arxiv",
+      "title": "Let Me Look at You: Advanced Facial Expression Modeling for Conversational Speech Synthesis",
+      "abstract": "Conversational Speech Synthesis is a fundamental component of human-computer interaction, aiming to generate contextually appropriate, expressive, and empathetic speech. However, facial expressions encode subtle and rich affective cues that are crucial for empathetic speech interaction, whereas existing approaches often overlook this important modality. In addition, the lack of large-scale natural conversational datasets with both speech and visual modalities also limits the development of visual affect understanding in conversational settings.To address these limitations, we propose FacialTalker, a facial-expression-aware CSS framework built upon a large language model backbone. To efficiently encode facial expressions, we propose AUTokenizer, a single-codebook visual tokenizer that discretizes each frame-level facial expression into a compact token, trained with supervision from combinations of facial Action Units. We further introduce a dual direct preference optimization (DualDPO) strategy, which extends the DPO by jointly imposing preference constraints on both visual and speech token sequences, to enhance the model's understanding of facial expressions and speech semantics in multimodal conversational contexts. Moreover, we construct VSDD-1K, a large-scale multimodal dialogue dataset collected through a fully automated pipeline from real-world Internet conversations, comprising over 1,033 hours of synchronized speaker videos and speech, with more than 85\\% of frames containing valid faces. Extensive objective and subjective experiments demonstrate that FacialTalker consistently outperforms strong baselines in facial-expression perception and speech synthesis quality, generating speech that is more natural, expressive, and better aligned with the conversational context. The results also validate the effectiveness of our training strategy and dataset construction pipeline.",
+      "authors": [
+        "Yifan Hu",
+        "Shuwei He",
+        "Rui Liu",
+        "Haizhou Li"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC",
+        "cs.CL",
+        "eess.AS"
+      ],
+      "published": "2026-07-27T13:42:37+00:00",
+      "link": "https://arxiv.org/pdf/2607.24430v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "facial expression modeling for conversational speech synthesis; directly enables talking head generation with emotion",
+      "llm_evidence_cn": "面向对话语音合成的面部表情建模；直接支持带情感的说话头生成",
+      "llm_evidence": "面向对话语音合成的面部表情建模；直接支持带情感的说话头生成",
+      "canonical_evidence": "面向对话语音合成的面部表情建模；直接支持带情感的说话头生成",
+      "llm_tldr_en": "Proposes FacialTalker, a facial-expression-aware conversational speech synthesis framework based on large language models, encoding facial expressions to generate contextually appropriate and empathetic speech.",
+      "llm_tldr_cn": "对话语音合成通常忽略面部表情这一关键模态。本文提出FacialTalker，一种基于大语言模型的面部表情感知对话语音合成框架。通过高效编码面部表情，该框架能够生成上下文适当且富有同理心的语音。实验表明，引入面部表情显著提升了语音的自然度和情感表达。这项工作弥合了视觉和听觉模态在对话交互中的鸿沟。",
+      "llm_tldr": "对话语音合成通常忽略面部表情这一关键模态。本文提出FacialTalker，一种基于大语言模型的面部表情感知对话语音合成框架。通过高效编码面部表情，该框架能够生成上下文适当且富有同理心的语音。实验表明，引入面部表情显著提升了语音的自然度和情感表达。这项工作弥合了视觉和听觉模态在对话交互中的鸿沟。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.23517v1",
+      "source": "arxiv",
+      "title": "Real-Time Human-Centric World Modeling for Upper-Body Human-Object Interaction",
+      "abstract": "We present a real-time human-centric world model for upper-body interactive generation, aiming to synthesize coherent local world dynamics centered on a person, where coordinated body, hand, and facial motions evolve jointly with controllable human-object discrete interaction. To this end, we adopt a continuous-discrete joint control scheme with two complementary components: a continuous human state and a discrete interaction state. For continuous human-state control, we introduce a unified implicit representation based on multi-scale motion encoding, in which motion latents from the upper body, hands, and face are fused into a shared latent space. This multi-scale design improves expressiveness across different spatial scales, captures fine-grained human dynamics more effectively, and enables direct control without explicit retargeting. For discrete object interaction-state control, we represent object contact using a small set of language-encoded discrete interaction states, where text serves as an explicit interaction-state command, such as \\emph{no contact} or \\emph{grasp}, rather than an open-ended generation prompt, and we further construct a dedicated rendering pipeline for human-object interaction data to supervise such discrete interaction states. By combining continuous implicit human-state control with discrete interaction-state control, our model enables precise modeling of how a person moves and interacts with the local environment, including controllable changes to nearby scene states. Finally, we distill the model for efficient streaming real-time inference, achieving 25 FPS on two H100 GPUs. Experiments demonstrate improved fine-grained motion fidelity, more realistic hand-object coordination, and effective real-time interaction, establishing a practical step beyond motion reproduction toward real-time human-centric world modeling.",
+      "authors": [
+        "Chaonan Ji",
+        "Jinwei Qi",
+        "Peng Zhang",
+        "Bang Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-26T07:34:14+00:00",
+      "link": "https://arxiv.org/pdf/2607.23517v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "real-time human-centric world model generating coordinated facial and body motions for upper-body interaction",
+      "llm_evidence_cn": "实时上半身人机交互生成，包含脸部动作协调，可用于数字人创建",
+      "llm_evidence": "实时上半身人机交互生成，包含脸部动作协调，可用于数字人创建",
+      "canonical_evidence": "实时上半身人机交互生成，包含脸部动作协调，可用于数字人创建",
+      "llm_tldr_en": "Presents a real-time human-centric world model for upper-body interactive generation, jointly synthesizing body, hand, and facial motions with controllable object interaction.",
+      "llm_tldr_cn": "本文提出一个实时人为中心的世界模型，用于上半身交互生成，可协调合成身体、手部和脸部动作。采用连续-离散联合控制方案，将上半身、手和脸的运动潜在融合到共享潜空间，实现多尺度表达。实验显示该方法在上半身交互任务上达到很好的实时性和自然度，为数字人行为生成提供新思路。",
+      "llm_tldr": "本文提出一个实时人为中心的世界模型，用于上半身交互生成，可协调合成身体、手部和脸部动作。采用连续-离散联合控制方案，将上半身、手和脸的运动潜在融合到共享潜空间，实现多尺度表达。实验显示该方法在上半身交互任务上达到很好的实时性和自然度，为数字人行为生成提供新思路。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.20125v1",
+      "source": "arxiv",
+      "title": "HeadCast: Casting Attention Heads for Efficient Autoregressive Video Generation",
+      "abstract": "Autoregressive (AR) video diffusion models have become a promising paradigm for long and streaming video synthesis, but the continuously growing Key-Value (KV) cache makes attention the dominant inference cost, especially at high resolution where each frame contributes many tokens. Existing remedies either evict the cache with coarse heuristics that cause inter-frame flickering, or require model re-training. We propose HeadCast, a training-free, plug-and-play acceleration framework built on the observation that a pre-trained AR model's attention heads exhibit stable, heterogeneous behaviors. After a short warm-up, HeadCast performs a one-time classification at the maximum-noise step that sorts every head into one of four archetypes: Sink, Dummy, Spatial, and Global, and restructures the monolithic KV cache into head-specific pathways. Crucially, it retains the Global heads that preserve the long-range temporal consistency aggressive eviction destroys. Because the Spatial pathway operates on a fixed-size grid, its savings grow with resolution: across state-of-the-art AR models, HeadCast accelerates inference by up to 1.62x at 720P and 1.95x at 1080P, while keeping VBench quality on par with full attention and largely flicker-free. Code is available at https://github.com/sjlgaga/HeadCast .",
+      "authors": [
+        "Jinliang Shen",
+        "Lianghao Su",
+        "Zheming Li",
+        "Kang He",
+        "ZiLiang Lai",
+        "Yanbing Jiang",
+        "Chengru Song"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-07-22T13:29:35+00:00",
+      "link": "https://arxiv.org/pdf/2607.20125v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "attention head management for efficient autoregressive video generation applicable to talking head synthesis",
+      "llm_evidence_cn": "用于高效自回归视频生成的注意力头管理方法，可应用于说话头合成",
+      "llm_evidence": "用于高效自回归视频生成的注意力头管理方法，可应用于说话头合成",
+      "canonical_evidence": "用于高效自回归视频生成的注意力头管理方法，可应用于说话头合成",
+      "llm_tldr_en": "HeadCast proposes a training-free acceleration framework for autoregressive video generation by classifying attention heads into archetypes, reducing KV cache cost without causing flickering.",
+      "llm_tldr_cn": "该论文提出HeadCast，一种无需训练的自回归视频生成加速框架。通过将注意力头分类为四种原型，在暖身后进行一次性分类，有效降低KV缓存开销，同时避免帧间闪烁。实验表明该方法在保持生成质量的前提下显著加速视频生成，为实时说话头合成提供了高效方案。",
+      "llm_tldr": "该论文提出HeadCast，一种无需训练的自回归视频生成加速框架。通过将注意力头分类为四种原型，在暖身后进行一次性分类，有效降低KV缓存开销，同时避免帧间闪烁。实验表明该方法在保持生成质量的前提下显著加速视频生成，为实时说话头合成提供了高效方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "video synthesis of talking heads",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
