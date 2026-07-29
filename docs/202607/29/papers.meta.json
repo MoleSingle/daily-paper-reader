@@ -1,0 +1,39 @@
+{
+  "label": "2026-07-29",
+  "date": "2026-07-29",
+  "generated_at": "2026-07-29T20:57:40",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202607/29/2607.23023v2-omnimate-open-ended-real-time-streaming-audio-visual-generation-for-interactive-avatars",
+      "section": "deep",
+      "title_en": "OmniMate: Open-Ended Real-Time Streaming Audio-Visual Generation for Interactive Avatars",
+      "authors": "Quanyue Song, Yishan He, Yanbo Ding, Zhixiang He, Yongxiang Li, Caigui Jiang, Zhi Zhi Guo",
+      "date": "2026-07-25",
+      "pdf": "https://arxiv.org/pdf/2607.23023v2",
+      "score": "9.0",
+      "evidence": "实时音频-视觉头像生成，基于音频驱动动画用于交互式说话头",
+      "tldr": "实时交互式化身生成面临生成范围未知和身份漂移的挑战。OmniMate提出统一框架，通过生成进度控制器（GPC）显式建模流式块进度，实现自适应响应和状态切换；多参考条件模块（MRCM）利用多图像和语音片段保持长期跨模态身份一致性。在VerseBench上，OmniMate实现了高质量、低延迟的流式生成，并在多轮对话中保持强音视频一致性，支持自然沉浸的交互体验。",
+      "tags": "query:talking-head",
+      "abstract_en": "Recent advances in diffusion-based generative models have enabled real-time audio-driven avatar generation and unified audio-visual synthesis, providing a promising foundation for interactive avatar systems. However, extending unified audio-visual synthesis to real-time interactive streaming remains challenging, as the generation horizon is unknown in advance and the generated identity may drift over long-term generation. To address these challenges, we propose OmniMate, a unified framework for open-ended real-time interactive audio-visual avatar generation. OmniMate jointly synthesizes visual content, speech, and sound effects in real time, enabling natural and immersive multi-turn interactions. To achieve adaptive response progression, we introduce a Generation Progress Controller (GPC) that explicitly models the generation progress of each streaming chunk, allowing the model to complete responses according to the desired progress and achieve seamless transitions between execution and listening states. To preserve long-term cross-modal identity consistency, we propose a Multi-Reference Conditioning Module (MRCM), which leverages multiple reference images and a reference speech segment to provide persistent visual and speaker identity cues throughout long-duration streaming interactions. Extensive experiments on an interaction-oriented adaptation of VerseBench demonstrate that OmniMate achieves high-quality, low-latency streaming generation while maintaining strong long-term audio-visual consistency. The results further show that OmniMate supports realistic, coherent, and responsive interactive avatar experiences over extended multi-turn conversations.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/29/2607.19859v1-stellartts-sparse-temporal-embedding-for-low-latency-and-robust-speech-synthesis",
+      "section": "quick",
+      "title_en": "StellarTTS: Sparse Temporal Embedding for Low-Latency and Robust Speech Synthesis",
+      "authors": "Kaicheng Luo, Xuefei Gong, Yutao Sun, Jinling He, Yujie Hou, Xiaoyang Xing, Huiyan Li, Bing Han, Yanmin Qian",
+      "date": "2026-07-22",
+      "pdf": "https://arxiv.org/pdf/2607.19859v1",
+      "score": "6.0",
+      "evidence": "说话头语音合成",
+      "tldr": "现有自回归TTS延迟高且易出错，非自回归模型虽快但韵律自然度不足。为此提出StellarTTS，采用稀疏时间嵌入策略实现移动端优化的非自回归框架，支持音素时长、发音和韵律的精细控制，配合语义感知编解码器实现单阶段解码。83M参数的轻量掩码生成变换器达到0.08实时因子。实验表明其在保持音频质量、韵律自然度和说话人相似性竞争力的同时，显著降低延迟并增强鲁棒性。",
+      "tags": "query:talking-head",
+      "abstract_en": "The trade-off between robustness, latency, and prosody critically challenges text-to-speech (TTS) systems. Autoregressive models, despite fidelity, are slow and error-prone; non-autoregressive (NAR) alternatives, while fast, often sacrifice prosodic naturalness via rigid alignments. This paper introduces StellarTTS, a novel mobile-optimized NAR TTS framework based on a sparse temporal embedding strategy, enabling granular control of phoneme duration, pronunciation, and prosody. Furthermore, we propose a semantic-aware codec that facilitates efficient single-stage decoding. Conditioned on the sparse temporal embedding, our 83M-parameter lightweight masked generative transformer achieves a real-time factor (RTF) of 0.08. Experiments demonstrate that StellarTTS attains lower latency and stronger robustness compared to state-of-the-art TTS systems, while maintaining competitive performance in audio quality, prosodic naturalness, and speaker similarity.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

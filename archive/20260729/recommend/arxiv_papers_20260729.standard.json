@@ -1,0 +1,101 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-29T20:55:51.993380+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2607.23023v2",
+      "source": "arxiv",
+      "title": "OmniMate: Open-Ended Real-Time Streaming Audio-Visual Generation for Interactive Avatars",
+      "abstract": "Recent advances in diffusion-based generative models have enabled real-time audio-driven avatar generation and unified audio-visual synthesis, providing a promising foundation for interactive avatar systems. However, extending unified audio-visual synthesis to real-time interactive streaming remains challenging, as the generation horizon is unknown in advance and the generated identity may drift over long-term generation. To address these challenges, we propose OmniMate, a unified framework for open-ended real-time interactive audio-visual avatar generation. OmniMate jointly synthesizes visual content, speech, and sound effects in real time, enabling natural and immersive multi-turn interactions. To achieve adaptive response progression, we introduce a Generation Progress Controller (GPC) that explicitly models the generation progress of each streaming chunk, allowing the model to complete responses according to the desired progress and achieve seamless transitions between execution and listening states. To preserve long-term cross-modal identity consistency, we propose a Multi-Reference Conditioning Module (MRCM), which leverages multiple reference images and a reference speech segment to provide persistent visual and speaker identity cues throughout long-duration streaming interactions. Extensive experiments on an interaction-oriented adaptation of VerseBench demonstrate that OmniMate achieves high-quality, low-latency streaming generation while maintaining strong long-term audio-visual consistency. The results further show that OmniMate supports realistic, coherent, and responsive interactive avatar experiences over extended multi-turn conversations.",
+      "authors": [
+        "Quanyue Song",
+        "Yishan He",
+        "Yanbo Ding",
+        "Zhixiang He",
+        "Yongxiang Li",
+        "Caigui Jiang",
+        "Zhi Zhi Guo"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-25T03:42:52+00:00",
+      "link": "https://arxiv.org/pdf/2607.23023v2",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "real-time audio-visual avatar generation with audio-driven animation for interactive talking heads",
+      "llm_evidence_cn": "实时音频-视觉头像生成，基于音频驱动动画用于交互式说话头",
+      "llm_evidence": "实时音频-视觉头像生成，基于音频驱动动画用于交互式说话头",
+      "canonical_evidence": "实时音频-视觉头像生成，基于音频驱动动画用于交互式说话头",
+      "llm_tldr_en": "OmniMate is a unified framework for open-ended real-time audio-visual avatar generation, enabling audio-driven speech and facial animation for interactive talking heads.",
+      "llm_tldr_cn": "现有统一音频-视觉合成难以支持实时交互流式生成，且长期身份会漂移。提出OmniMate框架，联合实时合成视觉内容、语音和音效，实现多轮自然交互。通过自适应响应进度和身份保持机制，在长时间交互中保持一致性。该工作直接服务于音频驱动的说话头交互式头像生成。",
+      "llm_tldr": "现有统一音频-视觉合成难以支持实时交互流式生成，且长期身份会漂移。提出OmniMate框架，联合实时合成视觉内容、语音和音效，实现多轮自然交互。通过自适应响应进度和身份保持机制，在长时间交互中保持一致性。该工作直接服务于音频驱动的说话头交互式头像生成。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.19859v1",
+      "source": "arxiv",
+      "title": "StellarTTS: Sparse Temporal Embedding for Low-Latency and Robust Speech Synthesis",
+      "abstract": "The trade-off between robustness, latency, and prosody critically challenges text-to-speech (TTS) systems. Autoregressive models, despite fidelity, are slow and error-prone; non-autoregressive (NAR) alternatives, while fast, often sacrifice prosodic naturalness via rigid alignments. This paper introduces StellarTTS, a novel mobile-optimized NAR TTS framework based on a sparse temporal embedding strategy, enabling granular control of phoneme duration, pronunciation, and prosody. Furthermore, we propose a semantic-aware codec that facilitates efficient single-stage decoding. Conditioned on the sparse temporal embedding, our 83M-parameter lightweight masked generative transformer achieves a real-time factor (RTF) of 0.08. Experiments demonstrate that StellarTTS attains lower latency and stronger robustness compared to state-of-the-art TTS systems, while maintaining competitive performance in audio quality, prosodic naturalness, and speaker similarity.",
+      "authors": [
+        "Kaicheng Luo",
+        "Xuefei Gong",
+        "Yutao Sun",
+        "Jinling He",
+        "Yujie Hou",
+        "Xiaoyang Xing",
+        "Huiyan Li",
+        "Bing Han",
+        "Yanmin Qian"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD"
+      ],
+      "published": "2026-07-22T07:48:37+00:00",
+      "link": "https://arxiv.org/pdf/2607.19859v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "speech synthesis for talking heads",
+      "llm_evidence_cn": "说话头语音合成",
+      "llm_evidence": "说话头语音合成",
+      "canonical_evidence": "说话头语音合成",
+      "llm_tldr_en": "StellarTTS proposes a mobile-optimized non-autoregressive TTS with sparse temporal embedding, achieving low-latency and robust speech synthesis relevant for talking head audio generation.",
+      "llm_tldr_cn": "自回归TTS虽保真度高但速度慢且易出错，非自回归模型则牺牲韵律自然度。本文提出StellarTTS，采用稀疏时间嵌入策略的移动端优化非自回归TTS，实现83M参数轻量模型，实时因子0.08。该方法在保持韵律自然度的同时大幅降低延迟，可作为talking head系统中语音合成的高效模块。",
+      "llm_tldr": "自回归TTS虽保真度高但速度慢且易出错，非自回归模型则牺牲韵律自然度。本文提出StellarTTS，采用稀疏时间嵌入策略的移动端优化非自回归TTS，实现83M参数轻量模型，实时因子0.08。该方法在保持韵律自然度的同时大幅降低延迟，可作为talking head系统中语音合成的高效模块。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
