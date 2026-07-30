@@ -1,0 +1,24 @@
+{
+  "label": "2026-07-30",
+  "date": "2026-07-30",
+  "generated_at": "2026-07-30T21:38:53",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202607/30/2607.23811v1-memory-efficient-audio-synthesis-with-decoupled-temporal-depth-diffusion-transformers",
+      "section": "quick",
+      "title_en": "Memory Efficient Audio Synthesis with Decoupled Temporal Depth Diffusion Transformers",
+      "authors": "Dongseong Hwang, Prasanth Yadla, Kaan Elgin, Shifas Padinjaru Veettil, Sivanand Achanta, Dipjyoti Paul, Ramya Rasipuram, Tyler Johnson, Emad Soroush, Chung-Cheng Chiu, Zhifeng Chen",
+      "date": "2026-07-26",
+      "pdf": "https://arxiv.org/pdf/2607.23811v1",
+      "score": "7.0",
+      "evidence": "内存高效的表达性语音合成，可应用于音频驱动的说话头动画",
+      "tldr": "流式语音合成需在设备端实时生成高保真音频，面临内存和计算限制。本文提出解耦时空的扩散Transformer架构，用单个深度解码器逐级生成所有残差向量量化（RVQ）级别，结合因果滑动窗口注意力实现常数内存开销。在Apple AMX协处理器上，每步约10ms，峰值内存仅21MB，支持20-320秒连续流合成。相比前代设备TTS，平均意见得分提升0.28，对话语音提升0.42，实现高效且高质量的实时语音合成。",
+      "tags": "query:talking-head",
+      "abstract_en": "Siri Expressive Voices synthesize rich, configurable speech in real time and entirely on device, powered by AFM 3 Core Advanced, Apple's most powerful on-device foundation model. This work presents the memory-efficient audio synthesis architecture behind that capability: a detokenizer that converts the semantic audio tokens emitted by the foundation model into high-fidelity audio within the tight compute and memory budget of the Apple Matrix Coprocessor (AMX). We convert semantic audio tokens to a residual vector quantization (RVQ) representation with a three-component design, a streaming encoder, a temporal decoder, and a depth decoder, that systematically decouples temporal and depth processing. A single reusable depth decoder with Diffusion Transformer (DiT)-style stage conditioning generates all RVQ levels autoregressively, replacing the dedicated per-level decoders of prior multi-decoder architectures, while causal sliding window attention with fixed-window key-value caching yields constant memory complexity independent of sequence length. Deployed on the AMX, the detokenizer sustains roughly 10 ms per generation step, about 16x faster than real time, with a peak runtime memory of only 21 MB and 329 MB of on-device assets, enabling continuous streaming synthesis of 20-320 seconds of audio. This constant, small footprint replaces the linear and quadratic memory scaling of conventional transformer- and GAN-based approaches. Ablation studies validate the key architectural components, and audio quality assessment confirms that the architecture maintains synthesis fidelity while achieving efficiency gains over existing methods. Operating at a 1-billion-parameter activation size within AFM 3 Core Advanced, it improves Mean Opinion Score by +0.28 overall (4.15 vs. 3.87) and by +0.42 on conversational speech (4.24 vs. 3.82) over the prior on-device text-to-speech system.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

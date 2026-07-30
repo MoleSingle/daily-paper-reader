@@ -6,28 +6,24 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-29
-- 运行时间：2026-07-29 20:57:33 UTC
+- 最新运行日期：2026-07-30
+- 运行时间：2026-07-30 21:38:47 UTC
 - 运行状态：成功
-- 本次总论文数：2
-- 精读区：1
+- 本次总论文数：1
+- 精读区：0
 - 速读区：1
 
 ### 今日简报（AI）
-今日精读了一篇音视频实时生成论文《OmniMate》，速读了一篇低延迟语音合成论文《StellarTTS》。  
-最值得关注的是《OmniMate》中提出的开放端流式音视频生成框架，为实现交互式虚拟形象提供了新思路。  
-建议对实时多模态生成技术感兴趣的读者优先精读《OmniMate》，关注其流式处理与开放交互能力的实现细节。
-- 详情：[/202607/29/README](/202607/29/README)
+今日聚焦一篇高效音频合成的扩散Transformer论文。提出解耦时间深度方法，在保持音频质量同时显著降低内存消耗。值得关注其内存优化思路，对音频生成或大模型部署有参考价值。
+- 详情：[/202607/30/README](/202607/30/README)
 
 ### 精读区论文标签
-1. [OmniMate: Open-Ended Real-Time Streaming Audio-Visual Generation for Interactive Avatars](/202607/29/2607.23023v2-omnimate-open-ended-real-time-streaming-audio-visual-generation-for-interactive-avatars)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：实时音频-视觉头像生成，基于音频驱动动画用于交互式说话头
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [StellarTTS: Sparse Temporal Embedding for Low-Latency and Robust Speech Synthesis](/202607/29/2607.19859v1-stellartts-sparse-temporal-embedding-for-low-latency-and-robust-speech-synthesis)  
-   标签：评分：6.0/10、query:talking-head
-   evidence：说话头语音合成
+1. [Memory Efficient Audio Synthesis with Decoupled Temporal Depth Diffusion Transformers](/202607/30/2607.23811v1-memory-efficient-audio-synthesis-with-decoupled-temporal-depth-diffusion-transformers)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：内存高效的表达性语音合成，可应用于音频驱动的说话头动画
 
 
 <div class="dpr-home-promo-card">
