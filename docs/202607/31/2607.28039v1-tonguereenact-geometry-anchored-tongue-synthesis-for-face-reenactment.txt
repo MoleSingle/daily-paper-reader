@@ -1,0 +1,405 @@
+Title: TongueReenact: Geometry-Anchored Tongue Synthesis for Face Reenactment
+
+URL Source: https://arxiv.org/pdf/2607.28039v1
+
+Published Time: Fri, 31 Jul 2026 00:54:45 GMT
+
+Number of Pages: 19
+
+Markdown Content:
+# TongueReenact: Geometry-Anchored Tongue Synthesis for Face Reenactment 
+
+MD Wahiduzzaman Khan 1, Mingshan Jia 1, Xiaolin Zhang 2⋆, En Yu 1, and Kaska Musial-Gabrys 1 
+
+> 1
+
+University of Technology Sydney, Australia 
+
+arnobk511@gmail.com, mingshan.jia@uts.edu.au, en.yu-1@uts.edu.au, musial.katarzyna@gmail.com  
+
+> 2
+
+Shandong University of Science and Technology, China 
+
+solli.zhang@gmail.com 
+
+Abstract. Modern face reenactment systems achieve impressive pose and expression transfer using geometry-driven representations. However, they largely ignore tongue dynamics, leading to anatomically inconsistent mouth interiors during speech and expressive motions. We introduce the first framework for cross-identity tongue dynamics transfer in face reen-actment. We propose a foundation-model-assisted bootstrapping pipeline that produces a dedicated tongue segmentation model for in-the-wild reenactment without curated annotations. We further introduce a spa-tially constrained latent masked diffusion model for realistic tongue syn-thesis, with adaptive mask dilation for seamless mouth boundary tran-sitions. Extensive experiments demonstrate improvements of more than two times over all baselines on every tongue-specific metric. We addi-tionally propose a VLM-based evaluation protocol that replicates expert annotation at scale, confirming perceptual superiority across all ablation variants. 
+
+Keywords: Face Reenactment · Tongue Synthesis · Latent Diffusion ·
+
+Gaussian Splatting · Generative Face Models 
+
+# 1 Introduction 
+
+Animatable head avatar synthesis and face reenactment have made substantial strides in recent years. Geometry-aware representations such as 3D Gaussian splatting [7, 12] and large-scale generative priors [6, 29] now enable high-fidelity identity preservation with precise control over pose and expression. Despite this progress, a fundamental aspect of natural facial communication remains largely unaddressed, i.e ., the tongue. During speech, the tongue is the primary artic-ulator, shaping phonemes and driving visible oral dynamics. During expressive actions such as laughter, disgust, or surprise, it can dominate the visible oral re-gion entirely. Yet nearly all existing reenactment and avatar systems either model the oral interior as a textureless void or leave it entirely unconstrained [4,19,29].  
+
+> ⋆
+
+Corresponding author. arXiv:2607.28039v1 [cs.CV] 30 Jul 2026 2 M. W. Khan et al.  
+
+> Fig. 1: Existing face reenactment methods across three dominant paradigms fail to transfer tongue dynamics from the driving identity to the source identity. 3D paramet-ric [4, 6], implicit warping [8], and diffusion-based [29] methods all produce tongueless mouth regions (red box) despite a clearly visible driving tongue, whereas our method successfully synthesizes accurate tongue articulation (yellow arrow) across all three scenarios.
+
+This neglect is not coincidental, as the tongue is a uniquely transient struc-ture, fully concealed at rest, intermittently exposed during speech, and suddenly dominant in extreme expressions, making it fundamentally resistant to the static parametric modeling applied to the rest of the face. Addressing this overlooked challenge is the central motivation of our work. Existing face reenactment and portrait animation methods fall broadly into three families: 3D parametric approaches, implicit warping methods, and gener-ative animation frameworks. 3D parametric methods rely on parametric priors such as 3DMM [1] or FLAME [16] to drive facial motion through explicit de-formation fields, offering strong structural consistency and pose controllability. However, these parametric models are fundamentally constrained by their mesh topology, as the oral interior is an open void in the mesh with no vertices, no surface, and no geometry representing the tongue whatsoever. No amount of expression parameter tuning can synthesize a structure that does not exist in the underlying representation. Implicit warping methods [8] transfer motion by mapping source pixels to new locations using learned keypoint fields. Warping is a transformation, not a generation, and can only rearrange pixels that already exist in the source frame. If the source identity exhibits no visible tongue, no warping operation can synthesize one. Generative animation methods [25, 29] animate portraits by generating new appearance conditioned on motion from the driving video. However, these models have no explicit mechanism to identify tongue presence or transfer tongue dynamics from the driving identity. Synthesis is therefore inconsistent, either hallucinating incorrect tongue content or collaps-ing the mouth interior to a blurred cavity, regardless of what the driving frame exhibits. The core difficulty, shared by all three families, is not simply a lack of attention. It is the absence of any dedicated training data pairing tongue appear-ance with facial geometry, making the tongue an effectively invisible structure to every existing pipeline. Figure 1 demonstrates this failure across all three paradigms. In this paper, we present the first framework for cross-identity tongue dy-namics transfer in face reenactment. Given a source frame and a driving video, our method transfers both facial motion and tongue articulation onto the source identity. The central insight of our work is that tongue synthesis cannot be TongueReenact: Tongue Synthesis for Face Reenactment 3
+
+treated as a generic inpainting problem. The tongue must be spatially grounded to the source face geometry, which itself changes with every driving frame. To address this, we propose a two-stage framework that explicitly decouples geo-metric alignment from generative tongue synthesis. In the first stage, a Gaus-sian splatting backbone [3] conditioned on FLAME [16] parameters transfers the driving identity’s pose and expression onto the source identity, producing a geo-metrically grounded tongue-absent render. In the second stage, a latent masked diffusion model [21] synthesizes tongue appearance within this render, guided by dual conditioning signals from both the source geometry and the driving tongue appearance. A critical enabler of both stages is a dedicated tongue segmenta-tion model we train from scratch via a foundation-model-assisted bootstrapping pipeline. No dedicated tongue segmentation pipeline existed for in-the-wild reen-actment prior to this work. We construct it by combining SAM [13] with face parsing priors to generate pseudo-labels across diverse tongue dynamics, iter-atively refining and expanding the training corpus until the model generalizes reliably across identities, expressions, and partial occlusions. The core novelty of our synthesis stage is that both the spatial constraint and the facial reference are dynamically grounded to the driving identity at every frame. The mouth region targeted for synthesis updates with the driving pose and expression, and the facial reference anchoring all non-mouth regions updates accordingly. This dynamic coupling ensures that tongue synthesis is never a free hallucination. It is geometrically constrained to preserve the source identity’s ap-pearance and the driving identity’s facial structure, frame by frame. A practical challenge is that a tight segmentation mask produces visible boundary disconti-nuities between the synthesized tongue and the surrounding lips and teeth. We address this with adaptive latent mask dilation, which proportionally expands the active generation region based on the spatial extent of the mask, providing sufficient boundary context for seamless transitions. Evaluating tongue synthesis poses an additional difficulty. Standard auto-mated metrics such as FID and IoU measure distributional and geometric prop-erties but are blind to whether the synthesized tongue looks natural, is correctly positioned within the mouth, or matches the articulation of the driving iden-tity. Human evaluation is the gold standard for such perceptual judgments, but manual annotation at the scale required for ablation studies is prohibitively ex-pensive. We therefore introduce a VLM-based human evaluation protocol that bridges this gap, fine-tuning a vision-language model on expert annotations to replicate human perceptual judgment at scale. We summarize our contributions as follows: 
+
+– Bootstrapped Tongue Segmentation Pipeline. No dedicated tongue segmentation model existed for in-the-wild face reenactment prior to this work. We introduce a bootstrapped pipeline leveraging prompted segmen-tation and face parsing priors, producing a model that generalizes across identities, expressions, and partial occlusions. 
+
+– Geometry-Anchored Latent Masked Diffusion. We introduce a spa-tially constrained tongue synthesis mechanism where the mouth mask and 4 M. W. Khan et al. 
+
+facial reference are dynamically grounded to the driving identity at every denoising step. We further propose adaptive latent mask dilation for smooth boundary transitions, eliminating discontinuities between the synthesized tongue and surrounding mouth regions. 
+
+– VLM-Based Tongue Quality Evaluation. We propose an automated perceptual evaluation methodology for tongue synthesis, training a vision-language model on expert annotations to assess tongue quality, positioning, and naturalness at scale, filling a gap left by standard face reenactment metrics. 
+
+# 2 Related Work 
+
+2.1 Face Reenactment 
+
+Face reenactment aims to transfer the head pose and facial expression of a driv-ing subject onto a source identity while preserving appearance. Warping-based methods estimate 2D motion fields from 3DMM coefficients [1] or implicit key-points [8], achieving scalable reenactment but failing under occluded geometry. NeRF-based approaches [6] lift reenactment into 3D but remain impractical due to slow rendering. GPAvatar [4] reconstructs animatable avatars in a single for-ward pass via a point-based expression field driven by 3DMM vertices. Diffusion-based methods [25, 29] demonstrate zero-shot portrait animation from implicit motion descriptors with reduced identity leakage. Despite these advances, none of the above methods model the tongue as a distinct anatomical element, leaving cross-identity tongue dynamics transfer entirely unaddressed. 
+
+2.2 3D Gaussian Splatting for Facial Avatars 
+
+3D Gaussian Splatting (3DGS) [12] provides an explicit, differentiable scene rep-resentation supporting real-time rendering at NeRF-level fidelity. Several works rig Gaussian primitives to FLAME meshes for controllable head avatars [7,19,30]. GAGAvatar [3], which forms the reenactment backbone of our method, gener-alizes this to unseen identities in a single forward pass by combining DINOv2 appearance features with FLAME-derived geometric controls. A fundamental limitation shared by all Gaussian-based methods is that primitives are condi-tioned on observed source pixels. If the source identity exhibits no visible tongue, no primitive can represent tongue geometry, making tongue transfer impossi-ble within a pure Gaussian splatting framework. Our method addresses this by coupling the Gaussian stage with a geometry-anchored latent masked diffusion stage. 
+
+2.3 Diffusion-based Face Synthesis and Inpainting 
+
+Latent diffusion models [21] have become the dominant paradigm for high-fidelity image synthesis. Controllable animation frameworks [10, 31] inject structural TongueReenact: Tongue Synthesis for Face Reenactment 5
+
+guidance from parametric body models via dedicated encoders. For spatially constrained synthesis, RePaint [18] and BrushNet [11] demonstrate that itera-tive recomposition of masked regions during the reverse diffusion process yields coherent inpainting. Our geometry-anchored diffusion extends this principle, i.e ., rather than applying the mask only at initialization, we recompose the reference latent against the denoised estimate at every DDIM [23] step, with the mask itself grounded in our driving-frame segmentation model rather than a user-supplied prior. 
+
+2.4 Tongue and Oral Region Segmentation 
+
+General face parsing methods such as BiSeNet [27] segment facial components including lips and mouth interior, but datasets such as CelebAMask-HQ do not annotate the tongue as a distinct class. Segment Anything Model [13] en-ables zero-shot prompted segmentation, with domain-specific adaptations such as TongueSAM [2] for clinical imagery. However, none of these generalize to the diverse lighting, extreme expressions, and cross-identity variation in reenact-ment datasets. We address this gap by constructing a bootstrapped annotation pipeline using SAM with face-parser-guided prompting over NERSemble [14], training a lightweight BiSeNet model that operates reliably on driving frames regardless of identity or head pose. 
+
+# 3 Preliminaries 
+
+FLAME Parametric Head Model. FLAME [16] is a statistical 3D head model that represents facial geometry through three low-dimensional parameter sets: shape β ∈ R|β|, pose θ ∈ R|θ|, and expression ψ ∈ R|ψ|. Given these parameters, the model outputs a mesh of N = 5 ,023 vertices: 
+
+V = FLAME( β, θ, ψ) ∈ RN ×3. (1) The expression parameters ψ directly encode articulations of the jaw, lips, and surrounding musculature, providing a compact and semantically meaningful ge-ometric prior for mouth region localization. 
+
+3D Gaussian Splatting. 3D Gaussian Splatting [12] represents a scene as a collec-tion of anisotropic Gaussian primitives, each defined by a center position μ ∈ R3,a covariance matrix Σ, opacity α, and spherical harmonic color coefficients. The scene is rendered by projecting the Gaussians onto the image plane and alpha-compositing them in depth order, yielding a fully differentiable rasterization pipeline that supports real-time rendering without the per-ray integration cost of NeRF-based methods. 6 M. W. Khan et al. 
+
+Fig. 2: Overview of our pipeline. Top: Bootstrapped tongue segmentation training. A face parser localizes the mouth region, producing a mouth crop Imouth . SAM gen-erates pseudo-labels ( ˆM (0) ), and masks are stratified into Small (S), Medium (M), and Large (L) groups. Human-in-the-loop refinement produces the training data for iterative BiSeNet* training. Bottom: At inference, the source image f is reenacted via Gaussian splatting (GaS) conditioned on driving FLAME parameters, producing 
+
+ˆIt. The driving image t is segmented by BiSeNet* (bootstrapped) to yield mask Mt,which is adaptively dilated to produce mt before masked latent initialization, yielding 
+
+zT . The reference latent zref is encoded from ˆIt. A denoising UNet with dual guidance from Gsource and Gtongue synthesizes the final output. 
+
+Latent Diffusion Models. Latent diffusion models [21] operate in the compressed latent space of a pretrained VAE. An encoder E maps an image x to a latent 
+
+z = s · E (x), and a decoder D reconstructs the image as ˆx = D(z), where 
+
+s is a fixed scaling factor. A denoising UNet ϵϕ learns to reverse a Gaussian noise process conditioned on guidance signals, and at inference the DDIM [23] scheduler produces a deterministic trajectory from noise zT ∼ N (0, I) to a clean latent z0 in S steps. 
+
+# 4 Methodology 
+
+Figure 2 provides an overview of our pipeline. A foundation-model-assisted boot-strapping pipeline first produces a dedicated tongue segmentation model (Sec-tion 4.1), upon which the core two-stage framework is built. A Gaussian splatting backbone produces a geometry-grounded render of the source identity, which is passed to a geometry-anchored latent masked diffusion model for tongue synthe-sis (Section 4.2). TongueReenact: Tongue Synthesis for Face Reenactment 7        
+
+> Fig. 3: Tongue segmentation comparisons across three exposure groups (Small, Medium, Large). For each group we show the driving image, the TongueSAM baseline, our initial SAM-based pseudo-label, and the final bootstrapped BiSeNet* prediction. TongueSAM consistently produces erroneous full-face regions, while our bootstrapped model accurately isolates the tongue across all exposure levels.
+
+4.1 Bootstrapped Tongue Segmentation 
+
+We introduce a bootstrapped tongue segmentation pipeline that produces reli-able tongue masks for in-the-wild reenactment frames without requiring manu-ally curated annotations. 
+
+Prompted Pseudo-Labeling For each frame I ∈ RH×W ×3 in a multi-subject video dataset, we apply a pretrained face parsing model [15] to obtain a semantic label map P(I) ∈ RH×W . We isolate the mouth label and compute a tight axis-aligned bounding box B(I) to crop the mouth region Imouth . We then run an object detector [2] to localize the tongue and obtain a bounding box prompt 
+
+Bdet , which is passed to SAM [13] to produce an initial pseudo-label: 
+
+ˆM (0) = SAM( Imouth , Bdet ). (2) Frames with no confident detection are discarded as tongue-absent. Among the remaining frames, the candidate with the highest confidence mask is selected as the representative annotation for that timestamp. 
+
+Stratified Bootstrapping SAM pseudo-labels ˆM (0) contain characteristic er-rors due to domain shift, including leakage onto lips and teeth, fragmentation under occlusion, and false positives on saturated oral tissue. To ensure balanced coverage of diverse tongue dynamics, we stratify frames by visible tongue area 
+
+A(M ) = X
+
+> x,y
+
+Mx,y , (3) and assign each mask to one of three exposure categories: 
+
+Category( M ) = 
+
+
+
+Small if A(M ) < τ 1,
+
+Medium if τ1 ≤ A(M ) < τ 2,
+
+Large if A(M ) ≥ τ2,
+
+(4) where τ1 and τ2 uniformly partition the observed range of mask areas. Within each category, pseudo-labels undergo two refinement stages: an accept/reject 8 M. W. Khan et al. 
+
+pass discarding masks with clear anatomical inconsistencies, followed by manual boundary correction for masks that are topologically correct but geometrically imprecise. The resulting refined set D(0) forms the seed training dataset. We train a BiSeNet [27] segmentation model Fθ (BiSeNet*) on D(0) . BiSeNet is chosen for its bilateral architecture: the Detail Branch preserves boundary fidelity while the Semantic Branch captures higher-level context, making it well suited to thin, irregular, and partially occluded tongue regions. We optimize using OHEM-CE loss [22] on both the primary and auxiliary heads: 
+
+Lseg = LOHEM 
+
+ Fθ (I), M  +
+
+> Naux
+
+X
+
+> i=1
+
+LOHEM 
+
+ F(i) 
+
+> θ
+
+(I), M , (5) where M is the refined pseudo-label and Naux is the number of auxiliary heads. The trained model F(0)  
+
+> θ
+
+is applied to an extended set Vext of NERSemble subjects and synthetically generated VFHQ frames, broadening identity and appearance diversity. These candidates undergo the same accept/reject and boundary cor-rection refinement to produce D(1) , and an updated model F(1)  
+
+> θ
+
+is trained on 
+
+D(0) ∪ D (1) . We iterate this loop until segmentation quality on held-out subjects stabilizes, measured via mask boundary consistency and inter-rater agreement (Algorithm 1, Phase 1). Qualitative results are shown in Figure 3. 
+
+4.2 Geometry-Anchored Latent Masked Diffusion 
+
+The reenacted render ˆIt provides accurate identity and pose but contains no tongue. We propose a geometry-anchored latent masked diffusion scheme. The generative process is confined exclusively to the mouth region, as determined by the driving-frame segmentation mask. All other regions are anchored to the reenacted reference latent at every denoising step. 
+
+Gaussian-Guided Reenactment Cross-identity tongue transfer requires syn-thesizing tongue appearance at the precise spatial location dictated by the driv-ing identity’s facial geometry. We use a Gaussian splatting model [3] to transfer the driving identity’s FLAME [16] shape, pose, and expression parameters onto the source identity, producing a geometrically grounded render ˆIt. Since this ren-der is conditioned solely on the source identity’s pixels, which exhibit no visible tongue, the mouth region becomes a well-defined inpainting target for the stage that follows. Our trained BiSeNet* (Section 4.1) simultaneously operates on each driving frame t, producing a binary tongue segmentation mask Mt ∈ { 0, 1}H×W . We extract the driving mouth crop as 
+
+Imouth ,t = t ⊙ Mt, (6) where ⊙ denotes element-wise multiplication. Together, ˆIt and Imouth ,t form a complementary conditioning signal: the former specifies where the mouth is on the source identity, and the latter specifies what the tongue looks like. TongueReenact: Tongue Synthesis for Face Reenactment 9
+
+Adaptive Mask Initialization The binary mask Mt from BiSeNet* is spa-tially expanded through an adaptive dilation procedure. Rather than a fixed-radius dilation, we compute the bounding box of the active mask region and scale the expansion proportionally to its spatial extent: 
+
+r = max 
+
+
+
+rmin ,
+
+j
+
+ρ · 12 (hbox + wbox )
+
+k 
+
+, (7) where hbox and wbox are the bounding box dimensions, ρ is the expansion ratio, and rmin ensures minimal mouth coverage for frames with small tongue expo-sure. The dilation yields a smooth expanded mask ˜Mt ∈ [0 , 1] H×W , which is downsampled to the VAE latent resolution: 
+
+mt = Downsample 
+
+ ˜Mt; H 
+
+> 8
+
+× W
+
+> 8
+
+
+
+. (8) Expanding in image space before downsampling avoids aliasing artifacts at latent-resolution boundaries. The reenacted render ˆIt is encoded by the frozen VAE encoder [21] to obtain the reference latent: 
+
+zref = s · E (ˆIt), (9) where s = 0 .18215 is the standard VAE scaling factor. The initial latent is constructed as a region-wise composition of pure noise within the mouth region and the reference latent outside it: 
+
+z(t) 
+
+> T
+
+= ϵ ⊙ mt + zref ⊙ (1 − mt), ϵ ∼ N (0, I). (10) This confines generative uncertainty to where tongue synthesis is required, while anchoring the non-mouth region from the outset. 
+
+Geometry-Anchored Denoising After each DDIM [23] step produces an intermediate latent ˆzτ −1, we recompose it against the reference: 
+
+z(t)  
+
+> τ−1
+
+= ˆ zτ −1 ⊙ mt + zref ⊙ (1 − mt). (11) This recomposition is applied at every step, continuously enforcing that the non-mouth region remains anchored to zref throughout the reverse process. Since 
+
+mt is derived from the driving identity’s geometry, the spatial constraint is geometrically precise rather than heuristic, which is the key distinction from generic latent inpainting. The denoising UNet is conditioned on two complementary signals. The reen-acted render ˆIt is processed by a guidance encoder [31] to produce structural features encoding the source identity’s head pose and facial geometry. The driv-ing mouth crop Imouth ,t is processed by a second guidance encoder to produce appearance features encoding the driving identity’s tongue texture and articu-lation. The two feature maps are summed and injected into the UNet at each spatial resolution level. Additionally, CLIP [20] image embeddings from ˆIt pro-vide global identity conditioning through the image prompt mechanism of the diffusion backbone [21]. The complete inference procedure is summarized in Al-gorithm 1 (Phase 2). 10 M. W. Khan et al. 
+
+Algorithm 1: Cross-Identity Tongue Dynamics Transfer 
+
+Require: VNER , Vext , P, SAM 
+
+Ensure: BiSeNet* 
+
+Phase 1: Bootstrapped Segmentation Training 1: for each I ∈ V NER do 
+
+2: Imouth ← P (I)
+
+3: ˆM (0) ← SAM( Imouth , Bdet )
+
+4: Stratify A(M ) → S / M / L 5: end for 
+
+6: Refine → D (0) ; train F(0) 
+
+> θ
+
+7: k ← 1
+
+8: repeat 
+
+9: F(k−1)  
+
+> θ
+
+on Vext → refine D(k)
+
+10: Vext += GaS (f, FLAME (t)) 
+
+11: Train F(k) 
+
+> θ
+
+on D(k−1) ∪ D (k)
+
+12: k += 1 
+
+13: until quality stabilizes 14: BiSeNet* ← F (k−1) 
+
+> θ
+
+Require: f , {t}, BiSeNet*, ϵϕ
+
+Ensure: {Ot}
+
+Phase 2: Tongue Synthesis 1: for each driving frame t do 
+
+2: ˆIt ← GaS (f, FLAME (t)) 
+
+3: Mt ← BiSeNet* (t)
+
+4: mt ← AdDilate (Mt)
+
+5: zref ← s · E (ˆIt)
+
+6: zT ← ϵ ⊙ mt + zref ⊙ (1 − mt)
+
+7: c ← Gsrc (f ) + Gtng (Imouth ,t )
+
+8: for τ = T, . . . , 1 do 
+
+9: ˆzτ −1 ← ϵϕ(zτ , τ, c)
+
+10: zτ −1 ← ˆzτ −1 ⊙ mt
+
++zref ⊙ (1 − mt)
+
+11: end for 
+
+12: Ot ← VAE-Dec (z0)
+
+13: end for 
+
+14: return {Ot};
+
+# 5 Experiments 
+
+5.1 Implementation Details 
+
+We train BiSeNet [27] with two output classes (background and tongue) for 50,000 iterations using SGD with momentum, learning rate 10 −3, weight decay 
+
+5 × 10 −4, and linear warmup over 1,000 iterations. Input resolution is 512 × 512 
+
+with batch size 4, multi-scale augmentation in [0 .75 , 2.0] , and FP16 precision. Training data consists of NERSemble and synthetically generated VFHQ frames from our bootstrapped pipeline. For reenactment, we use the pretrained Gaussian splatting backbone [3] without modification. The diffusion model is initialized from the Stable Diffusion image variations checkpoint [21], with the VAE and CLIP encoder frozen. Guidance encoders and the denoising UNet are trained on NERSemble for 85,000 iterations, batch size 8 at 512 × 512 , using Adam (lr =10 −5, β1=0 .9, β2=0 .999 , weight decay 10 −2), noise offset 0.05, SNR γ=5 .0,and zero-SNR training [17] with a scaled linear β schedule ( T =1 ,000 steps). Guidance encoders are trained from scratch with 320 output embedding chan-nels. At inference we use 20 DDIM [23] steps, ρ=0 .3, and rmin =5 pixels. All experiments are run on a single NVIDIA A40 (48 GB). 
+
+5.2 Evaluation Setup 
+
+We evaluate on 9,000 cross-identity source-driving pairs from VFHQ [24], com-paring against five state-of-the-art face reenactment methods: GPAvatar [4], Por-trait4D [6], LivePortrait [8], X-NeMo [29], and X-Portrait [25], each run using TongueReenact: Tongue Synthesis for Face Reenactment 11 
+
+Fig. 5: Qualitative comparison of cross-identity face reenactment across nine source– driving pairs. Our method consistently synthesizes visible and anatomically plausible tongue dynamics transferred from the driving identity, whereas X-Portrait [25], Por-trait4D [6], LivePortrait [8], GPAvatar [4], and X-NeMo [29] fail to reproduce tongue articulation despite the driving frame exhibiting a clearly visible tongue. 
+
+their official implementations. We evaluate tongue transfer fidelity using four dedicated metrics: LPIPS in the tongue region [28], Tongue Presence (fraction of frames containing a detectable tongue), Tongue IoU (normalized intersection-over-union between generated and driving tongue masks), and Tongue Area Sim-12 M. W. Khan et al.                                
+
+> Table 1: Comparative quantitative results. Best results are shown in bold . Arrows indicate the desired direction of each metric. Metric Ours X-NeMo GPAvatar LivePortrait Portrait4D X-Portrait LPIPS (tongue) ↓0.2306 0.3937 0.2890 0.3454 0.2591 0.4209 Tongue Presence ↑0.7891 0.7367 0.4274 0.5986 0.5102 0.5067 Tongue IoU ↑0.3582 0.1400 0.1387 0.1603 0.1918 0.1508 Tongue Area Similarity ↑0.4338 0.1180 0.0713 0.1255 0.0818 0.1330
+
+ilarity (ratio of generated to driving tongue mask area). Arrows indicate the direction of improvement. 
+
+5.3 Comparison with State-of-the-Art 
+
+Table 1 reports quantitative results against all baselines. Our method achieves the best performance across all four tongue transfer metrics, with a Tongue IoU of 0.3582 and Tongue Area Similarity of 0.4338, more than double the nearest competitor, confirming substantially more accurate tongue dynamics transfer. Tongue Presence of 0.7891 further demonstrates that our method reliably syn-thesizes visible tongue articulation where existing methods frequently produce none. 
+
+5.4 Ablation Study 
+
+Table 2 analyzes the contribution of each component. We evaluate three variants: removing adaptive mask dilation (w/o Dilation), removing the reenactment stage (w/o Reenactment), and removing the driving mouth crop conditioning (w/o Tongue). Removing adaptive dilation causes a notable drop in tongue transfer met-rics (Tongue IoU from 0.3956 to 0.2619, Tongue Area Similarity from 0.4779 to 0.1890), confirming that proportional mask expansion is necessary for suffi-cient generative freedom around the mouth boundary. Removing the reenact-ment stage causes tongue transfer to collapse (Tongue IoU 0.2355), demonstrat-ing that the geometry-grounded render is essential for spatially anchoring the synthesis region. Removing tongue conditioning causes the most severe degrada-tion across all metrics, confirming that Imouth ,t is the primary source of tongue appearance information. 
+
+Identity Preservation. Our method faithfully preserves identity across all non-synthesized facial regions, as confirmed by masking the mouth region prior to ArcFace [5] feature extraction, which reduces the identity gap between the full model and w/o Tongue variant to just 0.0007 (0.4840 vs. 0.4833). The small unmasked gap of 0.0239 (0.5293 vs. 0.5532) is entirely localized to the synthe-sized mouth area, an expected consequence of generating content that is entirely absent in the source frame. TongueReenact: Tongue Synthesis for Face Reenactment 13                                   
+
+> Table 2: Ablation study analyzing the contribution of each component. Best results are shown in bold .Metric Full (Ours) w/o Dilation w/o Reenactment w/o Tongue LPIPS (tongue) ↓0.2089 0.2793 0.2604 0.2884 Tongue Presence ↑0.8851 0.5776 0.7315 0.4397 Tongue IoU ↑0.3956 0.2619 0.2355 0.1216 Tongue Area Similarity ↑0.4779 0.1890 0.2694 0.0631
+> Table 3: Temporal consistency metrics. Lower values indicate improved smoothness and stability. Metric With Tongue Without Tongue T-LPIPS ↓0.0149 0.0291 Flow Jitter ↓0.2185 0.6229 Flow Magnitude ↓0.5132 1.2541
+
+5.5 Temporal Consistency 
+
+A key concern with diffusion-based synthesis is temporal flickering, as frame-by-frame generation can produce inconsistent motion across a sequence. We ver-ify that our geometry-anchored denoising suppresses this by comparing tempo-ral consistency between our full model and a variant without tongue synthesis over generated video sequences. Table 3 reports T-LPIPS (perceptual similarity between consecutive frames), flow jitter (variance of inter-frame flow magni-tude), and flow magnitude, all evaluated on the mouth region. Our full model achieves substantially lower flow jitter (0.218543 vs. 0.622901) and flow mag-nitude (0.513165 vs. 1.254073), confirming that geometry-anchored denoising produces smooth and stable tongue motion. Lower T-LPIPS further confirms that tongue synthesis does not compromise temporal coherence. 
+
+5.6 VLM-Based Perceptual Evaluation 
+
+Standard automated metrics do not capture perceptual tongue quality as judged by a human observer. We therefore fine-tune Qwen3-VL [26] on 100 expert-annotated frames to replicate human judgement across four criteria: tongue quality (0–5 scale), tongue positioning (binary), best tongue, and best over-all reenactment. The fine-tuned model is applied to the remaining 1,000 frames, yielding 1,100 evaluated frames in total. Full annotation details and fine-tuning procedure are provided in the supplementary material. As shown in Table 4, the full model achieves a mean tongue quality rating of 3.07, is selected as best tongue in 99.9% of frames and best overall in 100% of frames, with correct tongue positioning in 100% of cases. All ablation variants collapse near zero across all criteria, confirming that tongue conditioning, adaptive dilation, and 14 M. W. Khan et al. 
+
+Table 4: VLM-based perceptual evaluation. Bold indicates best result. Method Avg. Rating Best Tongue (%) Best Overall (%) Positioning (%) Full Model 3.07 99.9 100.0 100.0 
+
+w/o Tongue 0.73 0.0 0.0 1.9 w/o Dilation 1.36 0.1 0.0 41.0 w/o Reenact 1.09 0.0 0.0 1.6 
+
+geometry-anchored reenactment are each individually necessary for perceptually acceptable tongue synthesis. 
+
+# 6 Conclusion 
+
+We present a framework for cross-identity tongue dynamics transfer, a capability absent from all existing face reenactment methods. Our bootstrapped tongue segmentation pipeline produces reliable tongue masks without manually curated annotations. These masks drive a geometry-anchored latent masked diffusion model that synthesizes natural tongue dynamics from one identity onto another. The diffusion stage is designed to couple with any geometry-faithful reenactment backbone, making the approach broadly extensible beyond the specific model used here. Experiments on VFHQ demonstrate that our method outperforms all baselines across every tongue-specific metric, while preserving identity faithfully in all non-synthesized facial regions. 
+
+Limitations. As the diffusion stage is designed to generalize across reenactment backbones, tongue synthesis quality may vary slightly with the choice of reen-actment backbone. Identity preservation in the synthesized mouth area remains slightly reduced, an inherent trade-off of generative synthesis over content en-tirely absent in the source frame. 
+
+# References 
+
+1. Blanz, V., Vetter, T.: A morphable model for the synthesis of 3d faces. In: Seminal Graphics Papers: Pushing the Boundaries, Volume 2, pp. 157–164 (2023) 2. Cao, S., Wu, Q., Ma, L.: Tonguesam: An universal tongue segmentation model based on sam with zero-shot. In: 2023 IEEE international conference on bioinfor-matics and biomedicine (BIBM). pp. 4520–4526. IEEE (2023) 3. Chu, X., Harada, T.: Generalizable and animatable gaussian head avatar. Advances in Neural Information Processing Systems 37 , 57642–57670 (2024) 4. Chu, X., Li, Y., Zeng, A., Yang, T., Lin, L., Liu, Y., Harada, T.: Gpavatar: Gener-alizable and precise head avatar from image (s). arXiv preprint arXiv:2401.10215 (2024) 5. Deng, J., Guo, J., Xue, N., Zafeiriou, S.: Arcface: Additive angular margin loss for deep face recognition. In: Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. pp. 4690–4699 (2019) TongueReenact: Tongue Synthesis for Face Reenactment 15 6. Deng, Y., Wang, D., Ren, X., Chen, X., Wang, B.: Portrait4d: Learning one-shot 4d head avatar synthesis using synthetic data. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 7119–7130 (2024) 7. Dhamo, H., Nie, Y., Moreau, A., Song, J., Shaw, R., Zhou, Y., Pérez-Pellitero, E.: Headgas: Real-time animatable head avatars via 3d gaussian splatting. In: European Conference on Computer Vision. pp. 459–476. Springer (2024) 8. Guo, J., Zhang, D., Liu, X., Zhong, Z., Zhang, Y., Wan, P., Zhang, D.: Liveportrait: Efficient portrait animation with stitching and retargeting control. arXiv preprint arXiv:2407.03168 (2024) 9. Hu, E.J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L., Chen, W., et al.: Lora: Low-rank adaptation of large language models. Iclr 1(2), 3 (2022) 10. Hu, L.: Animate anyone: Consistent and controllable image-to-video synthesis for character animation. In: Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. pp. 8153–8163 (2024) 11. Ju, X., Liu, X., Wang, X., Bian, Y., Shan, Y., Xu, Q.: Brushnet: A plug-and-play image inpainting model with decomposed dual-branch diffusion. In: European Conference on Computer Vision. pp. 150–168. Springer (2024) 12. Kerbl, B., Kopanas, G., Leimkühler, T., Drettakis, G., et al.: 3d gaussian splatting for real-time radiance field rendering. ACM Trans. Graph. 42 (4), 139–1 (2023) 13. Kirillov, A., Mintun, E., Ravi, N., Mao, H., Rolland, C., Gustafson, L., Xiao, T., Whitehead, S., Berg, A.C., Lo, W.Y., et al.: Segment anything. In: Proceedings of the IEEE/CVF international conference on computer vision. pp. 4015–4026 (2023) 14. Kirschstein, T., Qian, S., Giebenhain, S., Walter, T., Nießner, M.: Nersemble: Multi-view radiance field reconstruction of human heads. ACM Transactions on Graphics (TOG) 42 (4), 1–14 (2023) 15. Lee, C.H., Liu, Z., Wu, L., Luo, P.: Maskgan: Towards diverse and interactive facial image manipulation. In: Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. pp. 5549–5558 (2020) 16. Li, T., Bolkart, T., Black, M.J., Li, H., Romero, J.: Learning a model of facial shape and expression from 4d scans. ACM Trans. Graph. 36 (6), 194–1 (2017) 17. Lin, S., Liu, B., Li, J., Yang, X.: Common diffusion noise schedules and sample steps are flawed. In: Proceedings of the IEEE/CVF winter conference on applications of computer vision. pp. 5404–5411 (2024) 18. Lugmayr, A., Danelljan, M., Romero, A., Yu, F., Timofte, R., Van Gool, L.: Re-paint: Inpainting using denoising diffusion probabilistic models. In: Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. pp. 11461– 11471 (2022) 19. Qian, S., Kirschstein, T., Schoneveld, L., Davoli, D., Giebenhain, S., Nießner, M.: Gaussianavatars: Photorealistic head avatars with rigged 3d gaussians. In: Proceed-ings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 20299–20309 (2024) 20. Radford, A., Kim, J.W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., Sastry, G., Askell, A., Mishkin, P., Clark, J., et al.: Learning transferable visual models from natural language supervision. In: International conference on machine learning. pp. 8748–8763. PmLR (2021) 21. Rombach, R., Blattmann, A., Lorenz, D., Esser, P., Ommer, B.: High-resolution image synthesis with latent diffusion models. In: Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. pp. 10684–10695 (2022) 22. Shrivastava, A., Gupta, A., Girshick, R.: Training region-based object detectors with online hard example mining. In: Proceedings of the IEEE conference on com-puter vision and pattern recognition. pp. 761–769 (2016) 16 M. W. Khan et al. 23. Song, J., Meng, C., Ermon, S.: Denoising diffusion implicit models. arXiv preprint arXiv:2010.02502 (2020) 24. Xie, L., Wang, X., Zhang, H., Dong, C., Shan, Y.: Vfhq: A high-quality dataset and benchmark for video face super-resolution. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 657–666 (2022) 25. Xie, Y., Xu, H., Song, G., Wang, C., Shi, Y., Luo, L.: X-portrait: Expressive portrait animation with hierarchical motion attention. In: ACM SIGGRAPH 2024 conference papers. pp. 1–11 (2024) 26. Yang, A., Li, A., Yang, B., Zhang, B., Hui, B., Zheng, B., Yu, B., Gao, C., Huang, C., Lv, C., et al.: Qwen3 technical report. arXiv preprint arXiv:2505.09388 (2025) 27. Yu, C., Wang, J., Peng, C., Gao, C., Yu, G., Sang, N.: Bisenet: Bilateral segmenta-tion network for real-time semantic segmentation. In: Proceedings of the European conference on computer vision (ECCV). pp. 325–341 (2018) 28. Zhang, R., Isola, P., Efros, A.A., Shechtman, E., Wang, O.: The unreasonable effectiveness of deep features as a perceptual metric. In: Proceedings of the IEEE conference on computer vision and pattern recognition. pp. 586–595 (2018) 29. Zhao, X., Xu, H., Song, G., Xie, Y., Zhang, C., Li, X., Luo, L., Suo, J., Liu, Y.: X-nemo: Expressive neural motion reenactment via disentangled latent attention. arXiv preprint arXiv:2507.23143 (2025) 30. Zhou, Z., Ma, F., Fan, H., Yang, Z., Yang, Y.: Headstudio: Text to animatable head avatars with 3d gaussian splatting. In: European Conference on Computer Vision. pp. 145–163. Springer (2024) 31. Zhu, S., Chen, J.L., Dai, Z., Dong, Z., Xu, Y., Cao, X., Yao, Y., Zhu, H., Zhu, S.: Champ: Controllable and consistent human image animation with 3d parametric guidance. In: European Conference on Computer Vision. pp. 145–162. Springer (2024) TongueReenact: Tongue Synthesis for Face Reenactment 17 
+
+# Supplementary Material for TongueReenact: Geometry-Anchored Tongue Synthesis for Face Reenactment 
+
+# 1 Extended Tongue Segmentation Evaluation 
+
+We report comprehensive segmentation metrics comparing TongueSAM [2], our initial seed model, and our final bootstrapped BiSeNet* across 6,344 evaluation frames from NERSemble [14]. Tables 5 and 6 report performance on tongue-present frames. Table 7 reports hallucination behavior on tongue-absent frames. TongueSAM achieves near-zero precision, producing predicted masks 10– 115 × larger than ground truth depending on the exposure group. While Tongue-SAM achieves the highest recall, this is a consequence of extreme over-segmentation rather than accurate detection, as confirmed by area ratios of 10–115 × ground truth. Our bootstrapped BiSeNet* trades recall for substantially higher preci-sion and IoU, yielding masks that are geometrically accurate rather than over-inclusive. Our initial model substantially improves localization across all groups but overestimates mask area in the Medium group (ratio 3.07), reflecting do-main shift on partially visible tongue frames. The final bootstrapped BiSeNet* achieves the best IoU and precision across all groups, with area ratios closest to 1.0, and suppresses hallucination on tongue-absent frames to 18%, compared to 100% for both TongueSAM and our initial model.                           
+
+> Table 5: Overall segmentation metrics on tongue-present frames ( N= 3 ,131 ). Metric TongueSAM Our Initial Bootstrapped IoU ↑0.104 0.597 0.640
+> Precision ↑0.105 0.653 0.783
+> Recall ↑0.895 0.872 0.727 F1 ↑0.156 0.711 0.730
+> Area Ratio →154.46 1.842 0.979
+
+# 2 VLM-Based Evaluation Details 
+
+2.1 Annotation Protocol 
+
+Expert annotators evaluated 100 frames across four ablation variants: Full Model, w/o Tongue, w/o Dilation, and w/o Reenactment. For each frame, annotators were presented with the source image, the driving image, and the four generated outputs side by side. Annotations covered four criteria: 18 M. W. Khan et al. 
+
+Table 6: Per-group segmentation metrics on tongue-present frames. Group Metric TongueSAM Our Initial Bootstrapped Small ( N = 959 )IoU ↑ 0.103 0.724 0.752                                                              
+
+> Precision ↑0.104 0.784 0.866
+> Recall ↑0.889 0.902 0.843 F1 ↑0.159 0.828 0.842
+> Area Ratio →128.42 1.216 1.015
+> Medium ( N= 1 ,148 )IoU ↑0.010 0.345 0.376
+> Precision ↑0.010 0.367 0.599
+> Recall ↑0.855 0.848 0.474 F1 ↑0.021 0.488 0.484 Area Ratio →1115.15 3.068 0.899
+> Large ( N= 1 ,024 )IoU ↑0.210 0.760 0.832
+> Precision ↑0.211 0.852 0.911
+> Recall ↑0.945 0.870 0.902 F1 ↑0.304 0.851 0.901
+> Area Ratio →110.81 1.052 1.034
+
+Table 7: Mean predicted mask area (pixels) on tongue-absent frames. Lower values indicate fewer false positives. Group-level counts are small ( N = 12 ) and should be interpreted accordingly. Group TongueSAM Our Initial Bootstrapped Medium ( N = 12 ) 35,470 1,500 0.42 
+
+Large ( N = 12 ) 65,606 2,241 85.2 
+
+Overall ( N = 3 ,213 ) 56,189 1,577 343 
+
+– Tongue Quality. Rated on a 0–5 scale, where 0 indicates no visible tongue. 
+
+– Tongue Positioning. A binary judgement of whether the tongue is cor-rectly positioned relative to the driving frame. 
+
+– Best Tongue. Which variant produces the best tongue result. 
+
+– Best Overall. Which variant produces the best overall reenactment. 
+
+2.2 Fine-Tuning Setup 
+
+We fine-tune Qwen3-VL-8B-Instruct [26] on the 100 annotated frames using LoRA [9]. The annotated set is split 80/20 into training and validation. Each training sample consists of six images: the source identity, the driving frame, and the four generated outputs, paired with the structured annotation as the target response. LoRA is applied with rank r = 64 , scaling factor α = 128 , and dropout 0.05. The multimodal LLM head is trained jointly with the LoRA adapters. Training runs for 10 epochs with an effective batch size of 16 (per-device batch size 2, gradient accumulation 8), learning rate 2 × 10 −4 with a cosine schedule and warmup ratio 0.03, weight decay 0.01, and maximum sequence length 2,048 tokens, using bf16 precision on a single NVIDIA A40 GPU. TongueReenact: Tongue Synthesis for Face Reenactment 19 
+
+2.3 Inference Procedure 
+
+The fine-tuned model is applied to the remaining 1,000 frames using greedy de-coding with a maximum of 512 new tokens. Each inference call receives the same six-image prompt as training. The model outputs a structured JSON response containing tongue quality ratings, positioning judgements, best tongue, and best overall selections for all four variants. Outputs are parsed directly from the JSON response; malformed outputs are flagged and excluded from aggregation. 
+
+# 3 Qualitative Video Inference Results 
+
+Figure 6 shows consecutive frame strips from three source-driving pairs. Our method transfers tongue dynamics smoothly across frames while preserving the source identity’s facial structure and head pose throughout each sequence.

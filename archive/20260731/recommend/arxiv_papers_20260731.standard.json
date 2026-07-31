@@ -1,0 +1,170 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-31T21:52:23.582983+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 4,
+    "deep_cap": 6,
+    "deep_selected": 4,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2607.27634v1",
+      "source": "arxiv",
+      "title": "4DHumanDiff: Direct Text-to-4DGS Generation for Consistent 360-Degree Dynamic Humans",
+      "abstract": "Generating high-quality 360-degree dynamic human assets from text prompts is challenging. Existing methods usually synthesize monocular or multi-view videos first and then fit a 4D representation, which is expensive and often causes incomplete geometry or view-inconsistent renderings. We present 4DHumanDiff, a diffusion framework that directly generates dynamic humans represented by 4D Gaussian Splatting (4DGS) from text prompts. By modeling the structured 4D representation space end-to-end, 4DHumanDiff avoids video pre-generation and per-scene reconstruction, making it better suited for view-consistent and temporally coherent asset generation. The model uses a 3D U-Net backbone with temporal attention for motion-aware generation. We further construct a large-scale text-to-4DGS dataset with 60,000 high-quality pairs, and introduce 2D regularization and training-free 4D interpolation to improve rendering quality and motion smoothness. Experiments show that 4DHumanDiff generates consistent 360-degree dynamic humans within one minute, achieves better temporal and multi-view consistency, and reduces inference time by more than 10x.",
+      "authors": [
+        "Renlong Wu",
+        "Haoran Chen",
+        "Yuxiang Wei",
+        "Xiaowei Jin",
+        "Wangmeng Zuo",
+        "Hui Li"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-30T03:45:34+00:00",
+      "link": "https://arxiv.org/pdf/2607.27634v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Direct text-to-4DGS generation of dynamic humans for avatar creation",
+      "llm_evidence_cn": "文本到4DGS的动态人体生成，直接用于数字人创建",
+      "llm_evidence": "文本到4DGS的动态人体生成，直接用于数字人创建",
+      "canonical_evidence": "文本到4DGS的动态人体生成，直接用于数字人创建",
+      "llm_tldr_en": "4DHumanDiff generates dynamic 360-degree humans directly as 4D Gaussian Splatting from text prompts, avoiding video pre-generation and per-scene reconstruction, ensuring view consistency and temporal coherence.",
+      "llm_tldr_cn": "现有方法通常先合成视频再拟合4D表示，导致几何不完整和视角不一致。本文提出4DHumanDiff，直接以4D高斯溅射表示从文本生成动态人体，使用3D U-Net和时间注意力实现运动感知生成。该框架端到端建模结构化4D表示，避免了逐场景重建，更适合生成视角一致且时间连贯的数字人资产。",
+      "llm_tldr": "现有方法通常先合成视频再拟合4D表示，导致几何不完整和视角不一致。本文提出4DHumanDiff，直接以4D高斯溅射表示从文本生成动态人体，使用3D U-Net和时间注意力实现运动感知生成。该框架端到端建模结构化4D表示，避免了逐场景重建，更适合生成视角一致且时间连贯的数字人资产。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.28032v1",
+      "source": "arxiv",
+      "title": "Split and Drive: Dual-Axis Disentanglement for Real-Time Gaussian Head Avatars",
+      "abstract": "Creating photorealistic animatable head avatars from a single image remains a fundamental challenge in digital human synthesis. While recent 3D Gaussian Splatting methods have achieved promising results, they rely on external tracking pipelines whose latency is excluded from inference measurements. Furthermore, they adopt unified representations that entangle geometrically distinct facial regions, limiting both expressiveness and rendering fidelity. We propose SpiD (Split and Drive), a single-image Gaussian head avatar framework built on two disentanglement axes. The compute axis internalizes per-frame driving, eliminating external tracking dependency at inference. The feature axis decomposes the avatar into three specialized Gaussian branches, each modeling a geometrically distinct facial domain. Extensive experiments demonstrate consistently strong performance against state-of-the-art methods while achieving the fastest inference speed among all compared methods on a single GPU with the complete driving pipeline included.",
+      "authors": [
+        "MD Wahiduzzaman Khan",
+        "Mingshan Jia",
+        "Xiaolin Zhang",
+        "En Yu",
+        "Kaska Musial-Gabrys"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-30T11:17:25+00:00",
+      "link": "https://arxiv.org/pdf/2607.28032v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Single-image photorealistic animatable Gaussian head avatars for digital human synthesis",
+      "llm_evidence_cn": "单图照片级可动画高斯头部头像，用于数字人合成",
+      "llm_evidence": "单图照片级可动画高斯头部头像，用于数字人合成",
+      "canonical_evidence": "单图照片级可动画高斯头部头像，用于数字人合成",
+      "llm_tldr_en": "SpiD creates photorealistic animatable head avatars from a single image via dual-axis disentanglement, internalizing per-frame driving and decomposing the avatar into specialized Gaussian branches for expressiveness and fidelity.",
+      "llm_tldr_cn": "从单张图像创建照片级可动画头部头像仍是数字人合成的挑战。现有3D高斯方法依赖外部跟踪且统一表示纠缠不同面部区域。本文提出SpiD，通过计算轴和特征轴的双轴解耦，内化逐帧驱动并分解为三个专用高斯分支，从而无需外部跟踪，提升表达力和渲染保真度，实现实时头部头像生成。",
+      "llm_tldr": "从单张图像创建照片级可动画头部头像仍是数字人合成的挑战。现有3D高斯方法依赖外部跟踪且统一表示纠缠不同面部区域。本文提出SpiD，通过计算轴和特征轴的双轴解耦，内化逐帧驱动并分解为三个专用高斯分支，从而无需外部跟踪，提升表达力和渲染保真度，实现实时头部头像生成。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.28039v1",
+      "source": "arxiv",
+      "title": "TongueReenact: Geometry-Anchored Tongue Synthesis for Face Reenactment",
+      "abstract": "Modern face reenactment systems achieve impressive pose and expression transfer using geometry-driven representations. However, they largely ignore tongue dynamics, leading to anatomically inconsistent mouth interiors during speech and expressive motions. We introduce the first framework for cross-identity tongue dynamics transfer in face reenactment. We propose a foundation-model-assisted bootstrapping pipeline that produces a dedicated tongue segmentation model for in-the-wild reenactment without curated annotations. We further introduce a spatially constrained latent masked diffusion model for realistic tongue synthesis, with adaptive mask dilation for seamless mouth boundary transitions. Extensive experiments demonstrate improvements of more than two times over all baselines on every tongue-specific metric. We additionally propose a VLM-based evaluation protocol that replicates expert annotation at scale, confirming perceptual superiority across all ablation variants.",
+      "authors": [
+        "MD Wahiduzzaman Khan",
+        "Mingshan Jia",
+        "Xiaolin Zhang",
+        "En Yu",
+        "Kaska Musial-Gabrys"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-30T11:23:36+00:00",
+      "link": "https://arxiv.org/pdf/2607.28039v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Tongue synthesis for face reenactment, directly improving talking head realism",
+      "llm_evidence_cn": "面向人脸重现的舌头合成，直接提升说话头部真实感",
+      "llm_evidence": "面向人脸重现的舌头合成，直接提升说话头部真实感",
+      "canonical_evidence": "面向人脸重现的舌头合成，直接提升说话头部真实感",
+      "llm_tldr_en": "First framework for cross-identity tongue dynamics transfer in face reenactment, using bootstrapped segmentation and latent masked diffusion, improving mouth realism for talking head synthesis.",
+      "llm_tldr_cn": "现有面部重现方法忽略了舌头动态，导致说话和表情时口腔内部不一致。本文提出TongueReenact，通过基础模型辅助的引导流程训练舌头分割模型，并引入空间约束的潜在掩码扩散模型进行逼真舌头合成。实验显示该方法显著提升了口腔边界过渡和舌头动态的真实感。这是首个跨身份舌头动态迁移的人脸重现框架，对说话头部合成具有重要意义。",
+      "llm_tldr": "现有面部重现方法忽略了舌头动态，导致说话和表情时口腔内部不一致。本文提出TongueReenact，通过基础模型辅助的引导流程训练舌头分割模型，并引入空间约束的潜在掩码扩散模型进行逼真舌头合成。实验显示该方法显著提升了口腔边界过渡和舌头动态的真实感。这是首个跨身份舌头动态迁移的人脸重现框架，对说话头部合成具有重要意义。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.28164v1",
+      "source": "arxiv",
+      "title": "S-Avatar: Diffusion-Guided Gaussian Head Avatars from a Single Image",
+      "abstract": "We propose S-Avatar, a novel method for generating photorealistic 3D head avatars from a single image using a diffusion-guided 3D model generation module and strategies for animating 3D Gaussian Splatting (3DGS). While single-image head avatar reconstruction is crucial for lifelike Virtual Reality (VR) applications, existing approaches often struggle to preserve 3D consistency under unseen viewpoints. S-Avatar addresses this limitation through a three-stage pipeline. First, a high-resolution 3DGS is synthesized directly from a single image using a diffusion-based Gaussian splat generation module. Next, the parametric head model FLAME is aligned with the generated 3DGS by optimizing its parameters and spatial transformations. Finally, to adapt the 3DGS to FLAME variations, we construct a binding template that encodes the spatial relationship between the initial splats and FLAME. The dynamic 3D head avatar can then be rendered in real time by deforming the 3DGS with the binding template. By combining diffusion-guided canonical 3DGS generation with FLAME-based control, our method achieves efficient and accurate reconstruction with enhanced 3D consistency. Evaluations on public datasets demonstrate that S-Avatar outperforms state-of-the-art methods in novel-view and expression generation, achieving superior realism and consistency. Consequently, our approach represents a significant advance in accessible avatar creation, applicable to a wide range of VR/AR applications. The project page is available at https://github.com/hailsong/savatar.",
+      "authors": [
+        "Hail Song",
+        "Seokhwan Yang",
+        "Jiwon Yang",
+        "Woojin Cho",
+        "Woontack Woo"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-07-30T13:04:03+00:00",
+      "link": "https://arxiv.org/pdf/2607.28164v1",
+      "tags": [
+        "keyword:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "single-image photorealistic 3D head avatar generation with diffusion-guided Gaussian splatting and FLAME alignment",
+      "llm_evidence_cn": "单图生成逼真3D头部化身，结合扩散引导高斯溅射与FLAME对齐，符合数字人/化身创建需求",
+      "llm_evidence": "单图生成逼真3D头部化身，结合扩散引导高斯溅射与FLAME对齐，符合数字人/化身创建需求",
+      "canonical_evidence": "单图生成逼真3D头部化身，结合扩散引导高斯溅射与FLAME对齐，符合数字人/化身创建需求",
+      "llm_tldr_en": "S-Avatar generates photorealistic 3D head avatars from a single image using diffusion-guided 3D Gaussian Splatting and FLAME alignment, preserving 3D consistency under unseen viewpoints for lifelike VR applications.",
+      "llm_tldr_cn": "本文针对单图头部化身重建在未见视角下难以保持3D一致性的问题，提出S-Avatar。方法采用三阶段流程：先由扩散模型从单图直接生成高分辨率3D高斯溅射，再与参数化头部模型FLAME对齐，最后对化身进行动画驱动。实验结果显示，S-Avatar能生成逼真的3D头部化身，并在不同视角下保持良好的3D一致性。该工作为VR/AR等应用中的高质量数字人资产创建提供了有效方案。",
+      "llm_tldr": "本文针对单图头部化身重建在未见视角下难以保持3D一致性的问题，提出S-Avatar。方法采用三阶段流程：先由扩散模型从单图直接生成高分辨率3D高斯溅射，再与参数化头部模型FLAME对齐，最后对化身进行动画驱动。实验结果显示，S-Avatar能生成逼真的3D头部化身，并在不同视角下保持良好的3D一致性。该工作为VR/AR等应用中的高质量数字人资产创建提供了有效方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": []
+}

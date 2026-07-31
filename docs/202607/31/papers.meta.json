@@ -1,0 +1,69 @@
+{
+  "label": "2026-07-31",
+  "date": "2026-07-31",
+  "generated_at": "2026-07-31T21:56:10",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202607/31/2607.27634v1-4dhumandiff-direct-text-to-4dgs-generation-for-consistent-360-degree-dynamic-humans",
+      "section": "deep",
+      "title_en": "4DHumanDiff: Direct Text-to-4DGS Generation for Consistent 360-Degree Dynamic Humans",
+      "authors": "Renlong Wu, Haoran Chen, Yuxiang Wei, Xiaowei Jin, Wangmeng Zuo, Hui Li",
+      "date": "2026-07-30",
+      "pdf": "https://arxiv.org/pdf/2607.27634v1",
+      "score": "9.0",
+      "evidence": "文本到4DGS的动态人体生成，直接用于数字人创建",
+      "tldr": "从文本生成360度动态人体资产具有挑战性，现有方法依赖多视图视频合成与4D重建，成本高且易致几何不完整或视图不一致。本文提出4DHumanDiff，以4D高斯泼溅为直接目标，端到端建模结构化4D表示，避免视频预生成与逐场景重建。模型采用3D U-Net和时间注意力，配合60,000对文本-4DGS数据、2D正则化和无训练4D插值。实验证明该方法在一分钟内生成一致动态人体，时间与多视角一致性更优，推理速度提升超过10倍。",
+      "tags": "query:talking-head",
+      "abstract_en": "Generating high-quality 360-degree dynamic human assets from text prompts is challenging. Existing methods usually synthesize monocular or multi-view videos first and then fit a 4D representation, which is expensive and often causes incomplete geometry or view-inconsistent renderings. We present 4DHumanDiff, a diffusion framework that directly generates dynamic humans represented by 4D Gaussian Splatting (4DGS) from text prompts. By modeling the structured 4D representation space end-to-end, 4DHumanDiff avoids video pre-generation and per-scene reconstruction, making it better suited for view-consistent and temporally coherent asset generation. The model uses a 3D U-Net backbone with temporal attention for motion-aware generation. We further construct a large-scale text-to-4DGS dataset with 60,000 high-quality pairs, and introduce 2D regularization and training-free 4D interpolation to improve rendering quality and motion smoothness. Experiments show that 4DHumanDiff generates consistent 360-degree dynamic humans within one minute, achieves better temporal and multi-view consistency, and reduces inference time by more than 10x.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/31/2607.28032v1-split-and-drive-dual-axis-disentanglement-for-real-time-gaussian-head-avatars",
+      "section": "deep",
+      "title_en": "Split and Drive: Dual-Axis Disentanglement for Real-Time Gaussian Head Avatars",
+      "authors": "MD Wahiduzzaman Khan, Mingshan Jia, Xiaolin Zhang, En Yu, Kaska Musial-Gabrys",
+      "date": "2026-07-30",
+      "pdf": "https://arxiv.org/pdf/2607.28032v1",
+      "score": "9.0",
+      "evidence": "单图照片级可动画高斯头部头像，用于数字人合成",
+      "tldr": "从单图创建逼真动态头部化身是数字人合成的挑战。现有3DGS方法依赖外部跟踪，且统一表示纠缠不同面部区域。本文提出SpiD，通过计算轴内化逐帧驱动，消除推理时外部依赖；特征轴将化身分解为三个高斯分支，各自建模不同几何区域。在单GPU完整推理下速度最快，效果优于SOTA。",
+      "tags": "query:talking-head",
+      "abstract_en": "Creating photorealistic animatable head avatars from a single image remains a fundamental challenge in digital human synthesis. While recent 3D Gaussian Splatting methods have achieved promising results, they rely on external tracking pipelines whose latency is excluded from inference measurements. Furthermore, they adopt unified representations that entangle geometrically distinct facial regions, limiting both expressiveness and rendering fidelity. We propose SpiD (Split and Drive), a single-image Gaussian head avatar framework built on two disentanglement axes. The compute axis internalizes per-frame driving, eliminating external tracking dependency at inference. The feature axis decomposes the avatar into three specialized Gaussian branches, each modeling a geometrically distinct facial domain. Extensive experiments demonstrate consistently strong performance against state-of-the-art methods while achieving the fastest inference speed among all compared methods on a single GPU with the complete driving pipeline included.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/31/2607.28039v1-tonguereenact-geometry-anchored-tongue-synthesis-for-face-reenactment",
+      "section": "deep",
+      "title_en": "TongueReenact: Geometry-Anchored Tongue Synthesis for Face Reenactment",
+      "authors": "MD Wahiduzzaman Khan, Mingshan Jia, Xiaolin Zhang, En Yu, Kaska Musial-Gabrys",
+      "date": "2026-07-30",
+      "pdf": "https://arxiv.org/pdf/2607.28039v1",
+      "score": "9.0",
+      "evidence": "面向人脸重现的舌头合成，直接提升说话头部真实感",
+      "tldr": "现代面部重演系统在姿态与表情迁移上效果显著，但常忽略舌头动态，导致口腔内部解剖不一致。本文提出舌部重演框架，通过基础模型辅助构建免注释的舌头分割模型，并设计空间约束的掩码扩散模型合成自然舌头，以自适应掩码扩张实现平滑的口腔边界过渡。实验表明，各项舌头指标均较所有基线提升两倍以上，视觉语言模型评估也确认其感知优势。这是首个跨身份舌头动态迁移工作，显著提升重演的真实感与解剖一致性。",
+      "tags": "query:talking-head",
+      "abstract_en": "Modern face reenactment systems achieve impressive pose and expression transfer using geometry-driven representations. However, they largely ignore tongue dynamics, leading to anatomically inconsistent mouth interiors during speech and expressive motions. We introduce the first framework for cross-identity tongue dynamics transfer in face reenactment. We propose a foundation-model-assisted bootstrapping pipeline that produces a dedicated tongue segmentation model for in-the-wild reenactment without curated annotations. We further introduce a spatially constrained latent masked diffusion model for realistic tongue synthesis, with adaptive mask dilation for seamless mouth boundary transitions. Extensive experiments demonstrate improvements of more than two times over all baselines on every tongue-specific metric. We additionally propose a VLM-based evaluation protocol that replicates expert annotation at scale, confirming perceptual superiority across all ablation variants.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202607/31/2607.28164v1-s-avatar-diffusion-guided-gaussian-head-avatars-from-a-single-image",
+      "section": "deep",
+      "title_en": "S-Avatar: Diffusion-Guided Gaussian Head Avatars from a Single Image",
+      "authors": "Hail Song, Seokhwan Yang, Jiwon Yang, Woojin Cho, Woontack Woo",
+      "date": "2026-07-30",
+      "pdf": "https://arxiv.org/pdf/2607.28164v1",
+      "score": "9.0",
+      "evidence": "单图生成逼真3D头部化身，结合扩散引导高斯溅射与FLAME对齐，符合数字人/化身创建需求",
+      "tldr": "单图重建3D头部虚拟化身在VR/AR中至关重要，但现有方法在未知视角下难以保持3D一致性。S-Avatar提出三阶段流程：先用扩散模型从单图直接生成高分辨率3D高斯泼溅，再与FLAME参数化头部模型对齐，最后构建绑定模板将初始高斯与FLAME关联，从而实现动态头部化身的实时驱动。在公开数据集上，该方法在新视角合成和表情生成上均优于现有技术，显著提升了真实感与一致性，为便捷的化身创建提供了新方案。",
+      "tags": "query:talking-head",
+      "abstract_en": "We propose S-Avatar, a novel method for generating photorealistic 3D head avatars from a single image using a diffusion-guided 3D model generation module and strategies for animating 3D Gaussian Splatting (3DGS). While single-image head avatar reconstruction is crucial for lifelike Virtual Reality (VR) applications, existing approaches often struggle to preserve 3D consistency under unseen viewpoints. S-Avatar addresses this limitation through a three-stage pipeline. First, a high-resolution 3DGS is synthesized directly from a single image using a diffusion-based Gaussian splat generation module. Next, the parametric head model FLAME is aligned with the generated 3DGS by optimizing its parameters and spatial transformations. Finally, to adapt the 3DGS to FLAME variations, we construct a binding template that encodes the spatial relationship between the initial splats and FLAME. The dynamic 3D head avatar can then be rendered in real time by deforming the 3DGS with the binding template. By combining diffusion-guided canonical 3DGS generation with FLAME-based control, our method achieves efficient and accurate reconstruction with enhanced 3D consistency. Evaluations on public datasets demonstrate that S-Avatar outperforms state-of-the-art methods in novel-view and expression generation, achieving superior realism and consistency. Consequently, our approach represents a significant advance in accessible avatar creation, applicable to a wide range of VR/AR applications. The project page is available at https://github.com/hailsong/savatar.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
