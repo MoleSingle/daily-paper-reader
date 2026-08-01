@@ -1,0 +1,130 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-01T20:52:48.078233+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2607.28129v1",
+      "source": "arxiv",
+      "title": "Face and Voice Cross-modal Association with Learning Convex Feature Embedding",
+      "abstract": "Face-and-voice association learning is one of the most challenging tasks in deep learning. In this paper, we propose a simple but powerful cross-modal feature embedding method for the association of faces and voices. Previous work has studied cross-modal association tasks to establish the correlation between voice clips and facial images. These works have addressed cross-modal discrimination but underestimate the importance of handling heterogeneity in inter-modal features between audio and video, resulting in a lot of false positives and false negatives. To tackle the problem, the proposed method learns the embeddings of cross-modal features by making another feature exist between cross-modal features, facilitating the voice and face features of the same person to be embedded in a convex hull. Moreover, the incorporation of cross-modal attention mechanisms with convex embedding techniques represents a highly effective strategy for the attenuation of false positives and false negatives, accomplished via the minimization of inter-class discrepancies. We exhaustively evaluated our method for cross-modal verification, matching, and retrieval tasks on the large-scale VoxCeleb dataset. Extensive experimental results demonstrate that the proposed method achieves notable improvements over existing state-of-the-art methods.",
+      "authors": [
+        "Taewan Kim",
+        "Jiwoo Kang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.IR"
+      ],
+      "published": "2026-07-30T12:37:58+00:00",
+      "link": "https://arxiv.org/pdf/2607.28129v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "cross-modal face-voice embedding learning for identity association in digital avatars",
+      "llm_evidence_cn": "面向数字人身份关联的跨模态人脸-语音嵌入学习",
+      "llm_evidence": "面向数字人身份关联的跨模态人脸-语音嵌入学习",
+      "canonical_evidence": "面向数字人身份关联的跨模态人脸-语音嵌入学习",
+      "llm_tldr_en": "This paper proposes a convex feature embedding method that learns an intermediate feature between face and voice embeddings, reducing false positives in cross-modal face-voice association and improving identity matching for digital human systems.",
+      "llm_tldr_cn": "现有人脸-语音跨模态关联方法忽视模态间异质性，导致大量误匹配。文中提出凸特征嵌入学习，在人脸与语音特征之间学习一个中间特征，以更好地对齐两种模态并降低误匹配。实验表明该方法显著提升关联准确率，减少假阳性和假阴性。该工作可为数字人与说话头系统中的跨模态身份一致性提供关键支撑。",
+      "llm_tldr": "现有人脸-语音跨模态关联方法忽视模态间异质性，导致大量误匹配。文中提出凸特征嵌入学习，在人脸与语音特征之间学习一个中间特征，以更好地对齐两种模态并降低误匹配。实验表明该方法显著提升关联准确率，减少假阳性和假阴性。该工作可为数字人与说话头系统中的跨模态身份一致性提供关键支撑。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.22959v1",
+      "source": "arxiv",
+      "title": "HALLELUAI: A Hallucination-Aware AI System for Ultra-Realistic Image-to-Video Generation at Scale",
+      "abstract": "AI-generated video is increasingly used across marketing, product storytelling, and creative workflows, yet automated; high-precision quality control remains a major constraint to scaling production. We present HALLELUAI, an end-to-end system that moderates and regenerates image-to-video outputs to meet expert-level creative standards and deliver ultra-realistic videos with consistent end-user quality of experience (QoE) at scale. The system integrates a video moderation module that evaluates frame-level aesthetics, temporal motion fidelity, and fine-grained hallucination risks relative to the source image, with an agentic regeneration module that iteratively fixes failures through prompt refinement, controlled camera adjustments, targeted model or image switching, and structured retry strategies. The moderation logic is aligned with domain-specific creative guidelines and produces granular, machine-actionable feedback that directly drives regeneration. In human-in-the-loop evaluations with creative experts, HALLELUAI shows strong alignment and reliably outputs ultra-realistic, production-grade videos suitable for product and marketing placements at scale. This framework advances trustworthy AI generated video content by enforcing visual realism, brand safety, and strict input-image fidelity while enabling image-to-video generation at scale.",
+      "authors": [
+        "Aniket Sakpal",
+        "Yang Jiang",
+        "Rouzbeh Davoudi",
+        "Shayan Hassantabar",
+        "Mani Najmabadi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-25T00:02:37+00:00",
+      "link": "https://arxiv.org/pdf/2607.22959v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Image-to-video generation quality-control system transferable to talking head video synthesis",
+      "llm_evidence_cn": "面向图像到视频生成的质量控制系统，可迁移至说话头视频合成",
+      "llm_evidence": "面向图像到视频生成的质量控制系统，可迁移至说话头视频合成",
+      "canonical_evidence": "面向图像到视频生成的质量控制系统，可迁移至说话头视频合成",
+      "llm_tldr_en": "An end-to-end system that moderates and regenerates image-to-video outputs, improving realism and consistency; transferable to talking head video generation.",
+      "llm_tldr_cn": "现有AI视频生成缺少高精度质量控制，本文提出HALLELUAI，整合视频审核与智能再生模块，逐帧评估美学、运动一致性与幻觉风险，并通过提示优化和相机调整迭代修复，从而在大规模生产中保持超写实视频质量，可迁移至说话头视频合成等图像转视频任务。",
+      "llm_tldr": "现有AI视频生成缺少高精度质量控制，本文提出HALLELUAI，整合视频审核与智能再生模块，逐帧评估美学、运动一致性与幻觉风险，并通过提示优化和相机调整迭代修复，从而在大规模生产中保持超写实视频质量，可迁移至说话头视频合成等图像转视频任务。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "video synthesis of talking heads",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.26706v1",
+      "source": "arxiv",
+      "title": "TPD: Temporal Prior Decoupling for Text-to-Video Diffusion Models",
+      "abstract": "Text-to-video diffusion models generate temporally coherent content from natural language, yet when a prompt describes an early scene that persists while a new event emerges on top of it---such as \"a tall sandcastle standing on a beach where a wave rushes in and washes it away\"---generation frequently fails to realize the late-segment event in the corresponding frames. We identify this failure as Temporal Prior Suppression (TPS): the dominant prior of the early segment captures the cross-attention trajectory across the temporal axis and suppresses the guidance signal needed for late-segment realization, a competing tendency existing guidance mechanisms do not model. We introduce Temporal Prior Decoupling (TPD), a training-free framework that restores suppressed late-segment signals during diffusion sampling. TPD constructs a temporal counterfactual by conditioning on the early segment alone, and defines the discrepancy between the full-prompt and counterfactual trajectories as a suppressed signal direction. Rather than removing this direction as in prior subtractive projection methods, TPD restores it through a frame-selective lower-bound constraint resolved jointly over diffusion timestep and video frame, realizing the suppressed event in the late frames without disrupting early-segment coherence: where prior work enforces upper-bound feasibility to remove unwanted semantics, TPD enforces lower-bound feasibility to guarantee suppressed-signal contribution. TPD runs entirely within standard diffusion sampling without retraining, and is defined purely in classifier-free guidance space, making it backbone-agnostic by construction. Experiments show that TPD significantly improves late-concept realization while preserving temporal coherence and visual fidelity, and that the targeted suppression recurs across distinct text-to-video backbones.",
+      "authors": [
+        "Taewon Kang",
+        "Matthias Zwicker"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-29T09:52:20+00:00",
+      "link": "https://arxiv.org/pdf/2607.26706v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Text-to-video temporal prior decoupling improves late-event video synthesis; transferable to talking-head video generation",
+      "llm_evidence_cn": "文本到视频时域先验解耦提升后期事件合成，可迁移至说话头视频生成",
+      "llm_evidence": "文本到视频时域先验解耦提升后期事件合成，可迁移至说话头视频生成",
+      "canonical_evidence": "文本到视频时域先验解耦提升后期事件合成，可迁移至说话头视频生成",
+      "llm_tldr_en": "Text-to-video diffusion models often fail to realize late-segment events when an early scene persists. TPD identifies Temporal Prior Suppression and proposes a training-free decoupling framework that recovers the suppressed guidance signal, improving late-event generation without retraining.",
+      "llm_tldr_cn": "文本到视频扩散模型在处理早段场景持续而后段事件叠加的提示时，常常无法生成后段事件帧。论文将失败归因于时域先验抑制，并据此提出无需训练的时域先验解耦框架TPD，恢复被主导先验压制的引导信号。实验表明，TPD能有效提升后段事件的生成实现度，同时保持模型原有能力，为复杂时序视频合成提供了一种即插即用的改进方案。",
+      "llm_tldr": "文本到视频扩散模型在处理早段场景持续而后段事件叠加的提示时，常常无法生成后段事件帧。论文将失败归因于时域先验抑制，并据此提出无需训练的时域先验解耦框架TPD，恢复被主导先验压制的引导信号。实验表明，TPD能有效提升后段事件的生成实现度，同时保持模型原有能力，为复杂时序视频合成提供了一种即插即用的改进方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "video synthesis of talking heads",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

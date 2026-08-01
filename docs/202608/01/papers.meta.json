@@ -1,0 +1,54 @@
+{
+  "label": "2026-08-01",
+  "date": "2026-08-01",
+  "generated_at": "2026-08-01T20:55:51",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202608/01/2607.28129v1-face-and-voice-cross-modal-association-with-learning-convex-feature-embedding",
+      "section": "quick",
+      "title_en": "Face and Voice Cross-modal Association with Learning Convex Feature Embedding",
+      "authors": "Taewan Kim, Jiwoo Kang",
+      "date": "2026-07-30",
+      "pdf": "https://arxiv.org/pdf/2607.28129v1",
+      "score": "7.0",
+      "evidence": "面向数字人身份关联的跨模态人脸-语音嵌入学习",
+      "tldr": "脸-声跨模态关联学习难度大，现有方法忽略声像模态间特征异质性，易产生大量误报漏报。为此提出凸特征嵌入方法，通过令跨模态特征间存在另一特征，促使同一人的人脸与声音特征落入凸包；并融入跨模态注意力机制，最小化类间差异以削减错误匹配。在VoxCeleb大规模数据集上的验证、匹配与检索任务中均取得显著提升，超越现有最优方法。",
+      "tags": "query:talking-head",
+      "abstract_en": "Face-and-voice association learning is one of the most challenging tasks in deep learning. In this paper, we propose a simple but powerful cross-modal feature embedding method for the association of faces and voices. Previous work has studied cross-modal association tasks to establish the correlation between voice clips and facial images. These works have addressed cross-modal discrimination but underestimate the importance of handling heterogeneity in inter-modal features between audio and video, resulting in a lot of false positives and false negatives. To tackle the problem, the proposed method learns the embeddings of cross-modal features by making another feature exist between cross-modal features, facilitating the voice and face features of the same person to be embedded in a convex hull. Moreover, the incorporation of cross-modal attention mechanisms with convex embedding techniques represents a highly effective strategy for the attenuation of false positives and false negatives, accomplished via the minimization of inter-class discrepancies. We exhaustively evaluated our method for cross-modal verification, matching, and retrieval tasks on the large-scale VoxCeleb dataset. Extensive experimental results demonstrate that the proposed method achieves notable improvements over existing state-of-the-art methods.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/01/2607.22959v1-halleluai-a-hallucination-aware-ai-system-for-ultra-realistic-image-to-video-generation-at-scale",
+      "section": "quick",
+      "title_en": "HALLELUAI: A Hallucination-Aware AI System for Ultra-Realistic Image-to-Video Generation at Scale",
+      "authors": "Aniket Sakpal, Yang Jiang, Rouzbeh Davoudi, Shayan Hassantabar, Mani Najmabadi",
+      "date": "2026-07-25",
+      "pdf": "https://arxiv.org/pdf/2607.22959v1",
+      "score": "6.0",
+      "evidence": "面向图像到视频生成的质量控制系统，可迁移至说话头视频合成",
+      "tldr": "AI生成视频在营销等场景中广泛应用，但高质量自动化质检是规模化瓶颈。为此提出HALLELUAI，集成视频审核与代理式再生模块，从美学、运动保真度和幻觉风险多维度评估，并自动迭代修复。专家评估显示其强对齐，能可靠产出超真实、生产级视频。该系统为大规模可信AI视频生成提供了保障。",
+      "tags": "query:talking-head",
+      "abstract_en": "AI-generated video is increasingly used across marketing, product storytelling, and creative workflows, yet automated; high-precision quality control remains a major constraint to scaling production. We present HALLELUAI, an end-to-end system that moderates and regenerates image-to-video outputs to meet expert-level creative standards and deliver ultra-realistic videos with consistent end-user quality of experience (QoE) at scale. The system integrates a video moderation module that evaluates frame-level aesthetics, temporal motion fidelity, and fine-grained hallucination risks relative to the source image, with an agentic regeneration module that iteratively fixes failures through prompt refinement, controlled camera adjustments, targeted model or image switching, and structured retry strategies. The moderation logic is aligned with domain-specific creative guidelines and produces granular, machine-actionable feedback that directly drives regeneration. In human-in-the-loop evaluations with creative experts, HALLELUAI shows strong alignment and reliably outputs ultra-realistic, production-grade videos suitable for product and marketing placements at scale. This framework advances trustworthy AI generated video content by enforcing visual realism, brand safety, and strict input-image fidelity while enabling image-to-video generation at scale.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/01/2607.26706v1-tpd-temporal-prior-decoupling-for-text-to-video-diffusion-models",
+      "section": "quick",
+      "title_en": "TPD: Temporal Prior Decoupling for Text-to-Video Diffusion Models",
+      "authors": "Taewon Kang, Matthias Zwicker",
+      "date": "2026-07-29",
+      "pdf": "https://arxiv.org/pdf/2607.26706v1",
+      "score": "6.0",
+      "evidence": "文本到视频时域先验解耦提升后期事件合成，可迁移至说话头视频生成",
+      "tldr": "文本生成视频扩散模型在处理“早期场景持续存在而后期新事件出现”的提示时，往往无法在对应帧中实现后期事件。该问题被定义为时序先验抑制：早期片段的优势先验沿时间轴占据交叉注意力轨迹，压制了后期片段所需的引导信号。为此提出时序先验解耦，一种免训练框架，通过构建仅以早期片段为条件的时序反事实，将完整提示与反事实轨迹的差异作为被抑制信号方向，并利用帧选择下界约束在扩散时间步和视频帧上联合恢复该信号。相比先前减法投影方法，TPD无需移除方向，而是确保被抑制信号贡献，既实现后期事件又不破坏早期一致性，且完全运行于标准采样中，无需重训练。实验表明TPD显著提升后期概念实现，保持时间一致性和视觉保真度，并在多个视频扩散骨干模型上验证了抑制现象的普遍性。",
+      "tags": "query:talking-head",
+      "abstract_en": "Text-to-video diffusion models generate temporally coherent content from natural language, yet when a prompt describes an early scene that persists while a new event emerges on top of it---such as \"a tall sandcastle standing on a beach where a wave rushes in and washes it away\"---generation frequently fails to realize the late-segment event in the corresponding frames. We identify this failure as Temporal Prior Suppression (TPS): the dominant prior of the early segment captures the cross-attention trajectory across the temporal axis and suppresses the guidance signal needed for late-segment realization, a competing tendency existing guidance mechanisms do not model. We introduce Temporal Prior Decoupling (TPD), a training-free framework that restores suppressed late-segment signals during diffusion sampling. TPD constructs a temporal counterfactual by conditioning on the early segment alone, and defines the discrepancy between the full-prompt and counterfactual trajectories as a suppressed signal direction. Rather than removing this direction as in prior subtractive projection methods, TPD restores it through a frame-selective lower-bound constraint resolved jointly over diffusion timestep and video frame, realizing the suppressed event in the late frames without disrupting early-segment coherence: where prior work enforces upper-bound feasibility to remove unwanted semantics, TPD enforces lower-bound feasibility to guarantee suppressed-signal contribution. TPD runs entirely within standard diffusion sampling without retraining, and is defined purely in classifier-free guidance space, making it backbone-agnostic by construction. Experiments show that TPD significantly improves late-concept realization while preserving temporal coherence and visual fidelity, and that the targeted suppression recurs across distinct text-to-video backbones.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

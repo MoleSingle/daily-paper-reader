@@ -6,33 +6,30 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-31
-- 运行时间：2026-07-31 21:56:04 UTC
+- 最新运行日期：2026-08-01
+- 运行时间：2026-08-01 20:55:46 UTC
 - 运行状态：成功
-- 本次总论文数：4
-- 精读区：4
-- 速读区：0
+- 本次总论文数：3
+- 精读区：0
+- 速读区：3
 
 ### 今日简报（AI）
-今日精读4篇论文，聚焦动态人体与头部头像的实时生成技术；最值得关注的是《4DHumanDiff》实现360度一致动态人体生成，《Split and Drive》提出双轴解耦实时头部头像方法，均获9.0高分；建议读者优先浏览这两篇的demo视频，直观感受生成效果与实时性能。
-- 详情：[/202607/31/README](/202607/31/README)
+今日速读3篇论文，聚焦跨模态人脸语音关联与视频生成两大方向。最值得关注的是视频生成领域的两项工作：幻觉感知的图像转视频系统HALLELUAI，以及面向扩散模型的时间先验解耦方法TPD。建议普通读者优先了解这两篇，把握视频生成在真实感与时序控制上的最新进展。
+- 详情：[/202608/01/README](/202608/01/README)
 
 ### 精读区论文标签
-1. [4DHumanDiff: Direct Text-to-4DGS Generation for Consistent 360-Degree Dynamic Humans](/202607/31/2607.27634v1-4dhumandiff-direct-text-to-4dgs-generation-for-consistent-360-degree-dynamic-humans)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：文本到4DGS的动态人体生成，直接用于数字人创建
-2. [Split and Drive: Dual-Axis Disentanglement for Real-Time Gaussian Head Avatars](/202607/31/2607.28032v1-split-and-drive-dual-axis-disentanglement-for-real-time-gaussian-head-avatars)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：单图照片级可动画高斯头部头像，用于数字人合成
-3. [TongueReenact: Geometry-Anchored Tongue Synthesis for Face Reenactment](/202607/31/2607.28039v1-tonguereenact-geometry-anchored-tongue-synthesis-for-face-reenactment)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：面向人脸重现的舌头合成，直接提升说话头部真实感
-4. [S-Avatar: Diffusion-Guided Gaussian Head Avatars from a Single Image](/202607/31/2607.28164v1-s-avatar-diffusion-guided-gaussian-head-avatars-from-a-single-image)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：单图生成逼真3D头部化身，结合扩散引导高斯溅射与FLAME对齐，符合数字人/化身创建需求
+- 本次无精读推荐。
 
 ### 速读区论文标签
-- 本次无速读推荐。
+1. [Face and Voice Cross-modal Association with Learning Convex Feature Embedding](/202608/01/2607.28129v1-face-and-voice-cross-modal-association-with-learning-convex-feature-embedding)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：面向数字人身份关联的跨模态人脸-语音嵌入学习
+2. [HALLELUAI: A Hallucination-Aware AI System for Ultra-Realistic Image-to-Video Generation at Scale](/202608/01/2607.22959v1-halleluai-a-hallucination-aware-ai-system-for-ultra-realistic-image-to-video-generation-at-scale)  
+   标签：评分：6.0/10、query:talking-head
+   evidence：面向图像到视频生成的质量控制系统，可迁移至说话头视频合成
+3. [TPD: Temporal Prior Decoupling for Text-to-Video Diffusion Models](/202608/01/2607.26706v1-tpd-temporal-prior-decoupling-for-text-to-video-diffusion-models)  
+   标签：评分：6.0/10、query:talking-head
+   evidence：文本到视频时域先验解耦提升后期事件合成，可迁移至说话头视频生成
 
 
 <div class="dpr-home-promo-card">
