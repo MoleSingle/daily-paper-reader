@@ -1,0 +1,24 @@
+{
+  "label": "2026-08-02",
+  "date": "2026-08-02",
+  "generated_at": "2026-08-02T20:40:19",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202608/02/2607.26742v1-zero-shot-face-to-speech-synthesis-via-latent-space-adaptation-of-a-style-diffusion-tts-model",
+      "section": "quick",
+      "title_en": "Zero-Shot Face-to-Speech Synthesis via Latent Space Adaptation of a Style-Diffusion TTS Model",
+      "authors": "Carlos Muñoz-Romero, Jose A. Gonzalez-Lopez",
+      "date": "2026-07-29",
+      "pdf": "https://arxiv.org/pdf/2607.26742v1",
+      "score": "6.0",
+      "evidence": "从人脸图像预测语音，为数字人形象赋予声音，是数字人创建的重要组成部分。",
+      "tldr": "传统零样本语音合成依赖参考音频，在仅有面部图像时无法应用。本文提出人脸到语音合成框架，通过轻量Face Adapter并软微调人脸编码器上部模块，将人脸特征对齐到冻结的StyleTTS 2风格空间。在LRS3保留身份上，合成语音自然度UTMOS达3.7-4.0，超过真实语音的3.61；人脸到语音检索高于随机，且声音与目标一致。该框架无需重训即可跨语言生成，表明人脸到风格映射语言无关。",
+      "tags": "query:talking-head",
+      "abstract_en": "Zero-shot text-to-speech (TTS) clones a voice from a short audio prompt, but this reliance on reference audio is a barrier when only visual information is available, e.g. for historical figures or video-game characters. In this work, we propose a Face-to-Speech (F2S) framework that predicts a plausible voice from a static facial image. A lightweight Face Adapter, together with soft-tuning of the face encoder's upper blocks, aligns face-recognition features with the style space of a frozen StyleTTS 2 model, kept frozen during training. We evaluate on held-out identities from LRS3, a large-scale audiovisual corpus of English TED-talk videos. The synthesized speech is highly natural (UTMOS 3.7-4.0, matching or exceeding the 3.61 of ground truth), face-to-voice retrieval is consistently above chance, and the generated voice is consistent with the target speaker. Without any retraining, an English-trained adapter also produces fluent Spanish speech, indicating that the face-to-style mapping is largely language-agnostic.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
