@@ -1,0 +1,39 @@
+{
+  "label": "2026-08-03",
+  "date": "2026-08-03",
+  "generated_at": "2026-08-03T21:42:12",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202608/03/2607.29106v1-forwardrobe-garment-aware-gaussian-avatars-from-a-single-image",
+      "section": "deep",
+      "title_en": "Forwardrobe: Garment-Aware Gaussian Avatars from a Single Image",
+      "authors": "Daisheng Jin, Shuyun Wang, Ying He",
+      "date": "2026-07-31",
+      "pdf": "https://arxiv.org/pdf/2607.29106v1",
+      "score": "9.0",
+      "evidence": "从单张图像重建可动画化3D人体虚拟人，支持衣物感知",
+      "tldr": "从单张图像重建可动画3D人体时，松垮衣物的几何与运动难以用身体对齐拓扑表达。Forwardrobe提出前馈框架，在规范高斯空间中显式分离衣物与身体，并为衣物层设计连续性感知几何与蒙皮初始化、姿势条件非刚性形变及外观适应。该方法显著改善裙装等衣物的重建与动画质量，衣物层还可作为独立3D资产，支持编辑、转移与虚拟试穿。",
+      "tags": "query:talking-head",
+      "abstract_en": "Reconstructing animatable 3D human avatars from a single image remains particularly challenging for loose garments, whose geometry and motion cannot be adequately represented by body-aligned topology and skinning. We present Forwardrobe, a feed-forward framework for reconstructing garment-aware Gaussian avatars from a single image. Forwardrobe explicitly separates clothing from the body in canonical Gaussian space and equips the garment layer with continuity-aware geometry and skinning initialization, pose-conditioned non-rigid deformation, and appearance adaptation. These designs improve garment reconstruction and visual quality during animation, particularly for skirts and dresses. The separated garment layer additionally forms an independently controllable 3D asset, enabling garment editing, transfer, and 3D virtual try-on. Experiments demonstrate improved garment reconstruction quality and greater flexibility in garment manipulation compared with existing single-image avatar reconstruction methods.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/03/2607.23855v2-omnivae-an-audio-video-vae-with-cross-modal-alignment-for-joint-generation",
+      "section": "quick",
+      "title_en": "OmniVAE: An Audio-Video VAE with Cross-Modal Alignment for Joint Generation",
+      "authors": "Jun Zhan, Chen Yang, Yitian Gong, Donghua Yu, Kuangwei Chen, Wenbo Zhang, Kexin Huang, Qi Luo, Zhe Xu, Ying Zhu, Jin Wang, Tengyue Zhang, Qi Chen, Cheng Chang, Songlin Wang, Junqi Dai, Jiasheng Ye, Xiaogui Yang, Tianyi Liang, Xiangyu Peng, Zhaoye Fei, Shimin Li, Qinyuan Cheng, Xie Chen, Xinchi Chen, Xipeng Qiu",
+      "date": "2026-07-26",
+      "pdf": "https://arxiv.org/pdf/2607.23855v2",
+      "score": "7.0",
+      "evidence": "音视频联合VAE，跨模态对齐，可支持同步音视频生成",
+      "tldr": "现有方法常分别训练音频和视频VAE，导致潜空间缺乏跨模态对齐，下游生成模型需从头学习同步。OmniVAE通过联合训练引入段级音视频对比目标，对齐时序语义对应关系，并利用预训练模态语义编码器蒸馏特征，增强潜空间可学习性。实验表明两项目标均提升下游文生音视频的生成质量与同步准确性。该工作凸显统一表示对全模态建模的重要性。",
+      "tags": "query:talking-head",
+      "abstract_en": "Recent generative models are moving beyond silent video or standalone audio synthesis toward the joint generation of synchronized audio and video. Despite this progress, jointly generating audio and video with fine-grained cross-modal correspondence remains challenging due to their fundamental structural differences. Most existing methods use audio and video VAEs trained separately. As a result, the two latent spaces lack cross-modal alignment, leaving the downstream generative model to learn cross-modal synchronization from scratch. We present OmniVAE, a jointly trained audio-video VAE that learns fine-grained semantic alignment between audio and video latent representations. Beyond reconstruction, OmniVAE uses a segment-level audio-video contrastive objective to capture temporal-semantic correspondence and align the two latent spaces. In parallel, it distills features from pretrained modality-specific semantic encoders into each modality, improving the downstream learnability of both latent spaces. Extensive experiments show that both objectives consistently improve the learnability of the latent spaces, translating into higher generation quality and more accurate cross-modal synchronization in downstream text-to-audio-video generation. These findings underscore the importance of learning unified representations as a foundation for omnimodal modeling.1",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

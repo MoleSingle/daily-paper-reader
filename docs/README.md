@@ -6,28 +6,26 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-02
-- 运行时间：2026-08-02 20:40:14 UTC
+- 最新运行日期：2026-08-03
+- 运行时间：2026-08-03 21:42:05 UTC
 - 运行状态：成功
-- 本次总论文数：1
-- 精读区：0
+- 本次总论文数：2
+- 精读区：1
 - 速读区：1
 
 ### 今日简报（AI）
-今日速读1篇，聚焦人脸到语音的零样本合成新思路。
-
-值得关注：利用风格扩散TTS模型的潜空间适配，实现从人脸直接生成对应语音。
-
-下一步可留意该技术在数字人、无障碍交互中的实际应用与效果评测。
-- 详情：[/202608/02/README](/202608/02/README)
+今日精读1篇、速读1篇，聚焦单图服装感知虚拟人与音视频联合生成。最值得看的是《Forwardrobe》，以9.0高分实现单图驱动的服装感知高斯虚拟人；《OmniVAE》则探索音视频跨模态对齐生成。建议关注单图重建虚拟人方向，其技术落地潜力更值得深入跟进。
+- 详情：[/202608/03/README](/202608/03/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [Forwardrobe: Garment-Aware Gaussian Avatars from a Single Image](/202608/03/2607.29106v1-forwardrobe-garment-aware-gaussian-avatars-from-a-single-image)  
+   标签：评分：9.0/10、query:talking-head
+   evidence：从单张图像重建可动画化3D人体虚拟人，支持衣物感知
 
 ### 速读区论文标签
-1. [Zero-Shot Face-to-Speech Synthesis via Latent Space Adaptation of a Style-Diffusion TTS Model](/202608/02/2607.26742v1-zero-shot-face-to-speech-synthesis-via-latent-space-adaptation-of-a-style-diffusion-tts-model)  
-   标签：评分：6.0/10、query:talking-head
-   evidence：从人脸图像预测语音，为数字人形象赋予声音，是数字人创建的重要组成部分。
+1. [OmniVAE: An Audio-Video VAE with Cross-Modal Alignment for Joint Generation](/202608/03/2607.23855v2-omnivae-an-audio-video-vae-with-cross-modal-alignment-for-joint-generation)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：音视频联合VAE，跨模态对齐，可支持同步音视频生成
 
 
 <div class="dpr-home-promo-card">

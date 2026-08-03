@@ -1,0 +1,115 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-03T21:40:06.450871+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2607.29106v1",
+      "source": "arxiv",
+      "title": "Forwardrobe: Garment-Aware Gaussian Avatars from a Single Image",
+      "abstract": "Reconstructing animatable 3D human avatars from a single image remains particularly challenging for loose garments, whose geometry and motion cannot be adequately represented by body-aligned topology and skinning. We present Forwardrobe, a feed-forward framework for reconstructing garment-aware Gaussian avatars from a single image. Forwardrobe explicitly separates clothing from the body in canonical Gaussian space and equips the garment layer with continuity-aware geometry and skinning initialization, pose-conditioned non-rigid deformation, and appearance adaptation. These designs improve garment reconstruction and visual quality during animation, particularly for skirts and dresses. The separated garment layer additionally forms an independently controllable 3D asset, enabling garment editing, transfer, and 3D virtual try-on. Experiments demonstrate improved garment reconstruction quality and greater flexibility in garment manipulation compared with existing single-image avatar reconstruction methods.",
+      "authors": [
+        "Daisheng Jin",
+        "Shuyun Wang",
+        "Ying He"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-31T07:35:52+00:00",
+      "link": "https://arxiv.org/pdf/2607.29106v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "reconstructing animatable 3D human avatars from single images with garment awareness",
+      "llm_evidence_cn": "从单张图像重建可动画化3D人体虚拟人，支持衣物感知",
+      "llm_evidence": "从单张图像重建可动画化3D人体虚拟人，支持衣物感知",
+      "canonical_evidence": "从单张图像重建可动画化3D人体虚拟人，支持衣物感知",
+      "llm_tldr_en": "Forwardrobe is a feed-forward framework that reconstructs garment-aware Gaussian avatars from a single image, explicitly separating clothing from the body in canonical space and enabling high-quality animation, especially for loose garments like skirts and dresses.",
+      "llm_tldr_cn": "从单张图像重建可动画化3D虚拟人时，松散衣物的几何与运动难以用人体对齐拓扑表达。Forwardrobe提出前馈框架，在规范高斯空间中显式分离衣物与身体，并为衣物层设计连续性感知的几何和蒙皮初始化、姿态条件非刚性变形及外观自适应。实验显示其显著改善裙子、连衣裙等衣物的重建质量和动画视觉效果，且衣物层可独立控制，拓展了数字人创建能力。",
+      "llm_tldr": "从单张图像重建可动画化3D虚拟人时，松散衣物的几何与运动难以用人体对齐拓扑表达。Forwardrobe提出前馈框架，在规范高斯空间中显式分离衣物与身体，并为衣物层设计连续性感知的几何和蒙皮初始化、姿态条件非刚性变形及外观自适应。实验显示其显著改善裙子、连衣裙等衣物的重建质量和动画视觉效果，且衣物层可独立控制，拓展了数字人创建能力。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.23855v2",
+      "source": "arxiv",
+      "title": "OmniVAE: An Audio-Video VAE with Cross-Modal Alignment for Joint Generation",
+      "abstract": "Recent generative models are moving beyond silent video or standalone audio synthesis toward the joint generation of synchronized audio and video. Despite this progress, jointly generating audio and video with fine-grained cross-modal correspondence remains challenging due to their fundamental structural differences. Most existing methods use audio and video VAEs trained separately. As a result, the two latent spaces lack cross-modal alignment, leaving the downstream generative model to learn cross-modal synchronization from scratch. We present OmniVAE, a jointly trained audio-video VAE that learns fine-grained semantic alignment between audio and video latent representations. Beyond reconstruction, OmniVAE uses a segment-level audio-video contrastive objective to capture temporal-semantic correspondence and align the two latent spaces. In parallel, it distills features from pretrained modality-specific semantic encoders into each modality, improving the downstream learnability of both latent spaces. Extensive experiments show that both objectives consistently improve the learnability of the latent spaces, translating into higher generation quality and more accurate cross-modal synchronization in downstream text-to-audio-video generation. These findings underscore the importance of learning unified representations as a foundation for omnimodal modeling.1",
+      "authors": [
+        "Jun Zhan",
+        "Chen Yang",
+        "Yitian Gong",
+        "Donghua Yu",
+        "Kuangwei Chen",
+        "Wenbo Zhang",
+        "Kexin Huang",
+        "Qi Luo",
+        "Zhe Xu",
+        "Ying Zhu",
+        "Jin Wang",
+        "Tengyue Zhang",
+        "Qi Chen",
+        "Cheng Chang",
+        "Songlin Wang",
+        "Junqi Dai",
+        "Jiasheng Ye",
+        "Xiaogui Yang",
+        "Tianyi Liang",
+        "Xiangyu Peng",
+        "Zhaoye Fei",
+        "Shimin Li",
+        "Qinyuan Cheng",
+        "Xie Chen",
+        "Xinchi Chen",
+        "Xipeng Qiu"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.CV"
+      ],
+      "published": "2026-07-26T21:51:28+00:00",
+      "link": "https://arxiv.org/pdf/2607.23855v2",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Audio-video VAE with cross-modal alignment, enabling synchronized audio-visual generation",
+      "llm_evidence_cn": "音视频联合VAE，跨模态对齐，可支持同步音视频生成",
+      "llm_evidence": "音视频联合VAE，跨模态对齐，可支持同步音视频生成",
+      "canonical_evidence": "音视频联合VAE，跨模态对齐，可支持同步音视频生成",
+      "llm_tldr_en": "OmniVAE jointly trains an audio-video VAE with segment-level contrastive alignment, addressing the lack of synchronized latent spaces for joint audio-video generation.",
+      "llm_tldr_cn": "现有音频和视频生成模型常使用独立训练的VAE，导致潜在空间缺乏跨模态对齐，联合生成时的音画同步难以保证。OmniVAE提出联合训练音视频VAE，通过分段对比对齐学习细粒度语义对应。实验表明该方法能够提升重构与生成质量。该方法为音视频同步生成提供了通用基础，可迁移至说话头视频合成等任务。",
+      "llm_tldr": "现有音频和视频生成模型常使用独立训练的VAE，导致潜在空间缺乏跨模态对齐，联合生成时的音画同步难以保证。OmniVAE提出联合训练音视频VAE，通过分段对比对齐学习细粒度语义对应。实验表明该方法能够提升重构与生成质量。该方法为音视频同步生成提供了通用基础，可迁移至说话头视频合成等任务。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
