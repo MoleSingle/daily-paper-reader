@@ -6,26 +6,30 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-03
-- 运行时间：2026-08-03 21:42:05 UTC
+- 最新运行日期：2026-08-04
+- 运行时间：2026-08-04 21:20:57 UTC
 - 运行状态：成功
-- 本次总论文数：2
-- 精读区：1
-- 速读区：1
+- 本次总论文数：3
+- 精读区：3
+- 速读区：0
 
 ### 今日简报（AI）
-今日精读1篇、速读1篇，聚焦单图服装感知虚拟人与音视频联合生成。最值得看的是《Forwardrobe》，以9.0高分实现单图驱动的服装感知高斯虚拟人；《OmniVAE》则探索音视频跨模态对齐生成。建议关注单图重建虚拟人方向，其技术落地潜力更值得深入跟进。
-- 详情：[/202608/03/README](/202608/03/README)
+今日精读两篇语音驱动说话人生成方向论文，聚焦表情可控与低延迟生成。最值得看《Geometry-guided Emotion Modulation》以几何引导实现逼真表情控制（10分），《LeapTalk》则破解延迟与质量权衡（9分）。建议普通读者优先关注表情可控方法，再对比延迟优化方案。
+- 详情：[/202608/04/README](/202608/04/README)
 
 ### 精读区论文标签
-1. [Forwardrobe: Garment-Aware Gaussian Avatars from a Single Image](/202608/03/2607.29106v1-forwardrobe-garment-aware-gaussian-avatars-from-a-single-image)  
+1. [Geometry-guided Emotion Modulation for Controllable and Photorealistic Emotional Talking Face Generation](/202608/04/2608.00663v1-geometry-guided-emotion-modulation-for-controllable-and-photorealistic-emotional-talking-face-generation)  
+   标签：评分：10.0/10、query:talking-head
+   evidence：音频驱动的情感说话人脸生成
+2. [LeapTalk: Breaking the Latency-Quality Trade-off in Talking Head Generation](/202608/04/2608.00079v1-leaptalk-breaking-the-latency-quality-trade-off-in-talking-head-generation)  
    标签：评分：9.0/10、query:talking-head
-   evidence：从单张图像重建可动画化3D人体虚拟人，支持衣物感知
+   evidence：直接面向说话人头像生成，提出单步扩散方案
+3. [ETHead: Generating Expressive 3D Facial Animation and Head Movement from Speech](/202608/04/2608.01605v1-ethead-generating-expressive-3d-facial-animation-and-head-movement-from-speech)  
+   标签：评分：9.0/10、query:talking-head
+   evidence：从语音生成富有表现力的3D面部动画和头部运动
 
 ### 速读区论文标签
-1. [OmniVAE: An Audio-Video VAE with Cross-Modal Alignment for Joint Generation](/202608/03/2607.23855v2-omnivae-an-audio-video-vae-with-cross-modal-alignment-for-joint-generation)  
-   标签：评分：7.0/10、query:talking-head
-   evidence：音视频联合VAE，跨模态对齐，可支持同步音视频生成
+- 本次无速读推荐。
 
 
 <div class="dpr-home-promo-card">
