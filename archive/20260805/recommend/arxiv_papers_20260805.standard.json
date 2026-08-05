@@ -1,0 +1,100 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-05T21:28:15.900695+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2608.01157v1",
+      "source": "arxiv",
+      "title": "InteracVid: Building a Real Interactive Audio-Visual Response Dataset from Live-Chat Videos",
+      "abstract": "Large language models have made text the default medium for human--AI interaction, buttext alone cannot express the full range of responses required by multimodal assistants,avatars, and embodied agents. While recent audio-video generative models can synthesizehigh-fidelity synchronized content, existing supervision is largely \\emph{descriptive}:models are trained to render captions rather than to produce audio-visual responsescaused by external user interactions. We introduce \\textbf{InteracVid}, \\emph{the firstopen-source large-scale dataset that addresses this missing supervision}, so that everysample couples a preceding audio-visual context and an external stimulus with the realinteractive response that follows. We design a metadata-aware pipeline that extractsinteractive clips from long, noisy livestreams, yielding over \\textbf{454K}context-query-response triplets from more than \\textbf{59K} livestream videos andspanning conversation-centered, object-centric, procedural, embodied, and screen-basedscenarios. A ten-rater human study confirms that the extracted interactions are causal,natural, and temporally complete for both genuine and reconstructed queries. On aheld-out benchmark of \\textbf{100} genuine live-chat queries, fine-tuning on InteracVidimproves both interaction planning and audio-video response generation, and anindependent human evaluation reproduces the system ranking and the conclusions obtainedwith our automatic judge. These results highlight interaction-structured data as acritical foundation for interactive multimodal generation.",
+      "authors": [
+        "Chi Zhang",
+        "Haoyang Shi",
+        "Yueyi Liu",
+        "Zhaokun Yan",
+        "Yishu Yin",
+        "Yuhang Wu",
+        "Miao Liu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-02T11:28:13+00:00",
+      "link": "https://arxiv.org/pdf/2608.01157v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Large-scale open-source audio-visual response dataset relevant to avatars and digital human research",
+      "llm_evidence_cn": "面向虚拟形象与数字人研究的大规模开源音视频响应数据集",
+      "llm_evidence": "面向虚拟形象与数字人研究的大规模开源音视频响应数据集",
+      "canonical_evidence": "面向虚拟形象与数字人研究的大规模开源音视频响应数据集",
+      "llm_tldr_en": "InteracVid is a large-scale open-source audio-visual dataset from live-chat videos, pairing audio-visual context and external stimulus with real interactive responses to train interactive avatars and embodied agents.",
+      "llm_tldr_cn": "现有音视频生成模型大多基于描述性监督，难以生成由外部用户交互引发的真实响应。为此，InteracVid从直播聊天视频构建了首个大规模开源交互式音视频响应数据集，将前置音视频上下文与外部刺激配对到真实后续响应。该数据集为虚拟形象、具身智能体等多媒体助手提供了关键训练资源。实验表明其能支持高保真同步内容生成，填补了交互式音频-视觉监督的空白。",
+      "llm_tldr": "现有音视频生成模型大多基于描述性监督，难以生成由外部用户交互引发的真实响应。为此，InteracVid从直播聊天视频构建了首个大规模开源交互式音视频响应数据集，将前置音视频上下文与外部刺激配对到真实后续响应。该数据集为虚拟形象、具身智能体等多媒体助手提供了关键训练资源。实验表明其能支持高保真同步内容生成，填补了交互式音频-视觉监督的空白。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "public datasets for digital human and talking head research",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.01392v1",
+      "source": "arxiv",
+      "title": "FineMoLA: Towards Fine-Grained Motion-Language Alignment from Clip-Level Supervision",
+      "abstract": "Text-conditioned human motion generation has made rapid progress with the emergence of large-scale motion--language datasets. However, even datasets with rich long-form descriptions typically provide supervision only at the clip level, without explicit temporal correspondence between motion frames and language. This limits fine-grained motion--text grounding and temporally precise generation. We propose FineMoLA, a weakly supervised framework that learns fine-grained frame--phrase correspondence directly from clip-level annotations. Our method first segments long-form descriptions into action-bearing phrases, and then formulates motion--language alignment as an optimal transport problem, which naturally models many-to-many relations between motion frames and text under global constraints. With entropic regularization and Sinkhorn iterations, FineMoLA efficiently infers pseudo frame-level alignments without human labeling. Experiments on SnapMoGen demonstrate that the learned alignments outperform baselines in motion--text grounding.",
+      "authors": [
+        "Tongyan Wang",
+        "Zhengyuan Li",
+        "Muhan Lin",
+        "Shengyang Luo",
+        "Yifan Shen",
+        "Aniket Bera",
+        "Baijian Yang",
+        "Yingjie Victor Chen"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-02T17:16:25+00:00",
+      "link": "https://arxiv.org/pdf/2608.01392v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "weakly supervised motion-language alignment for text-driven human motion generation, transferable to digital human animation",
+      "llm_evidence_cn": "通过弱监督学习帧-短语对应关系，支持文本驱动的人体运动生成，可迁移至数字人动画",
+      "llm_evidence": "通过弱监督学习帧-短语对应关系，支持文本驱动的人体运动生成，可迁移至数字人动画",
+      "canonical_evidence": "通过弱监督学习帧-短语对应关系，支持文本驱动的人体运动生成，可迁移至数字人动画",
+      "llm_tldr_en": "This paper proposes FineMoLA, a weakly supervised framework that learns fine-grained frame-phrase correspondence from clip-level text annotations by formulating motion-language alignment as optimal transport, enabling temporally precise human motion generation.",
+      "llm_tldr_cn": "针对现有运动-语言数据集缺乏帧与语言之间的时间对应关系的问题，论文提出FineMoLA弱监督框架，先从长描述中分割出动作短语，再将运动-语言对齐建模为最优传输问题，自然地处理多对多关系。实验表明该方法能够从片段级标注中学习细粒度对应，实现时间上更精确的文本驱动人体运动生成。这为数字人动画等下游应用提供了基础支持。",
+      "llm_tldr": "针对现有运动-语言数据集缺乏帧与语言之间的时间对应关系的问题，论文提出FineMoLA弱监督框架，先从长描述中分割出动作短语，再将运动-语言对齐建模为最优传输问题，自然地处理多对多关系。实验表明该方法能够从片段级标注中学习细粒度对应，实现时间上更精确的文本驱动人体运动生成。这为数字人动画等下游应用提供了基础支持。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

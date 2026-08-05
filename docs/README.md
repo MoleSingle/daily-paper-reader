@@ -6,30 +6,29 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-04
-- 运行时间：2026-08-04 21:20:57 UTC
+- 最新运行日期：2026-08-05
+- 运行时间：2026-08-05 21:31:04 UTC
 - 运行状态：成功
-- 本次总论文数：3
-- 精读区：3
-- 速读区：0
+- 本次总论文数：2
+- 精读区：0
+- 速读区：2
 
 ### 今日简报（AI）
-今日精读两篇语音驱动说话人生成方向论文，聚焦表情可控与低延迟生成。最值得看《Geometry-guided Emotion Modulation》以几何引导实现逼真表情控制（10分），《LeapTalk》则破解延迟与质量权衡（9分）。建议普通读者优先关注表情可控方法，再对比延迟优化方案。
-- 详情：[/202608/04/README](/202608/04/README)
+今日速读2篇论文，均达6.0分，暂无精读。  
+其中《InteracVid》构建了实时交互式音视频响应数据集，《FineMoLA》提出细粒度动作-语言对齐方法，两者均值得关注。  
+下一步建议优先精读其中任一方向，深入理解数据集构建或对齐机制。
+- 详情：[/202608/05/README](/202608/05/README)
 
 ### 精读区论文标签
-1. [Geometry-guided Emotion Modulation for Controllable and Photorealistic Emotional Talking Face Generation](/202608/04/2608.00663v1-geometry-guided-emotion-modulation-for-controllable-and-photorealistic-emotional-talking-face-generation)  
-   标签：评分：10.0/10、query:talking-head
-   evidence：音频驱动的情感说话人脸生成
-2. [LeapTalk: Breaking the Latency-Quality Trade-off in Talking Head Generation](/202608/04/2608.00079v1-leaptalk-breaking-the-latency-quality-trade-off-in-talking-head-generation)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：直接面向说话人头像生成，提出单步扩散方案
-3. [ETHead: Generating Expressive 3D Facial Animation and Head Movement from Speech](/202608/04/2608.01605v1-ethead-generating-expressive-3d-facial-animation-and-head-movement-from-speech)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：从语音生成富有表现力的3D面部动画和头部运动
+- 本次无精读推荐。
 
 ### 速读区论文标签
-- 本次无速读推荐。
+1. [InteracVid: Building a Real Interactive Audio-Visual Response Dataset from Live-Chat Videos](/202608/05/2608.01157v1-interacvid-building-a-real-interactive-audio-visual-response-dataset-from-live-chat-videos)  
+   标签：评分：6.0/10、query:talking-head
+   evidence：面向虚拟形象与数字人研究的大规模开源音视频响应数据集
+2. [FineMoLA: Towards Fine-Grained Motion-Language Alignment from Clip-Level Supervision](/202608/05/2608.01392v1-finemola-towards-fine-grained-motion-language-alignment-from-clip-level-supervision)  
+   标签：评分：6.0/10、query:talking-head
+   evidence：通过弱监督学习帧-短语对应关系，支持文本驱动的人体运动生成，可迁移至数字人动画
 
 
 <div class="dpr-home-promo-card">

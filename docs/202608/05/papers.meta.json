@@ -1,0 +1,39 @@
+{
+  "label": "2026-08-05",
+  "date": "2026-08-05",
+  "generated_at": "2026-08-05T21:31:10",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202608/05/2608.01157v1-interacvid-building-a-real-interactive-audio-visual-response-dataset-from-live-chat-videos",
+      "section": "quick",
+      "title_en": "InteracVid: Building a Real Interactive Audio-Visual Response Dataset from Live-Chat Videos",
+      "authors": "Chi Zhang, Haoyang Shi, Yueyi Liu, Zhaokun Yan, Yishu Yin, Yuhang Wu, Miao Liu",
+      "date": "2026-08-02",
+      "pdf": "https://arxiv.org/pdf/2608.01157v1",
+      "score": "6.0",
+      "evidence": "面向虚拟形象与数字人研究的大规模开源音视频响应数据集",
+      "tldr": "现有音频-视频生成模型以描述性字幕为监督，难以生成由外部用户交互引起的真实响应。InteracVid首次提供大规模开源数据，利用元数据感知管道从59K直播中提取454K个上下文-查询-响应三元组，覆盖会话、对象、程序、具身及屏幕场景。十名评分者人工验证交互的因果性、自然性和时间完整性；在100个真实查询基准上微调，交互规划与音视频生成均显著提升。该数据集为交互式多模态生成奠定了基础。",
+      "tags": "query:talking-head",
+      "abstract_en": "Large language models have made text the default medium for human--AI interaction, buttext alone cannot express the full range of responses required by multimodal assistants,avatars, and embodied agents. While recent audio-video generative models can synthesizehigh-fidelity synchronized content, existing supervision is largely \\emph{descriptive}:models are trained to render captions rather than to produce audio-visual responsescaused by external user interactions. We introduce \\textbf{InteracVid}, \\emph{the firstopen-source large-scale dataset that addresses this missing supervision}, so that everysample couples a preceding audio-visual context and an external stimulus with the realinteractive response that follows. We design a metadata-aware pipeline that extractsinteractive clips from long, noisy livestreams, yielding over \\textbf{454K}context-query-response triplets from more than \\textbf{59K} livestream videos andspanning conversation-centered, object-centric, procedural, embodied, and screen-basedscenarios. A ten-rater human study confirms that the extracted interactions are causal,natural, and temporally complete for both genuine and reconstructed queries. On aheld-out benchmark of \\textbf{100} genuine live-chat queries, fine-tuning on InteracVidimproves both interaction planning and audio-video response generation, and anindependent human evaluation reproduces the system ranking and the conclusions obtainedwith our automatic judge. These results highlight interaction-structured data as acritical foundation for interactive multimodal generation.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/05/2608.01392v1-finemola-towards-fine-grained-motion-language-alignment-from-clip-level-supervision",
+      "section": "quick",
+      "title_en": "FineMoLA: Towards Fine-Grained Motion-Language Alignment from Clip-Level Supervision",
+      "authors": "Tongyan Wang, Zhengyuan Li, Muhan Lin, Shengyang Luo, Yifan Shen, Aniket Bera, Baijian Yang, Yingjie Victor Chen",
+      "date": "2026-08-02",
+      "pdf": "https://arxiv.org/pdf/2608.01392v1",
+      "score": "6.0",
+      "evidence": "通过弱监督学习帧-短语对应关系，支持文本驱动的人体运动生成，可迁移至数字人动画",
+      "tldr": "在文本条件人体运动生成任务中，现有数据集通常仅提供片段级监督，缺乏帧与短语的显式时间对应，从而限制了细粒度对齐与时间精确生成。针对此问题，FineMoLA方法先将长描述分割为动作短语，再将帧与短语的对齐建模为最优传输问题，通过熵正则化与Sinkhorn迭代高效推断伪帧级对齐。在SnapMoGen数据集上的实验表明，其运动文本对齐表现优于基线，实现了无需人工标注的弱监督细粒度运动语言对齐。",
+      "tags": "query:talking-head",
+      "abstract_en": "Text-conditioned human motion generation has made rapid progress with the emergence of large-scale motion--language datasets. However, even datasets with rich long-form descriptions typically provide supervision only at the clip level, without explicit temporal correspondence between motion frames and language. This limits fine-grained motion--text grounding and temporally precise generation. We propose FineMoLA, a weakly supervised framework that learns fine-grained frame--phrase correspondence directly from clip-level annotations. Our method first segments long-form descriptions into action-bearing phrases, and then formulates motion--language alignment as an optimal transport problem, which naturally models many-to-many relations between motion frames and text under global constraints. With entropic regularization and Sinkhorn iterations, FineMoLA efficiently infers pseudo frame-level alignments without human labeling. Experiments on SnapMoGen demonstrate that the learned alignments outperform baselines in motion--text grounding.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
