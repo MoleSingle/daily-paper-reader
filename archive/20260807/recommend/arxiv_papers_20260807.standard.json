@@ -1,0 +1,94 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-07T01:51:17.186148+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2608.04709v1",
+      "source": "arxiv",
+      "title": "EmpaAva: An Open-source Agentic 3D-Avatar Empathetic Live Chatbot",
+      "abstract": "This paper presents EmpaAva, to our knowledge the first open-source, agentic 3D-avatar empathetic chatbot, which carries empathetic response generation (ERG) from text-only exchanges into live, face-to-face interaction. Through a video-call-like interface, a user speaks to a 3D digital human that reads their affect from speech and optional vision, and replies with emotional speech, lip-synced facial motion, and photorealistic 3D Gaussian rendering. At its core, an LLM coordinates a Tri-Agent Architecture, in which perception, empathetic response planning, and embodied rendering form a closed loop, paired with a Response Planning layer that compiles each reply into an executable multimodal plan, keeping voice, expression, and rendering on one empathetic intent. Building on strong open-source modules, EmpaAva supplies the intelligence that binds them into one controllable, inspectable experience. In automatic and human evaluations, EmpaAva surpasses text-only, 2D talking-face, and multimodal avatar baselines in emotion understanding, response quality, and audio-visual consistency. We open-source EmpaAva with an online live demo.",
+      "authors": [
+        "Jie Yang",
+        "Wenhao Xu",
+        "Shuhui Lin",
+        "Hao Fei"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-05T11:23:40+00:00",
+      "link": "https://arxiv.org/pdf/2608.04709v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "3D digital human avatar creation with lip-synced facial motion, emotional speech, and photorealistic 3D Gaussian rendering",
+      "llm_evidence_cn": "构建了具备情感语音、唇形同步面部动作与逼真3D高斯渲染的开源3D数字人聊天机器人",
+      "llm_evidence": "构建了具备情感语音、唇形同步面部动作与逼真3D高斯渲染的开源3D数字人聊天机器人",
+      "canonical_evidence": "构建了具备情感语音、唇形同步面部动作与逼真3D高斯渲染的开源3D数字人聊天机器人",
+      "llm_tldr_en": "EmpaAva is the first open-source agentic 3D-avatar empathetic chatbot, enabling live face-to-face interaction with affect sensing, empathetic planning, and embodied rendering: emotional speech, lip-synced facial motion, and photorealistic 3D Gaussian display.",
+      "llm_tldr_cn": "现有共情对话系统局限于文本，难以在面对面交互中表达情感。论文提出EmpaAva，首个开源智能体式3D虚拟人共情聊天机器人，通过Tri-Agent架构闭环协调感知、共情规划与具身渲染，实现情感语音、唇形同步面部动作和逼真3D高斯渲染。该系统在实时视频界面中支持共情交互，为数字人和说话头合成的可复现研究提供了开放实现。",
+      "llm_tldr": "现有共情对话系统局限于文本，难以在面对面交互中表达情感。论文提出EmpaAva，首个开源智能体式3D虚拟人共情聊天机器人，通过Tri-Agent架构闭环协调感知、共情规划与具身渲染，实现情感语音、唇形同步面部动作和逼真3D高斯渲染。该系统在实时视频界面中支持共情交互，为数字人和说话头合成的可复现研究提供了开放实现。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.05070v1",
+      "source": "arxiv",
+      "title": "HelloWorld: Enabling Socially Interactive Characters in Video World Models",
+      "abstract": "Despite the remarkable recent progress of video world models, social interaction between users and the characters within these worlds remains unsupported. To fill this gap, we present HelloWorld, a video world model that enables social interaction with in-world characters. With a single button press, users can prompt the on-screen character to respond toward the camera, e.g., turning to the viewer, waving, nodding, or speaking a short greeting. To make these interactions natural, we propose a self-distillation pipeline that finetunes the video generation model on data synthesized by itself. Each synthesized clip contains both social interactions and camera motion, allowing the model to learn camera-pose conditioning without degrading interaction quality. At inference, we further introduce a training-free module that determines when the interaction occurs. Upon a button press, it modulates the cross-attention masks of the DiT so that the interaction-related text prompt attends only to the frames within the press window, temporally localizing the character's response. We further build HelloWorldBench, a 400-sample benchmark with three social interaction metrics alongside three conventional metrics, for evaluation. Experiments demonstrate that HelloWorld surpasses a variety of baselines in interaction quality, while maintaining state-of-the-art picture aesthetics and camera-pose following. Project page: https://github.com/AlayaLab/HelloWorld",
+      "authors": [
+        "Liangyang Ouyang",
+        "Ruicong Liu",
+        "Xuangeng Chu",
+        "Kaipeng Zhang",
+        "Yoichi Sato"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-05T17:14:19+00:00",
+      "link": "https://arxiv.org/pdf/2608.05070v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Generates video sequences of characters speaking and gesturing toward the camera, relevant to talking-head video synthesis.",
+      "llm_evidence_cn": "生成角色向摄像头说话、点头、挥手等视频序列，与说话人头视频合成相关。",
+      "llm_evidence": "生成角色向摄像头说话、点头、挥手等视频序列，与说话人头视频合成相关。",
+      "canonical_evidence": "生成角色向摄像头说话、点头、挥手等视频序列，与说话人头视频合成相关。",
+      "llm_tldr_en": "Presents HelloWorld, a video world model enabling social interaction with characters, such as waving, nodding, or greeting. A self-distillation pipeline finetunes generation on self-synthesized clips, learning camera-pose conditioning while preserving interaction quality and video fidelity.",
+      "llm_tldr_cn": "现有视频世界模型难以支持用户与画面内角色的社交互动。HelloWorld提出一种自蒸馏流水线，让模型在自身合成的包含社交动作与摄像头运动的视频上微调，从而学会在生成内容中加入面向摄像头的挥手、点头、问候等回应动作。实验表明，该方法在不牺牲视频生成质量的前提下实现了自然的多轮交互。该工作为构建可交互的数字人角色和虚拟化身提供了新思路。",
+      "llm_tldr": "现有视频世界模型难以支持用户与画面内角色的社交互动。HelloWorld提出一种自蒸馏流水线，让模型在自身合成的包含社交动作与摄像头运动的视频上微调，从而学会在生成内容中加入面向摄像头的挥手、点头、问候等回应动作。实验表明，该方法在不牺牲视频生成质量的前提下实现了自然的多轮交互。该工作为构建可交互的数字人角色和虚拟化身提供了新思路。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "video synthesis of talking heads",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

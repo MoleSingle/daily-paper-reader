@@ -1,0 +1,456 @@
+Title: EmpaAva: An Open-source Agentic 3D-Avatar Empathetic Live Chatbot
+
+URL Source: https://arxiv.org/pdf/2608.04709v1
+
+Published Time: Thu, 06 Aug 2026 00:49:15 GMT
+
+Number of Pages: 10
+
+Markdown Content:
+## EmpaAva : An Open-source Agentic 3D-Avatar Empathetic Live Chatbot 
+
+Jie Yang 1, Wenhao Xu 1, Shuhui Lin 2, Hao Fei 3* 1 National University of Singapore 2 Tsinghua University 3 University of Oxford 
+
+e1554543@u.nus.edu, haofei7419@gmail.com 
+
+Abstract 
+
+This paper presents EmpaAva , to our knowl-edge the first open-source, agentic 3D-avatar empathetic chatbot, which carries empathetic response generation (ERG) from text-only exchanges into live, face-to-face interaction. Through a video-call-like interface, a user speaks to a 3D digital human that reads their affect from speech and optional vision, and replies with emotional speech, lip-synced fa-cial motion, and photorealistic 3D Gaussian rendering. At its core, an LLM coordinates a 
+
+Tri-Agent Architecture , in which perception, empathetic response planning, and embodied rendering form a closed loop, paired with a 
+
+Response Planning layer that compiles each reply into an executable multimodal plan, keep-ing voice, expression, and rendering on one empathetic intent. Building on strong open-source modules, EmpaAva supplies the intelli-gence that binds them into one controllable, inspectable experience. In automatic and hu-man evaluations, EmpaAva surpasses text-only, 2D talking-face, and multimodal avatar base-lines in emotion understanding, response qual-ity, and audio-visual consistency. We open-source EmpaAva 1 with an online live demo 2.
+
+1 Introduction 
+
+The past few years have turned large language mod-els (LLMs; OpenAI, 2022; Chung et al., 2022) into remarkably fluent conversational partners, yet fluency alone does not make a machine feel hu-man. Human-level interaction also demands em-pathy : the capacity to read another’s feelings and reply with comfort and support. This goal drives empathetic response generation (ERG; Rashkin et al., 2019) and a line of research that infers a user’s affect before answering (Lin et al., 2019; Ma-jumder et al., 2020; Li et al., 2020), already back-
+
+> *Corresponding author.
+> 1https://empaava.top
+> 2https://empaava.top/demo
+
+ing scenarios from mental-health companionship to emotional-support dialogue (Liu et al., 2021). Human empathy, however, travels through far more than words. A trembling voice, a softened gaze, a hesitant pause carry affective weight that plain text can never hold. Recent research therefore pushes ERG into a multimodal setting, jointly mod-eling what a user says, how they say it, and how their face changes (Fei et al., 2024; Zhang et al., 2025). In parallel, avatar-driven video generation has matured dramatically, with audio-driven por-trait models (Zhang et al., 2022; Tian et al., 2024; Xu et al., 2024c) synthesizing lifelike talking faces. A face-to-face digital human is arguably the most natural vessel for empathy: it lets a user see the listener nod, smile, and react, closing a loop that a chat bubble leaves open. Turning this vision into a deployable system, though, is far from settled, and two obstacles stand out. The first is expressive fidelity . Many empathetic-avatar efforts still rest on 2D talking-face synthesis (Prajwal et al., 2020; Zhang et al., 2022), which copes poorly with three-dimensional consistency, natural head movement, and spatial realism. For a system meant to sit across from a user in a video call, a 3D avatar is the more faith-ful embodiment: FLAME (Li et al., 2017) offers controllable geometry and expression, while 3D Gaussian Splatting (Kerbl et al., 2023; Qian et al., 2023; Cho et al., 2024) renders photorealistic, view-consistent heads beyond the reach of 2D pipelines. The second is interaction intelligence . Existing 3D-avatar methods mostly animate a talking head from given speech, and stop short of the full arc from perceiving a user’s emotion, to planning an empathetic reply, to voicing it through an embodied face. No open-source, live system, to our knowl-edge, wraps this arc into something the community can readily run and extend. We close this gap with EmpaAva , to our knowl-edge the first open-source, agentic 3D-avatar em-arXiv:2608.04709v1 [cs.CL] 5 Aug 2026 Figure 1: EmpaAva. In a video-call-like booth, the user speaks to a 3D digital human that senses their emotion and replies face to face, with emotional speech, lip-synced facial motion, and photorealistic 3D-avatar rendering. 
+
+pathetic live chatbot. As previewed in Figure 1, a user steps into a video-call-like booth and talks with a 3D digital human that listens, gauges the user’s affect, and answers with synchronized speech, facial motion, and emotionally consistent rendering. For perception and generation, Em-paAva stands on strong open-source shoulders, e.g., 3DGS+FLAME rendering and the emotional TTS engine EmotiVoice (NetEase Youdao, 2023), so that its contribution centers on the intelligence or-chestrating these parts. That intelligence is arranged as an agentic sys-tem with an LLM at its reasoning core, echoing the shift toward LLMs as controllers that plan and dispatch specialized tools (Yao et al., 2023; Shen et al., 2023; Xi et al., 2023). Two designs carry the novelty. The Tri-Agent Architecture splits the long perceive –decide –express chain into three co-operating agents, P ERCEPTION AGENT , R ESPON -
+
+> SE
+
+AGENT , and R ENDER AGENT , mirroring how a person first reads a situation, then decides how to respond, and finally conveys it through voice and expression. Beyond keeping each stage modular and independently upgradable, the split turns a flat pipeline into a closed empathetic loop that tracks the user’s emotional state across turns. The second is a Response Planning layer be-tween the LLM and the rendering back-end. Rather than forward a bare line of text, ResponseAgent emits a structured reply plan fixing who speaks, in which voice and emotional tone, against which background, and which modules to invoke. This plan acts as one shared expressive intent that ev-ery generator obeys, keeping the comforting word-ing, the gentle voice, and the softened expression aligned, and granting fine control over how strongly the avatar smiles, nods, or slows its pace. Overall, we make the following contributions: 1) We present EmpaAva , to our knowledge the first 
+
+open-source, live agentic 3D-avatar empathetic chatbot, delivering face-to-face empathetic in-teraction over text, speech, and vision. 2) We propose a Tri-Agent Architecture that de-composes empathetic interaction into percep-tion, response planning, and embodied render-ing, forming a closed, controllable, and state-aware empathetic loop. 3) We introduce a Response Planning layer that translates an LLM reply into an executable mul-timodal expression plan, enforcing cross-modal consistency and controllable avatar behavior. 4) We release the full implementation, an online live demo, and the evaluation setup to support research on embodied empathetic agents. 
+
+2 Related Work 
+
+Empathetic Dialogue, from Text to Multimodal. 
+
+Empathetic response generation asks a dialogue system to recognize how a user feels and reply with comfort and support. Early work lives entirely in text: EmpatheticDialogues (Rashkin et al., 2019) set up a widely used benchmark, models such as Table 1: Positioning of EmpaAva against representative prior work. OS : open-source; LLM : LLM-based rea-soning core; MM : multimodal (text+speech+vision) in-put; 3D : embodied 3D-avatar output; Emp. : empathy-oriented; Live : interactive live system.                                                 
+
+> System OS LLM MM 3D Emp. Live
+> Text ERG (Lin et al., 2019) ✓×××✓×
+> 2D Talking-Face (Zhang et al., 2022) ✓×××××
+> 3D Avatar (Qian et al., 2023) ✓××✓××
+> AvaMERG (Zhang et al., 2025) ×✓✓×✓×
+> EmpathyEar (Fei et al., 2024) ✓✓✓×✓✓
+> EmpaAva (Ours) ✓✓✓✓✓✓
+
+MoEL, MIME, and EmpDG encode user emotion to sharpen affective quality and relevance (Lin et al., 2019; Majumder et al., 2020; Li et al., 2020), and emotional-support dialogue adds strategy-guided comforting (Liu et al., 2021). Reading and writ-ing only words, these methods let slip the prosody, expression, speaking rate, and micro-expressions through which people reveal how they truly feel. A more recent thread therefore reaches into vision and speech (Poria et al., 2019), with avatar-oriented sys-tems such as EmpathyEar and AvaMERG jointly modeling text, speech, and vision (Fei et al., 2024; Zhang et al., 2025). Their replies, however, still surface as text, speech, or 2D talking faces, leaving embodied feedback beyond reach. 
+
+Talking-Face and 3D-Avatar Generation. Ex-pressing empathy also calls for the right voice, fa-cial motion, and head gesture, motivating a par-allel line on avatar generation. 2D approaches such as Wav2Lip and SadTalker synthesize lip-synchronized faces from speech or a single im-age (Prajwal et al., 2020; Zhang et al., 2022), DEEPTalk injects emotionally expressive dynam-ics (Kim et al., 2024), and recent diffusion-based portrait models push photorealism and head mo-tion further (Tian et al., 2024; Xu et al., 2024c,b). Tied to a 2D image plane, all remain fragile on three-dimensional consistency, natural head pose, and spatial realism. 3D avatar techniques attack this directly, coupling FLAME (Li et al., 2017) for controllable geometry and expression with 3D Gaussian Splatting (Kerbl et al., 2023) for high-fidelity rendering; GaussianAvatars, Gaus-sianTalker, When Words Smile, and A 2-LLM show-case controllable, audio-driven 3D heads (Qian et al., 2023; Cho et al., 2024; Xu et al., 2024a; Hu et al., 2026). The connective tissue stays missing: these systems animate a talking head from given speech, and none assembles an open, LLM-driven loop from perceiving user emotion, Step 1: Entering the system           
+
+> Step 2 :Setting nickname and avatar
+> Step 3: Starting the video-call interface
+> Step 4: Providing audio/video input
+> Step 5: Receiving avatar response
+> Step 6: Viewing the 3D avatar
+> Step 7: Reviewing or exporting history
+> Step 8: Returning avatar-based multi-
+> modal empathic response
+> User input
+> Avatar
+> video response
+
+Figure 2: Workflow of the EmpaAva system. 
+
+through empathetic planning, to embodied 3D ex-pression. EmpaAva occupies exactly this space, uniting speech recognition, speech emotion recog-nition, LLM-based empathetic planning, structured reply plans, emotional speech synthesis, audio-driven facial motion, FLAME control, and 3DGS rendering in a single agentic system (Table 1). 
+
+3 System Workflow 
+
+EmpaAva runs entirely in the browser as a video-call-like emotional booth, and Figure 2 traces one full round of interaction, which we walk through from the user’s side. 
+
+▶ Entry (Steps 1–3). A visitor joins as a guest with no sign-in, picks a digital avatar together with its voice and background from a pop-up, and lands straight in the call, where the avatar fills the main window and the microphone and optional camera come online. 
+
+▶ Talking (Step 4). The interaction mirrors a real call: microphone and camera stay on, and voice-activity detection segments each utter-ance and submits it automatically, so no record, send, or stop button is needed. The spoken lan-guage is detected on the fly and drives recogni-tion, reasoning, and synthesis, letting the user converse in English or Chinese. 
+
+▶ Responding (Steps 5–6). For every turn, the backend reads the user’s affect, plans an em-pathetic reply, and renders it as an embod-ied avatar video with synchronized emotional speech and facial motion. The reply is placed beside the user’s view at matching size, and the user may replay it or rotate the 3D head to inspect the avatar from new viewpoints. 
+
+▶ History (Steps 7–8). The dialogue continues or stops at any moment, and each turn is archived as a paired user-and-avatar record for later re-◉ PerceptionAgent ⌘ ResponseAgent ◇ Render Agent              
+
+> Embodied Avatar Generation ✦Embodied
+> Empathetic Response
+> •• Text
+> ♬Mic
+> ▣Camera
+> ●●
+> I've been feeling overwhelmed and
+> can't sleep at night.
+> Response Planning
+> ●User State
+> Emotion, needs, context
+> ↔Dialogue Plan
+> Goals, strategy, next
+> actions
+> •• Response Content
+> What to say and how to
+> say it
+> ⌣
+> Avatar Control
+> Expression, gaze, head
+> pose, timing
+> ▮EmoVoice TTS
+> ⌣
+> DEEPTalk Motion
+> ◎FLAME / Gaussian
+> Motion Merge
+> ✤Realistic Avatar
+> Renderer
+> ●♬▣▣☎
+
+▶
+
+> Playback
+> ↻
+> History
+
+⇩     
+
+> Export
+> •• Text
+> Encoder ▮Speech
+> Perception ▶Vision
+> Encoder
+
+Figure 3: The Tri-Agent architecture of EmpaAva. P ERCEPTION AGENT understands the user, R ESPONSE AGENT 
+
+plans an empathetic reply, and R ENDER AGENT turns the plan into an embodied 3D-avatar video. 
+
+play. A lightweight registration is requested only when the user exports the full history. 
+
+4 Implementation Specification 
+
+EmpaAva turns a stream of user audio-visual input into an embodied avatar reply that can be seen, heard, and answered back. We avoid handing this whole job to a single end-to-end model, and instead factor it into three cooperating agents coordinated by an LLM (Figure 3): P ERCEPTION AGENT senses the user, R ESPONSE AGENT decides what and how to reply, and R ENDER AGENT realizes the reply as a 3D-avatar video. The agents talk to each other through a shared, human-readable state instead of opaque tensors, so every stage stays independently testable and swappable; a stronger ASR model, a larger LLM, or a higher-fidelity renderer can be dropped in without disturbing the rest, and the same transparency is what makes the pipeline easy to ablate in Section 5. 
+
+4.1 PerceptionAgent 
+
+PERCEPTION AGENT converts raw user input into a structured percept. After light preprocessing (for-mat conversion, resampling, denoising), automatic speech recognition transcribes the utterance, while speech emotion recognition reads the acoustic af-fect carried by prosody, pitch, and pace. That second signal matters because words alone can mislead: a flat sentence may still sound tired or anxious, and the avatar ought to answer the feel-ing and not only the text. When the camera is enabled, a few lightweight frames are sampled as visual context. The agent then packs the transcript, the speech-emotion label, the sampled frames, dia-logue history, and input metadata into a dialogue schema and hands it to R ESPONSE AGENT .
+
+4.2 ResponseAgent: Empathetic Response Planning 
+
+RESPONSE AGENT is the decision center, and the place where our response-planning idea lives. Con-ditioned on the percept, the LLM first reasons over the user’s emotion, its likely cause, and the con-versation so far, and then produces more than an utterance. Its output is a structured reply plan that couples the words to be spoken with how, and by whom, they should be delivered: 
+
+REPLY PLAN 
+
+reply text : what the avatar says • emotion & tone : tar-get affect and delivery • avatar : which digital human speaks • voice : speaker timbre for TTS • background : in-teraction scene • evidence : the user emotion and inferred cause being addressed. 
+
+This plan is a single expressive contract that ev-ery downstream generator obeys, which is what keeps the comforting wording, the voice, and the facial expression aimed at the same emotional tar-get. It also carries an empathetic strategy rather than a lone answer, typically acknowledging the feeling, naming its cause, validating it, and only then offering a low-burden suggestion. Because each field points back to the perception evidence it responds to, the plan stays grounded and inter-pretable, and R ESPONSE AGENT can revise it turn by turn as the user’s state drifts. 
+
+4.3 RenderAgent 
+
+RENDER AGENT executes the plan and produces the avatar video. Emotional speech is first synthesized with EmotiVoice (NetEase Youdao, 2023) under the plan’s tone, so a comforting turn sounds soft and steady while an encouraging one sounds brighter. This speech then drives an audio-to-motion module that predicts frame-level FLAME (Li et al., 2017) parameters for jaw, lip Table 2: Automatic results on EmpatheticDialogues. Acc.: emotion-cue accuracy; Dist-1/2: diversity.                                             
+
+> Models Acc. Dist-1 Dist-2
+> Non-LLMs
+> MoEL 3.88 0.67 2.81 MIME 3.52 0.34 0.96 EmpDG 3.81 1.19 4.65 CASE 3.03 0.49 1.59 ESCM 1.58 0.98 2.38
+> LLMs
+> Alpaca 9.38 3.35 28.05 Flan-T5 8.51 2.92 27.05 ChatGLM 0.00 0.02 0.00 Qwen 8.73 3.11 26.10 GPT-style LLM 6.89 3.30 24.58
+> Avatar-based
+> EmpathyEar 0.00 0.04 0.04 AvaMERG 8.64 3.30 28.09
+> EmpaAva (Ours) 10.26 4.01 30.54
+> BlenderBot
+> EmpathyEar
+> AvaMERG
+> EmpaAva
+> Dist-2 Emo.Acc Cause.M
+> 0
+> 20
+> 40
+> 60
+> 80
+> Score
+> 45 .81
+> 53 .85
+> 74 .81
+
+Figure 4: Automatic evaluation on the AvaMERG test set. Higher scores indicate better response diversity, emotion understanding, and emotion-cause modeling. 
+
+shape, head pose, and expression. We deliberately keep appearance and motion apart: a 3D Gaus-sian Splatting (Kerbl et al., 2023) head carries the identity-specific geometry and texture, FLAME acts as a low-dimensional control space, and a FLAME-to-Gaussian transfer step applies the pre-dicted motion to the rigged Gaussian head, letting the avatar speak while holding its personalized look. Three levers govern output quality: (i) expression, jaw, and lip ranges are clamped to stay expressive without tipping into exaggeration; (ii) temporal smoothing and offset correction tighten lip-sync and suppress jitter; and (iii) 3DGS rendering with background compositing sets the avatar in a real-istic call scene. The final clip carries the intended empathy across speech, motion, and appearance. 
+
+5 Evaluation and Analysis 
+
+We evaluate EmpaAva on text-level response gener-ation, end-to-end multimodal interaction, and em-bodied expression quality, plus two multi-turn case studies. Subjective scores are averaged over human raters on a five-point scale. 
+
+5.1 Empathetic System Comparison 
+
+We compare EmpaAva at the text and end-to-end embodied-avatar levels. 
+
+Table 3: Human evaluation scores from a questionnaire study with 10 participants, each evaluating 5 user turns with four anonymized system responses. Emp.: Re-sponse Empathy; Rel.: Relevance; Spec.: Specificity; Pref.: Overall Preference votes out of 50.                     
+
+> Method Emp. Rel. Spec. Pref.
+> BlenderBot 4.36 4.53 4.17 7EmpathyEar 4.36 4.47 4.25 12 AvaMERG 4.18 4.43 4.07 13
+> EmpaAva (Ours) 4.42 4.65 4.35 18
+
+Table 4: Automatic evaluation of avatar embodied expression quality on the AvaMERG evaluation set. Higher LSE-C and A-V Cos are better, while lower LSE-D is better. Best results are in bold. The under-lined value denotes the second-best LSE-D score.                      
+
+> Method LSE-C ↑LSE-D ↓A-V Cos ↑
+> TTS-only 0.416 16.846 0.274 Wav2Lip 6.452 7.940 0.339 SadTalker 3.727 11.186 0.226 DEEPTalk 1.432 13.491 0.338 3DGS 0.826 16.526 0.294 EmpaAva (Ours) 7.649 8.242 0.346
+
+5.1.1 Text-Level Response Comparison Protocol. We first evaluate EmpaAva’s text re-sponse module on the full EmpatheticDialogues test split (Rashkin et al., 2019) (5,255 samples with emotion labels and references), one response per system per sample. Baselines cover non-LLM ERG methods (MoEL, MIME, EmpDG, CASE, ESCM), LLMs (Alpaca, Flan-T5, ChatGLM, Qwen, and a GPT-style LLM), and text modules of multimodal systems (EmpathyEar, AvaMERG). For EmpaAva, we use the same deterministic decoding setting for all test samples. 
+
+Results. Table 2 shows EmpaAva leading on all three metrics (Acc. 10.26, Dist-1 4.01, Dist-2 30.54), indicating stronger emotion-cue alignment and lexical diversity than non-LLM, LLM, and avatar-based baselines. 
+
+5.1.2 End-to-End Avatar Comparison Protocol. We evaluate EmpaAva’s complete mul-timodal output (text, emotional speech, 3D avatar video) on the AvaMERG test set (Zhang et al., 2025), against BlenderBot (Roller et al., 2020) with neutral TTS and avatar, EmpathyEar (Fei et al., 2024) with 2D talking-face, and AvaMERG (Zhang et al., 2025). We report automatic metrics for diver-sity, emotion understanding, and cause modeling, plus a questionnaire where 10 participants each Case 2: Conflict and Emotional Invalidation                                             
+
+> I had an argument with my friend. That sounds really hurtful. It makes sense that the argument stayed
+> with you.
+> Emotion: hurt |Cause: conflict with friend |Strategy:
+> acknowledge pain
+> They said I was too sensitive. Being dismissed can feel painful. You deserve to be heard.
+> Emotion: grievance |Cause: dismissed feelings |Strategy: acknowledge
+> dismissal
+> Are my feelings still valid? Yes, your feelings are valid. You can also set a boundary.
+> Emotion: invalidation + doubt |Cause: conflict + dismissal |
+> Strategy: validate + boundary
+> I have several deadlines this week. It sounds overwhelming. Let’s start with one small task first.
+> Emotion: anxiety |Cause: heavy workload |Strategy: one small
+> step
+> I barely slept last night. Stress can really affect sleep. You’re exhausted, not failing.
+> Emotion: fatigue |Cause: deadline rumination |Strategy:
+> normalize exhaustion
+> Maybe I am just not good enough. Feeling tired doesn’t mean you’re not capable. Let’s take one gentle
+> next step.
+> Emotion: self-doubt |Cause: fatigue →inadequacy |Strategy:
+> separate ability
+
+Case 1: Academic Stress and Self-doubt Figure 5: Qualitative multi-turn case studies of EmpaAva .
+
+rate 5 turns over four anonymized responses (50 preference votes); MECS and AV-Agree serve as cross-modal diagnostics (Appendix E). 
+
+Results. In Figure 4, EmpaAva attains the best Dist-2 (45.81), Emo.Acc (53.85), and Cause.M (74.81); on 100 complete avatar outputs it further reaches 22.0% MECS and 40.0% AV-Agree. Hu-man evaluation in Table 3 echoes the trend: high-est Empathy (4.42), Relevance (4.65), Specificity (4.35), and preference (18/50). 
+
+5.2 Avatar Embodied Expression Quality Protocol. This experiment isolates avatar gener-ation, fixing response text, target emotion, speech input, avatar identity, and video format. On 2,308 AvaMERG samples, we compare TTS-only playback, Wav2Lip (Prajwal et al., 2020), SadTalker (Zhang et al., 2022), DEEPTalk (Kim et al., 2024), a 3DGS Avatar (Qian et al., 2023), and EmpaAva, reporting SyncNet LSE-C/LSE-D for lip synchronization and A-V Cos for speech-expression emotional consistency. 
+
+Results. In Table 4, EmpaAva obtains the highest LSE-C (7.649) and A-V Cos (0.346). Wav2Lip wins LSE-D (7.940) via explicit lip-sync optimiza-tion, yet EmpaAva stays close (8.242) with better emotional consistency, giving the best overall sync– affect balance. 
+
+5.3 Qualitative Multi-turn Case Study Case 1: Academic Stress and Self-doubt. The user (Figure 5, top) gradually reveals assignment pressure, poor sleep, and self-doubt; EmpaAva tracks this drift, links it to the earlier stressors, and separates exhaustion from ability. 
+
+Case 2: Interpersonal Conflict and Emotional Invalidation. The user (Figure 5, bottom) is hurt and called “too sensitive”; EmpaAva names the invalidation, validates the feelings, reduces self-blame, and suggests boundary communication without judging the friend. 
+
+6 Conclusion 
+
+We presented EmpaAva, an open-source agentic 3D-avatar chatbot for live, face-to-face empathetic dialogue: its LLM-driven Tri-Agent Architecture 
+
+closes the loop from affect perception to embodied rendering, and Response Planning keeps speech, facial motion, and rendering on one empathetic intent. Released with an online demo, it offers an inspectable testbed for embodied empathetic agents; richer bodily expression, longer emotional memory, and lower latency remain future work. Ethical Considerations and Broader Impact 
+
+Privacy, consent, and data handling. Em-paAva takes microphone and optional camera in-put through a video-call-like interface, and both channels are strictly opt-in: the browser requests each permission explicitly, the purpose of every permission is stated before interaction, and the system remains fully functional with the camera disabled. Audio is used only for speech recogni-tion and speech emotion recognition, and sampled video frames only for turn-level multimodal per-ception; neither stream is used to train models or shared with any third party. The research demo may produce intermediate artifacts, including percep-tion results, reply plans, synthesized speech, facial-motion parameters, and rendered videos, solely for debugging, reproducibility, history review, and user-initiated export. All examples shown in this paper are selected and anonymized with the con-sent of the recorded participants, and expose no real user identities, raw recordings, or sensitive information. 
+
+Embodied presence and identity safety. A pho-torealistic talking avatar creates stronger social presence than a chat window, which raises risks of deception and emotional over-reliance. Em-paAva therefore always presents itself as an AI companion and never impersonates a real person. Avatar identities and TTS voices derive from pub-licly released research assets and synthetic sources; the system provides no capability for cloning the face or voice of a user or any third party. We further avoid manipulative emotional cues and engagement-maximizing behaviors, and the inter-face allows the user to stop or leave a session at any moment. 
+
+Not a substitute for professional care. Em-paAva is a companion-oriented research demon-stration, not a medical or psychological service; its prompts forbid clinical or diagnostic advice and steer replies toward warm, validating, low-burden support. When a conversation signals severe dis-tress or self-harm, the system avoids prescriptive language and encourages the user to seek trusted people or professional help. Any deployment in real wellbeing contexts would require clinical over-sight and safety review beyond this demo. 
+
+Human evaluation. The questionnaire study in-volved voluntary on-campus participants who were informed of the research purpose, rated fully anonymized system outputs presented in random-ized order, and contributed no personal data beyond their ratings. 
+
+Responsible release. We release the code and demo for research purposes under terms that pro-hibit deceptive impersonation, harassment, and unauthorized use of anyone’s likeness or voice. We also document known limitations, e.g., speech emo-tion recognition can misread affect and generated comfort can be generic, so that downstream users can assess risks before adoption. 
+
+References                      
+
+> Kyusun Cho, Joungbin Lee, Heeji Yoon, Yeobin Hong, Jaehoon Ko, Sangjun Ahn, and Seungryong Kim. 2024. GaussianTalker: Real-time high-fidelity talk-ing head synthesis with audio-driven 3d gaussian splatting. In Proceedings of the 32nd ACM Inter-national Conference on Multimedia , pages 10985– 10994. Hyung Won Chung, Le Hou, Shayne Longpre, Barret Zoph, Yi Tay, William Fedus, Eric Li, Xuezhi Wang, Mostafa Dehghani, Siddhartha Brahma, Albert Web-son, Shixiang Shane Gu, Zhuyun Dai, Mirac Suz-gun, Xinyun Chen, Aakanksha Chowdhery, Sharan Narang, Gaurav Mishra, Adams Yu, and 12 others. 2022. Scaling instruction-finetuned language models.
+> arXiv preprint arXiv:2210.11416 .Hao Fei, Han Zhang, Bin Wang, Lizi Liao, Qian Liu, and Erik Cambria. 2024. EmpathyEar: An open-source avatar multimodal empathetic chatbot. In Pro-ceedings of the 62nd Annual Meeting of the Associa-tion for Computational Linguistics: System Demon-strations , pages 61–71. Association for Computa-tional Linguistics. Xiaolin Hu, Hang Yuan, Xinzhu Sang, Binbin Yan, Zhou Yu, Cong Huang, and Kai Chen. 2026. A 2-LLM: An end-to-end conversational au-dio avatar large language model. arXiv preprint arXiv:2602.04913 .Bernhard Kerbl, Georgios Kopanas, Thomas Leimküh-ler, and George Drettakis. 2023. 3d gaussian splatting for real-time radiance field rendering. ACM Transac-tions on Graphics , 42(4):1–14. Jisoo Kim, Jungbin Cho, Joonho Park, Soonmin Hwang, Da Eun Kim, Geon Kim, and Youngjae Yu. 2024. DEEPTalk: Dynamic emotion embedding for prob-abilistic speech-driven 3d face animation. arXiv preprint arXiv:2408.06010 .Qintong Li, Hongshen Chen, Zhaochun Ren, Pengjie Ren, Zhaopeng Tu, and Zhumin Chen. 2020. Em-pDG: Multi-resolution interactive empathetic dia-logue generation. In Proceedings of the 28th Inter-national Conference on Computational Linguistics ,
+
+pages 4454–4466. International Committee on Com-putational Linguistics. Tianye Li, Timo Bolkart, Michael J. Black, Hao Li, and Javier Romero. 2017. Learning a model of facial shape and expression from 4d scans. ACM Transac-tions on Graphics , 36(6):1–17. Zhaojiang Lin, Andrea Madotto, Jamin Shin, Peng Xu, and Pascale Fung. 2019. MoEL: Mixture of empa-thetic listeners. In Proceedings of the 2019 Confer-ence on Empirical Methods in Natural Language Pro-cessing and the 9th International Joint Conference on Natural Language Processing , pages 121–132. Association for Computational Linguistics. Siyang Liu, Chujie Zheng, Orianna Demasi, Sahand Sabour, Yu Li, Zhou Yu, Yong Jiang, and Minlie Huang. 2021. Towards emotional support dialog systems. In Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing , pages 3469–3483. Association for Computational Linguistics. Navonil Majumder, Pengfei Hong, Shanshan Peng, Jiankun Lu, Deepanway Ghosal, Alexander Gelbukh, Rada Mihalcea, and Soujanya Poria. 2020. MIME: MIMicking emotions for empathetic response gener-ation. arXiv preprint arXiv:2010.01454 .NetEase Youdao. 2023. EmotiVoice: A multi-voice and prompt-controlled TTS engine. https://github. com/netease-youdao/EmotiVoice .OpenAI. 2022. Introducing ChatGPT. Soujanya Poria, Devamanyu Hazarika, Navonil Ma-jumder, Gautam Naik, Erik Cambria, and Rada Mi-halcea. 2019. MELD: A multimodal multi-party dataset for emotion recognition in conversations. In 
+
+Proceedings of the 57th Annual Meeting of the Associ-ation for Computational Linguistics , pages 527–536. Association for Computational Linguistics. K. R. Prajwal, Rudrabha Mukhopadhyay, Vinay P. Nam-boodiri, and C. V. Jawahar. 2020. A lip sync expert is all you need for speech to lip generation in the wild. In Proceedings of the 28th ACM International Con-ference on Multimedia , pages 484–492. Association for Computing Machinery. Shenhan Qian, Tobias Kirschstein, Liam Schoneveld, Davide Davoli, Simon Giebenhain, and Matthias Nießner. 2023. GaussianAvatars: Photorealistic head avatars with rigged 3d gaussians. arXiv preprint arXiv:2312.02069 .Hannah Rashkin, Eric Michael Smith, Margaret Li, and Y-Lan Boureau. 2019. Towards empathetic open-domain conversation models: A new benchmark and dataset. In Proceedings of the 57th Annual Meet-ing of the Association for Computational Linguistics ,pages 5370–5381. Association for Computational Linguistics. Stephen Roller, Emily Dinan, Naman Goyal, Da Ju, Mary Williamson, Yinhan Liu, Jing Xu, Myle Ott, Kurt Shuster, Eric M. Smith, Y-Lan Boureau, and Jason Weston. 2020. Recipes for building an open-domain chatbot. Preprint , arXiv:2004.13637. Yongliang Shen, Kaitao Song, Xu Tan, Dongsheng Li, Weiming Lu, and Yueting Zhuang. 2023. Hugging-GPT: Solving AI tasks with ChatGPT and its friends in hugging face. In Advances in Neural Information Processing Systems .Linrui Tian, Qi Wang, Bang Zhang, and Liefeng Bo. 2024. EMO: Emote portrait alive – generating ex-pressive portrait videos with audio2video diffusion model under weak conditions. In Proceedings of the European Conference on Computer Vision .Zhiheng Xi, Wenxiang Chen, Xin Guo, Wei He, Yiwen Ding, Boyang Hong, Ming Zhang, Junzhe Wang, Senjie Jin, Enyu Zhou, and 1 others. 2023. The rise and potential of large language model based agents: A survey. arXiv preprint arXiv:2309.07864 .Haidong Xu, Meishan Zhang, Hao Ju, Zhedong Zheng, Erik Cambria, Min Zhang, and Hao Fei. 2024a. When words smile: Generating diverse emo-tional facial expressions from text. arXiv preprint arXiv:2412.02508 .Mingwang Xu, Hui Li, Qingkun Su, Hanlin Shang, Li-wei Zhang, Ce Liu, Jingdong Wang, Yao Yao, and Siyu Zhu. 2024b. Hallo: Hierarchical audio-driven visual synthesis for portrait image animation. arXiv preprint arXiv:2406.08801 .Sicheng Xu, Guojun Chen, Yu-Xiao Guo, Jiaolong Yang, Chong Li, Zhenyu Zang, Yizhong Zhang, Xin Tong, and Baining Guo. 2024c. VASA-1: Lifelike audio-driven talking faces generated in real time. In 
+
+Advances in Neural Information Processing Systems .Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan, and Yuan Cao. 2023. ReAct: Synergizing reasoning and acting in language models. In The Eleventh International Conference on Learning Representations .Han Zhang, Zixiang Meng, Meng Luo, Hong Han, Lizi Liao, Erik Cambria, and Hao Fei. 2025. Towards multimodal empathetic response generation: A rich text-speech-vision avatar-based benchmark. arXiv preprint arXiv:2502.04976 .Wenxuan Zhang, Xiaodong Cun, Xuan Wang, Yong Zhang, Xi Shen, Yu Guo, Ying Shan, and Fei Wang. 2022. SadTalker: Learning realistic 3d motion coeffi-cients for stylized audio-driven single image talking face animation. arXiv preprint arXiv:2211.12194 .A System Implementation Details 
+
+Table 5 lists the backbone of each Tri-Agent mod-ule. EmpaAva runs in the browser: a lightweight frontend renders the call booth and streams au-dio/video input, while the backend orchestrates the three agents and returns the rendered clip. 
+
+Table 5: Backbone modules of EmpaAva.                    
+
+> Stage Module Backbone
+> Perception Speech recognition (ASR) Whisper-small Perception Speech emotion recogni-tion (SER) emotion2vec / FunASR Response Reasoning &planning LLM OpenAI-compatible LLM / AvaMERG fallback Render Emotional TTS EmotiVoice (NetEase Youdao, 2023) Render Audio-to-motion DEEPTalk (Kim et al., 2024) Render Face control space FLAME (Li et al., 2017) Render Avatar rendering 3DGS /GaussianA-vatars (Kerbl et al., 2023; Qian et al., 2023)
+
+Deployment and latency. The backend uses FastAPI with persistent local workers. On an NVIDIA H200, warm-start per-turn latency av-erages 45.8s, dominated by Gaussian render-ing/export (41.5s), with 2.1s perception, 0.002s planning, 0.27s TTS, and 0.05s audio-to-motion. 
+
+B Agent Prompt Designs 
+
+We expose the full agent prompt templates; angle-bracket placeholders (e.g., <user-text> ) are filled at run time from the dialogue schema. 
+
+Global system role. 
+
+System Prompt (shared) 
+
+You are the reasoning core of EmpaAva, an empathetic 3D-avatar companion. Your goal is to understand how the user feels, why they feel that way, and to respond with warmth, validation, and gentle, low-burden support. Never give clinical or diagnostic advice. Always keep the reply short enough to be spoken aloud by an avatar in a video call. 
+
+PerceptionAgent: state fusion. This prompt fuses transcript, acoustic emotion, and optional visual cues into a compact user-state summary. 
+
+PerceptionAgent Prompt 
+
+Inputs: - transcript: <user-text> - speech emotion (SER): <speech-emotion> - visual cues (optional): <face-cues> - dialogue history: <history> 
+
+Summarize the user’s current state in 1-2 sentences: (a) the dominant emotion, (b) its most likely cause, and (c) whether it intensifies or eases relative to prior turns. Return only the summary. 
+
+ResponseAgent: empathetic planning. It rea-sons over the fused state and emits a structured 
+
+reply plan (Appendix C) rather than a bare utter-ance. 
+
+ResponseAgent Prompt 
+
+User state: <perception-summary> Speech emotion: <speech-emotion> Dialogue history: <history> Available avatars: <avatar-list> Available voices: <voice-list> Available backgrounds: <bg-list> Think step by step, then produce a reply plan: 1. Name the user’s emotion and its likely cause. 2. Choose an empathetic strategy: acknowledge -> address cause -> validate -> offer one low-burden suggestion. 3. Write the reply text to be spoken (up to 3 sentences). 4. Set the target emotion and tone, avatar, voice, and background for the delivery. 5. Cite the perception evidence each choice responds to. Output the reply plan as a single JSON object following the schema. Do not add any text outside the JSON. 
+
+C Reply Plan Schema 
+
+The reply plan is the machine-readable contract passed from R ESPONSE AGENT to R ENDER A-
+
+GENT , specifying the spoken response, delivery style, selected avatar, TTS speaker, background, and links to intermediate perception artifacts. 
+
+Example reply plan. 
+
+Reply Plan Example 
+
+{"schema": 1, "agent": "ResponseAgent", "strategy": "acknowledge_and_support", "emotion": "anxiety", "cause": "multiple approaching deadlines", "evidence": "I have several deadlines this week.", "reply_text": "That sounds overwhelming. Let’s take one small step first.", "tone": "warm", "expression": "concerned", "selected_avatar_id": "306", "selected_tts_speaker_id": "6224", "background": null} D Avatar Identity Gallery 
+
+Figure 6 shows representative renderings by Em-paAva, demonstrating visually consistent 3D digital humans with diverse identities and expressions. ID 63          
+
+> Female NeRSemble ID 63
+> ID 64
+> Female NeRSemble ID 64
+> ID 70
+> Female NeRSemble ID 70
+> ID 72
+> Female NeRSemble ID 72
+> ID 73
+> Female NeRSemble ID 73
+> ID 97
+> Female NeRSemble ID 97
+> ID 175
+> Female NeRSemble ID 175
+> ID 188
+> Male NeRSemble ID 188
+> ID 190
+> Male NeRSemble ID 190
+
+Figure 6: Qualitative avatar renderings across different identities. 
+
+E Experimental Settings 
+
+Datasets. We use AvaMERG and Empathetic-Dialogues as complementary evaluation sources. AvaMERG provides 6,288 valid multimodal in-stances after filtering, covering user input, emo-tions, responses, and avatar resources, and serves both response-level and avatar-level evaluation. EmpatheticDialogues contains about 25K text con-versations with 32 emotion labels and is used for text-response and response-planning evaluation. We sample from both datasets with balanced emo-tion distribution, remove invalid cases, and build the avatar evaluation subset from AvaMERG by selecting samples with valid text, emotion labels, avatar identities, and renderable resources. 
+
+Human evaluation protocol. We conduct a small pilot human evaluation with on-campus stu-dents from NLP, multimodal learning, or psychol-ogy backgrounds. Participants view anonymized system responses in randomized order with matched player size and normalized audio, rate 
+
+Response Empathy , Relevance , and Specificity on a 1–5 Likert scale, and select one overall preferred re-sponse. A representative rater instruction follows. 
+
+Rater Instruction (excerpt) 
+
+You will watch a short clip of a user turn and the avatar’s response. Rate 1–5 on each dimension: - Response Empathy: is the reply warm, validating, and supportive? - Relevance: does the reply directly address the user’s situation and emotional state? - Specificity: does the reply provide concrete and context-specific support rather than a generic response? After rating the four anonymized system responses for the same user turn, select the one you prefer overall. Judge only the presented response; ignore minor differences in video resolution or audio volume. 
+
+Evaluation metrics. 
+
+Acc = 100 × 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+Iˆyei = yei
+
+, (1) 
+
+Dist -n = 100 ×
+
+S 
+
+> i
+
+ngram n(ri)
+
+P 
+
+> i
+
+ngram n(ri) , n ∈ { 1, 2}, (2) 
+
+Cause .M = 100 × 1
+
+N
+
+X
+
+> i
+
+Iˆyci = yci
+
+, (3) 
+
+MECS = 100 × 1
+
+N
+
+X
+
+> i
+
+Iˆyti = ˆ yai = ˆ yvi = yi
+
+, (4) 
+
+Score( m) = 1
+
+JN 
+
+> J
+
+X
+
+> j=1
+> N
+
+X
+
+> i=1
+
+smj,i , (5) 
+
+LSE -D = 1
+
+> M
+
+X
+
+> i,t
+
+∥ai,t − vi,t ∥2, (6) 
+
+LSE -C = 1
+
+> M
+
+X
+
+> i,t
+
+ med τ̸ =0 ∥ai,t − vi,t +τ ∥2
+
+− ∥ ai,t − vi,t ∥2
+
+. (7) 
+
+Full automatic results. Table 6 reports the com-plete numerical automatic results corresponding to Figure 4. 
+
+Table 6: Complete numerical results for end-to-end automatic evaluation on the AvaMERG test set. Dist-2: response diversity; Emo.Acc: emotion understanding accuracy; Cause.M: emotion-cause modeling. 
+
+Method Dist-2 ↑ Emo.Acc ↑ Cause.M ↑
+
+BlenderBot 11.35 21.75 68.01 EmpathyEar 38.75 39.33 74.51 AvaMERG 37.43 30.97 69.13 EmpaAva (Ours) 45.81 53.85 74.81

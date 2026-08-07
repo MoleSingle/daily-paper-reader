@@ -6,29 +6,26 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-05
-- 运行时间：2026-08-05 21:31:04 UTC
+- 最新运行日期：2026-08-07
+- 运行时间：2026-08-07 01:54:05 UTC
 - 运行状态：成功
 - 本次总论文数：2
-- 精读区：0
-- 速读区：2
+- 精读区：1
+- 速读区：1
 
 ### 今日简报（AI）
-今日速读2篇论文，均达6.0分，暂无精读。  
-其中《InteracVid》构建了实时交互式音视频响应数据集，《FineMoLA》提出细粒度动作-语言对齐方法，两者均值得关注。  
-下一步建议优先精读其中任一方向，深入理解数据集构建或对齐机制。
-- 详情：[/202608/05/README](/202608/05/README)
+今日精读1篇、速读1篇，聚焦3D化身情感对话与视频世界交互角色。最值得关注的是《EmpaAva》（9.0/10），开源代理式3D化身共情聊天机器人，兼具技术完整性与应用潜力。建议优先复现或体验EmpaAva，再对比速读中的HelloWorld以理解交互角色在视频世界中的局限。
+- 详情：[/202608/07/README](/202608/07/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [EmpaAva: An Open-source Agentic 3D-Avatar Empathetic Live Chatbot](/202608/07/2608.04709v1-empaava-an-open-source-agentic-3d-avatar-empathetic-live-chatbot)  
+   标签：评分：9.0/10、query:talking-head
+   evidence：构建了具备情感语音、唇形同步面部动作与逼真3D高斯渲染的开源3D数字人聊天机器人
 
 ### 速读区论文标签
-1. [InteracVid: Building a Real Interactive Audio-Visual Response Dataset from Live-Chat Videos](/202608/05/2608.01157v1-interacvid-building-a-real-interactive-audio-visual-response-dataset-from-live-chat-videos)  
+1. [HelloWorld: Enabling Socially Interactive Characters in Video World Models](/202608/07/2608.05070v1-helloworld-enabling-socially-interactive-characters-in-video-world-models)  
    标签：评分：6.0/10、query:talking-head
-   evidence：面向虚拟形象与数字人研究的大规模开源音视频响应数据集
-2. [FineMoLA: Towards Fine-Grained Motion-Language Alignment from Clip-Level Supervision](/202608/05/2608.01392v1-finemola-towards-fine-grained-motion-language-alignment-from-clip-level-supervision)  
-   标签：评分：6.0/10、query:talking-head
-   evidence：通过弱监督学习帧-短语对应关系，支持文本驱动的人体运动生成，可迁移至数字人动画
+   evidence：生成角色向摄像头说话、点头、挥手等视频序列，与说话人头视频合成相关。
 
 
 <div class="dpr-home-promo-card">
