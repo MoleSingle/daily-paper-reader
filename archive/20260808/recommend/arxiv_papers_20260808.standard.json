@@ -1,0 +1,57 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-08T20:46:07.999921+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2608.00803v1",
+      "source": "arxiv",
+      "title": "SoniSpeech: A Large-Scale Open-Vocabulary Tri-Modal Dataset for Wearable Silent Speech Interfaces",
+      "abstract": "Wearable silent speech interfaces (SSIs) are limited to small, closed vocabularies. Approaches achieving larger vocabularies require obtrusive hardware such as facial electrodes. We present SoniSpeech, the first large-scale, open-vocabulary, trimodal dataset for wearable SSI using acoustic-sensing eyewear. It contains 34 hours across 18,000 utterances with three synchronized modalities: ultrasound echo profiles, voiced audio, and frontal video, in both voiced and silent modes. The corpus draws from the SODA dialogue dataset, providing contemporary conversational English with 5,356 unique words and full phoneme coverage. A CTC-based ResNet-34 baseline achieves 26.3% word error rate (WER) on open-vocabulary silent speech recognition, the first benchmark for this task. Dataset is available at https://doi.org/10.7298/xjjr-9m85",
+      "authors": [
+        "Ruidong Zhang",
+        "Jiacheng Liu",
+        "François Guimbretière",
+        "Cheng Zhang"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.HC",
+        "cs.LG"
+      ],
+      "published": "2026-08-01T18:03:37+00:00",
+      "link": "https://arxiv.org/pdf/2608.00803v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Large-scale tri-modal dataset with synchronized audio and frontal video of speech, valuable for talking head animation research",
+      "llm_evidence_cn": "大规模三模态语音数据集，含同步音频与正面视频，对说话头动画研究有价值",
+      "llm_evidence": "大规模三模态语音数据集，含同步音频与正面视频，对说话头动画研究有价值",
+      "canonical_evidence": "大规模三模态语音数据集，含同步音频与正面视频，对说话头动画研究有价值",
+      "llm_tldr_en": "SoniSpeech provides 34 hours and 18,000 utterances of synchronized ultrasound, audio, and frontal video, covering open-vocabulary English with full phoneme coverage, supporting silent speech recognition and potentially audiovisual speech research.",
+      "llm_tldr_cn": "针对可穿戴静音语音界面词汇量受限的问题，SoniSpeech构建了首个大规模开词汇三模态数据集，包含34小时、18000句话，同步记录超声回波、语音音频和正面视频，覆盖5356个独特单词和完整音素。基于CTC的ResNet-34基线在开放词汇静音语音识别上达到26.3%词错误率。该数据集的音视频同步特性也为说话头动画和视听语音研究提供了数据基础。",
+      "llm_tldr": "针对可穿戴静音语音界面词汇量受限的问题，SoniSpeech构建了首个大规模开词汇三模态数据集，包含34小时、18000句话，同步记录超声回波、语音音频和正面视频，覆盖5356个独特单词和完整音素。基于CTC的ResNet-34基线在开放词汇静音语音识别上达到26.3%词错误率。该数据集的音视频同步特性也为说话头动画和视听语音研究提供了数据基础。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "dataset for talking head animation",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
