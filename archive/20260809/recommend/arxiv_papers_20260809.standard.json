@@ -1,0 +1,56 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-09T19:41:10.894932+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 0,
+    "deep_cap": 6,
+    "deep_selected": 0,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2608.05070v1",
+      "source": "arxiv",
+      "title": "HelloWorld: Enabling Socially Interactive Characters in Video World Models",
+      "abstract": "Despite the remarkable recent progress of video world models, social interaction between users and the characters within these worlds remains unsupported. To fill this gap, we present HelloWorld, a video world model that enables social interaction with in-world characters. With a single button press, users can prompt the on-screen character to respond toward the camera, e.g., turning to the viewer, waving, nodding, or speaking a short greeting. To make these interactions natural, we propose a self-distillation pipeline that finetunes the video generation model on data synthesized by itself. Each synthesized clip contains both social interactions and camera motion, allowing the model to learn camera-pose conditioning without degrading interaction quality. At inference, we further introduce a training-free module that determines when the interaction occurs. Upon a button press, it modulates the cross-attention masks of the DiT so that the interaction-related text prompt attends only to the frames within the press window, temporally localizing the character's response. We further build HelloWorldBench, a 400-sample benchmark with three social interaction metrics alongside three conventional metrics, for evaluation. Experiments demonstrate that HelloWorld surpasses a variety of baselines in interaction quality, while maintaining state-of-the-art picture aesthetics and camera-pose following. Project page: https://github.com/AlayaLab/HelloWorld",
+      "authors": [
+        "Liangyang Ouyang",
+        "Ruicong Liu",
+        "Xuangeng Chu",
+        "Kaipeng Zhang",
+        "Yoichi Sato"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-05T17:14:19+00:00",
+      "link": "https://arxiv.org/pdf/2608.05070v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Video world model enabling socially interactive characters that respond with speech and gestures toward camera",
+      "llm_evidence_cn": "视频世界模型支持角色向摄像头说话和做手势的社交互动",
+      "llm_evidence": "视频世界模型支持角色向摄像头说话和做手势的社交互动",
+      "canonical_evidence": "视频世界模型支持角色向摄像头说话和做手势的社交互动",
+      "llm_tldr_en": "Presents HelloWorld, a video world model that enables social interaction with in-world characters via a self-distillation pipeline, letting users prompt characters to speak, wave, nod, and turn to the camera while preserving camera-pose conditioning.",
+      "llm_tldr_cn": "尽管视频世界模型取得了显著进展，但用户与其中角色的社会交互仍未得到支持。为填补这一空白，HelloWorld提出一种自蒸馏数据管线，利用模型自身合成的交互与相机运动数据微调视频生成模型，使得角色能够向摄像头回应，例如转身、挥手、点头或说话。该方法在不牺牲交互质量的同时学习相机姿态条件，实现了单按钮触发的实时社会交互。实验显示，所生成的交互动作自然连贯，且摄像机姿态控制得到保持。该工作首次在视频世界模型中支持用户-角色社交互动，也为交互式数字人和虚拟助手视频合成提供了新思路。",
+      "llm_tldr": "尽管视频世界模型取得了显著进展，但用户与其中角色的社会交互仍未得到支持。为填补这一空白，HelloWorld提出一种自蒸馏数据管线，利用模型自身合成的交互与相机运动数据微调视频生成模型，使得角色能够向摄像头回应，例如转身、挥手、点头或说话。该方法在不牺牲交互质量的同时学习相机姿态条件，实现了单按钮触发的实时社会交互。实验显示，所生成的交互动作自然连贯，且摄像机姿态控制得到保持。该工作首次在视频世界模型中支持用户-角色社交互动，也为交互式数字人和虚拟助手视频合成提供了新思路。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "video synthesis of talking heads",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
