@@ -1,0 +1,142 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-10T20:06:55.682276+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2608.05663v2",
+      "source": "arxiv",
+      "title": "Vorch-Streamer: Extending Human Audio-Visual Generation to Real-Time Long-Form Streaming",
+      "abstract": "Real-time long-form avatar audio-video generation requires causal, continuous synthesis while maintaining audiovisual synchronization and visual consistency. Adapting a pretrained bidirectional model to this setting presents two key dilemmas. First, autoregressively reusing generated blocks as context creates exposure bias, causing errors and visual drift to accumulate over long rollouts. Second, a global speech utterance does not indicates a causal generator which portion should be spoken next when only limited local audio-video context is available. We present Vorch-Streamer, a post-training framework that addresses these challenges and enables real-time long-form Text-to-Audio-Video (T2AV) streaming. We construct a synthetic corpus of 80K avatar clips spanning 12-21 seconds and first train a causal generator with mixed Teacher Forcing and Diffusion Forcing. We then apply long-horizon Self Forcing with DMD distillation, exposing the model to its own rollout distribution while preserving the quality of the pretrained bidirectional teacher. To explicitly control speech progression, an external language model predicts discrete 25-Hz speech-planning tokens, whose continuous features condition the audio diffusion branch and align each causal block with the content it should speak. With bounded causal context and four-step denoising, Vorch-Streamer jointly generates audio and video from text at 27.12 FPS, exceeding the 24-FPS real-time playback rate while maintaining competitive audio-lip synchronization and strong identity preservation over long-form generation.",
+      "authors": [
+        "Menglin Han",
+        "Yang Ding",
+        "Yulei Lu",
+        "Haoran Yu",
+        "Xin Ma",
+        "Junyi Chen",
+        "Zhangkai Ni",
+        "Lin Ma",
+        "Yaohui Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.SD"
+      ],
+      "published": "2026-08-06T07:00:37+00:00",
+      "link": "https://arxiv.org/pdf/2608.05663v2",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "real-time avatar audio-video generation with audiovisual sync and visual consistency",
+      "llm_evidence_cn": "实时虚拟人音视频生成，保持音视频同步与视觉一致性",
+      "llm_evidence": "实时虚拟人音视频生成，保持音视频同步与视觉一致性",
+      "canonical_evidence": "实时虚拟人音视频生成，保持音视频同步与视觉一致性",
+      "llm_tldr_en": "Vorch-Streamer is a post-training framework that adapts pretrained bidirectional audio-visual models to real-time long-form streaming, tackling exposure bias and context ambiguity via synthetic corpus and causal generation to maintain sync and consistency.",
+      "llm_tldr_cn": "现有预训练双向音频-视频模型在扩展至实时长视频流时面临两个难题：自回归重用生成块会导致曝光偏差和视觉漂移，且全局语音不能指示当前应生成的内容。为此本文提出Vorch-Streamer后训练框架，构造合成语料并引入因果生成机制，使模型在有限局部音视频上下文中实时生成连续的文本-音频-视频输出。实验表明该方法能维持音视频同步与视觉一致，减少长时间生成中的误差累积。该工作为实时数字人和交互式虚拟形象的长视频应用提供了重要技术支撑。",
+      "llm_tldr": "现有预训练双向音频-视频模型在扩展至实时长视频流时面临两个难题：自回归重用生成块会导致曝光偏差和视觉漂移，且全局语音不能指示当前应生成的内容。为此本文提出Vorch-Streamer后训练框架，构造合成语料并引入因果生成机制，使模型在有限局部音视频上下文中实时生成连续的文本-音频-视频输出。实验表明该方法能维持音视频同步与视觉一致，减少长时间生成中的误差累积。该工作为实时数字人和交互式虚拟形象的长视频应用提供了重要技术支撑。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.06408v1",
+      "source": "arxiv",
+      "title": "SubtleTalk: Generating Controllable Weakly-correlated Facial Dynamics for 3D Talking Heads via Residual Flow Matching",
+      "abstract": "Audio-driven 3D facial animation aims to synthesize realistic and temporally coherent motions from speech. Despite notable progress in lip synchronization, weakly correlated dynamics, including eyebrow movements, eye blinks, and head motion, which are essential to photorealistic facial animation, remain difficult to model faithfully and often appear static or unnaturally repetitive. We attribute this limitation to three factors: (a) insufficient conditioning for weakly correlated dynamics; (b) the limited ability of deterministic regression to capture diverse motion patterns; (c) data bottlenecks from unreliable upper-face pseudo-labels and limited dataset diversity. To address these issues, we propose SubtleTalk, a framework for generating natural and controllable weakly correlated facial dynamics via multi-condition modeling and residual flow matching. First, to compensate for the limited guidance of speech alone, we introduce interpretable controls, including prosody, regional intensity, and Valence-Arousal signals, to explicitly capture the timing, magnitude, and affective variation of weakly correlated dynamics. Second, to overcome the limited expressiveness of deterministic regression, we build residual flow matching based on a stable speech-driven motion prior, allowing the model to capture stochastic deviations beyond deterministic prediction. Third, to alleviate the data bottleneck, we construct SubtleTalk-Face, a large-scale 3D facial animation dataset comprising about 3,900 identities and 74 hours of data, built via a simple and scalable pseudo-labeling pipeline and featuring improved upper-face tracking and frame-level VA annotations. Extensive experiments demonstrate that our method significantly improves the realism and diversity of weakly correlated facial dynamics while preserving accurate lip synchronization.",
+      "authors": [
+        "Chenyang Ding",
+        "Shuai Tan",
+        "Qunfen Lin",
+        "Xinwei Jiang",
+        "Zijiao Zeng",
+        "Ye Pan"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.CV"
+      ],
+      "published": "2026-08-03T11:28:19+00:00",
+      "link": "https://arxiv.org/pdf/2608.06408v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Audio-driven 3D talking head generation with residual flow matching",
+      "llm_evidence_cn": "音频驱动的三维说话头生成与弱相关面部动态建模",
+      "llm_evidence": "音频驱动的三维说话头生成与弱相关面部动态建模",
+      "canonical_evidence": "音频驱动的三维说话头生成与弱相关面部动态建模",
+      "llm_tldr_en": "SubtleTalk addresses weakly-correlated facial dynamics in 3D talking heads, using residual flow matching for controllable, diverse synthesis of eyebrows, blinks and head motion, improving realism.",
+      "llm_tldr_cn": "现有音频驱动的三维面部动画方法在唇形同步上已有进步，但对眉毛运动、眨眼和头部运动这类弱相关动态的建模仍不理想，往往表现为静态或机械重复。为此，SubtleTalk提出基于残差流匹配的生成框架，将弱相关动态的合成视为条件分布学习问题，并采用可控生成机制，使模型能够生成自然、多样且可调节的面部动态。实验表明，该方法在增强三维说话头真实感和表现力方面优于依赖确定性回归的现有方法，为三维说话头动画提供了更有效的生成建模路径。",
+      "llm_tldr": "现有音频驱动的三维面部动画方法在唇形同步上已有进步，但对眉毛运动、眨眼和头部运动这类弱相关动态的建模仍不理想，往往表现为静态或机械重复。为此，SubtleTalk提出基于残差流匹配的生成框架，将弱相关动态的合成视为条件分布学习问题，并采用可控生成机制，使模型能够生成自然、多样且可调节的面部动态。实验表明，该方法在增强三维说话头真实感和表现力方面优于依赖确定性回归的现有方法，为三维说话头动画提供了更有效的生成建模路径。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.02023v1",
+      "source": "arxiv",
+      "title": "SwanTale: Unified Multi-Speaker Speech and Audio Generation for Instruct and Zero-Shot Tasks",
+      "abstract": "Speech and audio generation is often needed in animation dubbing, audio drama, movies, advertising, games, podcasts, and short-video production. In these scenarios, creators may need to design voices without reference recordings, control speaker styles with natural language, support acoustic scenes with environments and audio effects, and later reuse the designed voices. Therefore, it is important to support multi-speaker speech and audio generation for both instruct and zero-shot tasks. The instruct task requires a caption of the environment, speaker styles, and fine-grained content, while the zero-shot task uses reference audio together with the same fine-grained content. We address these tasks from both the data and model sides. First, we propose SwanData-Caption, which cleans raw speech and audio data, adds targeted synthetic coverage, and annotates diverse and accurate multi-level captions. Then, we propose SwanTale, a multi-speaker expressive speech and audio generation model that supports both zero-shot and instruct tasks. We introduce SwanVAE to support high-quality multi-audio-modality generation. Then, we adopt reward-conditioned quality control and Engram conditioning, along with Unified MoE for multi-task and multi-audio-modality modeling. In addition, we use curriculum learning and GRPO post-training to let the model progressively learn and strengthen its capabilities. Experimental results show that SwanTale leads on multiple key zero-shot and instruct metrics, achieves the best expressiveness scores in both tasks, and supports complex instruct generation involving multi-speaker speech and audio. Demos can be found at https://swanaigc.github.io/\\#swantale.",
+      "authors": [
+        "Yu Zhang",
+        "Ruiqi Li",
+        "Changhao Pan",
+        "Ke Lei",
+        "Xiang Yin",
+        "Cheng Yang"
+      ],
+      "primary_category": "eess.AS",
+      "categories": [
+        "eess.AS",
+        "cs.SD"
+      ],
+      "published": "2026-08-03T10:20:52+00:00",
+      "link": "https://arxiv.org/pdf/2608.02023v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "multi-speaker speech and audio generation for digital human voice creation",
+      "llm_evidence_cn": "多说话人语音与音频生成，可支持数字人声音设计",
+      "llm_evidence": "多说话人语音与音频生成，可支持数字人声音设计",
+      "canonical_evidence": "多说话人语音与音频生成，可支持数字人声音设计",
+      "llm_tldr_en": "SwanTale unifies multi-speaker speech and audio generation for instruct and zero-shot tasks, enabling voice design without reference audio and reuse, directly supporting digital human avatar creation and talking head audio needs.",
+      "llm_tldr_cn": "现有语音生成系统难以同时支持指令控制和零样本克隆，也难统一多说话人场景。SwanTale从数据和模型两侧入手，提出统一的语音与音频生成框架，支持环境、风格和内容的自然语言描述以及参考音频复现。实验表明该方法能有效完成指令与零样本任务，可在动画配音、数字人等领域灵活设计并复用声音，为说话头系统提供可驱动的高质量语音输入。",
+      "llm_tldr": "现有语音生成系统难以同时支持指令控制和零样本克隆，也难统一多说话人场景。SwanTale从数据和模型两侧入手，提出统一的语音与音频生成框架，支持环境、风格和内容的自然语言描述以及参考音频复现。实验表明该方法能有效完成指令与零样本任务，可在动画配音、数字人等领域灵活设计并复用声音，为说话头系统提供可驱动的高质量语音输入。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
