@@ -1,0 +1,24 @@
+{
+  "label": "2026-08-11",
+  "date": "2026-08-11",
+  "generated_at": "2026-08-11T21:22:52",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202608/11/2608.04722v1-multi-view-face-and-gesture-animation-with-dynamic-gaussians",
+      "section": "deep",
+      "title_en": "Multi-View Face and Gesture Animation with Dynamic Gaussians",
+      "authors": "Alireza Javanmardi, Vippin Kumar Jeetmal, Christen Millerdurai, Alain Pagani, Didier Stricker",
+      "date": "2026-08-05",
+      "pdf": "https://arxiv.org/pdf/2608.04722v1",
+      "score": "9.0",
+      "evidence": "生成具有面部与手部动作的逼真3D数字人化身",
+      "tldr": "在三维化身生成领域，当前上半身虚拟化身重建难以同时保留精准面部表情和细致手部动作，现有参数化全身模型往往顾此失彼。针对此问题，本文提出MVFGA方法，先对面部与手部进行独立建模，再与参数化上半身网格进行融合，并将三维高斯分布映射至网格表面，从而获得新视角下的高保真动态渲染效果。同时构建了多视角动作捕捉数据集MVFGA-MoCap。大量实验表明，MVFGA生成化身的面部与手部动画质量显著优于对比方法。",
+      "tags": "query:talking-head",
+      "abstract_en": "Creating photorealistic 3D human avatars with realistic upper-body motion remains challenging. Existing approaches either focus on the head and overlook hand gestures, or reconstruct the full body but fail to preserve fine-grained facial fidelity and hand pose accuracy. As a result, current methods struggle to capture the subtle dynamics of facial expressions and hand gestures that are crucial for natural human communication. While methods based on full-body parametric models enable avatar reconstruction from monocular or multi-view inputs, they often lack accurate facial animation and detailed hand articulation. To address these limitations, we propose MVFGA, a novel multi-view-consistent pipeline for generating realistic upper-body avatars. Our approach models the face and hands separately and fuses them with a parametric upper-body mesh model, enabling the capture of fine-grained facial expressions and hand poses for accurate upper-body avatar reconstruction. We then splat 3D Gaussians onto the obtained mesh, enabling high-quality rendering of dynamic avatars from novel viewpoints. Furthermore, we introduce MVFGA-MoCap, a multi-view upper-body motion capture dataset featuring controlled facial expression sequences, diverse hand gestures, and free-form communication. Experiments show that MVFGA generates visually realistic avatars with high-fidelity facial expressions and hand motions, outperforming baselines for upper-body avatar animation. Project page: https://dfki-av.github.io/MVFGA/",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
