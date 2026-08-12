@@ -1,0 +1,226 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-12T21:15:38.763295+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2608.06009v2",
+      "source": "arxiv",
+      "title": "Wan-Animate-2: Pushing the Application Boundaries of Character Animation",
+      "abstract": "Character image animation remains a foundational yet challenging task in computer vision. Existing approaches can be broadly categorized into three paradigms: methods based on explicit motion representations suffer from extraction errors and identity drift; methods based on implicit motion features lose fine-grained dynamics through compression; and in-context learning approaches avoid intermediate representations but incur prohibitive computational costs. Furthermore, all current systems are designed for offline synthesis, unable to meet the real-time requirements of interactive applications such as digital avatars and live-streaming hosts. To address these limitations, we present Wan-Animate-2, an end-to-end character animation framework that directly consumes the driving video within a redesigned Diffusion Transformer. Our architecture achieves superior motion fidelity and identity preservation by eliminating intermediate motion extractors entirely. We further introduce text driven viewpoint control that decouples the output camera perspective from the driving video--a capability rarely supported by prior character animation methods that rely on explicit motion representations. Beyond generation quality, we present Wan-Animate-2-Lite, an efficient variant that reduces inference latency to real-time thresholds through a three-stage training paradigm: teacher forcing pretraining with error buffer mechanism, and Self-Forcing distillation with chunk-wise backpropagation. This enables streaming character animation for interactive applications, opening new deployment scenarios that were previously infeasible. Qualitative evaluations and user studies demonstrate that Wan-Animate-2 achieves high-fidelity animation results across diverse characters and motion patterns. To foster further research and community development, we will release the Wan-Animate-2-Base model weights to the public.",
+      "authors": [
+        "Guangyuan Wang",
+        "Li Hu",
+        "Dechao Meng",
+        "Zhongyi Zhang",
+        "Peng Zhang",
+        "Xindi Zhang",
+        "Mingyang Huang",
+        "Ruoshi Zhang",
+        "Ke Sun",
+        "Zhe Zhang",
+        "Xingjun Wang",
+        "Gang Cheng",
+        "Hai Xu",
+        "Bang Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-06T13:13:10+00:00",
+      "link": "https://arxiv.org/pdf/2608.06009v2",
+      "tags": [
+        "keyword:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "End-to-end character animation framework targeting digital avatars and live-streaming hosts, directly enabling digital human creation.",
+      "llm_evidence_cn": "面向数字替身和直播主播的端到端角色动画框架，直接支持数字人创建。",
+      "llm_evidence": "面向数字替身和直播主播的端到端角色动画框架，直接支持数字人创建。",
+      "canonical_evidence": "面向数字替身和直播主播的端到端角色动画框架，直接支持数字人创建。",
+      "llm_tldr_en": "Wan-Animate-2 is an end-to-end character animation framework that addresses limitations of explicit/implicit motion representation and in-context learning, and achieves real-time synthesis for interactive applications like digital avatars and live-streaming hosts.",
+      "llm_tldr_cn": "本文提出Wan-Animate-2，一个端到端的角色动画框架，直接基于参考图像生成动画，避免了显式运动表示的提取误差和身份漂移、隐式运动特征的细节丢失以及上下文学习的巨额计算成本。该框架实现了实时推理，满足了数字替身和直播主播等交互应用的实时性要求，拓展了角色动画在数字人领域中的应用边界。",
+      "llm_tldr": "本文提出Wan-Animate-2，一个端到端的角色动画框架，直接基于参考图像生成动画，避免了显式运动表示的提取误差和身份漂移、隐式运动特征的细节丢失以及上下文学习的巨额计算成本。该框架实现了实时推理，满足了数字替身和直播主播等交互应用的实时性要求，拓展了角色动画在数字人领域中的应用边界。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.10500v1",
+      "source": "arxiv",
+      "title": "DSAR: Dual-Stream Autoregressive Modeling of Temporal Cloth Dynamics for Photorealistic Animatable Avatars",
+      "abstract": "Creating photorealistic and temporally coherent animatable human avatars from RGB videos remains challenging. Current methods struggle to capture realistic cloth dynamics, producing over-smoothed appearance or severe artifacts on out-of-distribution poses. This limitation stems from a fundamental oversight: existing approaches neglect the temporal causality inherent in cloth physics, where current states emerge from previous states through temporal evolution rather than instantaneous skeletal configurations alone. Without explicit modeling of this causal structure, networks learn pose-appearance correlations instead of motion evolution, leading to poor generalization. We introduce a dual-stream autoregressive framework that explicitly models both observable geometric information and implicit internal state. The geometric stream propagates surface displacement from the previous frame, while the state stream fuses current features with historical states retrieved from a memory bank. Motion-adaptive aggregation handles spatially-varying dynamics, and adaptive regularization balances smoothness with flexibility. Experiments on challenging datasets demonstrate significant improvements in rendering quality, temporal consistency, and generalization to motion patterns beyond training distributions, validating that dual-stream temporal modeling enables realistic cloth dynamics.",
+      "authors": [
+        "Haozhong Xiong",
+        "Yao Yu",
+        "Yu Zhou",
+        "Sidan Du"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-11T05:19:21+00:00",
+      "link": "https://arxiv.org/pdf/2608.10500v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "animatable human avatars from RGB videos",
+      "llm_evidence_cn": "从RGB视频创建可动画化逼真人类化身",
+      "llm_evidence": "从RGB视频创建可动画化逼真人类化身",
+      "canonical_evidence": "从RGB视频创建可动画化逼真人类化身",
+      "llm_tldr_en": "DSAR proposes a dual-stream autoregressive framework to model temporal cloth dynamics for photorealistic animatable human avatars, addressing over-smoothed appearance and artifacts in out-of-distribution poses.",
+      "llm_tldr_cn": "针对现有方法忽略布料物理中的时间因果性、导致化身外观过于平滑且在大姿态下出现严重伪影的问题，本文提出双流自回归框架DSAR，显式建模布料动态的时间演化。该方法能够从RGB视频学习运动演化而非简单的姿态-外观关联，从而提升化身在分布外姿态下的泛化能力。实验表明该框架可生成更具真实感和时间一致性的可动画化人类化身，为数字人创建提供了新思路。",
+      "llm_tldr": "针对现有方法忽略布料物理中的时间因果性、导致化身外观过于平滑且在大姿态下出现严重伪影的问题，本文提出双流自回归框架DSAR，显式建模布料动态的时间演化。该方法能够从RGB视频学习运动演化而非简单的姿态-外观关联，从而提升化身在分布外姿态下的泛化能力。实验表明该框架可生成更具真实感和时间一致性的可动画化人类化身，为数字人创建提供了新思路。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.10720v1",
+      "source": "arxiv",
+      "title": "Ex-Omni-2D: Expressive Omni-Modal Dialogue Models with Native Visual Presence",
+      "abstract": "Omni-modal dialogue models can understand multimodal inputs and synthesize spoken replies, yet their responses remain visually disembodied. We introduce \\textbf{Ex-Omni-2D}, an omni-modal dialogue framework that generates a coordinated response comprising text, personalized speech, and reference-conditioned video. Given a multimodal query, reference image, and reference audio, the model predicts a structured \\textit{Visual Thought Plan} (VTP) describing scene, emotion, and motion, followed by response text and native multi-codebook speech units. These units form a shared acoustic-temporal interface: they are decoded into speech and aligned online with video frames. This interface enables the response and avatar pathways to be learned from heterogeneous speech, dialogue, and avatar-video data, avoiding the need for large-scale query--text--speech--video supervision. A full-sequence Video Generator serves as the primary Teacher. For efficient incremental generation, we further distill it into a few-step block-causal \\emph{Streaming Student} whose Prefix Streaming mechanism carries a clean latent across consecutive chunks to reduce cumulative late-chunk degradation. With four-step inference, the complete four-GPU pipeline achieves an end-to-end RTF of 1.293 at $400\\times720$/$720\\times400$, providing a practical quality--efficiency operating point.",
+      "authors": [
+        "Haoyu Zhang",
+        "Zhipeng Li",
+        "Xiaoying Tang",
+        "Tianshu Yu",
+        "Yiwen Guo"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.CV"
+      ],
+      "published": "2026-08-11T09:37:11+00:00",
+      "link": "https://arxiv.org/pdf/2608.10720v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "generates text, personalized speech, and reference-conditioned visual presence video",
+      "llm_evidence_cn": "生成文本、个性化语音与参考条件化的虚拟人视频，具有原生视觉在场",
+      "llm_evidence": "生成文本、个性化语音与参考条件化的虚拟人视频，具有原生视觉在场",
+      "canonical_evidence": "生成文本、个性化语音与参考条件化的虚拟人视频，具有原生视觉在场",
+      "llm_tldr_en": "Ex-Omni-2D lets omni-modal dialogue models output not just speech but a visually present avatar video, using a Visual Thought Plan and shared acoustic-temporal units to align speech and video.",
+      "llm_tldr_cn": "现有全模态对话模型虽然能听懂多模态输入并合成语音回复，但回复缺乏可视的身体呈现。本文提出Ex-Omni-2D框架，通过视觉思维计划描述场景、情绪与动作，并利用多码本语音单元作为共享声学-时间接口，将语音解码与视频帧在线对齐，从而生成文本、个性化语音和参考条件化视频的协调回复。实验表明该接口能联合学习回复与虚拟人两条通路，使对话智能体具备类人的可见表现力。",
+      "llm_tldr": "现有全模态对话模型虽然能听懂多模态输入并合成语音回复，但回复缺乏可视的身体呈现。本文提出Ex-Omni-2D框架，通过视觉思维计划描述场景、情绪与动作，并利用多码本语音单元作为共享声学-时间接口，将语音解码与视频帧在线对齐，从而生成文本、个性化语音和参考条件化视频的协调回复。实验表明该接口能联合学习回复与虚拟人两条通路，使对话智能体具备类人的可见表现力。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.03964v2",
+      "source": "arxiv",
+      "title": "Identity-Faithful Audio-Visual Target Speaker Extraction with REAL-2MIX and VOXBLINK2-AVSE",
+      "abstract": "Audio-visual target speaker extraction should return the speaker indicated by the video, yet a separator can ignore the visual cue and repeatedly output the acoustically dominant voice. We introduce REAL-2MIX, a Mandarin AV-TSE benchmark of jointly recorded real two-speaker mixtures with synchronized multi-view video. Each scene also contains preceding A-only and B-only stages that provide in-scene speaker references. It contains 77 scenes and 7,598 clips (11.84 hours), including 6,042 dual-annotated mixtures. After processing there leave 6,038 evaluable mixtures and 12,076 target-speaker rows. We additionally curate VOXBLINK2-AVSE from VoxBlink2, comprising 250,828 synchronized audio--lip-ROI pairs from 28,421 identities and 766.17 hours of speech. Our extractor uses frozen, 1,280-dimensional projected AV-HuBERT features, target-conditioned training, and layer-wise feature modulation. We jointly evaluate content with Qwen3-ASR-1.7B CER and target identity with WeSpeaker ResNet34 plus Overlapped Speech Detection (OSD). On the complete manifest, the best archived checkpoint obtains 0.2261 CER, 82.22% strict output correctness, and 69.53% both-output strict success.",
+      "authors": [
+        "Peijun Yang",
+        "Zhan Jin",
+        "Xiaoyi Qin",
+        "Ruiyi Gan",
+        "Hao Wang",
+        "Juan Liu",
+        "Ming Li"
+      ],
+      "primary_category": "eess.AS",
+      "categories": [
+        "eess.AS"
+      ],
+      "published": "2026-08-04T17:28:41+00:00",
+      "link": "https://arxiv.org/pdf/2608.03964v2",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "curates 250,828 synchronized audio-lip-ROI pairs from 28,421 identities; provides benchmark data directly usable for talking head animation research",
+      "llm_evidence_cn": "整理了28,421个身份的250,828对同步音频-唇部ROI数据，为说话头动画研究提供了直接可用的数据集",
+      "llm_evidence": "整理了28,421个身份的250,828对同步音频-唇部ROI数据，为说话头动画研究提供了直接可用的数据集",
+      "canonical_evidence": "整理了28,421个身份的250,828对同步音频-唇部ROI数据，为说话头动画研究提供了直接可用的数据集",
+      "llm_tldr_en": "Presents REAL-2MIX and VOXBLINK2-AVSE, providing synchronized audio-lip-ROI pairs from 28k identities; though aimed at speaker extraction, the curated dataset is directly reusable for talking head animation and audio-driven facial synthesis.",
+      "llm_tldr_cn": "针对音频-视觉目标说话人提取中视觉线索被忽略的问题，论文提出REAL-2MIX基准和VOXBLINK2-AVSE数据集。REAL-2MIX包含真实双说话人混合语音与多视角视频，VOXBLINK2-AVSE从VoxBlink2整理出超过25万对同步音频-唇部ROI数据，覆盖2.8万个身份。实验表明这些数据能支撑身份保真的提取任务，并为说话头动画、数字人研究提供大规模音画对齐数据资源。",
+      "llm_tldr": "针对音频-视觉目标说话人提取中视觉线索被忽略的问题，论文提出REAL-2MIX基准和VOXBLINK2-AVSE数据集。REAL-2MIX包含真实双说话人混合语音与多视角视频，VOXBLINK2-AVSE从VoxBlink2整理出超过25万对同步音频-唇部ROI数据，覆盖2.8万个身份。实验表明这些数据能支撑身份保真的提取任务，并为说话头动画、数字人研究提供大规模音画对齐数据资源。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "dataset for talking head animation",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.10839v1",
+      "source": "arxiv",
+      "title": "The GENEA Challenge 2026: A Large-Scale Disentangled Evaluation of Speech-Driven Gesture Generation on the Seamless Interaction Dataset",
+      "abstract": "This preprint presents the results of the fourth GENEA Challenge, a large-scale human evaluation of five speech-driven gesture-generation systems trained by participating teams on the Seamless Interaction dataset of dyadic conversations. As in the 2023 GENEA Challenge, we used a disentangled evaluation methodology to assess motion quality and speech alignment without confounding between the two, and performed a dyadic mismatching study to isolate the effect of listening and reacting to the interlocutor. We additionally introduce a new semantic gesture-generation task and a text-mismatching evaluation methodology using the Grounded Gestures subset of the data. In total, we ran four large-scale user studies, collecting over 23,000 votes from 869 test-takers.   In the motion-realism study, the dataset's filtered segments had substantially higher motion quality than all challenge submissions (68-95% pairwise winrate). In the speech-alignment study, the motion-capture segments provided a conceptual ceiling at 62% alignment score, with the top submission significantly behind at 32% and the rest only slightly above the 0% expected of an input-independent system. In the dyadic study, motion capture again set the ceiling at 65% appropriateness score, but no submission scored substantially above chance, indicating that the systems could not yet respond to the interlocutor. Finally, the semantic mismatching evaluation found highly expressive gestures in the dataset (test-takers identified the matching transcript 79% of the time), yet almost all submissions failed to generate semantically expressive motion, with the best achieving only an 8% appropriateness score.   The collected votes and outputs will be made publicly available at https://genea-workshop.github.io/2026/challenge/ to facilitate reproducibility and further research.",
+      "authors": [
+        "Rajmund Nagy",
+        "Silvia Arellano García",
+        "Hendric Voss",
+        "Mihail Tsakov",
+        "Taras Kucherenko",
+        "Youngwoo Yoon",
+        "Gustav Eje Henter"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.HC",
+        "cs.SD"
+      ],
+      "published": "2026-08-11T12:06:16+00:00",
+      "link": "https://arxiv.org/pdf/2608.10839v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Large-scale benchmark and dataset for speech-driven gesture generation, a core component of digital human animation.",
+      "llm_evidence_cn": "大规模语音驱动手势生成基准与数据集，是数字人动画的核心组成部分。",
+      "llm_evidence": "大规模语音驱动手势生成基准与数据集，是数字人动画的核心组成部分。",
+      "canonical_evidence": "大规模语音驱动手势生成基准与数据集，是数字人动画的核心组成部分。",
+      "llm_tldr_en": "Reports the GENEA 2026 challenge, a large-scale human evaluation of five speech-driven gesture generation systems, using disentangled evaluation and a semantic gesture task, offering a reusable benchmark for human animation.",
+      "llm_tldr_cn": "本文报告了第四届GENEA挑战赛的结果，该挑战赛对五个由参赛团队训练的语音驱动手势生成系统进行了大规模人类评估，使用了解耦评估方法以避免动作质量与语音对齐之间的混淆，并新增了语义手势生成任务和文本不匹配评估。同时引入了Seamless Interaction数据集，为语音驱动的人体动画提供了一套完整的基准评测方案和可复用的数据集。",
+      "llm_tldr": "本文报告了第四届GENEA挑战赛的结果，该挑战赛对五个由参赛团队训练的语音驱动手势生成系统进行了大规模人类评估，使用了解耦评估方法以避免动作质量与语音对齐之间的混淆，并新增了语义手势生成任务和文本不匹配评估。同时引入了Seamless Interaction数据集，为语音驱动的人体动画提供了一套完整的基准评测方案和可复用的数据集。",
+      "llm_tags": [
+        "query:talking-head:composite"
+      ],
+      "matched_query_tag": "query:talking-head:composite",
+      "matched_query_text": "Papers central to 数字人及talking head的基准测试和数据集论文, especially work that connects or combines: generation and synthesis of talking heads; digital human avatar creation; benchmark for talking head synthesis; dataset for talking head animation; audio-driven facial animation for talking heads; video synthesis of talking heads; benchmark datasets for evaluating talking head generation models; public datasets for digital human and talking head research; state of the art talking head synthesis benchmarks and datasets.",
+      "matched_requirement_id": "req-composite-talking-head",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
