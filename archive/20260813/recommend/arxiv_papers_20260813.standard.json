@@ -1,0 +1,183 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-13T21:13:22.197669+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2608.11752v1",
+      "source": "arxiv",
+      "title": "UniSwap: Streaming Audio-Visual Identity Swapping for Talking Videos",
+      "abstract": "Talking-video character replacement requires coordinated transfer of appearance and voice while preserving the source motion, scene, linguistic content, and audio-video timing. Existing methods use separately optimized models for the two modalities, making audio-visual consistency difficult to enforce. We present UniSwap, the first framework for streaming joint audio-visual identity replacement in talking videos. Given a source video, a reference image, and a reference voice clip, UniSwap transfers the reference appearance and vocal timbre within a single audio-visual diffusion transformer while preserving the source content and dynamics. To address the scarcity of aligned cross-identity training pairs, we introduce a swap-and-reconstruct pipeline that removes visual and vocal identity from real clips and uses the original clips as reconstruction targets. Starting from a bidirectional backbone, we progressively adapt the model through In-context Pretraining for joint replacement, Conditional Streaming Adaptation for block-causal KV-cached generation, and Efficient Self-forcing DMD for mitigating exposure bias and reducing sampling from 30 to 3 denoising steps per block. Efficient Multi-LoRA Switching enables the three DMD roles to share a single frozen backbone. Feature-RoPE Decomposition keeps cached positions within the training range, supporting stable long-form inference. Experiments demonstrate strong audio-visual synchronization, competitive identity preservation, efficient streaming, and stable long-form generation.",
+      "authors": [
+        "Yuxuan Zhang",
+        "Haozhong Xiong",
+        "Jiayi Song",
+        "Jinpeng Yu",
+        "Yang Shi",
+        "Jiaming Liu",
+        "Ruihua Huang",
+        "Liwei Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.SD"
+      ],
+      "published": "2026-08-12T07:45:39+00:00",
+      "link": "https://arxiv.org/pdf/2608.11752v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Talking-video identity swapping; audio-visual generation for talking heads",
+      "llm_evidence_cn": "说话视频身份交换；面向说话头的音视频生成",
+      "llm_evidence": "说话视频身份交换；面向说话头的音视频生成",
+      "canonical_evidence": "说话视频身份交换；面向说话头的音视频生成",
+      "llm_tldr_en": "UniSwap is the first streaming joint audio-visual identity swapping framework for talking videos. It uses a single audio-visual diffusion transformer to transfer appearance and vocal timbre while preserving source content and dynamics, plus a swap-and-reconstruct pipeline to address scarce aligned training pairs.",
+      "llm_tldr_cn": "针对说话视频人物替换中音频与视觉一致性问题，本文提出UniSwap，首个面向流式联合音视频身份替换的框架。它基于单一音视频扩散Transformer，在保持源视频内容与动态的同时迁移参考人物的外观与音色。为解决跨身份对齐训练数据稀缺，设计了交换-重建流水线。实验表明该方法能有效保持视听同步与视觉一致性。",
+      "llm_tldr": "针对说话视频人物替换中音频与视觉一致性问题，本文提出UniSwap，首个面向流式联合音视频身份替换的框架。它基于单一音视频扩散Transformer，在保持源视频内容与动态的同时迁移参考人物的外观与音色。为解决跨身份对齐训练数据稀缺，设计了交换-重建流水线。实验表明该方法能有效保持视听同步与视觉一致性。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "generation and synthesis of talking heads",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.11745v1",
+      "source": "arxiv",
+      "title": "LiveAnimate: Stable Long-Form Streaming Human Animation in Real-Time",
+      "abstract": "Pose-driven human animation synthesizes a video of a target person from a single reference image and a driving pose stream. Real-time generation is essential for interactive applications such as live streaming, telepresence, and virtual avatars, yet diffusion-based systems require minutes to hours per clip, precluding responsive interaction. We present LiveAnimate, to our knowledge the first animation system to combine real-time streaming with stable long-form generation at billion scale, built on a 14B-parameter video Diffusion Transformer (DiT). A two-stage training pipeline first adapts a pretrained bidirectional DiT into a block-causal autoregressive generator through Reference-Anchored Teacher-Forcing Adaptation, and then reduces the sampling budget to three steps through Block-wise Self-Forcing Distillation. To preserve appearance over extended streams, we introduce Pose-Retrieval Sink Attention (PR-Sink), a bounded KV-cache mechanism combining a Static Sink that permanently anchors the first generated block, a Dynamic Sink that holds a pose-retrieved historical block, and a three-slot Rolling Window. When a pose recurs, PR-Sink restores the relevant appearance context without retaining the entire sequence, so memory and per-block latency remain constant regardless of stream duration. Together with Ulysses sequence parallelism and operator fusion, these designs enable 19.63\\,FPS streaming inference on two NVIDIA H100 GPUs. On a three-minute benchmark, LiveAnimate maintains nearly constant perceptual quality and identity from the first 30 seconds to the final minute (IQA 4.047 vs.\\ 4.026), while prior systems degrade substantially or require hours of offline computation for the same rollout. These results establish a new operating point in quality, latency, and duration for interactive full-body animation.",
+      "authors": [
+        "Yuxuan Zhang",
+        "Haozhong Xiong",
+        "Yubo Huang",
+        "Jiayi Song",
+        "Jinpeng Yu",
+        "Haofan Wang",
+        "Jiaming Liu",
+        "Ruihua Huang",
+        "Liwei Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-12T07:35:52+00:00",
+      "link": "https://arxiv.org/pdf/2608.11745v1",
+      "tags": [
+        "keyword:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "real-time pose-driven human animation for virtual avatars, directly supports digital human avatar creation",
+      "llm_evidence_cn": "实时姿态驱动人体动画，面向虚拟化身，直接服务数字人形象生成",
+      "llm_evidence": "实时姿态驱动人体动画，面向虚拟化身，直接服务数字人形象生成",
+      "canonical_evidence": "实时姿态驱动人体动画，面向虚拟化身，直接服务数字人形象生成",
+      "llm_tldr_en": "Presents LiveAnimate, a 14B-parameter video DiT system enabling real-time streaming human animation from a reference image and pose stream, supporting long-form stable generation for avatars.",
+      "llm_tldr_cn": "现有的扩散式人体动画系统生成单个片段需数分钟到数小时，无法支持直播、远程呈现等实时交互。LiveAnimate首次将实时流式生成与长时稳定生成结合，采用140亿参数的视频扩散Transformer，通过参考锚定的教师强制适应和减少采样预算的两阶段训练，实现从单张参考图和驱动姿态流实时合成视频。该方法在超大规模模型下仍保持稳定，为虚拟化身和数字人应用提供了可行的实时视频合成方案。",
+      "llm_tldr": "现有的扩散式人体动画系统生成单个片段需数分钟到数小时，无法支持直播、远程呈现等实时交互。LiveAnimate首次将实时流式生成与长时稳定生成结合，采用140亿参数的视频扩散Transformer，通过参考锚定的教师强制适应和减少采样预算的两阶段训练，实现从单张参考图和驱动姿态流实时合成视频。该方法在超大规模模型下仍保持稳定，为虚拟化身和数字人应用提供了可行的实时视频合成方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.12175v1",
+      "source": "arxiv",
+      "title": "TGRHuman: Text-Guided Realistic 3D Human Generation via Diffusion Renderer",
+      "abstract": "Realistic 3D human generation plays a crucial role in many graphics applications. However, current methods still struggle to generate high-quality human geometry and texture while maintaining 3D consistency and inference efficiency. In this work, we address these limitations by introducing TGRHuman, a novel approach for generating realistic 3D humans from text. Our method decouples geometry and texture generation to alleviate the issues commonly encountered in NeRF-based methods. Instead of relying on slow, implicit score-distillation-based optimization, we directly use explicit multi-view observation generation and optimization for efficient 3D synthesis. For geometry generation, we propose a high-resolution generative module for multi-view normals together with a geometry-carving strategy that preserves view consistency and supports loose clothing. For texture generation, we produce spatially consistent RGB observations from densely sampled surrounding views using a carefully designed texture-prior acquisition strategy and a diffusion renderer, enabling detailed human texture synthesis. Experiments show that our method can generate high-quality and consistent 3D human geometry and texture efficiently. TGRHuman outperforms existing text-to-3D human methods in both geometry and texture quality.",
+      "authors": [
+        "Muxin Zhang",
+        "Chaohui Yu",
+        "Yuanwang Yang",
+        "Min Wei",
+        "Zhuo Su",
+        "Kun Li"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-12T15:32:50+00:00",
+      "link": "https://arxiv.org/pdf/2608.12175v1",
+      "tags": [
+        "keyword:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "text-guided realistic 3D human generation directly supports digital human avatar creation",
+      "llm_evidence_cn": "文本驱动的真实3D人体生成直接服务于数字人虚拟形象创建",
+      "llm_evidence": "文本驱动的真实3D人体生成直接服务于数字人虚拟形象创建",
+      "canonical_evidence": "文本驱动的真实3D人体生成直接服务于数字人虚拟形象创建",
+      "llm_tldr_en": "TGRHuman generates realistic 3D humans from text by decoupling geometry and texture generation and using explicit multi-view observation optimization instead of score distillation, improving quality and efficiency of digital human avatar creation.",
+      "llm_tldr_cn": "针对现有文本驱动3D人体生成方法在几何纹理质量和推理效率上的不足，提出TGRHuman方法。该方法将几何与纹理生成解耦，利用显式多视角观测生成与优化替代缓慢的分数蒸馏，并通过高分辨率多视角法线模块构建几何。实验表明其能高效生成真实且三维一致的3D人体模型。该工作为数字人虚拟形象创建提供了更高效的生成式方案。",
+      "llm_tldr": "针对现有文本驱动3D人体生成方法在几何纹理质量和推理效率上的不足，提出TGRHuman方法。该方法将几何与纹理生成解耦，利用显式多视角观测生成与优化替代缓慢的分数蒸馏，并通过高分辨率多视角法线模块构建几何。实验表明其能高效生成真实且三维一致的3D人体模型。该工作为数字人虚拟形象创建提供了更高效的生成式方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.10839v1",
+      "source": "arxiv",
+      "title": "The GENEA Challenge 2026: A Large-Scale Disentangled Evaluation of Speech-Driven Gesture Generation on the Seamless Interaction Dataset",
+      "abstract": "This preprint presents the results of the fourth GENEA Challenge, a large-scale human evaluation of five speech-driven gesture-generation systems trained by participating teams on the Seamless Interaction dataset of dyadic conversations. As in the 2023 GENEA Challenge, we used a disentangled evaluation methodology to assess motion quality and speech alignment without confounding between the two, and performed a dyadic mismatching study to isolate the effect of listening and reacting to the interlocutor. We additionally introduce a new semantic gesture-generation task and a text-mismatching evaluation methodology using the Grounded Gestures subset of the data. In total, we ran four large-scale user studies, collecting over 23,000 votes from 869 test-takers.   In the motion-realism study, the dataset's filtered segments had substantially higher motion quality than all challenge submissions (68-95% pairwise winrate). In the speech-alignment study, the motion-capture segments provided a conceptual ceiling at 62% alignment score, with the top submission significantly behind at 32% and the rest only slightly above the 0% expected of an input-independent system. In the dyadic study, motion capture again set the ceiling at 65% appropriateness score, but no submission scored substantially above chance, indicating that the systems could not yet respond to the interlocutor. Finally, the semantic mismatching evaluation found highly expressive gestures in the dataset (test-takers identified the matching transcript 79% of the time), yet almost all submissions failed to generate semantically expressive motion, with the best achieving only an 8% appropriateness score.   The collected votes and outputs will be made publicly available at https://genea-workshop.github.io/2026/challenge/ to facilitate reproducibility and further research.",
+      "authors": [
+        "Rajmund Nagy",
+        "Silvia Arellano García",
+        "Hendric Voss",
+        "Mihail Tsakov",
+        "Taras Kucherenko",
+        "Youngwoo Yoon",
+        "Gustav Eje Henter"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.HC",
+        "cs.SD"
+      ],
+      "published": "2026-08-11T12:06:16+00:00",
+      "link": "https://arxiv.org/pdf/2608.10839v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "large-scale benchmark and dataset for speech-driven gesture generation evaluation",
+      "llm_evidence_cn": "面向语音驱动手势生成的大规模评测基准与数据集",
+      "llm_evidence": "面向语音驱动手势生成的大规模评测基准与数据集",
+      "canonical_evidence": "面向语音驱动手势生成的大规模评测基准与数据集",
+      "llm_tldr_en": "The GENEA Challenge 2026 presents a large-scale human evaluation of five speech-driven gesture-generation systems, using disentangled evaluation to separate motion quality from speech alignment and a new semantic gesture task on the Seamless Interaction Dataset.",
+      "llm_tldr_cn": "语音驱动的手势生成评测常因动作质量与语音对齐相互混淆而难以解读。第四届GENEA挑战赛在Seamless Interaction双人对话数据集上，组织五个系统进行大规模人类评测，采用解耦评估分别衡量动作质量和语音对齐，并通过双人不匹配实验与文本不匹配实验进一步隔离交互因素。评测还新增语义手势生成任务。该挑战为数字人运动生成提供系统化评测基准和可复用的数据集支撑。",
+      "llm_tldr": "语音驱动的手势生成评测常因动作质量与语音对齐相互混淆而难以解读。第四届GENEA挑战赛在Seamless Interaction双人对话数据集上，组织五个系统进行大规模人类评测，采用解耦评估分别衡量动作质量和语音对齐，并通过双人不匹配实验与文本不匹配实验进一步隔离交互因素。评测还新增语义手势生成任务。该挑战为数字人运动生成提供系统化评测基准和可复用的数据集支撑。",
+      "llm_tags": [
+        "query:talking-head:composite"
+      ],
+      "matched_query_tag": "query:talking-head:composite",
+      "matched_query_text": "Papers central to 数字人及talking head的基准测试和数据集论文, especially work that connects or combines: generation and synthesis of talking heads; digital human avatar creation; benchmark for talking head synthesis; dataset for talking head animation; audio-driven facial animation for talking heads; video synthesis of talking heads; benchmark datasets for evaluating talking head generation models; public datasets for digital human and talking head research; state of the art talking head synthesis benchmarks and datasets.",
+      "matched_requirement_id": "req-composite-talking-head",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
