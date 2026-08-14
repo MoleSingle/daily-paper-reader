@@ -6,32 +6,34 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-13
-- 运行时间：2026-08-13 21:17:02 UTC
+- 最新运行日期：2026-08-14
+- 运行时间：2026-08-14 20:25:46 UTC
 - 运行状态：成功
 - 本次总论文数：4
-- 精读区：3
-- 速读区：1
+- 精读区：2
+- 速读区：2
 
 ### 今日简报（AI）
-今日精读4篇，聚焦音视频身份互换与实时人体动画生成；最值得看的是UniSwap（9.0）与LiveAnimate（8.0），分别突破流式音画身份迁移和长时序实时动画；建议普通读者优先关注这两个方向，后续可跟进手势生成评估基准的进展。
-- 详情：[/202608/13/README](/202608/13/README)
+今日精读4篇论文，聚焦音视频身份交换与实时人物动画生成。  
+最值得看《UniSwap》（9.0分）的流式音视频换脸方案，以及《LiveAnimate》（8.0分）的实时长视频动画技术。  
+后续可重点关注多模态生成在实时交互与低资源场景下的落地效率。
+- 详情：[/202608/14/README](/202608/14/README)
 
 ### 精读区论文标签
-1. [UniSwap: Streaming Audio-Visual Identity Swapping for Talking Videos](/202608/13/2608.11752v1-uniswap-streaming-audio-visual-identity-swapping-for-talking-videos)  
+1. [UniSwap: Streaming Audio-Visual Identity Swapping for Talking Videos](/202608/14/2608.11752v2-uniswap-streaming-audio-visual-identity-swapping-for-talking-videos)  
    标签：评分：9.0/10、query:talking-head
-   evidence：说话视频身份交换；面向说话头的音视频生成
-2. [LiveAnimate: Stable Long-Form Streaming Human Animation in Real-Time](/202608/13/2608.11745v1-liveanimate-stable-long-form-streaming-human-animation-in-real-time)  
+   evidence：面向说话视频的流式音视频联合身份替换
+2. [LiveAnimate: Stable Long-Form Streaming Human Animation in Real-Time](/202608/14/2608.11745v2-liveanimate-stable-long-form-streaming-human-animation-in-real-time)  
    标签：评分：8.0/10、query:talking-head
-   evidence：实时姿态驱动人体动画，面向虚拟化身，直接服务数字人形象生成
-3. [TGRHuman: Text-Guided Realistic 3D Human Generation via Diffusion Renderer](/202608/13/2608.12175v1-tgrhuman-text-guided-realistic-3d-human-generation-via-diffusion-renderer)  
-   标签：评分：8.0/10、query:talking-head
-   evidence：文本驱动的真实3D人体生成直接服务于数字人虚拟形象创建
+   evidence：面向虚拟形象的实时姿态驱动人体视频合成
 
 ### 速读区论文标签
-1. [The GENEA Challenge 2026: A Large-Scale Disentangled Evaluation of Speech-Driven Gesture Generation on the Seamless Interaction Dataset](/202608/13/2608.10839v1-the-genea-challenge-2026-a-large-scale-disentangled-evaluation-of-speech-driven-gesture-generation-on-the-seamless-interaction-dataset)  
-   标签：评分：7.0/10、query:talking-head
-   evidence：面向语音驱动手势生成的大规模评测基准与数据集
+1. [Luna-TTS Family Technical Report](/202608/14/2608.11593v1-luna-tts-family-technical-report)  
+   标签：评分：6.0/10、query:talking-head
+   evidence：基于扩散的TTS系列为音频驱动面部动画提供低延迟多语言语音输入
+2. [Sign Language Video Synthesis via Loss-Guided Multi-Expert GANs](/202608/14/2608.13368v1-sign-language-video-synthesis-via-loss-guided-multi-expert-gans)  
+   标签：评分：6.0/10、query:talking-head
+   evidence：含头部专属判别器的人类视频合成，可迁移至说话头生成。
 
 
 <div class="dpr-home-promo-card">

@@ -1,0 +1,69 @@
+{
+  "label": "2026-08-14",
+  "date": "2026-08-14",
+  "generated_at": "2026-08-14T20:25:52",
+  "count": 4,
+  "papers": [
+    {
+      "paper_id": "202608/14/2608.11752v2-uniswap-streaming-audio-visual-identity-swapping-for-talking-videos",
+      "section": "deep",
+      "title_en": "UniSwap: Streaming Audio-Visual Identity Swapping for Talking Videos",
+      "authors": "Yuxuan Zhang, Haozhong Xiong, Jiayi Song, Jinpeng Yu, Yang Shi, Jiaming Liu, Ruihua Huang, Liwei Wang",
+      "date": "2026-08-12",
+      "pdf": "https://arxiv.org/pdf/2608.11752v2",
+      "score": "9.0",
+      "evidence": "面向说话视频的流式音视频联合身份替换",
+      "tldr": "说话视频身份替换需同时迁移外观与声音并保持源内容与时序，现有方法分别优化导致音视频一致性差。UniSwap提出首个流式联合替换框架，在单一音视频扩散transformer中实现身份迁移，通过swap-and-reconstruct训练解决数据稀缺，配合流式适应与高效采样，实现强同步、身份保持和稳定长序列生成。",
+      "tags": "query:talking-head",
+      "abstract_en": "Talking-video character replacement requires coordinated transfer of appearance and voice while preserving the source motion, scene, linguistic content, and audio-video timing. Existing methods use separately optimized models for the two modalities, making audio-visual consistency difficult to enforce. We present UniSwap, the first framework for streaming joint audio-visual identity replacement in talking videos. Given a source video, a reference image, and a reference voice clip, UniSwap transfers the reference appearance and vocal timbre within a single audio-visual diffusion transformer while preserving the source content and dynamics. To address the scarcity of aligned cross-identity training pairs, we introduce a swap-and-reconstruct pipeline that removes visual and vocal identity from real clips and uses the original clips as reconstruction targets. Starting from a bidirectional backbone, we progressively adapt the model through In-context Pretraining for joint replacement, Conditional Streaming Adaptation for block-causal KV-cached generation, and Efficient Self-forcing DMD for mitigating exposure bias and reducing sampling from 30 to 3 denoising steps per block. Efficient Multi-LoRA Switching enables the three DMD roles to share a single frozen backbone. Feature-RoPE Decomposition keeps cached positions within the training range, supporting stable long-form inference. Experiments demonstrate strong audio-visual synchronization, competitive identity preservation, efficient streaming, and stable long-form generation.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/14/2608.11745v2-liveanimate-stable-long-form-streaming-human-animation-in-real-time",
+      "section": "deep",
+      "title_en": "LiveAnimate: Stable Long-Form Streaming Human Animation in Real-Time",
+      "authors": "Yuxuan Zhang, Haozhong Xiong, Yubo Huang, Jiayi Song, Jinpeng Yu, Haofan Wang, Jiaming Liu, Ruihua Huang, Liwei Wang",
+      "date": "2026-08-12",
+      "pdf": "https://arxiv.org/pdf/2608.11745v2",
+      "score": "8.0",
+      "evidence": "面向虚拟形象的实时姿态驱动人体视频合成",
+      "tldr": "姿态驱动的人体动画是直播、远程呈现等交互应用的核心，但现有扩散系统每段视频需数分钟至数小时，无法实时。LiveAnimate基于14B参数视频扩散Transformer，通过参考锚定教师强迫与分块自强迫蒸馏，将预训练双向DiT转化为三步采样的块因果自回归生成器。为稳定长流外观，提出Pose-Retrieval Sink Attention，结合静态与动态锚点及滚动窗口，使内存和每块延迟恒定。系统在双H100上实现19.63 FPS流式推理，三分钟基准中质量和身份保持稳定，确立了交互式全身动画的新性能基准。",
+      "tags": "query:talking-head",
+      "abstract_en": "Pose-driven human animation synthesizes a video of a target person from a single reference image and a driving pose stream. Real-time generation is essential for interactive applications such as live streaming, telepresence, and virtual avatars, yet diffusion-based systems require minutes to hours per clip, precluding responsive interaction. We present LiveAnimate, to our knowledge the first animation system to combine real-time streaming with stable long-form generation at billion scale, built on a 14B-parameter video Diffusion Transformer (DiT). A two-stage training pipeline first adapts a pretrained bidirectional DiT into a block-causal autoregressive generator through Reference-Anchored Teacher-Forcing Adaptation, and then reduces the sampling budget to three steps through Block-wise Self-Forcing Distillation. To preserve appearance over extended streams, we introduce Pose-Retrieval Sink Attention (PR-Sink), a bounded KV-cache mechanism combining a Static Sink that permanently anchors the first generated block, a Dynamic Sink that holds a pose-retrieved historical block, and a three-slot Rolling Window. When a pose recurs, PR-Sink restores the relevant appearance context without retaining the entire sequence, so memory and per-block latency remain constant regardless of stream duration. Together with Ulysses sequence parallelism and operator fusion, these designs enable 19.63\\,FPS streaming inference on two NVIDIA H100 GPUs. On a three-minute benchmark, LiveAnimate maintains nearly constant perceptual quality and identity from the first 30 seconds to the final minute, while prior systems degrade substantially or require hours of offline computation for the same rollout. These results establish a new operating point in quality, latency, and duration for interactive full-body animation.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/14/2608.11593v1-luna-tts-family-technical-report",
+      "section": "quick",
+      "title_en": "Luna-TTS Family Technical Report",
+      "authors": "Feng Yin, Shuai Shi, Junjie Zheng, Kechenying Zhou, Yiqiu Wang, Chenyang He, Qiuhua Jiang, Mengxiao Bi, Yanmin Qian, Mingxin Chen, Xun Gong, Tianteng Gu, Bing Han, Peng Jiang, Chenda Li, Haiyang Sun, Han Wang, Wei Wang, Yi Wang, Leying Zhang, Wangyou Zhang, Chushu Zhou",
+      "date": "2026-08-12",
+      "pdf": "https://arxiv.org/pdf/2608.11593v1",
+      "score": "6.0",
+      "evidence": "基于扩散的TTS系列为音频驱动面部动画提供低延迟多语言语音输入",
+      "tldr": "传统自回归编解码器语言模型在TTS中引入与长度相关的延迟和误差累积。Luna-TTS系列基于扩散语言模型，在百万小时多语种数据上预训练，通过渐进式注意力改造实现完全非自回归生成，并衍生出支持流式输出的Realtime版本。在Seed-TTS-Eval和CV3-Eval上达到最优，且具备情感和副语言控制能力。",
+      "tags": "query:talking-head",
+      "abstract_en": "Modern text-to-speech (TTS) is dominated by autoregressive (AR) codec language models, whose left-to-right decoding brings latency that grows with utterance length, error accumulation along the committed prefix, and an artificial generation order imposed on the Residual Vector Quantization (RVQ) token grid. We propose Luna-TTS Family, diffusion-language-model-based TTS systems pretrained on 1 million hours of speech across Chinese, English, Japanese, and Korean. The family is built by progressive adaptation of a pretrained AR text LLM, from causal to bidirectional and finally to block-causal attention, and comprises two variants sharing a single tokenizer, data pipeline, and 0.6B backbone lineage. Luna-TTS is fully non-autoregressive: it generates the entire RVQ token grid in a fixed number of parallel refinement steps, with zero-shot voice cloning and speech editing arising natively as infilling. Luna-TTS Realtime, derived by continual training, is autoregressive over blocks of 32 codec frames (1.28s) while denoising each block in parallel; it supports KV-cached blockwise generation and incremental audio delivery, achieving an end-to-end RTF of 0.0240 and 41.6 ms local first-block latency under the warmed serving protocol. An annealed fine-tuning stage adds explicit control over emotion and non-verbal vocalizations (NVVs), and a reinforcement-learning stage applies GRPO with policy ratios computed over the realized denoising trajectory. On Seed-TTS-Eval, Luna-TTS achieves the best results on all four metrics among compared open-source and commercial systems (0.73 CER / 79.7 SIM on test-zh, 1.49 WER / 76.8 SIM on test-en); on the harder in-the-wild CV3-Eval, it posts the lowest Mandarin and English error rates in our comparison. Against leading commercial systems, it achieves the best results on most objective, model-based, and human-rated metrics for NVV and emotion control.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/14/2608.13368v1-sign-language-video-synthesis-via-loss-guided-multi-expert-gans",
+      "section": "quick",
+      "title_en": "Sign Language Video Synthesis via Loss-Guided Multi-Expert GANs",
+      "authors": "Dingzhan Nong, Zhihao Ren, Ziqi Li, Tim Lo",
+      "date": "2026-08-13",
+      "pdf": "https://arxiv.org/pdf/2608.13368v1",
+      "score": "6.0",
+      "evidence": "含头部专属判别器的人类视频合成，可迁移至说话头生成。",
+      "tldr": "手语视频合成对听障人士沟通至关重要，但手部与头部细节生成难度高。本文提出损失引导的多专家GAN，用全局、手、头三个判别器分别引导生成器的对应专家分支，实现隐式特征特化；并引入United Loss共识机制，以10%权重向判别器集成平均正则化，稳定多判别器训练。在156GB数据集上，0.2B与1.3B参数模型分别取得29.8和30.7 PSNR，推理显存低至1.5GB，可部署于消费级硬件。该系统已在2025香港前沿技术峰会展出。",
+      "tags": "query:talking-head",
+      "abstract_en": "This preliminary technical report presents a framework for sign language video synthesis using a loss-guided multi-expert Generative Adversarial Network (GAN) to enhance communication for individuals with hearing impairments. Three specialized discriminators -- global, hand, and head -- each guide a corresponding expert branch in the generator toward a distinct visual region, enabling implicit feature specialization without explicit diversity losses. To stabilize this multi-discriminator system, whose early-phase training otherwise exhibits chaotic dynamics, we introduce a United Loss consensus mechanism that regularizes each discriminator toward the ensemble average at a 10% weight. Each branch further adopts a dual-pathway convolutional-transformer design with learnable AdaptiveFeatureFusion, balancing the stability of convolutions against the detail of windowed self-attention. The generator is trained using an alternating three-mode schedule (discriminator, holistic generation, branch-specialized generation). On a custom 156GB dataset with a filtered test set that removes easy and repetitive samples, our 0.2B-parameter variant achieves 29.8 PSNR and the 1.3B-parameter variant achieves 30.7 PSNR, with inference VRAM footprints of 1.5 GB and 8 GB respectively, enabling deployment on consumer-grade hardware. Full ablation studies remain ongoing due to the 2-3 month training cycle on a single GPU. The system was showcased at the 2025 Hong Kong Frontier Technology Summit.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
