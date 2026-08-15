@@ -1,0 +1,1183 @@
+The GENEA Challenge 2026: A Large-Scale Disentangled Evaluation of
+Speech-Driven Gesture Generation on the Seamless Interaction Dataset
+Rajmund Nagy1, Silvia Arellano Garc´ıa1, Hendric Voss2, Mihail Tsakov3,
+Taras Kucherenko4, Youngwoo Yoon5, Gustav Eje Henter1,6
+1KTH Royal Institute of Technology 2Bielefeld University
+3Independent researcher 4National Library of Sweden
+5Electronics and Telecommunications Research Institute (ETRI) 6Motorica AB
+Abstract
+This preprint presents the results of the fourth GENEA
+Challenge, in which we performed large-scale human eval-
+uation on five speech-driven gesture-generation systems
+trained by participating teams on the Seamless Interaction
+dataset, containing speech and motion data for dyadic con-
+versations. Similarly to the 2023 GENEA Challenge, we
+used a disentangled evaluation methodology to assess mo-
+tion quality and alignment with the speech without con-
+founding effects between the two, and also performed a
+dyadic mismatching study to isolate the effect of listening
+and reacting to the interlocutor. We additionally introduce
+a new semantic gesture-generation task using the Grounded
+Gestures subset of the data, and propose a new semantic
+evaluation methodology using text mismatching. In total,
+we ran four large-scale user studies, collecting over 23, 000
+votes from 869 test-takers.
+The user study on motion realism compared silent motion
+clips from different sources (a participating system or mo-
+tion capture). The dataset’s filtered segments had substan-
+tially higher motion quality than all challenge submissions
+(68–95% pairwise winrate); the top two submissions were
+closely matched (54% vs 46% head-to-head winrate); and
+the remaining three submissions showed a clear hierarchy.
+The user study measuring the alignment between motion
+and input speech used the audio mismatching methodology
+of the GENEA Leaderboard. Here, the motion-capture seg-
+ments provided a conceptual ceiling for the results at 62%
+speech-motion alignment score, with the top-performing
+submission significantly behind at 32%, and the remain-
+ing four submissions only slightly above the 0% expected
+bottom-line performance of an input-independent system.
+In the third study, we evaluated the ability of the systems
+to generate motion with dyadic adaptations to the interlocu-
+tor. Here, the motion-capture segments (which were filtered
+to contain dyadic adaptations) again provided a ceiling for
+the results at 65% appropriateness score, but none of the
+challenge submissions scored substantially above chance
+level, indicating that the systems were not yet able to gen-
+erate motion that is responsive to the interlocutor.
+Finally, the proposed semantic mismatching evaluation
+found that the dataset contained highly expressive gestures
+in the Grounded Gestures subset, as test-takers could iden-
+tify the matching sentence transcript 79% of the time. How-
+ever, once again, almost all challenge submissions were un-
+able to generate semantically expressive motion, with the
+best-performing submission only achieving an 8% appro-
+priateness score.
+The collected votes and outputs will be made pub-
+licly available on the challenge website (https://genea-
+workshop.github.io/2026/challenge/) to facilitate repro-
+ducibility and further research.
+1. Introduction
+Automatic gesture generation is an active research area that
+still lacks standardised evaluation practices, making it dif-
+ficult to compare competing systems. The GENEA Chal-
+lenges [7, 8, 10] have been running for several years, with
+the goal of improving evaluation practices and determin-
+ing the level of progress in automatic gesture generation.
+Most recently, the GENEA Leaderboard [11] initially evalu-
+ated six published gesture-generation systems on the widely
+used BEAT2 dataset, and found that the gap between the
+motion realism of the motion-capture data and the best-
+performing systems was closing, but the systems were still
+unable to generate motion that was consistently aligned
+with the speech. Later, the leaderboard was updated to in-
+clude a seventh system – a diffusion transformer from the
+authors of Seamless Interaction [1] – which was able to
+achieve parity with motion-capture data in both realism and
+speech-gesture alignment. Therefore, the leaderboard es-
+1
+arXiv:2608.10839v1  [cs.CV]  11 Aug 2026
+
+
+tablished a new state of the art in gesture generation, and
+the BEAT2 dataset has become insufficient to measure fur-
+ther progress in the field.
+With the GENEA Challenge 2026, we propose to instead
+use the recently released Seamless Interaction dataset [1]
+to track progress, due to its much larger size, and its focus
+on dyadic interactions and semantically expressive gestures.
+The size of the dataset and the more complex nature of the
+interactions mean that adapting previous gesture-generation
+approaches to this dataset may not be straightforward. Ad-
+ditionally, the higher density of motion-capture artefacts in
+Seamless Interaction compared to BEAT2 may also make
+preprocessing and filtering more challenging than before.
+However, as shown by the aforementioned state-of-the-art
+diffusion transformer submission to the GENEA Leader-
+board, by training on the Seamless dataset, it is possible
+to achieve groundbreaking results (as the model reached
+mocap-level alignment in a mismatching evaluation for the
+first time) even in a cross-dataset evaluation.
+Hosting the challenge in conjunction with the first Inter-
+active Social Avatars (ISA) workshop at ECCV, we invited
+submissions trained on the Seamless Interaction dataset.
+In total, we collected five submissions from four teams,
+which we then evaluated against each other and against the
+motion-capture data. This preprint presents the evaluation
+setup and the results of the subjective evaluations; system-
+description papers containing more details on the challenge
+submissions will be released on the workshop website at
+https://interactive-social-avatars.github.io/.
+1.1. Terminology
+Throughout this preprint, we use the following terms:
+• A condition is a particular motion source, i.e., either a
+challenge submission or the motion-capture data.
+• The authors of the challenge submissions are referred to
+as challenge participants.
+• The evaluators recruited for our user studies are referred
+to as test-takers.
+1.2. Challenge submissions
+The challenge evaluated five models: GestFlow [6]; a flow-
+matching model from the UNICAMP team [5]; a submis-
+sion from the UM-FERI team [2]; and the DyaSync model
+alongside a secondary semantic variant (DyaSync-sem) [3].
+For more details on the challenge submissions, please refer
+to the individual system description papers.
+2. Dataset
+The challenge uses the recently released Seamless Interac-
+tion dataset [1]. In particular, we leverage the 3400-hour
+dyadic conversations subset, containing recordings of over
+4000 actors having either natural or prompt-guided dia-
+logue, and the 380-hour grounded gestures subset, where
+actors take turns expressing prompted phrases with their
+gestures and improvising a natural response.
+For the evaluation, challenge participants submitted gen-
+erated motion for 473 short segments selected from a com-
+bination of public and private test splits of the dataset [1].
+In the case of nondeterministic challenge submissions, we
+collected five different outputs for each segment, and we se-
+lected a random sample for each segment, to prevent cherry-
+picking and detect mode collapse.
+3. Methodology
+Following the spirit of previous GENEA Challenges [7, 8,
+10] and the GENEA Leaderboard [11], we use a disentan-
+gled evaluation methodology to assess different aspects of
+gesture generation in isolation from each other. Concretely,
+we define the following four evaluation tasks:
+T1 Motion realism: How natural and visually convincing
+is the generated motion?
+T2 Alignment with speech:
+Is the generated motion
+aligned with the input speech?
+T3 Alignment with the interlocutor: Is the generated mo-
+tion responsive to the interlocutor?
+T4 Semantic alignment: Does the generated motion ex-
+press the meaning of a highlighted keyword?
+The first two evaluation tasks may be considered the core
+evaluation of gesture generation, while the last two assess
+more advanced (and lesser studied) capabilities of gesture-
+generation systems. T1, T2, and T3 use the dyadic conver-
+sations subset, while T4 uses the grounded gestures subset
+of the data. In T1, T2, and T4, the model receives an audio
+clip and its transcript, and generates the speaker’s motion.
+In T3, it additionally receives the interlocutor’s audio, tran-
+script, and motion, and generates the agent’s motion.
+3.1. Task-dependent methodology
+Each user study uses a pairwise voting format to keep task
+complexity manageable and to simplify the numerical eval-
+uation, but stimulus pairs and response options are con-
+structed differently. Below, we present a brief overview of
+each evaluation setup; for more details, refer to [11] (re-
+garding T1 and T2) and [8] (regarding T3).
+3.1.1. Construction of stimulus pairs
+In T1, we evaluate the visual quality of motion without con-
+sidering alignment with the speech. Correspondingly, on
+every user-study screen we compare two silent videos ren-
+dered from the outputs of different conditions for the same
+input speech.
+In T2, we measure alignment between speech and mo-
+tion without considering the visual quality of the gestures.
+To this end, we use the audio mismatching evaluation [11],
+where user-study screens show two videos of the same mo-
+tion but with two different audio segments – one matched,
+2
+
+
+and one mismatched (i.e., taken from another segment).
+This design removes the confounding effect of motion qual-
+ity, in contrast to the naive setup of comparing motion clips
+from different systems. Test-takers are instructed to vote on
+whether the motion fits the rhythm and timing of the speech,
+emphasises the appropriate parts of the utterance, captures
+the semantic content of the speech, or reflects its emotional
+expression more accurately.
+In T3, we use the dyadic mismatching methodology [8]
+to evaluate whether the motion of the agent appears atten-
+tive and responds appropriately to the interlocutor in their
+conversation, without considering visual quality or align-
+ment to the speech. Mismatched segments were collected
+from challenge participants by providing them with addi-
+tional mismatched test-set inputs – in particular, for ev-
+ery matched dyadic test-set segment, we provided a mis-
+matched counterpart where the interlocutor’s motion and
+speech were taken from another, unrelated segment.
+In
+this user study, the only difference within a matched-
+mismatched video pair is the agent’s motion; the interlocu-
+tor’s motion and both speakers’ audio are kept the same. To
+facilitate the evaluation, the agent is always displayed on
+the left side of the screen and the interlocutor on the right.
+Similarly, the agent’s speech is played through the left au-
+dio channel and the interlocutor’s speech through the right
+channel.
+In T4, we use short sentences from the grounded gestures
+subset to evaluate the semantic expressivity of the motion.
+We propose a novel text mismatching methodology, sim-
+ilar to the audio mismatching in T2, in which test-takers
+are shown a single muted, monadic video together with two
+candidate sentences – one matched (the sentence spoken in
+the video) and one mismatched (drawn from a random seg-
+ment). Test-takers are asked to select the sentence they be-
+lieve the speaker is gesturing for, or indicate that the ges-
+tures are suitable for both or neither sentence.
+3.2. Segment selection
+Our user studies present short rendered videos, ranging
+from 9–20 seconds in T1 and T2, 16–20 seconds in T3,
+and 2–6 seconds in T4. We manually curate evaluation seg-
+ments with the desired qualities – high motion realism (T1),
+rhythmically aligned gestures (T2), attentive listening and
+dyadic adaptations (T3), and semantically meaningful ex-
+pression (T4). This curation is an often-overlooked but es-
+sential step of evaluation design for two reasons: it ensures
+that the input segments are informative enough for the mod-
+els to create high-quality aligned outputs, and it also raises
+the performance ceiling set by the motion-capture data.
+3.2.1. Monadic segments
+For T1 and T2, we use shared segments. Rather than en-
+forcing a fixed segment duration, we include complete sen-
+tences of variable length. The goal of the segment selection
+process is to identify clips in which one speaker talks for
+most of the segment while the other remains largely silent.
+In addition, the main speaker should be actively gesticulat-
+ing. Ideally, the selected samples should also come from a
+diverse set of interactions and speakers. Therefore, for these
+tasks, we extract only one segment per interaction.
+For each interaction, we first load the Voice Activity De-
+tection (VAD) annotations for both speakers in the conver-
+sation. We then merge VAD segments that are separated
+by less than 0.5 seconds to reduce recording artefacts and
+better capture complete utterances or sentences. To deter-
+mine whether the main speaker is moving actively during
+a segment, we compute frame-to-frame differences in the
+Euler angles of the upper-body joints. Specifically, we cal-
+culate the absolute difference between consecutive frames
+and sum the motion values across all selected joints. The
+resulting value serves as an indicator of how much the per-
+son moved during the segment.
+Once the VAD has been processed and the motion in-
+formation has been computed, we apply a sliding window
+over the entire interaction to identify segments in which
+one speaker talks for most of the window while the other
+remains silent, and where the main speaker also exhibits a
+substantial amount of movement that is likely to correspond
+to gesticulation. For each window, we compute the speak-
+ing time of both speakers to determine their roles (main
+speaker or listener). Since the listener is expected to remain
+mostly silent, we require that they speak for at most 10% of
+the window duration (allowing for occasional non-relevant
+backchanneling), while the main speaker must speak for at
+least 50% of the window duration to ensure the presence of
+continuous speech despite possible pauses.
+After the main speaker has been identified, we use the
+transcript to align the segment boundaries with sentence
+boundaries. We detect the beginning and end of the sen-
+tences that overlap with the selected window. If a sentence
+exceeds the pre-set duration threshold of 20 seconds, it is
+discarded. After adjusting the boundaries, we compute the
+motion quantity for the frames contained in the segment.
+This sliding-window procedure is repeated across the en-
+tire interaction. Finally, among all candidate segments, we
+select the one with the highest motion value.
+The selected segments are manually reviewed after-
+wards, since some may still contain artefacts such as trem-
+bling joints, twisted wrists, body penetrations, or audio is-
+sues. These problematic samples are discarded from the fi-
+nal selection. From the remaining set, we selected 170 sam-
+ples from 50 different speakers for T1 and T2. Of these, 90
+belong to the public subset and 80 to the private subset.
+3.2.2. Mismatched speech for monadic segments
+T2 requires mismatched segments, in which the motion re-
+mains unchanged while the audio is replaced with speech
+from a different part of the same interaction. To generate
+3
+
+
+these mismatched samples, we process the interaction tran-
+script again using a sliding window. As before, we aim to
+align the segment boundaries with complete sentences so
+that both the matched and mismatched segments begin at
+sentence boundaries. We then compare the VAD pattern of
+each candidate window with that of the matched segment
+and retain the candidate with the most similar VAD struc-
+ture, ensuring that the mismatched audio segment does not
+overlap with the matched audio segment.
+3.2.3. Dyadic segments
+For T3, which focuses on listening behaviour, we follow a
+setup similar to that used for the previous tasks. The goal
+is still to obtain samples from a diverse set of interactions
+and speakers. However, due to the stricter selection require-
+ments and the limited number of valid samples, we allow up
+to three non-overlapping segments per interaction.
+As before, we process all interactions sequentially and
+preprocess the VAD annotations by merging segments that
+are separated by at most 0.5 seconds. We then compute
+the overlapping VAD regions between both speakers. Us-
+ing a sliding-window approach, we calculate the percent-
+age of time within each window during which both speakers
+are active simultaneously. We retain only those windows in
+which the overlap is between 30% and 50% of the window
+duration. These thresholds were determined empirically.
+We observed that, above the upper threshold, the segments
+often corresponded to situations in which the speakers were
+not engaging in a natural conversation, either because they
+were speaking over each other continuously or because of
+audio-related artefacts. The lower threshold was introduced
+to ensure that the listener still contributed actively to the
+interaction through backchanneling or verbal feedback di-
+rected at the main speaker. While active listening can also
+occur without speech, we did not identify suitable examples
+of this behaviour in the dataset, since most silent segments
+were associated with relatively static listeners.
+For the windows that satisfy the VAD overlap require-
+ment, we assign the listener role to the speaker with the
+lower speaking time. We then compute the amount of move-
+ment as described for T1 and T2, but considering only the
+listener’s motion. For each interaction, we retain and ren-
+der the three windows with the highest listener motion val-
+ues. The rendered segments are manually reviewed, and
+only those in which the gestures of both speakers (especially
+those of the listener) are meaningful and relevant to the con-
+versation are selected. In total, we selected 46 segments for
+evaluation from 41 different speakers. Of these, 24 belong
+to the public subset and 22 to the private subset.
+3.2.4. Mismatched interlocutor for dyadic segments
+To generate the mismatched pairs for the dyadic mismatch-
+ing study, for each segment A, we first identify another seg-
+ment B within the same subset (public or private) in which
+the agent has the most similar VAD to the agent of segment
+A. For the motion-capture condition, mismatched segments
+are created by keeping the interlocutor’s audio and motion
+and the agent’s audio from segment A unchanged, while re-
+placing the agent’s motion with the motion from segment
+B.
+In the case of challenge submissions, challenge partici-
+pants generate the agent’s motion conditioned on the agent’s
+audio, and the interlocutor’s audio and motion from seg-
+ment B. As a result, the generated motion is expected to
+correspond to a different conversation. To create the mis-
+matched video for the user study, we combine the inter-
+locutor’s audio and motion from segment A with the agent’s
+audio from segment A and the generated agent motion.
+3.2.5. Semantic segments
+Finally, for T4, we use the grounded gestures subset, which
+contains recordings of a single speaker uttering individ-
+ual sentences that include a word intended to be empha-
+sised. These target words are marked with asterisks in the
+interactions.csv file, making them easy to identify.
+Since each recording contains multiple unrelated sen-
+tences, the first step is to identify the beginning and end of
+every sentence containing a marked word. The selected seg-
+ments are then rendered and manually inspected to discard
+samples containing motion or audio artefacts. After this fil-
+tering process, T4 includes 257 segments from 50 different
+speakers, of which 178 belong to the public subset and 79
+to the private subset.
+3.3. User-study setup
+3.3.1. Evaluation questions and response options
+We run four user studies, corresponding to the tasks in
+Sec. 3. All four evaluations (shortened as E1–E4 below)
+use pairwise comparisons, posing the following questions
+to test-takers:
+• E1 (realism): In which video does the character gesture
+more like a real person?
+• E2 (speech mismatching): In which video do the char-
+acter’s movements fit the speech better?
+• E3 (dyadic mismatching): In which of the two videos
+does the character in the red T-shirt pay more attention
+to, and respond more appropriately to, the other person?
+• E4 (semantic mismatching):
+Which sentence is ex-
+pressed by the character’s gestures?
+In E1, E2, and E3, the response options are on a 5-point
+Likert-type rating scale, as in the GENEA Challenge 2023
+[8] and the GENEA Leaderboard [11]. In E4, there are four
+voting options, indicating which sentence (if any) the ges-
+tures express.
+3.3.2. Follow-up voting options (JUICE)
+Following the GENEA Leaderboard [11], we employ the
+JUICE (“JUstify their choICE”) methodology [4] to collect
+4
+
+
+Table 1. Number of stimuli (evaluation segments), test-takers, and
+votes collected in each of our four user studies.
+Evaluation
+Stimuli
+Test-takers
+Votes
+E1: Realism
+170
+154
+3,789
+E2: Speech mismatching
+170
+350
+8,488
+E3: Dyadic mismatching
+46
+159
+3,895
+E4: Semantic mismatching
+257
+177
+7,038
+more detailed feedback from test-takers. Whenever a test-
+taker indicates a preference (i.e., selects any option other
+than They Are Equal), they are additionally asked to indicate
+which factors drove that choice, by checking one or more
+attributes. The attribute lists are task-specific:
+• E1 (realism):
+– Limbs or body penetrating each other, or physically im-
+possible motion
+– Glitches or artefacts (e.g. glitching wrists and fingers)
+– The smoothness of the motion
+– The amount and intensity of motion
+– Recognisable gestures
+• E2 (speech mismatching):
+– Fit the rhythm and timing of the speech better
+– Emphasised the correct part (or parts) of the speech
+– Better matched the content and meaning of the speech
+– Better fit for the emotion of the speech
+• E3 (dyadic mismatching):
+– Better turn-taking (motion respects who is speaking vs.
+listening)
+– Reacts to the other person at the right moments
+– More natural listening cues (nodding, small “I’m fol-
+lowing you” movements)
+– Coordinated movements with the other person (e.g.
+mirroring motion and poses, mimicry)
+An additional Other (please specify) field lets test-takers de-
+scribe factors not listed above. Note that we do not use
+JUICE for E4 due to the short length of the semantic seg-
+ments.
+3.3.3. Crowdsourcing details
+We recruit test-takers through the Prolific crowdsourcing
+platform. To incentivise high-quality ratings, we set the
+compensation level based on the median study duration,
+so that it corresponds to an hourly rate of approximately
+£13.45, as quoted by the Living Wage Foundation in the
+UK. We also employ four attention checks per study to en-
+sure that test-takers watch the videos and listen to the audio
+(if available) in full, and that they read the response options
+(in the case of the semantic study, where response options
+vary). All test-takers with failed attention checks are ex-
+cluded from the results. Table 1 summarises the number of
+stimuli, test-takers, and votes collected in each study.
+Motion capture
+UNICAMP
+UM-FERI
+DyaSync-sem
+DyaSync
+GestFlow
+Model B: loser
+Motion capture
+UNICAMP
+UM-FERI
+DyaSync-sem
+DyaSync
+GestFlow
+Model A: winner
+0.68
+0.68
+0.78
+0.80
+0.95
+0.32
+0.46
+0.70
+0.76
+0.96
+0.32
+0.54
+0.64
+0.76
+0.94
+0.22
+0.30
+0.36
+0.66
+0.96
+0.20
+0.24
+0.24
+0.34
+0.88
+0.05
+0.04
+0.06
+0.04
+0.12
+Figure 1. Motion-realism study: pairwise winrates, ignoring ties
+and the slight/clear preference distinction. Conditions are ordered
+by estimated Elo rating in descending order.
+4. Results
+4.1. Motion realism
+The distribution of user-study responses is shown in Fig. 4,
+and the pairwise winrates between conditions are visualised
+in Fig. 1. Following [11], we compute Bradley-Terry Elo
+ratings from the responses by splitting ties and counting
+clear preferences twice; in Fig. 5, we report 95% confidence
+intervals for the median Elo rating under non-parametric
+bootstrapping. Finally, for each challenge submission, the
+distribution of JUICE votes when compared against the
+motion-capture condition is reported in Fig. 6.
+4.2. Alignment with the speech
+The distribution of responses for the speech mismatching
+study is shown in Fig. 7. We compute the speech appropri-
+ateness score using the same bootstrapping methodology as
+before, and report the 95% confidence intervals for the me-
+dian score in Fig. 8. Finally, the distribution of JUICE re-
+sponses for each condition is shown in Fig. 9.
+4.2.1. Updated appropriateness scaling
+In previous GENEA Challenges [8], the speech appropri-
+ateness score was defined as follows:
+Approld
+speech =
+2 C + S + 1
+2 T
+2 C + S + T + S + 2 C ,
+where C, S, T, S, and C denote the number of votes for
+clearly prefer matched, slightly prefer matched, they are
+equal, slightly prefer mismatched, and clearly prefer mis-
+matched, respectively. As in the realism study, clear prefer-
+ences count twice and ties are split evenly, so the score from
+5
+
+
+this formula lies in [0, 1], with 0.5 corresponding to chance
+performance.
+However, in this year’s challenge we introduce a seman-
+tic mismatching study, where it is more intuitive to set ran-
+dom performance at 0, meaning that the model is not se-
+mantically expressive. Therefore, to enable consistent scal-
+ing between all appropriateness scores in the mismatching
+evaluation, we modify the scaling to be in the [−1, 1] range,
+with chance performance at 0:
+Apprupdated
+speech =
+2 C + S −S −2 C
+2 C + S + T + S + 2 C .
+This is a simple scaling change; the relationship between
+the two formulas is Apprupdated
+speech = 2 (Approld
+speech −0.5).
+4.3. Alignment with the interlocutor
+The distribution of user responses collected in the dyadic
+mismatching study is shown in Fig. 10. Using the same
+methodology as in Sec. 4.2, we report bootstrapped dyadic
+appropriateness scores in Fig. 11, and the distribution of
+JUICE responses in Fig. 12.
+4.4. Semantic alignment
+In Fig. 13, we report the distribution of user-study responses
+in the semantic mismatching study. In comparison to the
+other two mismatching studies, which use a 5-point Likert-
+type rating scale, the semantic study does not distinguish
+between clear and slight preference, and it replaces the sin-
+gle tie option with two separate responses: neither is ex-
+pressed and both are expressed.
+Accordingly, the semantic appropriateness score is de-
+fined slightly differently to account for these differences:
+Apprsemantic =
+P −P
+P + P + N + B ,
+where P, N, P, and B denote the number of votes for
+matched text is expressed, neither is expressed, mismatched
+text is expressed, and both are expressed. Consistent with
+the other appropriateness scores, Apprsemantic lies in the
+[−1, 1] range, with 0 corresponding to chance performance.
+The semantic appropriateness scores are reported in
+Fig. 14.
+5. Discussion
+Comparing our core evaluation results to those of the GE-
+NEA Leaderboard [11] (Fig. 2), we observe several notable
+differences. First, in terms of motion realism, challenge
+submissions are more separated from each other and from
+the motion-capture data than the systems evaluated on the
+BEAT2 leaderboard. While the submissions are different
+between the two evaluations, the scaling of the Elo scores is
+consistent, therefore these results are to some degree com-
+parable. Second, we note that the Seamless motion-capture
+data achieves an Elo score about 100 higher than that of
+BEAT2, which could either imply that the filtered Seam-
+less segments contain more expressive motion capture than
+the BEAT2 segments, or that the challenge submissions are
+overall weaker than the leaderboard systems.
+Third, in terms of alignment with speech, the UNICAMP
+submission achieves a higher appropriateness score than
+any of the original six systems on the leaderboard, which
+demonstrates the utility of the dataset. This is further cor-
+roborated by the considerably higher appropriateness score
+of the Seamless motion-capture data compared to the prior
+result of the BEAT2 segments.
+In terms of the auxiliary evaluation tasks, we find that
+none of the challenge submissions achieved convincing re-
+sults (Fig. 3). However, the motion-capture segments were
+rated at a high level of alignment with the interlocutor, as
+well as for semantic alignment, which suggests that the
+dataset – and the mismatching methodology coupled with
+careful selection of segments – is suitable for evaluating
+these more advanced capabilities of gesture-generation sys-
+tems moving forward.
+We note that the mismatching evaluations provide a
+unique benefit in that they have a theoretical expected
+bottom-line performance of zero in the case of an input-
+independent system (i.e., one that does not use semantic or
+dyadic conditioning). This is in contrast with commonly
+used voting methodologies that compare two systems di-
+rectly, which makes it difficult to ground the results in a
+meaningful way.
+Our dyadic evaluation results, perhaps
+counterintuitively, show that the 95% confidence interval of
+the appropriateness score can fall below zero, even in the
+case of a monadic system like UM-FERI. There are many
+possible factors that may contribute to such a finding, in-
+cluding that the statistical analysis does not necessarily con-
+trol for the effects of the random sample of system outputs
+(system-level randomness), nor for the effects of the par-
+ticular selection of dyadic segments evaluated in the user
+study (study-level randomness). Both of these random fac-
+tors are expected to have the greatest effect in the dyadic
+study, which uses the smallest number of speech segments,
+and their effect will not shrink towards zero even if the num-
+ber of test-takers were to approach infinity. Given that many
+systems are evaluated – some of which are cases where the
+null hypothesis (no impact of the interlocutor in the dyadic
+evaluation) is known to be true – it is not statistically un-
+likely for one of the confidence intervals to wrongly exclude
+zero wholly or in part due to random chance. There is prece-
+dent for this in the GENEA Challenge 2023 [9].
+6
+
+
+500
+600
+700
+800
+900
+1000
+1100
+1200
+1300
+Motion realism (Elo)
+−0.2
+0.0
+0.2
+0.4
+0.6
+Speech-gesture alignment
+Motion capture (BEAT2)
+Motion capture
+UNICAMP
+UM-FERI
+DyaSync-sem
+DyaSync
+GestFlow
+Seamless Interaction (GENEA Challenge 2026)
+BEAT2 (GENEA Leaderboard)
+Figure 2. 95% confidence intervals for motion realism (Elo) and speech-gesture alignment (appropriateness score) for each condition in the
+two core evaluation criteria, comparing this challenge’s results on Seamless Interaction with the GENEA Leaderboard results on BEAT2
+(referenced in grey and without system names).
+0.0
+0.2
+0.4
+0.6
+0.8
+Semantic alignment
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+Dyadic alignment
+Motion capture
+UNICAMP
+DyaSync-sem
+DyaSync
+GestFlow
+UM-FERI
+Figure 3. 95% confidence intervals for dyadic alignment versus semantic alignment (appropriateness scores) for each condition, comparing
+challenge submissions and the motion-capture reference across the two auxiliary evaluation criteria.
+6. Conclusion
+In this preprint, we presented the 2026 GENEA Challenge,
+which focused on evaluating new gesture-generation sys-
+tems on the Seamless Interaction dataset, both in terms
+of established criteria (motion realism and alignment with
+speech) and in terms of forward-looking capabilities (se-
+mantic and dyadic alignment). Our results indicate that the
+Seamless Interaction dataset may be promising as a bench-
+mark for future gesture-generation models, and that the pro-
+posed evaluation methodology is suitable for assessing se-
+mantic and dyadic alignment in a disentangled manner. We
+hope that the challenge results will inspire future research
+on gesture generation, and that the collected votes and out-
+puts, alongside the evaluation methodology, will be useful
+for the community.
+7
+
+
+Acknowledgements
+RN, SAG, MT, and GEH were partially supported by the
+Wallenberg AI, Autonomous Systems and Software Pro-
+gram (WASP) funded by the Knut and Alice Wallenberg
+Foundation.
+YY and GEH were partially supported by
+the Industrial Strategic Technology Development Program
+(grant no. 20023495) funded by MOTIE, Republic of Ko-
+rea.
+8
+
+
+References
+[1] Vasu
+Agrawal,
+Akinniyi
+Akinyemi,
+Kathryn
+Alvero,
+Morteza Behrooz, Julia Buffalini, Fabio Maria Carlucci, Joy
+Chen, Junming Chen, Zhang Chen, Shiyang Cheng, et al.
+Seamless interaction: Dyadic audiovisual motion modeling
+and large-scale dataset. arXiv preprint arXiv:2506.22554,
+2025. 1, 2
+[2] Karlo Crnek.
+UM-FERI approach to GENEA challenge
+2026, 2026. Non-archival paper, to appear in the Interactive
+Social Agents Workshop at ECCV 2026. 2
+[3] Fengyi Fang, Ye Lu, Qian Bao, and Xudong Liu. DyaSync:
+Disentangling speech identity and activity for dyadic co-
+speech gesture generation, 2026. Non-archival paper, to ap-
+pear in the Interactive Social Agents Workshop at ECCV
+2026. 2
+[4] Rohit Girdhar, Mannat Singh, Andrew Brown, Quentin Du-
+val, Samaneh Azadi, Sai Saketh Rambhatla, Akbar Shah, Xi
+Yin, Devi Parikh, and Ishan Misra. Factorizing text-to-video
+generation by explicit image conditioning. pages 205–224,
+2024. 4
+[5] Johsac Isbac Gomez Sanchez and Paula D. P. Costa. A uni-
+fied flow-matching DiT with direct continuous decoding for
+co-speech gesture generation. In Proceedings of the Euro-
+pean Conference on Computer Vision (ECCV) Workshops,
+2026. To appear. 2
+[6] Jos´e Guillen. GestFlow: A small flow-matching system for
+the GENEA challenge 2026. In Proceedings of the European
+Conference on Computer Vision (ECCV) Workshops, 2026.
+To appear. 2
+[7] Taras Kucherenko, Patrik Jonell, Youngwoo Yoon, Pieter
+Wolfert, and Gustav Eje Henter. A large, crowdsourced eval-
+uation of gesture generation systems on common data: The
+genea challenge 2020. In 26th international conference on
+intelligent user interfaces, pages 11–21, 2021. 1, 2
+[8] Taras Kucherenko,
+Rajmund Nagy,
+Youngwoo Yoon,
+Jieyeon Woo, Teodor Nikolov, Mihail Tsakov, and Gus-
+tav Eje Henter. The genea challenge 2023: A large-scale
+evaluation of gesture generation models in monadic and
+dyadic settings.
+In Proceedings of the 25th International
+Conference on Multimodal Interaction, page 792–801, New
+York, NY, USA, 2023. Association for Computing Machin-
+ery. 1, 2, 3, 4, 5
+[9] Taras Kucherenko,
+Rajmund Nagy,
+Youngwoo Yoon,
+Jieyeon Woo, Teodor Nikolov, Mihail Tsakov, and Gus-
+tav Eje Henter.
+The GENEA Challenge 2023: A large-
+scale evaluation of gesture generation models in monadic
+and dyadic settings. In Proceedings of the International Con-
+ference on Multimodal Interaction, pages 792–801, 2023. 6
+[10] Taras Kucherenko, Pieter Wolfert, Youngwoo Yoon, Carla
+Viegas, Teodor Nikolov, Mihail Tsakov, and Gustav Eje Hen-
+ter. Evaluating gesture generation in a large-scale open chal-
+lenge: The GENEA Challenge 2022. ACM Transactions on
+Graphics (TOG), 2024. 1, 2
+[11] Rajmund Nagy, Hendric Voss, Thanh Hoang-Minh, Mihail
+Tsakov, Teodor Nikolov, Zeyi Zhang, Tenglong Ao, Sicheng
+Yang, Shaoli Huang, Yongkang Cheng, et al. Towards reli-
+able human evaluations in gesture generation: Insights from
+a community-driven state-of-the-art benchmark. In Proceed-
+ings of the IEEE/CVF Conference on Computer Vision and
+Pattern Recognition, pages 2152–2164, 2026. 1, 2, 4, 5, 6
+9
+
+
+A. Additional results
+This appendix collects the detailed per-study figures referenced in Sec. 4: the breakdown of votes cast per condition, the
+bootstrapped ratings and appropriateness scores, and the JUICE justifications provided by test-takers.
+A.1. Motion realism
+0%
+25%
+50%
+75%
+100%
+Share of responses
+GestFlow
+DyaSync
+DyaSync-sem
+UM-FERI
+UNICAMP
+Motion capture
+5%
+9%
+38%
+47%
+9%
+22%
+19%
+32%
+18%
+14%
+27%
+18%
+28%
+13%
+22%
+32%
+19%
+19%
+9%
+20%
+32%
+20%
+21%
+7%
+32%
+34%
+16%
+14%
+4%
+1%
+clearly prefer this system
+slightly prefer this system
+tie
+slightly prefer other system
+clearly prefer other system
+Figure 4. Motion-realism study: breakdown of the votes cast per condition.
+600
+700
+800
+900
+1000
+1100
+1200
+Elo rating
+GestFlow
+DyaSync
+DyaSync-sem
+UM-FERI
+UNICAMP
+Motion capture
+628
+933
+1012
+1107
+1109
+1211
+Challenge systems
+Mocap reference
+Figure 5. Motion-realism study: Bradley-Terry Elo ratings for each condition, with 95% confidence intervals obtained via bootstrapping.
+Conditions are ordered by estimated Elo rating in descending order.
+10
+
+
+UNICAMP
+UM-FERI
+DyaSync-sem
+DyaSync
+GestFlow
+25%
+20%
+15%
+10%
+5%
+0%
+5%
+10%
+Share of comparisons vs. Mocap reference (%)
+wins
+losses
+Hand or body penetration
+Artifacts or glitches
+Smoothness of the motion
+Amount and intensity of the motion
+Recognisable gestures
+Other reason
+Figure 6. Motion-realism study: JUICE justifications provided by test-takers.
+A.2. Alignment with the speech
+0%
+25%
+50%
+75%
+100%
+Share of responses
+GestFlow
+DyaSync
+DyaSync-sem
+UM-FERI
+UNICAMP
+Motion capture
+7%
+24%
+45%
+19%
+5%
+10%
+29%
+28%
+26%
+7%
+12%
+32%
+22%
+24%
+10%
+16%
+30%
+19%
+24%
+10%
+20%
+35%
+18%
+21%
+6%
+39%
+28%
+19%
+10%
+4%
+clearly prefer matched
+slightly prefer matched
+tie
+slightly prefer mismatched
+clearly prefer mismatched
+Figure 7. Speech mismatching study: breakdown of the votes cast per condition.
+11
+
+
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+Preference for matched motion
+GestFlow
+DyaSync
+DyaSync-sem
+UM-FERI
+UNICAMP
+Motion capture
+0.06
+0.08
+0.09
+0.16
+0.33
+0.62
+Challenge systems
+Mocap reference
+Chance (0)
+Figure 8. Speech mismatching study: appropriateness score for each condition, with 95% confidence intervals obtained via bootstrapping.
+Conditions are ordered by estimated appropriateness score in descending order.
+Motion capture
+UNICAMP
+UM-FERI
+DyaSync-sem
+DyaSync
+GestFlow
+20%
+10%
+0%
+10%
+20%
+30%
+Share of comparisons vs. own mismatched clip (%)
+wins
+losses
+Better ﬁt for emotion
+Better match for content/meaning
+Emphasises the correct parts
+Fits rhythm and timing
+Other reason
+Figure 9. Speech mismatching study: JUICE justifications provided by test-takers.
+12
+
+
+A.3. Alignment with the interlocutor
+0%
+25%
+50%
+75%
+100%
+Share of responses
+UM-FERI
+DyaSync
+DyaSync-sem
+UNICAMP
+GestFlow
+Motion capture
+8%
+27%
+22%
+30%
+13%
+9%
+28%
+20%
+33%
+10%
+4%
+23%
+47%
+20%
+6%
+8%
+24%
+41%
+21%
+6%
+13%
+30%
+21%
+27%
+9%
+49%
+24%
+8%
+13%
+5%
+clearly prefer matched
+slightly prefer matched
+tie
+slightly prefer mismatched
+clearly prefer mismatched
+Figure 10. Dyadic mismatching study: breakdown of the votes cast per condition.
+−0.2
+−0.1
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+Preference for matched motion
+UM-FERI
+DyaSync
+DyaSync-sem
+UNICAMP
+GestFlow
+Motion capture
+-0.10
+-0.05
+0.01
+0.06
+0.08
+0.65
+Challenge systems
+Mocap reference
+Chance (0)
+Figure 11. Dyadic mismatching study: appropriateness score for each condition, with 95% confidence intervals obtained via bootstrapping.
+Conditions are ordered by estimated appropriateness score in descending order.
+13
+
+
+Motion capture
+GestFlow
+UNICAMP
+DyaSync-sem
+DyaSync
+UM-FERI
+20%
+10%
+0%
+10%
+20%
+Share of comparisons vs. own mismatched clip (%)
+wins
+losses
+Better turn-taking
+Reacts at the right moments
+More natural listening cues
+Coordinated movements
+Other reason
+Figure 12. Dyadic mismatching study: JUICE justifications provided by test-takers.
+A.4. Semantic alignment
+0%
+25%
+50%
+75%
+100%
+Share of responses
+UM-FERI
+GestFlow
+DyaSync
+DyaSync-sem
+UNICAMP
+Motion capture
+26%
+44%
+26%
+4%
+25%
+48%
+25%
+2%
+22%
+51%
+22%
+6%
+26%
+46%
+22%
+6%
+29%
+45%
+22%
+5%
+79%
+9%
+7%
+5%
+matched text is expressed
+neither are expressed
+mismatched text is expressed
+both are expressed
+Figure 13. Semantic mismatching study: breakdown of the votes cast per condition.
+14
+
+
+−0.1
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+Preference for matched motion
+UM-FERI
+GestFlow
+DyaSync
+DyaSync-sem
+UNICAMP
+Motion capture
+-0.00
+0.00
+0.01
+0.04
+0.08
+0.77
+Challenge systems
+Mocap reference
+Chance (0)
+Figure 14. Semantic mismatching study: appropriateness score for each condition, with 95% confidence intervals obtained via bootstrap-
+ping. Conditions are ordered by estimated appropriateness score in descending order.
+15

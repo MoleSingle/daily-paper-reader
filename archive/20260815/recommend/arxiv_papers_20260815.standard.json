@@ -1,0 +1,60 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-15T20:29:16.469526+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 0,
+    "quick_skim_target": 11,
+    "quick_selected": 0
+  },
+  "deep_dive": [
+    {
+      "id": "2608.10839v1",
+      "source": "arxiv",
+      "title": "The GENEA Challenge 2026: A Large-Scale Disentangled Evaluation of Speech-Driven Gesture Generation on the Seamless Interaction Dataset",
+      "abstract": "This preprint presents the results of the fourth GENEA Challenge, a large-scale human evaluation of five speech-driven gesture-generation systems trained by participating teams on the Seamless Interaction dataset of dyadic conversations. As in the 2023 GENEA Challenge, we used a disentangled evaluation methodology to assess motion quality and speech alignment without confounding between the two, and performed a dyadic mismatching study to isolate the effect of listening and reacting to the interlocutor. We additionally introduce a new semantic gesture-generation task and a text-mismatching evaluation methodology using the Grounded Gestures subset of the data. In total, we ran four large-scale user studies, collecting over 23,000 votes from 869 test-takers.   In the motion-realism study, the dataset's filtered segments had substantially higher motion quality than all challenge submissions (68-95% pairwise winrate). In the speech-alignment study, the motion-capture segments provided a conceptual ceiling at 62% alignment score, with the top submission significantly behind at 32% and the rest only slightly above the 0% expected of an input-independent system. In the dyadic study, motion capture again set the ceiling at 65% appropriateness score, but no submission scored substantially above chance, indicating that the systems could not yet respond to the interlocutor. Finally, the semantic mismatching evaluation found highly expressive gestures in the dataset (test-takers identified the matching transcript 79% of the time), yet almost all submissions failed to generate semantically expressive motion, with the best achieving only an 8% appropriateness score.   The collected votes and outputs will be made publicly available at https://genea-workshop.github.io/2026/challenge/ to facilitate reproducibility and further research.",
+      "authors": [
+        "Rajmund Nagy",
+        "Silvia Arellano García",
+        "Hendric Voss",
+        "Mihail Tsakov",
+        "Taras Kucherenko",
+        "Youngwoo Yoon",
+        "Gustav Eje Henter"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.HC",
+        "cs.SD"
+      ],
+      "published": "2026-08-11T12:06:16+00:00",
+      "link": "https://arxiv.org/pdf/2608.10839v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Large-scale benchmark and disentangled evaluation for speech-driven gesture generation, directly transferable to talking head synthesis benchmarks",
+      "llm_evidence_cn": "面向语音驱动手势生成的大规模基准与解耦评测方法，可直接迁移至说话头合成基准",
+      "llm_evidence": "面向语音驱动手势生成的大规模基准与解耦评测方法，可直接迁移至说话头合成基准",
+      "canonical_evidence": "面向语音驱动手势生成的大规模基准与解耦评测方法，可直接迁移至说话头合成基准",
+      "llm_tldr_en": "Presents the fourth GENEA Challenge, a large-scale human evaluation of speech-driven gesture generation using disentangled assessment of motion quality and speech alignment, dyadic mismatching, and a new semantic task; it offers a strong benchmark template for talking head synthesis evaluation.",
+      "llm_tldr_cn": "本文介绍了第四届GENEA挑战赛的结果，对五个语音驱动的手势生成系统在无缝交互数据集上进行大规模人类评测，采用解耦评估方法分别比较动作质量与语音对齐，并通过双人错配研究隔离交互作用，还新增了语义手势生成任务和文本错配评估。该挑战赛提供的评测协议和数据构建方式对说话头合成的基准测试和数据集建设具有很强的借鉴意义。",
+      "llm_tldr": "本文介绍了第四届GENEA挑战赛的结果，对五个语音驱动的手势生成系统在无缝交互数据集上进行大规模人类评测，采用解耦评估方法分别比较动作质量与语音对齐，并通过双人错配研究隔离交互作用，还新增了语义手势生成任务和文本错配评估。该挑战赛提供的评测协议和数据构建方式对说话头合成的基准测试和数据集建设具有很强的借鉴意义。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "benchmark for talking head synthesis",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": []
+}

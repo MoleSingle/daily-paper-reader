@@ -1,0 +1,24 @@
+{
+  "label": "2026-08-15",
+  "date": "2026-08-15",
+  "generated_at": "2026-08-15T20:30:56",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202608/15/2608.10839v1-the-genea-challenge-2026-a-large-scale-disentangled-evaluation-of-speech-driven-gesture-generation-on-the-seamless-interaction-dataset",
+      "section": "deep",
+      "title_en": "The GENEA Challenge 2026: A Large-Scale Disentangled Evaluation of Speech-Driven Gesture Generation on the Seamless Interaction Dataset",
+      "authors": "Rajmund Nagy, Silvia Arellano García, Hendric Voss, Mihail Tsakov, Taras Kucherenko, Youngwoo Yoon, Gustav Eje Henter",
+      "date": "2026-08-11",
+      "pdf": "https://arxiv.org/pdf/2608.10839v1",
+      "score": "8.0",
+      "evidence": "面向语音驱动手势生成的大规模基准与解耦评测方法，可直接迁移至说话头合成基准",
+      "tldr": "第四届GENEA挑战赛对五套语音驱动手势生成系统进行了大规模分离式评测，基于双人对话的Seamless Interaction数据集。评测涵盖动作质量、语音对齐、双人反应及语义手势四个维度，共收集869名受试者的23,000余票。结果显示数据集的受试者显著优于所有参赛系统，语音对齐和双人反应任务上参赛系统接近基线，说明交互式生成仍待突破。数据与投票将公开，以促进可复现研究。",
+      "tags": "query:talking-head",
+      "abstract_en": "This preprint presents the results of the fourth GENEA Challenge, a large-scale human evaluation of five speech-driven gesture-generation systems trained by participating teams on the Seamless Interaction dataset of dyadic conversations. As in the 2023 GENEA Challenge, we used a disentangled evaluation methodology to assess motion quality and speech alignment without confounding between the two, and performed a dyadic mismatching study to isolate the effect of listening and reacting to the interlocutor. We additionally introduce a new semantic gesture-generation task and a text-mismatching evaluation methodology using the Grounded Gestures subset of the data. In total, we ran four large-scale user studies, collecting over 23,000 votes from 869 test-takers.   In the motion-realism study, the dataset's filtered segments had substantially higher motion quality than all challenge submissions (68-95% pairwise winrate). In the speech-alignment study, the motion-capture segments provided a conceptual ceiling at 62% alignment score, with the top submission significantly behind at 32% and the rest only slightly above the 0% expected of an input-independent system. In the dyadic study, motion capture again set the ceiling at 65% appropriateness score, but no submission scored substantially above chance, indicating that the systems could not yet respond to the interlocutor. Finally, the semantic mismatching evaluation found highly expressive gestures in the dataset (test-takers identified the matching transcript 79% of the time), yet almost all submissions failed to generate semantically expressive motion, with the best achieving only an 8% appropriateness score.   The collected votes and outputs will be made publicly available at https://genea-workshop.github.io/2026/challenge/ to facilitate reproducibility and further research.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
