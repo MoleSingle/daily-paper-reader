@@ -6,23 +6,19 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-15
-- 运行时间：2026-08-15 20:30:50 UTC
+- 最新运行日期：2026-08-16
+- 运行时间：2026-08-16 19:37:45 UTC
 - 运行状态：成功
-- 本次总论文数：1
-- 精读区：1
+- 本次总论文数：0
+- 精读区：0
 - 速读区：0
 
 ### 今日简报（AI）
-今日精读1篇论文：聚焦语音驱动手势生成的大规模评估挑战赛。  
-最值得关注的是GENEA Challenge 2026在无缝交互数据集上采用分离式评估，直指手势生成模型的真实表现。  
-若你关注虚拟人交互，建议后续细看其评估框架与评测指标，可帮助避开同类研究的“高分陷阱”。
-- 详情：[/202608/15/README](/202608/15/README)
+> 今日无新推荐，系统未产出可展示论文。
+- 详情：[/202608/16/README](/202608/16/README)
 
 ### 精读区论文标签
-1. [The GENEA Challenge 2026: A Large-Scale Disentangled Evaluation of Speech-Driven Gesture Generation on the Seamless Interaction Dataset](/202608/15/2608.10839v1-the-genea-challenge-2026-a-large-scale-disentangled-evaluation-of-speech-driven-gesture-generation-on-the-seamless-interaction-dataset)  
-   标签：评分：8.0/10、query:talking-head
-   evidence：面向语音驱动手势生成的大规模基准与解耦评测方法，可直接迁移至说话头合成基准
+- 本次无精读推荐。
 
 ### 速读区论文标签
 - 本次无速读推荐。
