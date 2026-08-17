@@ -1,0 +1,24 @@
+{
+  "label": "2026-08-17",
+  "date": "2026-08-17",
+  "generated_at": "2026-08-17T20:35:09",
+  "count": 1,
+  "papers": [
+    {
+      "paper_id": "202608/17/2608.09529v1-towards-expressive-and-faithful-audio-to-image-generation-a-unified-multimodal-dataset-and-synthesis-framework",
+      "section": "quick",
+      "title_en": "Towards Expressive and Faithful Audio-to-Image Generation: A Unified Multimodal Dataset and Synthesis Framework",
+      "authors": "Dongxu Ge, Shansong Liu, Cheng Gong, Xiao-Lei Zhang, Chi Zhang, Xuelong Li",
+      "date": "2026-08-10",
+      "pdf": "https://arxiv.org/pdf/2608.09529v1",
+      "score": "6.0",
+      "evidence": "音频到图像数据集与合成框架，可迁移用于音频驱动面部动画",
+      "tldr": "音频到图像（A2I）生成虽受关注，但传统数据集缺乏高保真图像与精确跨模态对齐，导致现有方法难以通过微调强T2I模型获得高质量结果。为此提出A2I-Set，一个包含323K音频-图像-文本三元组的统一多模态数据集，并构建人工监督的混合源测试集。进一步提出AudioCanvas模型，在该数据集上微调，实现视觉表现力与跨模态对齐的双重提升，全面优于已有方法。数据集和代码已开源，为音频视觉研究提供坚实基础。",
+      "tags": "query:talking-head",
+      "abstract_en": "As an important subfield of cross-modal generation, synthesizing static visual content in the form of images from audio, namely audio-to-image (A2I) generation, has attracted increasing research attention in recent years. Nevertheless, despite the remarkable visual quality of modern text-to-image (T2I) models, the performance of A2I remains fundamentally limited by traditional datasets, which often lack both high-fidelity images and precise cross-modal alignment. As a result, existing methods still struggle to achieve high-quality audio-to-image generation through finetuning strong T2I models, thereby constraining practical applications in this area. Motivated by this gap, we introduce A2I-Set, a unified, high-quality tri-modal dataset consisting of 323K paired audio, images, and detailed text captions, specifically designed for audio-visual research, including audio-conditioned image generation. Besides, we developed a new mixed-source test set for the A2I task through human supervision. We further propose an A2I model, AudioCanvas, fine-tuned on our A2I-Set. Experiments show that AudioCanvas achieves more visually expressive as well as cross-modal alignment results that generally outperforming existing approaches. Our dataset and source code are available at https://github.com/gdx012/A2I-Generation.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

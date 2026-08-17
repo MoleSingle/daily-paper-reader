@@ -6,22 +6,28 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-16
-- 运行时间：2026-08-16 19:37:45 UTC
+- 最新运行日期：2026-08-17
+- 运行时间：2026-08-17 20:35:01 UTC
 - 运行状态：成功
-- 本次总论文数：0
+- 本次总论文数：1
 - 精读区：0
-- 速读区：0
+- 速读区：1
 
 ### 今日简报（AI）
-> 今日无新推荐，系统未产出可展示论文。
-- 详情：[/202608/16/README](/202608/16/README)
+今日仅速读1篇论文，聚焦音频到图像生成的表达力与保真度问题。
+
+该文提出统一多模态数据集与合成框架，值得关注音频-图像跨模态生成方向。
+
+建议下一步精读该文，重点考察其数据集构建与框架在真实场景下的表现。
+- 详情：[/202608/17/README](/202608/17/README)
 
 ### 精读区论文标签
 - 本次无精读推荐。
 
 ### 速读区论文标签
-- 本次无速读推荐。
+1. [Towards Expressive and Faithful Audio-to-Image Generation: A Unified Multimodal Dataset and Synthesis Framework](/202608/17/2608.09529v1-towards-expressive-and-faithful-audio-to-image-generation-a-unified-multimodal-dataset-and-synthesis-framework)  
+   标签：评分：6.0/10、query:talking-head
+   evidence：音频到图像数据集与合成框架，可迁移用于音频驱动面部动画
 
 
 <div class="dpr-home-promo-card">
