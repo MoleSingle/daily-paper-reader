@@ -6,28 +6,35 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-17
-- 运行时间：2026-08-17 20:35:01 UTC
+- 最新运行日期：2026-08-18
+- 运行时间：2026-08-18 19:24:54 UTC
 - 运行状态：成功
-- 本次总论文数：1
-- 精读区：0
+- 本次总论文数：5
+- 精读区：4
 - 速读区：1
 
 ### 今日简报（AI）
-今日仅速读1篇论文，聚焦音频到图像生成的表达力与保真度问题。
-
-该文提出统一多模态数据集与合成框架，值得关注音频-图像跨模态生成方向。
-
-建议下一步精读该文，重点考察其数据集构建与框架在真实场景下的表现。
-- 详情：[/202608/17/README](/202608/17/README)
+今日精读聚焦音频驱动3D说话头生成，两篇高分论文均围绕情绪控制展开。最值得关注的是CETalk（10分）的连续唤醒-效价控制，以及Xemo-Talker（9分）的显式情绪解锁。建议普通读者优先体验这两项技术的情绪表达效果，速读论文可作扩展参考。
+- 详情：[/202608/18/README](/202608/18/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [CETalk: Continuous Valence-Arousal Control for Audio-Driven 3D Talking Head Generation](/202608/18/2608.15110v1-cetalk-continuous-valence-arousal-control-for-audio-driven-3d-talking-head-generation)  
+   标签：评分：10.0/10、query:talking-head
+   evidence：音频驱动三维说话头生成，支持连续情感控制
+2. [Xemo-Talker: Unlock Emotions Explicitly for Audio-Driven Talking Portrait Synthesis](/202608/18/2608.14700v1-xemo-talker-unlock-emotions-explicitly-for-audio-driven-talking-portrait-synthesis)  
+   标签：评分：9.0/10、query:talking-head
+   evidence：音频驱动的说话人像合成，并显式控制情绪。
+3. [FMReward: Aligning and Evaluating Audio-Driven 3D Facial Animation with Human Preferences](/202608/18/2608.15296v1-fmreward-aligning-and-evaluating-audio-driven-3d-facial-animation-with-human-preferences)  
+   标签：评分：9.0/10、query:talking-head
+   evidence：首个面向音频驱动3D面部动画的人类偏好数据集与评估对齐框架
+4. [AnyTalk: Speech Animation for Arbitrary Characters Leveraging a Video Generation Model](/202608/18/2608.16143v1-anytalk-speech-animation-for-arbitrary-characters-leveraging-a-video-generation-model)  
+   标签：评分：9.0/10、query:talking-head
+   evidence：基于音频驱动的3D语音动画，无需动画数据即可生成任意角色的说话动画。
 
 ### 速读区论文标签
-1. [Towards Expressive and Faithful Audio-to-Image Generation: A Unified Multimodal Dataset and Synthesis Framework](/202608/17/2608.09529v1-towards-expressive-and-faithful-audio-to-image-generation-a-unified-multimodal-dataset-and-synthesis-framework)  
+1. [Efficient Audio-Visual Generation via Synchrony-Aware Cross-Modal Sparse Attention](/202608/18/2608.15522v1-efficient-audio-visual-generation-via-synchrony-aware-cross-modal-sparse-attention)  
    标签：评分：6.0/10、query:talking-head
-   evidence：音频到图像数据集与合成框架，可迁移用于音频驱动面部动画
+   evidence：面向音视频生成的同步感知加速方法，适用于说话头视频合成
 
 
 <div class="dpr-home-promo-card">
