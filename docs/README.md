@@ -6,35 +6,38 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-18
-- 运行时间：2026-08-18 19:24:54 UTC
+- 最新运行日期：2026-08-19
+- 运行时间：2026-08-19 20:45:15 UTC
 - 运行状态：成功
-- 本次总论文数：5
-- 精读区：4
-- 速读区：1
+- 本次总论文数：6
+- 精读区：3
+- 速读区：3
 
 ### 今日简报（AI）
-今日精读聚焦音频驱动3D说话头生成，两篇高分论文均围绕情绪控制展开。最值得关注的是CETalk（10分）的连续唤醒-效价控制，以及Xemo-Talker（9分）的显式情绪解锁。建议普通读者优先体验这两项技术的情绪表达效果，速读论文可作扩展参考。
-- 详情：[/202608/18/README](/202608/18/README)
+今日精读聚焦流式虚拟人生成与歌舞视频合成，速读覆盖身份保持、叙事连贯及语音克隆；最值得关注的是DynaForcing（9.0分）解决自强制蒸馏的动态崩溃问题，以及SingDance（8.0分）实现角色感知音频条件的零样本歌舞生成；建议普通读者优先了解这两项技术对短视频创作与虚拟主播领域的潜在影响。
+- 详情：[/202608/19/README](/202608/19/README)
 
 ### 精读区论文标签
-1. [CETalk: Continuous Valence-Arousal Control for Audio-Driven 3D Talking Head Generation](/202608/18/2608.15110v1-cetalk-continuous-valence-arousal-control-for-audio-driven-3d-talking-head-generation)  
-   标签：评分：10.0/10、query:talking-head
-   evidence：音频驱动三维说话头生成，支持连续情感控制
-2. [Xemo-Talker: Unlock Emotions Explicitly for Audio-Driven Talking Portrait Synthesis](/202608/18/2608.14700v1-xemo-talker-unlock-emotions-explicitly-for-audio-driven-talking-portrait-synthesis)  
+1. [DynaForcing: Overcoming Dynamic Collapse in Self-Forcing Distillation for Streaming Avatar Generation](/202608/19/2608.17707v1-dynaforcing-overcoming-dynamic-collapse-in-self-forcing-distillation-for-streaming-avatar-generation)  
    标签：评分：9.0/10、query:talking-head
-   evidence：音频驱动的说话人像合成，并显式控制情绪。
-3. [FMReward: Aligning and Evaluating Audio-Driven 3D Facial Animation with Human Preferences](/202608/18/2608.15296v1-fmreward-aligning-and-evaluating-audio-driven-3d-facial-animation-with-human-preferences)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：首个面向音频驱动3D面部动画的人类偏好数据集与评估对齐框架
-4. [AnyTalk: Speech Animation for Arbitrary Characters Leveraging a Video Generation Model](/202608/18/2608.16143v1-anytalk-speech-animation-for-arbitrary-characters-leveraging-a-video-generation-model)  
-   标签：评分：9.0/10、query:talking-head
-   evidence：基于音频驱动的3D语音动画，无需动画数据即可生成任意角色的说话动画。
+   evidence：音频驱动的虚拟人生成，解决口型同步与动态保持，直接契合说话头合成需求。
+2. [SingDance: Compositional Zero-Shot Singing-and-Dancing Video Generation with Role-Aware Audio Conditioning](/202608/19/2608.16220v1-singdance-compositional-zero-shot-singing-and-dancing-video-generation-with-role-aware-audio-conditioning)  
+   标签：评分：8.0/10、query:talking-head
+   evidence：音频驱动的舞蹈歌唱视频生成，包含口型发声，与说话头视频合成高度相关
+3. [Scanline-Aware Animatable Gaussian Avatars from Rolling-Shutter Videos](/202608/19/2608.17314v1-scanline-aware-animatable-gaussian-avatars-from-rolling-shutter-videos)  
+   标签：评分：8.0/10、query:talking-head
+   evidence：从多视角视频重建可动画人体化身
 
 ### 速读区论文标签
-1. [Efficient Audio-Visual Generation via Synchrony-Aware Cross-Modal Sparse Attention](/202608/18/2608.15522v1-efficient-audio-visual-generation-via-synchrony-aware-cross-modal-sparse-attention)  
+1. [KeyID: Decoupled Drafting and Keyframe Editing for Identity-Preserving Video Generation](/202608/19/2608.16154v1-keyid-decoupled-drafting-and-keyframe-editing-for-identity-preserving-video-generation)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：保身份视频生成有助于数字人形象创建
+2. [PersonaShot: Benchmarking Person-Centric Narrative Continuity in Multi-Shot Video Generation](/202608/19/2608.16717v1-personashot-benchmarking-person-centric-narrative-continuity-in-multi-shot-video-generation)  
+   标签：评分：7.0/10、query:talking-head
+   evidence：以人物为中心的视频生成基准，覆盖面部动态与叙事连贯性
+3. [Adding Voice Cloning to Text-to-Audio-Video Models with a Single Zero-Initialised Layer](/202608/19/2608.15690v1-adding-voice-cloning-to-text-to-audio-video-models-with-a-single-zero-initialised-layer)  
    标签：评分：6.0/10、query:talking-head
-   evidence：面向音视频生成的同步感知加速方法，适用于说话头视频合成
+   evidence：为文本到音视频生成增加声音克隆控制，支持定制声音的数字人形象。
 
 
 <div class="dpr-home-promo-card">

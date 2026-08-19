@@ -1,0 +1,264 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-19T20:41:37.130736+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2608.17707v1",
+      "source": "arxiv",
+      "title": "DynaForcing: Overcoming Dynamic Collapse in Self-Forcing Distillation for Streaming Avatar Generation",
+      "abstract": "Audio-driven avatar generation requires realistic lip-sync, expressive motion, and real-time streaming. Recent work achieves the latter via self-forcing with Distribution Matching Distillation (DMD), but this paradigm suffers from a critical failure that has not been systematically characterized: dynamic collapse, where the student model converges to a near-static optimum with high perceptual quality but severely suppressed temporal dynamics. We trace this to two causes: the reverse KL objective in DMD, which biases toward low-motion modes, and unanchored self-conditioning, which creates a feedback loop that amplifies collapse. This is especially harmful for avatars, where even subtle motion loss breaks lip-sync and expression.   To address this, we propose DynaForcing, a training framework with three complementary strategies applied at different levels. Specifically, Hybrid Forcing anchors rollouts to ground-truth dynamics at the data level to break the feedback loop. Dynamics-Aware Reward Regularization introduces explicit motion rewards via the RL interpretation of DMD to counteract the reverse KL bias at the loss level. Reference Perturbation perturbs reference images to decouple identity from static details, forcing the model to rely on audio for motion at the conditioning level. We further introduce computation graph pruning and gradient replay, reducing the GPU footprint of self-forcing by over an order of magnitude. Experiments show that DynaForcing recovers dynamics to teacher-comparable levels (Dyn-Deg: 0.31 -> 0.73, Sync-C: 7.03 -> 7.68) while improving visual quality, resolving the quality-dynamics trade-off throughout training without early stopping.",
+      "authors": [
+        "Yubo Huang",
+        "Sirui Zhao",
+        "Xinchen Yao",
+        "Zhengye Zhang",
+        "Jinyang Huang",
+        "Fengqi Cui",
+        "Shiwei Wu",
+        "Enhong Chen"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.MM"
+      ],
+      "published": "2026-08-18T12:29:56+00:00",
+      "link": "https://arxiv.org/pdf/2608.17707v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Audio-driven avatar generation with lip-sync and expressive motion, directly addressing talking-head synthesis.",
+      "llm_evidence_cn": "音频驱动的虚拟人生成，解决口型同步与动态保持，直接契合说话头合成需求。",
+      "llm_evidence": "音频驱动的虚拟人生成，解决口型同步与动态保持，直接契合说话头合成需求。",
+      "canonical_evidence": "音频驱动的虚拟人生成，解决口型同步与动态保持，直接契合说话头合成需求。",
+      "llm_tldr_en": "Identifies dynamic collapse in self-forcing distillation for streaming avatars, traces causes to reverse-KL bias and unanchored self-conditioning, and proposes DynaForcing to maintain temporal dynamics and lip-sync in audio-driven avatar generation.",
+      "llm_tldr_cn": "流式音频驱动虚拟人生成常采用自强制蒸馏，但该范式存在动态坍缩：学生模型收敛到近静态高感知质量解，严重抑制时间动态，破坏口型同步。作者将其归因于反KL目标对低运动模式的偏置以及未锚定自条件造成的反馈放大，并提出DynaForcing来避免坍缩。实验结果验证该方法能保持高感知质量的同时恢复时序运动，对实时说话头生成和数字人任务有直接价值。",
+      "llm_tldr": "流式音频驱动虚拟人生成常采用自强制蒸馏，但该范式存在动态坍缩：学生模型收敛到近静态高感知质量解，严重抑制时间动态，破坏口型同步。作者将其归因于反KL目标对低运动模式的偏置以及未锚定自条件造成的反馈放大，并提出DynaForcing来避免坍缩。实验结果验证该方法能保持高感知质量的同时恢复时序运动，对实时说话头生成和数字人任务有直接价值。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.16220v1",
+      "source": "arxiv",
+      "title": "SingDance: Compositional Zero-Shot Singing-and-Dancing Video Generation with Role-Aware Audio Conditioning",
+      "abstract": "Generating personalized dance videos from a reference image, text prompt, and audio track requires music-conditioned body motion. Singing-and-dancing adds a second requirement: the visible subject must also articulate the vocals. Existing music-conditioned methods focus primarily on choreography, while speech-driven models generally assume that the visible subject produces the input voice, leaving this combined setting largely underexplored. We introduce SingDance, a unified video diffusion framework that formulates controllable vocal articulation as a semantic role: the visible subject is either the source, who produces the vocal signal, or the listener, who receives it from an off-screen performer. Hard-compact routing selects task-relevant speech, music, and role conditions, which are composed through frame-wise joint audio injection; source and listener retain the same speech pathway. Training uses asymmetric supervision: on-screen speaking and curated off-screen conversational-response videos establish role control, while instrumental and song-based dancing-only videos establish music-conditioned body motion. The target Song/Source configuration is never observed during training. At inference, assigning the source role to a song composes separately learned articulation and song-conditioned dance capabilities, enabling compositional zero-shot singing-and-dancing. Experiments demonstrate strong motion--beat alignment and visual fidelity, reliable paired switching of vocal articulation while preserving music-aligned body motion, and highly competitive lip synchronization with substantially fewer generation-time parameters than the strongest speech-driven baseline evaluated.",
+      "authors": [
+        "Tao Feng",
+        "Xu Li",
+        "Xiangyang Luo",
+        "Ming Wen",
+        "Huadai Liu",
+        "Chen Zhang",
+        "Wei Xue"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.CV"
+      ],
+      "published": "2026-08-17T07:53:43+00:00",
+      "link": "https://arxiv.org/pdf/2608.16220v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Audio-driven video generation with vocal articulation, strongly relevant to talking head video synthesis",
+      "llm_evidence_cn": "音频驱动的舞蹈歌唱视频生成，包含口型发声，与说话头视频合成高度相关",
+      "llm_evidence": "音频驱动的舞蹈歌唱视频生成，包含口型发声，与说话头视频合成高度相关",
+      "canonical_evidence": "音频驱动的舞蹈歌唱视频生成，包含口型发声，与说话头视频合成高度相关",
+      "llm_tldr_en": "SingDance is a unified video diffusion framework that generates singing-and-dancing videos with role-aware audio conditioning, controlling whether the visible subject produces the vocals or is a listener, enabling zero-shot personalized video synthesis.",
+      "llm_tldr_cn": "歌唱舞蹈视频生成要求人物在舞蹈的同时对口型，现有方法难以兼顾音乐驱动动作与语音驱动口型。SingDance将可控制发声建模为语义角色（发声者或聆听者），以统一视频扩散框架实现零样本的分阶段生成。它通过角色感知音频条件同时驱动身体动作与唇部发声，解决了音乐与语音混合驱动的难题。实验表明该方法在个性化歌唱舞蹈视频生成上表现优异，为数字人视频合成提供新思路。",
+      "llm_tldr": "歌唱舞蹈视频生成要求人物在舞蹈的同时对口型，现有方法难以兼顾音乐驱动动作与语音驱动口型。SingDance将可控制发声建模为语义角色（发声者或聆听者），以统一视频扩散框架实现零样本的分阶段生成。它通过角色感知音频条件同时驱动身体动作与唇部发声，解决了音乐与语音混合驱动的难题。实验表明该方法在个性化歌唱舞蹈视频生成上表现优异，为数字人视频合成提供新思路。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "video synthesis of talking heads",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.17314v1",
+      "source": "arxiv",
+      "title": "Scanline-Aware Animatable Gaussian Avatars from Rolling-Shutter Videos",
+      "abstract": "Animatable human avatars are routinely reconstructed from multi-view video under a silent assumption: that every pixel of a frame observes the same instant of the body's motion. Rolling-shutter (RS) sensors expose image rows sequentially, so within one frame the head and the feet of a moving person are separated by tens of milliseconds of articulated motion, and every scanline sees a different pose. Feeding such video to a state-of-the-art avatar bakes the distortion into the canonical representation, where it survives as shear and wobble under novel views and novel poses. Worse, every camera in a rig follows its own readout schedule, so the multi-view consistency that drives the reconstruction is violated even when the geometry is correct. We present RS-Avatar, which reconstructs a sharp, undistorted, animatable 3D Gaussian avatar directly from RS video. The formulation is minimal: a motion-aware avatar already renders the body at several sub-frame instants, and where a blur model averages those renderings, a rolling-shutter model composites them scanline by scanline. Changing that operator is the only modification required. On RS-ZJU, a benchmark we build from ZJU-MoCap, this improves novel-view synthesis over training as if the frames were instantaneous, on every subject. A motion-aware blur model built on the same sub-frame machinery does not transfer, and in fact falls below the shutter-oblivious baseline: the machinery is reusable, the operator is not.",
+      "authors": [
+        "Youxiang Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-18T03:08:33+00:00",
+      "link": "https://arxiv.org/pdf/2608.17314v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "animatable human avatar reconstruction from multi-view video",
+      "llm_evidence_cn": "从多视角视频重建可动画人体化身",
+      "llm_evidence": "从多视角视频重建可动画人体化身",
+      "canonical_evidence": "从多视角视频重建可动画人体化身",
+      "llm_tldr_en": "This paper presents scanline-aware animatable Gaussian avatars that account for rolling-shutter distortion during reconstruction, enabling clean avatar reconstruction and animation from multi-view videos even with asynchronous exposure.",
+      "llm_tldr_cn": "针对多视角视频重建可动画化身时普遍忽略卷帘快门效应、导致帧内不同扫描线对应不同姿态并破坏重建一致性的问题，本文提出扫描线感知的高斯化身方法，在重建过程中显式建模卷帘快门曝光时序。通过引入滚动快门感知的建模，即使在相机异步曝光的采集设置下也能恢复干净的规范化身，并支持新视角与新姿态下的高质量动画。",
+      "llm_tldr": "针对多视角视频重建可动画化身时普遍忽略卷帘快门效应、导致帧内不同扫描线对应不同姿态并破坏重建一致性的问题，本文提出扫描线感知的高斯化身方法，在重建过程中显式建模卷帘快门曝光时序。通过引入滚动快门感知的建模，即使在相机异步曝光的采集设置下也能恢复干净的规范化身，并支持新视角与新姿态下的高质量动画。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.16154v1",
+      "source": "arxiv",
+      "title": "KeyID: Decoupled Drafting and Keyframe Editing for Identity-Preserving Video Generation",
+      "abstract": "Identity-preserving video generation (IPVG) requires synthesizing videos that are faithful to both reference subjects and text prompts. Existing methods are often hindered by high tuning costs or limited input-level enhancements, struggling to maintain rigid identity consistency during complex, long-sequence actions. To address these limitations, we propose KeyID, a training-free IPVG framework that decouples the synthesis of video dynamics from the injection of identity. Specifically, KeyID comprises two components: (1) Reference-Aware Video Generation, which produces an identity-agnostic video draft aligned with multiple references, and (2) Identity-Preserved Keyframe Editing, which integrates the target identity via sparse keyframe correction and subsequent motion interpolation. By shifting from dense frame-level supervision to sparse keyframe-level refinement, KeyID effectively resolves the capacity conflict between prompt adherence and identity fidelity. Crucially, our modular design allows seamless extension to multi-subject references and complex sequential action generation without additional training. KeyID outperforms prior works and is validated by automatic and human evaluations on the official challenge benchmark, ultimately securing the runner-up position in the Track 2 (Sequential Action) of the ACM Multimedia 2026 IPVG Grand Challenge. Source code is available at https://github.com/WISLab-GDUT/KeyID.",
+      "authors": [
+        "Jianjie Luo",
+        "Yiming Zhong",
+        "Haoming Shen",
+        "Yupeng Xiao",
+        "Zhenguo Yang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.MM"
+      ],
+      "published": "2026-08-17T06:16:04+00:00",
+      "link": "https://arxiv.org/pdf/2608.16154v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "identity-preserving video generation supports digital human avatar creation",
+      "llm_evidence_cn": "保身份视频生成有助于数字人形象创建",
+      "llm_evidence": "保身份视频生成有助于数字人形象创建",
+      "canonical_evidence": "保身份视频生成有助于数字人形象创建",
+      "llm_tldr_en": "Proposes KeyID, a training-free identity-preserving video generation framework that decouples reference-aware video drafting from identity-preserved keyframe editing, maintaining rigid identity consistency during long sequences without high tuning costs.",
+      "llm_tldr_cn": "身份保持视频生成常受限于调参成本高或身份一致性在复杂动作中难以保持。作者提出训练自由的KeyID框架，将视频动态合成与身份注入解耦。先由多参考生成不带身份的草稿视频，再通过稀疏关键帧编辑注入目标身份。该方法在长序列动作中保持刚性身份一致性，适合数字人形象创建等任务。",
+      "llm_tldr": "身份保持视频生成常受限于调参成本高或身份一致性在复杂动作中难以保持。作者提出训练自由的KeyID框架，将视频动态合成与身份注入解耦。先由多参考生成不带身份的草稿视频，再通过稀疏关键帧编辑注入目标身份。该方法在长序列动作中保持刚性身份一致性，适合数字人形象创建等任务。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.15690v1",
+      "source": "arxiv",
+      "title": "Adding Voice Cloning to Text-to-Audio-Video Models with a Single Zero-Initialised Layer",
+      "abstract": "Text-to-audio-video (T2AV) generation models produce a video and its soundtrack from a textual description, but offer no control over whose voice speaks in the output. We show that a base T2AV model can be turned into a voice-cloning model by adding a single zero-initialized linear layer on top of its audio backbone, fine-tuning for a comparatively short training schedule, and conditioning on a short reference recording at inference time. The reference is injected through two complementary signals: its diffusion latents are prepended to the audio stream, and a global speaker embedding modulates token of the target audio. On a benchmark of 674 speaker-text pairs spanning 30 speakers we compare against five strong voice-cloning text-to-speech baselines: our enhanced 5B model attains the highest speaker-encoder cosine similarity (SECS) across three independent verification networks (ECAPA-TDNN, WavLM-SV, Resemblyzer), statistically significantly outperforming every baseline. A side product of the architecture is that the audio path can be evaluated without the video path at inference time, yielding a ~30x speed-up over the full audio-video diffusion loop while preserving the voice-cloning behaviour.",
+      "authors": [
+        "Ivan Mikheev",
+        "Viacheslav Vasilev",
+        "Anna Dmitrienko",
+        "Alexey Letunovskiy",
+        "Ivan Kirillov",
+        "Kirill Chernyshev",
+        "Denis Dimitrov"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.AI",
+        "cs.LG",
+        "cs.MM"
+      ],
+      "published": "2026-08-16T11:40:20+00:00",
+      "link": "https://arxiv.org/pdf/2608.15690v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Adds voice cloning control to text-to-audio-video generation, enabling custom-voice digital human avatars.",
+      "llm_evidence_cn": "为文本到音视频生成增加声音克隆控制，支持定制声音的数字人形象。",
+      "llm_evidence": "为文本到音视频生成增加声音克隆控制，支持定制声音的数字人形象。",
+      "canonical_evidence": "为文本到音视频生成增加声音克隆控制，支持定制声音的数字人形象。",
+      "llm_tldr_en": "Shows that a single zero-initialized layer on top of a T2AV model's audio backbone can turn it into a voice-cloning model, conditioning on reference audio via diffusion latents and a global speaker embedding, with minimal fine-tuning.",
+      "llm_tldr_cn": "文本到音视频（T2AV）模型能生成视频和声音，但难以指定输出说话人是谁。本工作仅在模型音频主干上增加一个零初始化线性层，用参考音频注入说话人特征，即可将T2AV模型转换为声音克隆模型，无需大规模重训。在30位说话人的673个句子上与五种强基线对比，以极低训练成本实现了可控音色，对定制数字人声音有帮助。",
+      "llm_tldr": "文本到音视频（T2AV）模型能生成视频和声音，但难以指定输出说话人是谁。本工作仅在模型音频主干上增加一个零初始化线性层，用参考音频注入说话人特征，即可将T2AV模型转换为声音克隆模型，无需大规模重训。在30位说话人的673个句子上与五种强基线对比，以极低训练成本实现了可控音色，对定制数字人声音有帮助。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.16717v1",
+      "source": "arxiv",
+      "title": "PersonaShot: Benchmarking Person-Centric Narrative Continuity in Multi-Shot Video Generation",
+      "abstract": "Video generation is rapidly evolving from single-shot clips to multi-shot narratives, where the human character serves as the core narrative anchor. However, existing benchmarks mainly assess character appearance or individual-shot quality, without measuring whether physical and emotional states remain coherent across cuts. They also rarely provide criterion-specific evaluation methods, although physical continuity, facial dynamics, and cinematic relations require different visual, temporal, and relational evidence. To address these limitations, we introduce PersonaShot, the first person-centric benchmark for narrative continuity in multi-shot video generation. PersonaShot contains approximately 1,000 multi-shot segments and 16 metrics spanning physical continuity, affective dynamics, and cinematic grammar. \\textbf{\\textit{1)} Narrative Continuity Benchmark:} We evaluate character coherence across three temporal levels: within-shot states, cross-shot transitions, and sequence-level trajectories. \\textbf{\\textit{2)} Human-Aligned Specialist Evaluators:} We distill reasoning from a large multimodal teacher into lightweight criterion-specific evaluators, each grounded in the visual, temporal, or relational evidence required by its metric, and align them with expert human judgments. \\textbf{\\textit{3)} Systematic Evaluation and Insights:} Our evaluation reveals distinct capability profiles across state-of-the-art models and a clear gap between perceptual quality and cross-shot narrative continuity. Even visually compelling videos frequently exhibit physical-state resets, abrupt affective shifts, and broken cinematic relations across shots. Human studies further demonstrate strong agreement between our evaluators and expert judgments.",
+      "authors": [
+        "Yuji Wang",
+        "Yuheng Chen",
+        "Teng Hu",
+        "Ran Yi",
+        "Yijia Hong",
+        "Han Feng",
+        "Weijian Cao",
+        "Chengjie Wang",
+        "Lizhuang Ma",
+        "Jiangning Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-17T15:34:54+00:00",
+      "link": "https://arxiv.org/pdf/2608.16717v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "person-centric video generation benchmark with facial dynamics and narrative continuity",
+      "llm_evidence_cn": "以人物为中心的视频生成基准，覆盖面部动态与叙事连贯性",
+      "llm_evidence": "以人物为中心的视频生成基准，覆盖面部动态与叙事连贯性",
+      "canonical_evidence": "以人物为中心的视频生成基准，覆盖面部动态与叙事连贯性",
+      "llm_tldr_en": "Introduces PersonaShot, the first person-centric benchmark for narrative continuity in multi-shot video generation, using about 1,000 segments and 16 metrics spanning physical, facial, and cinematic evidence beyond single-shot quality.",
+      "llm_tldr_cn": "现有多镜头视频生成基准只衡量单镜头外观或角色一致性，无法评估人物在镜头间的物理与情绪连贯性。作者提出首个以人物为中心的叙事连续性基准PersonaShot，包含约1000个多镜头片段和16种评测指标。基准覆盖身体连贯、面部动态与电影关系等需要不同证据的维度。该工作为人物视频生成（含数字人）提供了更全面的评测工具。",
+      "llm_tldr": "现有多镜头视频生成基准只衡量单镜头外观或角色一致性，无法评估人物在镜头间的物理与情绪连贯性。作者提出首个以人物为中心的叙事连续性基准PersonaShot，包含约1000个多镜头片段和16种评测指标。基准覆盖身体连贯、面部动态与电影关系等需要不同证据的维度。该工作为人物视频生成（含数字人）提供了更全面的评测工具。",
+      "llm_tags": [
+        "query:talking-head:composite"
+      ],
+      "matched_query_tag": "query:talking-head:composite",
+      "matched_query_text": "Papers central to 数字人及talking head的基准测试和数据集论文, especially work that connects or combines: generation and synthesis of talking heads; digital human avatar creation; benchmark for talking head synthesis; dataset for talking head animation; audio-driven facial animation for talking heads; video synthesis of talking heads; benchmark datasets for evaluating talking head generation models; public datasets for digital human and talking head research; state of the art talking head synthesis benchmarks and datasets.",
+      "matched_requirement_id": "req-composite-talking-head",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
