@@ -1,0 +1,39 @@
+{
+  "label": "2026-08-20",
+  "date": "2026-08-20",
+  "generated_at": "2026-08-20T20:47:08",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202608/20/2608.16717v1-personashot-benchmarking-person-centric-narrative-continuity-in-multi-shot-video-generation",
+      "section": "deep",
+      "title_en": "PersonaShot: Benchmarking Person-Centric Narrative Continuity in Multi-Shot Video Generation",
+      "authors": "Yuji Wang, Yuheng Chen, Teng Hu, Ran Yi, Yijia Hong, Han Feng, Weijian Cao, Chengjie Wang, Lizhuang Ma, Jiangning Zhang",
+      "date": "2026-08-17",
+      "pdf": "https://arxiv.org/pdf/2608.16717v1",
+      "score": "8.0",
+      "evidence": "面向多镜头视频生成的人物中心基准，评估面部动态与身体状态连续性，与说话人生成评测相关。",
+      "tldr": "现有多镜头视频生成基准仅评估人物外观或单镜头质量，无法度量跨镜头的物理与情感状态连贯性。为此提出 PersonaShot，首个以人物为中心的叙事连续性基准，包含约1000个多镜头片段和16个指标，覆盖物理连续性、情感动态与电影语法。通过从大型多模态教师模型中蒸馏轻量级专家评估器，并与专家判断对齐，实现标准特定的自动评估。评测发现，模型在感知质量与跨镜头叙事连续性上存在明显差距，视觉出色的视频仍常出现状态重置、情感突变与电影关系断裂，为人物叙事生成提供了系统评估工具。",
+      "tags": "query:talking-head",
+      "abstract_en": "Video generation is rapidly evolving from single-shot clips to multi-shot narratives, where the human character serves as the core narrative anchor. However, existing benchmarks mainly assess character appearance or individual-shot quality, without measuring whether physical and emotional states remain coherent across cuts. They also rarely provide criterion-specific evaluation methods, although physical continuity, facial dynamics, and cinematic relations require different visual, temporal, and relational evidence. To address these limitations, we introduce PersonaShot, the first person-centric benchmark for narrative continuity in multi-shot video generation. PersonaShot contains approximately 1,000 multi-shot segments and 16 metrics spanning physical continuity, affective dynamics, and cinematic grammar. \\textbf{\\textit{1)} Narrative Continuity Benchmark:} We evaluate character coherence across three temporal levels: within-shot states, cross-shot transitions, and sequence-level trajectories. \\textbf{\\textit{2)} Human-Aligned Specialist Evaluators:} We distill reasoning from a large multimodal teacher into lightweight criterion-specific evaluators, each grounded in the visual, temporal, or relational evidence required by its metric, and align them with expert human judgments. \\textbf{\\textit{3)} Systematic Evaluation and Insights:} Our evaluation reveals distinct capability profiles across state-of-the-art models and a clear gap between perceptual quality and cross-shot narrative continuity. Even visually compelling videos frequently exhibit physical-state resets, abrupt affective shifts, and broken cinematic relations across shots. Human studies further demonstrate strong agreement between our evaluators and expert judgments.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202608/20/2608.18607v1-va-judger-reward-modeling-from-human-preference-feedback-for-joint-video-audio-generation",
+      "section": "quick",
+      "title_en": "VA-Judger: Reward Modeling from Human Preference Feedback for Joint Video-Audio Generation",
+      "authors": "Yinming Huang, Shuyuan Tu, Xi Yan, Zihan Yang, Jianhua Han, Xu Hang, Yu-Gang Jiang, Zuxuan Wu",
+      "date": "2026-08-19",
+      "pdf": "https://arxiv.org/pdf/2608.18607v1",
+      "score": "6.0",
+      "evidence": "构建大规模人类偏好数据集和奖励模型，用于评估联合视频-音频生成，可适用于说话头生成评估",
+      "tldr": "联合视频-音频生成的后训练需要奖励信号，但现有指标分别评估音频、视觉与同步，忽略文本-视频-音频的整体语义和时间连贯性，易导致奖励黑客。为此构建大规模人类偏好数据集VAPref-10K和VA-Judger-Bench基准，并提出链式思维全模态奖励模型VA-Judger：先学习清晰质量差距对，再通过拒绝采样蒸馏硬样本偏好解释，最后进行维度级强化学习以提供更稠密的奖励。实验表明VA-Judger在域内外均优于指标基线，用于后训练可显著提升生成质量。",
+      "tags": "query:talking-head",
+      "abstract_en": "Using reinforcement learning to post-train joint video-audio generation models requires a reward signal. Existing methods construct this reward by combining metrics for individual quality dimensions, including audio quality, visual fidelity, and synchronization. However, these metrics evaluate perceptual dimensions separately and fail to capture the overall semantic and temporal coherence among the text prompt, video, and audio that shapes human preferences. Optimizing models against these metrics encourages reward hacking, generating video-audio content that achieves high scores on these metrics yet appears incoherent or unfaithful to human viewers. To address this problem, we first construct a large-scale human-preference dataset VAPref-10K for joint video-audio generation, comprising 9K prompts and 10.3K fine-grained paired comparisons from open-source generation models. We also introduce the VA-Judger-Bench benchmark with both in-domain and out-of-domain model comparisons to evaluate whether reward models truly align with human preferences. We further propose VA-Judger, a chain-of-thought omni-reward model for joint video-audio generation. In particular, VA-Judger first learns from pairs with clear quality gaps to establish structured output and coarse preference discrimination, then distills reliable preference explanations for harder near-quality comparisons via rejection sampling verified against human annotations, and finally performs dimension-wise reinforcement learning that decomposes human feedback into individual quality dimensions for denser reward signals than a single binary preference label. Experiments show that VA-Judger outperforms metric baselines in predicting human preferences on both in-domain and out-of-domain evaluations. Using its human-aligned rewards for post-training audio-video generation model also yields significant improvements in generation quality.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
