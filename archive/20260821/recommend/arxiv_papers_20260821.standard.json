@@ -1,0 +1,218 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-21T19:42:11.054033+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 4,
+    "quick_skim_target": 11,
+    "quick_selected": 4
+  },
+  "deep_dive": [
+    {
+      "id": "2608.19900v1",
+      "source": "arxiv",
+      "title": "AvatarDynamizer: From Static to Dynamic Human Avatars via Generative Dynamic Textures",
+      "abstract": "For full-body avatars, modeling surface dynamics is crucial for overcoming the uncanny valley and achieving perceptual realism. Person-agnostic methods recover static 3D avatars from monocular images, videos, or text prompts, but their skeleton-driven animations lack realistic surface dynamics such as clothing wrinkles. In contrast, person-specific methods achieve high-quality rendering and realistic dynamics, but require expensive multi-view captures for each individual. Recent generalizable dynamic avatar methods struggle to embed surface dynamics, leading to either limited multi-view consistency or dynamic expressiveness. To this end, we propose AvatarDynamizer, a generative method that transforms an off-the-shelf static 3D avatar into a controllable, realistic, and multi-view-consistent 4D avatar. We introduce a novel texture-space surface-dynamics embedding and formulate avatar dynamics modeling as conditional texture generation. Our encoder--decoder representation embeds pose-dependent dynamics into dynamic texture maps, enabling compatibility with pre-trained video diffusion models while decoding them into 3D Gaussians for multi-view consistent rendering. Since existing datasets are limited in scale, sequence length, or motion diversity, we collect a large-scale multi-view dataset with long sequences covering diverse skeletal motions and surface dynamics. Experiments show that our method effectively animates static avatars with faithful surface dynamics and outperforms competing generalizable methods in visual fidelity, especially under limited dynamic training data.",
+      "authors": [
+        "Guoxing Sun",
+        "Heming Zhu",
+        "Linjie Lyu",
+        "Pascal Fua",
+        "Christian Theobalt",
+        "Marc Habermann"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-20T11:10:53+00:00",
+      "link": "https://arxiv.org/pdf/2608.19900v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Generative dynamic textures for converting static human avatars to dynamic",
+      "llm_evidence_cn": "用生成式动态纹理将静态人体化身转为动态",
+      "llm_evidence": "用生成式动态纹理将静态人体化身转为动态",
+      "canonical_evidence": "用生成式动态纹理将静态人体化身转为动态",
+      "llm_tldr_en": "AvatarDynamizer turns static 3D avatars into dynamic ones with generative dynamic textures, modeling clothing wrinkles to improve perceptual realism.",
+      "llm_tldr_cn": "该文针对全身体化身表面动态建模的难点，提出AvatarDynamizer方法，可将现成的静态3D化身扩展为具有服装褶皱等表面动态的全身动态化身。它利用生成式动态纹理，兼顾了跨个体泛化能力与动态表达力，克服了现有方法在多视角一致性和动态丰富度上的不足。实验表明该方法在保持身份一致性的同时显著提升了视觉效果，为数字人化身创建提供了高效方案。",
+      "llm_tldr": "该文针对全身体化身表面动态建模的难点，提出AvatarDynamizer方法，可将现成的静态3D化身扩展为具有服装褶皱等表面动态的全身动态化身。它利用生成式动态纹理，兼顾了跨个体泛化能力与动态表达力，克服了现有方法在多视角一致性和动态丰富度上的不足。实验表明该方法在保持身份一致性的同时显著提升了视觉效果，为数字人化身创建提供了高效方案。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.13368v2",
+      "source": "arxiv",
+      "title": "Sign Language Video Synthesis via Loss-Guided Multi-Expert GANs",
+      "abstract": "This preliminary technical report presents a framework for sign language video synthesis using a loss-guided multi-expert Generative Adversarial Network (GAN) to enhance communication for individuals with hearing impairments. Three specialized discriminators -- global, hand, and head -- each guide a corresponding expert branch in the generator toward a distinct visual region, enabling implicit feature specialization without explicit diversity losses. To stabilize this multi-discriminator system, whose early-phase training otherwise exhibits chaotic dynamics, we introduce a United Loss consensus mechanism that regularizes each discriminator toward the ensemble average at a 10% weight. Each branch further adopts a dual-pathway convolutional-transformer design with learnable AdaptiveFeatureFusion, balancing the stability of convolutions against the detail of windowed self-attention. The generator is trained using an alternating three-mode schedule (discriminator, holistic generation, branch-specialized generation). On a custom 156GB dataset with a filtered test set that removes easy and repetitive samples, our 0.2B-parameter variant achieves 29.8 PSNR (0.959 SSIM) and the 1.3B-parameter variant achieves 30.7 PSNR (0.965 SSIM), with inference VRAM footprints of 1.5 GB and 8 GB respectively, enabling deployment on consumer-grade hardware. Full ablation studies remain ongoing due to the 2-3 month training cycle on a single GPU. The system was showcased at the 2025 Hong Kong Frontier Technology Summit.",
+      "authors": [
+        "Dingzhan Nong",
+        "Zhihao Ren",
+        "Ziqi Li",
+        "Tim Lo"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-08-13T15:32:40+00:00",
+      "link": "https://arxiv.org/pdf/2608.13368v2",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Sign language video synthesis with head-specific expert; transferable to talking head video synthesis",
+      "llm_evidence_cn": "手语视频合成含头部专用专家，多专家GAN方法可迁移至说话头视频生成",
+      "llm_evidence": "手语视频合成含头部专用专家，多专家GAN方法可迁移至说话头视频生成",
+      "canonical_evidence": "手语视频合成含头部专用专家，多专家GAN方法可迁移至说话头视频生成",
+      "llm_tldr_en": "A loss-guided multi-expert GAN for sign language video synthesis uses global, hand and head discriminators to guide separate branches, stabilized by a United Loss consensus. Its head-region specialization is transferable to talking head video synthesis.",
+      "llm_tldr_cn": "该论文提出基于损失引导的多专家GAN框架用于手语视频合成，通过全局、手部和头部三个专用判别器分别引导生成器对应分支，实现对不同视觉区域的特征专业化。为稳定多判别器训练，引入United Loss共识机制，使每个判别器以10%权重向整体平均收敛。实验表明该框架能有效合成包含手部与头部动作的视频。由于头部区域合成与说话头生成高度相关，该多专家方案可迁移至说话头视频生成任务。",
+      "llm_tldr": "该论文提出基于损失引导的多专家GAN框架用于手语视频合成，通过全局、手部和头部三个专用判别器分别引导生成器对应分支，实现对不同视觉区域的特征专业化。为稳定多判别器训练，引入United Loss共识机制，使每个判别器以10%权重向整体平均收敛。实验表明该框架能有效合成包含手部与头部动作的视频。由于头部区域合成与说话头生成高度相关，该多专家方案可迁移至说话头视频生成任务。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "video synthesis of talking heads",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.18607v2",
+      "source": "arxiv",
+      "title": "VA-Judger: Reward Modeling from Human Preference Feedback for Joint Video-Audio Generation",
+      "abstract": "Using reinforcement learning to post-train joint video-audio generation models requires a reward signal. Existing methods construct this reward by combining metrics for individual quality dimensions, including audio quality, visual fidelity, and synchronization. However, these metrics evaluate perceptual dimensions separately and fail to capture the overall semantic and temporal coherence among the text prompt, video, and audio that shapes human preferences. Optimizing models against these metrics encourages reward hacking, generating video-audio content that achieves high scores on these metrics yet appears incoherent or unfaithful to human viewers. To address this problem, we first construct a large-scale human-preference dataset VAPref-10K for joint video-audio generation, comprising 9K prompts and 10.3K fine-grained paired comparisons from open-source generation models. We also introduce the VA-Judger-Bench benchmark with both in-domain and out-of-domain model comparisons to evaluate whether reward models truly align with human preferences. We further propose VA-Judger, a chain-of-thought omni-reward model for joint video-audio generation. In particular, VA-Judger first learns from pairs with clear quality gaps to establish structured output and coarse preference discrimination, then distills reliable preference explanations for harder near-quality comparisons via rejection sampling verified against human annotations, and finally performs dimension-wise reinforcement learning that decomposes human feedback into individual quality dimensions for denser reward signals than a single binary preference label. Experiments show that VA-Judger outperforms metric baselines in predicting human preferences on both in-domain and out-of-domain evaluations. Using its human-aligned rewards for post-training audio-video generation model also yields significant improvements in generation quality.",
+      "authors": [
+        "Yinming Huang",
+        "Shuyuan Tu",
+        "Xi Yan",
+        "Zihan Yang",
+        "Jianhua Han",
+        "Xu Hang",
+        "Yu-Gang Jiang",
+        "Zuxuan Wu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-19T06:53:14+00:00",
+      "link": "https://arxiv.org/pdf/2608.18607v2",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Joint video-audio generation reward modeling with human preference dataset",
+      "llm_evidence_cn": "联合视频-音频生成的奖励建模与人类偏好数据集",
+      "llm_evidence": "联合视频-音频生成的奖励建模与人类偏好数据集",
+      "canonical_evidence": "联合视频-音频生成的奖励建模与人类偏好数据集",
+      "llm_tldr_en": "Proposes VA-Judger, a reward model trained on human preferences to capture semantic and temporal coherence in joint video-audio generation, addressing reward hacking from separate metrics.",
+      "llm_tldr_cn": "该文针对联合视频-音频生成中的奖励信号问题，指出逐维质量指标无法反映人感知的整体语义与时间连贯性，并提出VA-Judger奖励模型。它构建大规模人类偏好数据集并直接建模文本、视频和音频之间的整体一致性，从而缓解奖励黑客现象。实验表明该奖励模型有助于更好对齐生成内容与人类偏好，为多模态生成评估提供新思路。该工作虽不直接针对说话头，但可迁移至音视频联合生成的说话头模型训练与评估。",
+      "llm_tldr": "该文针对联合视频-音频生成中的奖励信号问题，指出逐维质量指标无法反映人感知的整体语义与时间连贯性，并提出VA-Judger奖励模型。它构建大规模人类偏好数据集并直接建模文本、视频和音频之间的整体一致性，从而缓解奖励黑客现象。实验表明该奖励模型有助于更好对齐生成内容与人类偏好，为多模态生成评估提供新思路。该工作虽不直接针对说话头，但可迁移至音视频联合生成的说话头模型训练与评估。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "video synthesis of talking heads",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.19527v1",
+      "source": "arxiv",
+      "title": "Does Listening Matter? Backchanneling and Nodding in AI Clone",
+      "abstract": "AI clones that imitate a specific person typically reproduce what the person says and how they sound, but not how they listen. We investigate whether adding multimodal listening behaviors gives such a clone more presence and authenticity. We integrated verbal backchannels and head nodding, driven by real-time prediction models, into an AI clone equipped with voice cloning and LLM-based responses. In a within-subjects study (N=35), adding these behaviors significantly improved the perceived attentiveness of the avatar, the sense of talking with the real person, and the feeling of co-presence. These results indicate that AI clone fidelity should extend beyond voice and response content to include interactive listening behavior.",
+      "authors": [
+        "Koji Inoue",
+        "Kazushi Kato",
+        "Tatsuya Kawahara",
+        "Shunichi Kasahara"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC",
+        "cs.CL",
+        "cs.SD"
+      ],
+      "published": "2026-08-20T00:53:25+00:00",
+      "link": "https://arxiv.org/pdf/2608.19527v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI clone avatar with listening behaviors relevant to digital human creation",
+      "llm_evidence_cn": "具有倾听行为的AI克隆数字人，与数字人创建相关",
+      "llm_evidence": "具有倾听行为的AI克隆数字人，与数字人创建相关",
+      "canonical_evidence": "具有倾听行为的AI克隆数字人，与数字人创建相关",
+      "llm_tldr_en": "This paper adds real-time backchanneling and head nodding to an AI clone with voice cloning and LLM responses, showing that multimodal listening behaviors significantly improve perceived avatar attentiveness and authenticity.",
+      "llm_tldr_cn": "针对AI克隆通常只模仿说话内容和音色、却缺乏倾听行为的问题，本文在具备语音克隆和LLM响应的AI克隆中集成了由实时预测模型驱动的语言回馈与头部点头。35名受试者的组内实验显示，引入这些多模态倾听行为后，克隆体的被感知专注度、与真人交谈的临场感以及共在感都显著提升。该结果表明，AI克隆的逼真度不应止于声音与回复内容，而应扩展至交互式倾听行为，为数字人形象创建和虚拟人交互设计提供了实证依据。",
+      "llm_tldr": "针对AI克隆通常只模仿说话内容和音色、却缺乏倾听行为的问题，本文在具备语音克隆和LLM响应的AI克隆中集成了由实时预测模型驱动的语言回馈与头部点头。35名受试者的组内实验显示，引入这些多模态倾听行为后，克隆体的被感知专注度、与真人交谈的临场感以及共在感都显著提升。该结果表明，AI克隆的逼真度不应止于声音与回复内容，而应扩展至交互式倾听行为，为数字人形象创建和虚拟人交互设计提供了实证依据。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "digital human avatar creation",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.19863v1",
+      "source": "arxiv",
+      "title": "Listening Forward: Next Patch Embedding Prediction Enables Scalable Audio Learners",
+      "abstract": "Self-supervised learning (SSL) has driven substantial progress in audio representation learning, though existing methods have increasingly relied on elaborate pre-training recipes to reach competitive performance. A markedly different pre-training philosophy underpins the most influential progress in language modeling and, more recently, in visual representation learning: rather than train encoders as static feature extractors, models are trained to predict the next element, a discrete token or a continuous embedding, from the preceding context. Autoregressive prediction thereby provides a unified pre-training interface that transfers across modalities, compelling the model to learn the underlying data distribution. We ask whether such a simple causal paradigm can yield strong audio learners, given that audio's temporal structure makes autoregressive prediction of patch embeddings a natural fit. We introduce NAPE (Next-Audio-Patch-Embedding prediction), a self-supervised framework in which a causal Transformer predicts each next patch embedding of a log-mel spectrogram from the previous ones, using causal masking and stop-gradient as its sole training signal. The design is intentionally minimalist, avoiding reconstruction decoders, acoustic tokenizers, student-teacher setups, and auxiliary regularization losses. Across six audio and speech benchmarks, NAPE achieves state-of-the-art fine-tuning performance on several tasks, scales consistently across encoder sizes, and yields strong linear-probing results. NAPE also produces structured attention patterns without explicit supervision.",
+      "authors": [
+        "Umberto Cappellazzo",
+        "Xubo Liu",
+        "Stavros Petridis",
+        "Maja Pantic"
+      ],
+      "primary_category": "eess.AS",
+      "categories": [
+        "eess.AS",
+        "cs.AI",
+        "cs.SD"
+      ],
+      "published": "2026-08-20T10:16:07+00:00",
+      "link": "https://arxiv.org/pdf/2608.19863v1",
+      "tags": [
+        "keyword:talking-head",
+        "query:talking-head"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Self-supervised audio representation learning via next-patch prediction",
+      "llm_evidence_cn": "基于下一补丁预测的自监督音频表示学习",
+      "llm_evidence": "基于下一补丁预测的自监督音频表示学习",
+      "canonical_evidence": "基于下一补丁预测的自监督音频表示学习",
+      "llm_tldr_en": "Proposes autoregressive next-patch embedding prediction as a scalable self-supervised learning paradigm for audio, showing strong transferable audio representations.",
+      "llm_tldr_cn": "该文提出一种可扩展的自监督音频学习方法，受语言与视觉中的自回归预测启发，通过预测下一补丁嵌入来学习通用音频表示。这种预训练范式能促使模型掌握数据分布，并在多个下游音频任务中展现竞争性能。文中验证了方法的可扩展性，表明它可作为通用音频特征提取器。对于以音频驱动面部动画的任务，该方法有望提供更有效的音频编码，支撑说话头与数字人相关研究。",
+      "llm_tldr": "该文提出一种可扩展的自监督音频学习方法，受语言与视觉中的自回归预测启发，通过预测下一补丁嵌入来学习通用音频表示。这种预训练范式能促使模型掌握数据分布，并在多个下游音频任务中展现竞争性能。文中验证了方法的可扩展性，表明它可作为通用音频特征提取器。对于以音频驱动面部动画的任务，该方法有望提供更有效的音频编码，支撑说话头与数字人相关研究。",
+      "llm_tags": [
+        "query:talking-head"
+      ],
+      "matched_query_tag": "query:talking-head",
+      "matched_query_text": "audio-driven facial animation for talking heads",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
